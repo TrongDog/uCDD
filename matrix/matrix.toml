@@ -9263,6 +9263,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/ALIENTRI; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBMMX233-C0-ALIENTRI"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "ALIENTRI"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 RIG_CPU=pentium_p55c:233333333:3.5"
+note = "A5 calibration on the PC's boot at MMX 233 (pentium_p55c:233333333:3.5), DOS_ACT/ALIENTRI; C0 at MMX 233, the cpu_sensitive rule (not PASS on C0 at the sweep CPU); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-BIGREDRA"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
