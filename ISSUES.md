@@ -1626,6 +1626,66 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 - Timing: the bench's sweep timing comes from a Pentium 133; the PC at MMX
   233 decides timing (A7's kit entries say so).
 
+### CALTHRESH: the sweep's pass limits, from the control's own spread (set 1 Nov 2026 from plan 28b798e7; a bench setting)
+
+- Ruled (the owner, 30 Oct 2026): "Thresholds from the C0/C2 distributions
+  of the WIKI-WORKS and SNDREG games, each value with its data in NOTES and
+  thresholds.toml"; 31 Oct 2026 (question 38 item 3): "Thresholds from the
+  new plan's pairs; the provisional values stay in thresholds.toml marked
+  provisional until then; '2 of 3 runs to pass' stands."
+- The data [86Box 6.0 b9001, dynarec off, Pentium 133, the PC's boot; plan
+  28b798e7, pass: 504]: the 54 known-good games with sound; each game's C0
+  runs 2 and 3 and C2 runs 1 to 3 against its C0 run 1 (audiocmp --whole,
+  89 s from each run's own launch beep); all 54 have 50 or more matched
+  pieces in every C0 pair, so all 54 set the limits. The bench's
+  runs/rec/calthresh.py 28b798e7 prints every number here.
+- The rule: match and cover at the largest multiple of 0.05 below C0's own
+  floor; gaps, steps back and jumps at the game's own C0 maximum plus the
+  95th percentile of |C0-2 - C0-3| rounded up; first audio at C0's largest
+  spread plus C2's median lag, rounded up to the half second.
+
+| limit | set | provisional (c22a5073, the bench's boot) | C0 against C0 | C2, for scale |
+|---|---|---|---|---|
+| match_min | 0.95 | 0.85 | floor 0.96 (SSF2T), p5 0.99, 108 pairs | p5 0.00, 162 pairs |
+| cover_min | 0.85 | 0.90 | floor 0.86 (RAYMAN), p5 1.00 | p5 0.00 |
+| speed_tol | 0.02 | 0.02 | max 0.000, 108 of 108 at 1.00 | Quake alone off by more than 0.02 (1.05) |
+| gaps_extra | 1 | 2 | p95 0.4, max 5 | over the C0 max: p95 18.9 |
+| back_extra | 15 | 9 | p95 14.1, max 50 | p95 43.7 |
+| jumps_extra | 25 | 17 | p95 24.5, max 58 | p95 39.8 |
+| first_audio_extra_s | 3.0 | 3.0 | spread max 0.81 s, p95 0.08 | median lag 1.71 s (uCDD mounts after the beep) |
+| runs_to_pass | 2 | 2 | the owner's | |
+
+- Moved by the new limits (each read): to C2_DIFFERS BIGREDRA, DEDERBY,
+  GTA, LOLLYPOP, MKTRIL, SWTIECD; to PASS RAYMAN, SPIREXC. Under them the
+  84 games classify PASS 17 (the bench's reports/calibration.md has every
+  game's bin).
+- The classifier's plants hold under the new limits (runs/rec/calclass.py's
+  silent, slow and pitch plants fail; a 1 s gap and three 0.3 s repeats
+  pass, inside the control's own noise).
+
+### SWEEPWD: the sweep's watchdog misread three ways a game stops (found and fixed 1 Nov 2026; a bench fault)
+
+- Found reading the last screen of every record of plans 28b798e7 and
+  4a2b8cd3 (L11), emulator: a message with no newline puts the prompt at
+  the end of its own line (THEXDER "Packed file is corruptC:\>" read
+  HANG); the cursor reads "_" in one phase as it reads "?" in the other
+  (JURASSIC "Please run INSTALL.EXEC:\>_" and ALIENTRI's "You must have
+  the Alien Trilogy CD in the drive." read RUNNING, the blink changing the
+  screen); DOS's critical error waits for a key (JOHNNYBA's C0 "CDR101: Not
+  ready reading drive G / Abort, Retry, Fail?" read RUNNING with audio, the
+  launcher's CD track playing under it).
+- Fixed (bench 02a5235, 3f64781): the prompt counts at the end of the last
+  line, both cursor phases are stripped, "Abort, Retry, Fail" is CRASH.
+  L4: the four real screens are runs/rec/test_sweep.py cases, BAD on the old
+  rules, ok on the new (0 bad); the HANG, CRASH and EXIT plants re-judge as
+  recorded. rejudge.py: 24 of 504 runs of 28b798e7 moved, all in those four
+  games; 0 of 160 of 4a2b8cd3. c22a5073, the bench-boot baseline, was not
+  re-judged.
+- The verdicts it moved: four games became C0_NOT_PASS, each given its C0
+  run at MMX 233 (plan fda2f4b5, pass: 4; the cpu_sensitive rule), each
+  failing there as at the Pentium 133; bins in the bench's
+  results/calibration/bins.csv.
+
 ### TOL2: "within 2" in the interrupt counts of CLIGAP, PICHOLD and DMAMC (a bench tolerance; written 27 Oct 2026)
 
 - What: T2.EXE judges the card's interrupts over a span against the blocks
