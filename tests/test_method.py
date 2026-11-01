@@ -659,6 +659,20 @@ class BenchTests(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertIn('over 20 MB', result.stderr)
 
+    def test_home_path_stays_out(self):
+        # decides: Michael, 2 Nov 2026 (question 41): "the bench pre-commit gains a check that refuses
+        # an absolute home path in any file"; the pattern is method.toml's [[banned]] local path
+        for name, text in (('results/r.json', b'{"build": "/home/someone/Claude/rig86/fixtures/pinned/C2_32"}\n'),
+                           ('VERSIONS', b'the venv pointed at /Users/someone/py\n'),
+                           ('notes.txt', b'C:\\Users\\someone\\kit\n')):
+            result = self.commit(name, text)
+            self.assertEqual(result.returncode, 1, name)
+            self.assertIn('a local path', result.stderr)
+            self.git('reset', '-q')
+            (self.top / name).unlink()
+        self.assertEqual(self.commit('results/r.json', b'{"build": "~/Claude/rig86/fixtures/pinned/C2_32"}\n')
+                         .returncode, 0)
+
     def test_allowed_by_name(self):
         (self.top / '.bench-allow').write_text('dos/FIXTURE.COM  # a 12-byte test fixture\n')
         self.assertEqual(self.commit('dos/FIXTURE.COM').returncode, 0)
