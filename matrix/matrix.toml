@@ -8379,6 +8379,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/JOHNNYBA; C1, the CD-only build (C2 not PASS); cell UNKNOWN x UNKNOWN; disc CD audio"
 
 [[test]]
+name = "CAL-PCBMMX233-C0-JOHNNYBA"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "JOHNNYBA"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 RIG_CPU=pentium_p55c:233333333:3.5"
+note = "A5 calibration on the PC's boot at MMX 233 (pentium_p55c:233333333:3.5), DOS_ACT/JOHNNYBA; C0 at MMX 233, the cpu_sensitive rule (not PASS on C0 at the sweep CPU); cell UNKNOWN x UNKNOWN; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-WIPEOUT"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -10290,6 +10303,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/JURASSIC; C2, the audio build, held on (L7); cell own-code x UNKNOWN; disc CD audio"
 
 [[test]]
+name = "CAL-PCBMMX233-C0-JURASSIC"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "JURASSIC"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 RIG_CPU=pentium_p55c:233333333:3.5"
+note = "A5 calibration on the PC's boot at MMX 233 (pentium_p55c:233333333:3.5), DOS_ACT/JURASSIC; C0 at MMX 233, the cpu_sensitive rule (not PASS on C0 at the sweep CPU); cell own-code x UNKNOWN; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-TEMPEST2"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -11042,4 +11068,17 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/THEXDER; C2, the audio build, held on (L7); cell sierra-sci x UNKNOWN; disc none"
+
+[[test]]
+name = "CAL-PCBMMX233-C0-THEXDER"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "THEXDER"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 RIG_CPU=pentium_p55c:233333333:3.5"
+note = "A5 calibration on the PC's boot at MMX 233 (pentium_p55c:233333333:3.5), DOS_ACT/THEXDER; C0 at MMX 233, the cpu_sensitive rule (not PASS on C0 at the sweep CPU); cell sierra-sci x UNKNOWN; disc none"
 # END A5 calibration tests on the PC's boot
