@@ -8158,6 +8158,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/LOLLYPOP; C2, the audio build, held on (L7); cell NONE x REALMODE; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-LOLLYPOP"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "LOLLYPOP"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/LOLLYPOP; C1, the CD-only build (C2 not PASS); cell NONE x REALMODE; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-FUTUREDI"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8182,6 +8195,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/FUTUREDI; C2, the audio build, held on (L7); cell NONE x UNKNOWN; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-FUTUREDI"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "FUTUREDI"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/FUTUREDI; C1, the CD-only build (C2 not PASS); cell NONE x UNKNOWN; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-LEGENDS"
@@ -8262,6 +8288,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/CONANTHE; C2, the audio build, held on (L7); cell UNKNOWN x REALMODE; disc CD audio"
 
 [[test]]
+name = "CAL-PCBMMX233-C0-CONANTHE"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "CONANTHE"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 RIG_CPU=pentium_p55c:233333333:3.5"
+note = "A5 calibration on the PC's boot at MMX 233 (pentium_p55c:233333333:3.5), DOS_ACT/CONANTHE; C0 at MMX 233, the cpu_sensitive rule (not PASS on C0 at the sweep CPU); cell UNKNOWN x REALMODE; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-STELLAR7"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8286,6 +8325,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/STELLAR7; C2, the audio build, held on (L7); cell UNKNOWN x REALMODE; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-STELLAR7"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "STELLAR7"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/STELLAR7; C1, the CD-only build (C2 not PASS); cell UNKNOWN x REALMODE; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-JOHNNYBA"
@@ -8314,6 +8366,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/JOHNNYBA; C2, the audio build, held on (L7); cell UNKNOWN x UNKNOWN; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-JOHNNYBA"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "JOHNNYBA"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/JOHNNYBA; C1, the CD-only build (C2 not PASS); cell UNKNOWN x UNKNOWN; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-WIPEOUT"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8340,6 +8405,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/WIPEOUT; C2, the audio build, held on (L7); cell UNKNOWN x UNKNOWN; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-WIPEOUT"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "WIPEOUT"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/WIPEOUT; C1, the CD-only build (C2 not PASS); cell UNKNOWN x UNKNOWN; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-REDRAM"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8364,6 +8442,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/REDRAM; C2, the audio build, held on (L7); cell apogee x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-REDRAM"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "REDRAM"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/REDRAM; C1, the CD-only build (C2 not PASS); cell apogee x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-REDRAMRA"
@@ -8418,6 +8509,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/BLOOD; C2, the audio build, held on (L7); cell apogee x REALMODE; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-BLOOD"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "BLOOD"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/BLOOD; C1, the CD-only build (C2 not PASS); cell apogee x REALMODE; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-MI1"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8468,6 +8572,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/OSCAR; C2, the audio build, held on (L7); cell creative x UNKNOWN; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-OSCAR"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "OSCAR"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/OSCAR; C1, the CD-only build (C2 not PASS); cell creative x UNKNOWN; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-THEPATRI"
@@ -8522,6 +8639,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/INFERNO; C2, the audio build, held on (L7); cell digpak miles x REALMODE; disc CD audio"
 
 [[test]]
+name = "CAL-PCBMMX233-C0-INFERNO"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "INFERNO"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 RIG_CPU=pentium_p55c:233333333:3.5"
+note = "A5 calibration on the PC's boot at MMX 233 (pentium_p55c:233333333:3.5), DOS_ACT/INFERNO; C0 at MMX 233, the cpu_sensitive rule (not PASS on C0 at the sweep CPU); cell digpak miles x REALMODE; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-HEXENBEY"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8546,6 +8676,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/HEXENBEY; C2, the audio build, held on (L7); cell dmx x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-HEXENBEY"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "HEXENBEY"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/HEXENBEY; C1, the CD-only build (C2 not PASS); cell dmx x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-HEXENDEA"
@@ -8574,6 +8717,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/HEXENDEA; C2, the audio build, held on (L7); cell dmx x UNKNOWN; disc CD audio"
 
 [[test]]
+name = "CAL-PCBMMX233-C0-HEXENDEA"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "HEXENDEA"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 RIG_CPU=pentium_p55c:233333333:3.5"
+note = "A5 calibration on the PC's boot at MMX 233 (pentium_p55c:233333333:3.5), DOS_ACT/HEXENDEA; C0 at MMX 233, the cpu_sensitive rule (not PASS on C0 at the sweep CPU); cell dmx x UNKNOWN; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-SSF2T"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8600,6 +8756,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/SSF2T; C2, the audio build, held on (L7); cell hmi-sos x Borland RTM; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-SSF2T"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "SSF2T"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/SSF2T; C1, the CD-only build (C2 not PASS); cell hmi-sos x Borland RTM; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-QUARANT"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8624,6 +8793,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/QUARANT; C2, the audio build, held on (L7); cell hmi-sos miles x DOS/32A; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-QUARANT"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "QUARANT"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/QUARANT; C1, the CD-only build (C2 not PASS); cell hmi-sos miles x DOS/32A; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-BATTLEAR"
@@ -8678,6 +8860,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/BCRACERS; C2, the audio build, held on (L7); cell hmi-sos x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-BCRACERS"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "BCRACERS"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/BCRACERS; C1, the CD-only build (C2 not PASS); cell hmi-sos x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-DESCNT2V"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8702,6 +8897,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DESCNT2V; C2, the audio build, held on (L7); cell hmi-sos miles x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-DESCNT2V"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "DESCNT2V"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DESCNT2V; C1, the CD-only build (C2 not PASS); cell hmi-sos miles x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-EXTREMEA"
@@ -8730,6 +8938,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/EXTREMEA; C2, the audio build, held on (L7); cell hmi-sos miles x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-EXTREMEA"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "EXTREMEA"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/EXTREMEA; C1, the CD-only build (C2 not PASS); cell hmi-sos miles x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-MKTRIL"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8754,6 +8975,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/MKTRIL; C2, the audio build, held on (L7); cell hmi-sos miles x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-MKTRIL"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "MKTRIL"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/MKTRIL; C1, the CD-only build (C2 not PASS); cell hmi-sos miles x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-TOMBRAIG"
@@ -8782,6 +9016,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/TOMBRAIG; C2, the audio build, held on (L7); cell hmi-sos x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBMMX233-C0-XCAREXPE"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "XCAREXPE"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 RIG_CPU=pentium_p55c:233333333:3.5"
+note = "A5 calibration on the PC's boot at MMX 233 (pentium_p55c:233333333:3.5), DOS_ACT/XCAREXPE; C0 at MMX 233, the cpu_sensitive rule (not PASS on C0 at the sweep CPU); cell hmi-sos x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-RARKANI3"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8806,6 +9053,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/RARKANI3; C2, the audio build, held on (L7); cell hmi-sos x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-RARKANI3"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "RARKANI3"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/RARKANI3; C1, the CD-only build (C2 not PASS); cell hmi-sos x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-RAYMAN"
@@ -8860,6 +9120,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/STREETRA; C2, the audio build, held on (L7); cell hmi-sos x UNKNOWN; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-STREETRA"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "STREETRA"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/STREETRA; C1, the CD-only build (C2 not PASS); cell hmi-sos x UNKNOWN; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-WITCHAVE"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -8884,6 +9157,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/WITCHAVE; C2, the audio build, held on (L7); cell hmi-sos x UNKNOWN; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-WITCHAVE"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "WITCHAVE"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/WITCHAVE; C1, the CD-only build (C2 not PASS); cell hmi-sos x UNKNOWN; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-ARCHIMED"
@@ -8990,6 +9276,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/BIGREDRA; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-BIGREDRA"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "BIGREDRA"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/BIGREDRA; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-DARKLIGH"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9014,6 +9313,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DARKLIGH; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-DARKLIGH"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "DARKLIGH"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DARKLIGH; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-DEDERBY"
@@ -9042,6 +9354,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DEDERBY; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-DEDERBY"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "DEDERBY"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DEDERBY; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-DEDERBY2"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9066,6 +9391,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DEDERBY2; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-DEDERBY2"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "DEDERBY2"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DEDERBY2; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-FIROKLAW"
@@ -9094,6 +9432,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/FIROKLAW; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-FIROKLAW"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "FIROKLAW"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/FIROKLAW; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-GTA"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9118,6 +9469,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/GTA; C2, the audio build, held on (L7); cell miles others x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-GTA"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "GTA"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/GTA; C1, the CD-only build (C2 not PASS); cell miles others x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-LBA"
@@ -9146,6 +9510,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/LBA; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-LBA"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "LBA"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/LBA; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-MASSDEST"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9170,6 +9547,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/MASSDEST; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-MASSDEST"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "MASSDEST"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/MASSDEST; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-TSTDRIVO"
@@ -9198,6 +9588,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/TSTDRIVO; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-TSTDRIVO"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "TSTDRIVO"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/TSTDRIVO; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-XMENCHI"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9222,6 +9625,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/XMENCHI; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-XMENCHI"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "XMENCHI"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/XMENCHI; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-STARCOMM"
@@ -9250,6 +9666,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/STARCOMM; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-STARCOMM"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "STARCOMM"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/STARCOMM; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-SYNDWARS"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9274,6 +9703,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/SYNDWARS; C2, the audio build, held on (L7); cell miles x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-SYNDWARS"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "SYNDWARS"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/SYNDWARS; C1, the CD-only build (C2 not PASS); cell miles x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-BLASTER!"
@@ -9302,6 +9744,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/BLASTER!; C2, the audio build, held on (L7); cell miles x PMODE/W; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-BLASTER!"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "BLASTER!"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/BLASTER!; C1, the CD-only build (C2 not PASS); cell miles x PMODE/W; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-CASTLES2"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9326,6 +9781,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/CASTLES2; C2, the audio build, held on (L7); cell miles x REALMODE; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-CASTLES2"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "CASTLES2"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/CASTLES2; C1, the CD-only build (C2 not PASS); cell miles x REALMODE; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-TWINSEN"
@@ -9354,6 +9822,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/TWINSEN; C2, the audio build, held on (L7); cell miles others x UNKNOWN; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-TWINSEN"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "TWINSEN"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/TWINSEN; C1, the CD-only build (C2 not PASS); cell miles others x UNKNOWN; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-QUAKE"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9378,6 +9859,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/QUAKE; C2, the audio build, held on (L7); cell own-code x DJGPP; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-QUAKE"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "QUAKE"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/QUAKE; C1, the CD-only build (C2 not PASS); cell own-code x DJGPP; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-ASSAULTR"
@@ -9432,6 +9926,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/FXFIGHTE; C2, the audio build, held on (L7); cell own-code x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-FXFIGHTE"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "FXFIGHTE"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/FXFIGHTE; C1, the CD-only build (C2 not PASS); cell own-code x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-PROJECTP"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9458,6 +9965,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/PROJECTP; C2, the audio build, held on (L7); cell own-code x DOS/4GW; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-PROJECTP"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "PROJECTP"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/PROJECTP; C1, the CD-only build (C2 not PASS); cell own-code x DOS/4GW; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-THEHORDE"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9482,6 +10002,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/THEHORDE; C2, the audio build, held on (L7); cell own-code x DOS/4GW; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-THEHORDE"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "THEHORDE"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/THEHORDE; C1, the CD-only build (C2 not PASS); cell own-code x DOS/4GW; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-ADARK1"
@@ -9536,6 +10069,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/ADARK2; C2, the audio build, held on (L7); cell own-code x REALMODE; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-ADARK2"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "ADARK2"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/ADARK2; C1, the CD-only build (C2 not PASS); cell own-code x REALMODE; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-ADARK394"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9560,6 +10106,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/ADARK394; C2, the audio build, held on (L7); cell own-code x REALMODE; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-ADARK394"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "ADARK394"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/ADARK394; C1, the CD-only build (C2 not PASS); cell own-code x REALMODE; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-CEO"
@@ -9612,6 +10171,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/ETERNAM; C2, the audio build, held on (L7); cell own-code x REALMODE; disc CD audio"
+
+[[test]]
+name = "CAL-PCBP133-C1-ETERNAM"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "ETERNAM"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/ETERNAM; C1, the CD-only build (C2 not PASS); cell own-code x REALMODE; disc CD audio"
 
 [[test]]
 name = "CAL-PCBP133-C0-FWARS"
@@ -9770,6 +10342,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/TINCM2; C2, the audio build, held on (L7); cell sierra-sci x REALMODE; disc CD audio"
 
 [[test]]
+name = "CAL-PCBP133-C1-TINCM2"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "TINCM2"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/TINCM2; C1, the CD-only build (C2 not PASS); cell sierra-sci x REALMODE; disc CD audio"
+
+[[test]]
 name = "CAL-PCBP133-C0-EOB3"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9794,6 +10379,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/EOB3; C2, the audio build, held on (L7); cell digpak miles x DOS/32A; disc data CD"
+
+[[test]]
+name = "CAL-PCBP133-C1-EOB3"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "EOB3"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/EOB3; C1, the CD-only build (C2 not PASS); cell digpak miles x DOS/32A; disc data CD"
 
 [[test]]
 name = "CAL-PCBP133-C0-XCOMUF"
@@ -9822,6 +10420,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/XCOMUF; C2, the audio build, held on (L7); cell digpak x DOS/4GW; disc data CD"
 
 [[test]]
+name = "CAL-PCBP133-C1-XCOMUF"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "XCOMUF"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/XCOMUF; C1, the CD-only build (C2 not PASS); cell digpak x DOS/4GW; disc data CD"
+
+[[test]]
 name = "CAL-PCBP133-C0-TRANSPOR"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9846,6 +10457,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/TRANSPOR; C2, the audio build, held on (L7); cell digpak x Phar Lap; disc data CD"
+
+[[test]]
+name = "CAL-PCBP133-C1-TRANSPOR"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "TRANSPOR"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/TRANSPOR; C1, the CD-only build (C2 not PASS); cell digpak x Phar Lap; disc data CD"
 
 [[test]]
 name = "CAL-PCBP133-C0-MAGCARP"
@@ -9926,6 +10550,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DESCENT; C2, the audio build, held on (L7); cell hmi-sos x DOS/4GW; disc data CD"
 
 [[test]]
+name = "CAL-PCBP133-C1-DESCENT"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "DESCENT"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DESCENT; C1, the CD-only build (C2 not PASS); cell hmi-sos x DOS/4GW; disc data CD"
+
+[[test]]
 name = "CAL-PCBP133-C0-METLTECB"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -9950,6 +10587,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/METLTECB; C2, the audio build, held on (L7); cell hmi-sos sierra-sci x REALMODE; disc data CD"
+
+[[test]]
+name = "CAL-PCBP133-C1-METLTECB"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "METLTECB"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/METLTECB; C1, the CD-only build (C2 not PASS); cell hmi-sos sierra-sci x REALMODE; disc data CD"
 
 [[test]]
 name = "CAL-PCBP133-C0-SWDFORC"
@@ -10004,6 +10654,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/SWTIECD; C2, the audio build, held on (L7); cell lucasarts x REALMODE; disc data CD"
 
 [[test]]
+name = "CAL-PCBP133-C1-SWTIECD"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "SWTIECD"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/SWTIECD; C1, the CD-only build (C2 not PASS); cell lucasarts x REALMODE; disc data CD"
+
+[[test]]
 name = "CAL-PCBP133-C0-DEATHRAL"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -10028,6 +10691,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DEATHRAL; C2, the audio build, held on (L7); cell own-code x PMODE/W; disc data CD"
+
+[[test]]
+name = "CAL-PCBP133-C1-DEATHRAL"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "DEATHRAL"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/DEATHRAL; C1, the CD-only build (C2 not PASS); cell own-code x PMODE/W; disc data CD"
 
 [[test]]
 name = "CAL-PCBP133-C0-CRUSREGR"
@@ -10056,6 +10732,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/CRUSREGR; C2, the audio build, held on (L7); cell own-code x Phar Lap; disc data CD"
 
 [[test]]
+name = "CAL-PCBP133-C1-CRUSREGR"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "CRUSREGR"
+library = "DOS_ACT"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_ACT/CRUSREGR; C1, the CD-only build (C2 not PASS); cell own-code x Phar Lap; disc data CD"
+
+[[test]]
 name = "CAL-PCBP133-C0-GK1"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -10080,6 +10769,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/GK1; C2, the audio build, held on (L7); cell sierra-sci x DOS/4GW; disc data CD"
+
+[[test]]
+name = "CAL-PCBP133-C1-GK1"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "GK1"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/GK1; C1, the CD-only build (C2 not PASS); cell sierra-sci x DOS/4GW; disc data CD"
 
 [[test]]
 name = "CAL-PCBP133-C0-ADOM"
@@ -10186,6 +10888,19 @@ env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/PIZZATYC; C2, the audio build, held on (L7); cell creative digpak x DOS/4GW; disc none"
 
 [[test]]
+name = "CAL-PCBP133-C1-PIZZATYC"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "PIZZATYC"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/PIZZATYC; C1, the CD-only build (C2 not PASS); cell creative digpak x DOS/4GW; disc none"
+
+[[test]]
 name = "CAL-PCBP133-C0-JILLJUNG"
 decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
 searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
@@ -10288,6 +11003,19 @@ repeat = 3
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1"
 note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/ULTIMA0; C2, the audio build, held on (L7); cell own-code x WDOSX; disc none"
+
+[[test]]
+name = "CAL-PCBP133-C1-ULTIMA0"
+decides = "silent: the zero-interaction run (project_a.md section 8.4) with the driver's recording judged against the control's (A5)"
+searched = "terms: zero-interaction; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "sweep"
+game = "ULTIMA0"
+library = "DOS_THNK"
+groups = ["calpc"]
+repeat = 3
+fixed = { build = "pinC1", vmodel = "sb16" }
+env = "GL_PCBOOT=1"
+note = "A5 calibration on the PC's boot at the Tier 3 CPU (pentium_p54c:133333333:2), DOS_THNK/ULTIMA0; C1, the CD-only build (C2 not PASS); cell own-code x WDOSX; disc none"
 
 [[test]]
 name = "CAL-PCBP133-C0-THEXDER"
