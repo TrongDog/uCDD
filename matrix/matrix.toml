@@ -1246,6 +1246,17 @@ secs = 90
 note = "disc T1A: C1, the CD-only build: Seek (131), then Read Long: CHECK.TXT's sectors, CRC32 A3A46D5C (fixtures/synth/MANIFEST.txt) (MSCDEX:376)"
 
 [[test]]
+name = "T1-C1-PLAY2"
+decides = "MSCDEX"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_EXTRA='fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1A.CUE > C:\\OUT\\M.TXT,T1:T1.EXE PLAY2'"
+groups = ["t1"]
+fixed = { build = "pinC1", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "disc T1A: C1, the CD-only build: Play Audio (132) track 2 for 10 s, then Stop Audio (133), judged by the capture as T1-PLAY2 is (MSCDEX:377-378). the owner, 2 Nov 2026, question 40 (b)(iii): does C1 play CD audio, and by which path. Prediction from the source (src/driver.asm audio_request): with no audio callback attached (AUDIO_ENTRY 0) the data-only build answers 84h as an unknown command, so no tone"
+
+[[test]]
 name = "T1-C1-EJECT"
 decides = "MSCDEX"
 runner = "probe"
