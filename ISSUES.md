@@ -1685,6 +1685,25 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   run at MMX 233 (plan fda2f4b5, pass: 4; the cpu_sensitive rule), each
   failing there as at the Pentium 133; bins in the bench's
   results/calibration/bins.csv.
+- 40-column text (2 Nov 2026; the owner, 31 Oct 2026, question 39: "the
+  screen reader gains the 40-column mode before A6, with a plant"): the
+  reader read only 80 columns, so Assault Rigs' DOS/4GW crash dump (40
+  columns) read HANG. screen.py now reads a shot that fails 80 columns as
+  40 columns of 18 pixels in both geometries 86Box draws: 400-line (9x16,
+  the 8x16 font, dots 2 px wide) and 200-line (8x8, the BIOS's 8x8 font,
+  dots 2.25 px wide, lines 2 px high); every pixel of a cell checked
+  against its glyph drawn at full size; a geometry counts only when 98 % of
+  its edge cells read (Destruction Derby's graphics frames had read as
+  text from samples alone; found in the re-judge, fixed). DOS/4GW's "Crash
+  address (unrelocated)" is CRASH (its error line can scroll off). Plants
+  (fixtures/sweepplant CRASH40, CRASH40L: mode 1 in 400 and 200 lines, then
+  a divide by zero; C0 development runs pcb4-plant-*, recompiler off): both
+  read CRASH with the 40-column read and RUNNING without it; CRASH40 read
+  in the 400-line geometry (129 of 129 lit cells), CRASH40L in the 200-line
+  (128 of 129, the cursor). test_sweep: Assault Rigs' C0 screen BAD before,
+  ok after. Re-judge: Assault Rigs' six runs HANG -> CRASH (the same dump
+  on C0 and C2), nothing else moved in 28b798e7, 4a2b8cd3, fda2f4b5 (bench
+  7f8057d, 5cd47a2, 878940d, 2042f2d).
 
 ### TOL2: "within 2" in the interrupt counts of CLIGAP, PICHOLD and DMAMC (a bench tolerance; written 27 Oct 2026)
 
