@@ -117,7 +117,7 @@ commands, IOCTLs and their formats are MSCDEX 2.1's (MSC:199-1161).
 | D5 | The owned channel has its own flip-flop. | 8237:225-230 | Open (harmless with even access counts). |
 | D8 | The request register (09h, D2h) is not trapped. | 8237 | Open (low). |
 | D10 | The output ring's protection misses the cascade channel 4. | 8237 | Open (rare). |
-| D11 | E2h with the channel not ready answered at 22Ah. | firmware | Fixed on `sb-gauntlet` (9f26044) for the SB16, from the 4.13's code and the CT2290. |
+| D11 | E2h with the channel not ready answered at 22Ah. | firmware | Fixed on `sb-gauntlet` (9f26044) for the SB16, from the 4.13's code and the CT2291. |
 | D3, D6, D7, D9, D12-D14 | As the review rates them. | | No change (harmless). |
 
 ## 6. Tests
@@ -398,7 +398,7 @@ takes far longer than the 23 to 45 us the virtual count, which follows the
 output clock, stays on one value: the reads never agree. Without the
 driver (86Box's SB16) a read takes 2.7 us and the first pass agrees. A real
 SB16 fetches through its FIFO and may hold the count still between bursts;
-DMACNT.COM (CKIT) measures the CT2290 for that. Open: copy the card's
+DMACNT.COM (CKIT) measures the CT2291 for that. Open: copy the card's
 measured count steps, or answer the count read in protected mode.
 A third batch, early on 18 Oct: 17 games had stopped at "Bad command or
 file name" because their launchers carry a number (BLOOD01.BAT,
