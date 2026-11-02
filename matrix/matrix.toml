@@ -16824,7 +16824,7 @@ searched = "terms: zero-interaction, sweep; hits: 15 in 5 documents (HOSTCD 6, A
 runner = "sweep"
 game = "MM6"
 library = "DOS_THNK"
-groups = ["sweep", "sweep-b03"]
+groups = ["sweep", "sweep-b03", "sweepdry"]
 repeat = 1
 fixed = { mode = "base", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1"
@@ -16837,7 +16837,7 @@ searched = "terms: zero-interaction, sweep; hits: 15 in 5 documents (HOSTCD 6, A
 runner = "sweep"
 game = "MM6"
 library = "DOS_THNK"
-groups = ["sweep", "sweep-b03"]
+groups = ["sweep", "sweep-b03", "sweepdry"]
 repeat = 1
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1"
@@ -16850,7 +16850,7 @@ searched = "terms: zero-interaction, sweep; hits: 15 in 5 documents (HOSTCD 6, A
 runner = "sweep"
 game = "MM6"
 library = "DOS_THNK"
-groups = ["sweep", "sweep-b03"]
+groups = ["sweep", "sweep-b03", "sweepdry"]
 repeat = 1
 fixed = { build = "a2", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1"
@@ -19710,7 +19710,7 @@ searched = "terms: zero-interaction, sweep; hits: 15 in 5 documents (HOSTCD 6, A
 runner = "sweep"
 game = "WC3HOTT"
 library = "DOS_ACT"
-groups = ["sweep", "sweep-b05"]
+groups = ["sweep", "sweep-b05", "sweepdry"]
 repeat = 1
 fixed = { mode = "base", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1"
@@ -19723,7 +19723,7 @@ searched = "terms: zero-interaction, sweep; hits: 15 in 5 documents (HOSTCD 6, A
 runner = "sweep"
 game = "WC3HOTT"
 library = "DOS_ACT"
-groups = ["sweep", "sweep-b05"]
+groups = ["sweep", "sweep-b05", "sweepdry"]
 repeat = 1
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1"
@@ -19736,7 +19736,7 @@ searched = "terms: zero-interaction, sweep; hits: 15 in 5 documents (HOSTCD 6, A
 runner = "sweep"
 game = "WC3HOTT"
 library = "DOS_ACT"
-groups = ["sweep", "sweep-b05"]
+groups = ["sweep", "sweep-b05", "sweepdry"]
 repeat = 1
 fixed = { build = "a2", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1"
