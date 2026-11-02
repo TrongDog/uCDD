@@ -1,7 +1,24 @@
 # State of this fork
 
-What was tested, how, and what is still open. RELEASE-NOTES.md lists the
-changes themselves.
+**Written by Claude, directed and tested by one person.** This file is the
+working record: every row is a claim with its evidence, in the order it was
+written. It is long. For the readable views see, on `fixes`:
+[README](https://github.com/TrongDog/uCDD/blob/fixes/README.md),
+[docs/METHOD.md](https://github.com/TrongDog/uCDD/blob/fixes/docs/METHOD.md)
+(how a result is produced),
+[docs/KNOWN-ISSUES.md](https://github.com/TrongDog/uCDD/blob/fixes/docs/KNOWN-ISSUES.md)
+(the table of faults and which version has each),
+[docs/FINDINGS.md](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md)
+(each fault in a paragraph),
+[docs/FEATURES.md](https://github.com/TrongDog/uCDD/blob/fixes/docs/FEATURES.md),
+[docs/CALIBRATION.md](https://github.com/TrongDog/uCDD/blob/fixes/docs/CALIBRATION.md)
+and [docs/BENCH.md](https://github.com/TrongDog/uCDD/blob/fixes/docs/BENCH.md).
+
+Contents: How things were tested; Changes; The output period; Slow CPUs;
+Not solved; Limits, by design; The author's releases (UPA6); The count and
+the block interrupt (F8, F2, PHYSPRO, DMAMASK, DYNAREC, HSPEED, ESSRATE);
+the candidate rows CAND-1 to CAND-21; the bench rows; The feature
+branches; Performance; Fixed after the reviews.
 
 Mantra rule 10 (20 Oct 2026): fix by family, not by game. A fault seen in
 one game is tested across every game sharing its sound engine and driver
