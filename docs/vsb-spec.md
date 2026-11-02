@@ -273,6 +273,18 @@ the ADPCM decoders and the RAM addresses F9h reads. The virtual SB16 is a
 4.13 since 17 Oct 2026; the CT2291 answers every probed command as the
 4.13's tables have it [hw].
 
+Why 4.13 and not upstream's 4.05 (written 2 Nov 2026, the owner's question).
+Upstream's virtual SB16 answers 4.05: 0.9.5-a2's UCDDSET sets the reply by
+model ("DSP version replies by model: 4.05, 3.02, unused, 2.01",
+setup/config_file.asm, dsp_versions) and `UCDD -install` keeps it; 4.05 is
+also the CT1741 firmware the disassembly comes from, and 86Box's own SB16
+says 4.05. The fork answers 4.13 because the card in the owner's PC, a CT2291,
+answers 4.13 [hw], and mantra rule 1 has the virtual card answer as the real
+hardware does; both are real SB16 versions, and no document prefers one.
+What a program can see differs (above): E1h's reply, F4h, 43h, DCh's
+argument, 41h's carry (22900 Hz plays 2849 Hz slow on a 4.05) and C8h's
+place in the time-constant table.
+
 uCDD's answers for chip state it does not keep: CSP reads FFh, 09h 00h
 00h, 4Dh 00h, F9h 00h outside the block length (0Eh, 0Fh), the test
 register (2Ah) and the commands (20h, 30h), F1h's port 2 as idle (32h, bit
