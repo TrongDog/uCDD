@@ -673,6 +673,13 @@ class BenchTests(unittest.TestCase):
         self.assertEqual(self.commit('results/r.json', b'{"build": "~/Claude/rig86/fixtures/pinned/C2_32"}\n')
                          .returncode, 0)
 
+    def test_home_path_kept_without_a_remote(self):
+        # the top folder uses the same hook, has no remote and keeps its paths (2 Nov 2026: its
+        # commit was refused the first time)
+        self.git('remote', 'remove', 'origin')
+        self.assertEqual(self.commit('ledger/runs.jsonl', b'{"tree": "/home/someone/Claude/rig86"}\n')
+                         .returncode, 0)
+
     def test_allowed_by_name(self):
         (self.top / '.bench-allow').write_text('dos/FIXTURE.COM  # a 12-byte test fixture\n')
         self.assertEqual(self.commit('dos/FIXTURE.COM').returncode, 0)

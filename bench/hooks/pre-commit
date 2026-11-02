@@ -37,6 +37,9 @@ def main():
     allowed = [pattern for pattern in allowed if pattern]
     names = [name for name in git('diff', '--cached', '--name-only', '--diff-filter=AM', '-z')
              .decode('utf-8', 'replace').split('\0') if name]
+    # the home-path check is for what goes to GitHub: a repository with no remote (the top folder,
+    # which holds the ledger and the notes with their paths, and never gets one) is not checked for it
+    pushed = bool(git('remote').strip())
     problems = []
     for name in names:
         if any(fnmatch.fnmatchcase(name, pattern) for pattern in allowed):
@@ -51,7 +54,7 @@ def main():
             continue
         # no absolute home path in any file (Michael, 2 Nov 2026: 839 records had carried one);
         # the pattern is the fork's own, method.toml's [[banned]] local path
-        text = git('show', f':{name}')
+        text = git('show', f':{name}') if pushed else b'\0'
         if b'\0' not in text:
             for number, line in enumerate(text.decode('utf-8', 'replace').splitlines(), 1):
                 if LOCAL_PATH.search(line):
