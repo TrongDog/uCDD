@@ -13,7 +13,7 @@ the hardware kit is for.
 - **In this fork**: whether the fault is present in this fork's driver at
   the commit the harness tests.
 - **In upstream**: whether the same case shows the fault in the upstream
-  project's most recent release the harness has run (0.9.5-a1 at the
+  project's most recent release the harness has run (0.9.5-a2 at the
   moment; the version is stated here once and updated when a newer
   release has been through the same runs). "Fixed" means the case passes
   there; "Never present" means upstream never had it.
