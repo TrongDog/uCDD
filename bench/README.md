@@ -6,7 +6,7 @@ each part holds:
 
 | What | Where | Why there |
 |---|---|---|
-| The bench folder: the runners and their wiring, the test programs' sources, the 86Box machine configurations (text), the kit scripts | its own git repository, pushed hourly to the private `EarBoye/ucdd-bench` | the costliest part to rebuild, and it holds nothing about Michael; off the machine, so it survives losing the machine and the disk together |
+| The bench folder: the runners and their wiring, the test programs' sources, the 86Box machine configurations (text), the kit scripts | its own git repository, pushed hourly to the private `TrongDog/ucdd-bench` | the costliest part to rebuild, and it holds nothing about Michael; off the machine, so it survives losing the machine and the disk together |
 | The notes (CONTEXT, HANDOFF, STATE, LESSONS and lessons.py), Claude's settings (`.claude/`), Claude's memory (mirrored in), the ledger, the bench's method.local.toml | a git repository at the top folder with **no remote**, committed hourly | they hold local paths, the old machine's account name and details about Michael, so they do not leave the machine, private repository or not. An hourly push would also send whatever an agent wrote, unread |
 | The games, disc images, recordings, ROMs and machine images | the backup disk only | game content or licensed software, never in any repository |
 
@@ -93,7 +93,7 @@ not refused. Never check out, reset or revert the ledger: it only grows.
    copy `mirror/<memory>` back to Claude's memory folder. Then
    `git -C <bench folder> pull`: GitHub has the last hour, the disk the last
    night. If the disk is lost too, clone the bench folder from
-   `https://github.com/EarBoye/ucdd-bench.git` and start the notes again.
+   `https://github.com/TrongDog/ucdd-bench.git` and start the notes again.
 2. Clone the fork, add the method branch as a worktree, and run `install.sh`
    for the worktrees, for Claude, and with `--bench` for both bench
    repositories (see the method README).

@@ -82,7 +82,7 @@ own_programs = ["UCDD.EXE", "UCDDSET.EXE", "UCDDPLAY.EXE", "COMMAND.COM"]
 # pull requests, issues and comments there.
 [upstream]
 owner = "vorvek"
-fork = "EarBoye/uCDD"
+fork = "TrongDog/uCDD"
 
 # The results ledger. The runners write it (tools/ledger.py record), the
 # hook reads it: a plan named in an "Evidence: emulator:" line must be saved

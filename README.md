@@ -320,7 +320,7 @@ him on GitHub, and what does not:
 
 The hook refuses the mention and the links. The guard refuses a push to his
 repository, gh and GitHub-tool writes there, and a `gh pr create` that does
-not name `--repo EarBoye/uCDD` (in a fork, gh and GitHub's own page offer
+not name `--repo TrongDog/uCDD` (in a fork, gh and GitHub's own page offer
 the original repository as the target).
 
 ## On GitHub

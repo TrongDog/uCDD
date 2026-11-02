@@ -787,7 +787,7 @@ class GuardTests(unittest.TestCase):
 
     def test_github_file_tools_refused(self):
         for name in ('push_files', 'create_or_update_file', 'delete_file'):
-            self.assertEqual(self.guard(tool=f'mcp__github__{name}', owner='EarBoye', repo='uCDD'), 2)
+            self.assertEqual(self.guard(tool=f'mcp__github__{name}', owner='TrongDog', repo='uCDD'), 2)
 
     def test_upstream_refused(self):
         for command in ('git push https://github.com/vorvek/uCDD fixes',
@@ -800,11 +800,11 @@ class GuardTests(unittest.TestCase):
                                     repo='uCDD', title='x'), 2)
         self.assertEqual(self.guard(tool='mcp__github__add_issue_comment', owner='Vorvek',
                                     repo='uCDD', body='x'), 2)
-        for command in ('git push -u origin claude/x', 'gh pr create --repo EarBoye/uCDD --title x',
+        for command in ('git push -u origin claude/x', 'gh pr create --repo TrongDog/uCDD --title x',
                         'gh repo view vorvek/uCDD', 'gh api repos/vorvek/uCDD',
                         'git fetch https://github.com/vorvek/uCDD'):
             self.assertEqual(self.guard(command), 0, command)
-        self.assertEqual(self.guard(tool='mcp__github__create_pull_request', owner='EarBoye',
+        self.assertEqual(self.guard(tool='mcp__github__create_pull_request', owner='TrongDog',
                                     repo='uCDD', title='x'), 0)
         self.assertEqual(self.guard(tool='mcp__github__pull_request_read', owner='vorvek',
                                     repo='uCDD'), 0)
