@@ -65,7 +65,7 @@ On the fork's own line:
   realtics and Quake from 19.8 to 22.0 fps with CD music. Then the driver
   option on the same PC: Doom's timedemo the same at 32, 64, 128 and 256
   frames, at the half and the full rate.
-- The real PC with a Creative CT2290 (SB16) in place of the ES1868: the
+- The real PC with a Creative CT2291 (SB16) in place of the ES1868: the
   card accepts Type F.
 - 86Box, one board per method (P/I-P54TP4XE, P/I-P55T2P4, AN430TX, Batman,
   M560, CUV4X-LS, SP97-XV, a 386 and a 486): each chipset named right, the
