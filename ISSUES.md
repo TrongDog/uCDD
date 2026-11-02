@@ -1534,6 +1534,10 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 
 ### PARALLEL: how many 86Box recordings at once (A5's measured setting: one; measured 29 Oct 2026; a bench limit)
 
+- decides = "silent: the owner's ruling of 29 Oct 2026 (the highest count of recordings at once that matches the single run) and the measurement"
+- searched = "terms: parallel instances; hits: 0 in 0 documents; 2 Nov 2026"
+- searched = "terms: underrun; hits: 72 in 7 documents (INTEL96 20, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 13, INTEL94 10, CS4231A 9, CS4232 9, 630 6); 2 Nov 2026" (chip FIFO underruns, not 86Box's recorder)
+
 - Asked (the owner, 29 Oct 2026): "ten selected games recorded one at a time,
   then two at a time, then four, each instance with its own display, work
   copies and capture; compare in-case underruns per capture (alrec.txt) and
@@ -1580,6 +1584,9 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   the driver's.
 
 ### TIER3CPU: the sweep's CPU (Tier 3 at a Pentium 133; measured 29 Oct 2026; a bench limit)
+
+- decides = "silent: the owner's ruling of 29 Oct 2026 (the highest CPU at which all ten games stay under 2 % inserted silence, Pentium-class the floor) and the measurement"
+- searched = "terms: inserted silence; hits: 0 in 0 documents; 2 Nov 2026"
 
 - Ruled (the owner, 29 Oct 2026): "Measure the same ten games one at a time
   at MMX 200, MMX 166 and Pentium 133 (C2; C0 for the three heavy ones as
@@ -1628,6 +1635,9 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 
 ### CALTHRESH: the sweep's pass limits, from the control's own spread (set 1 Nov 2026 from plan 28b798e7; a bench setting)
 
+- decides = "silent: the owner's rulings of 30 and 31 Oct 2026 (the limits from the control's own run-to-run spread on the known-good games) and plan 28b798e7's measurement; no document sets a pass limit for this comparison"
+- searched = "terms: threshold; hits: 227 in 27 documents (1543 20, 5597 20, 630 20, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 20, INTEL94 20, INTEL96 20); 2 Nov 2026" (electrical and FIFO thresholds of chips, none a sound comparison)
+
 - Ruled (the owner, 30 Oct 2026): "Thresholds from the C0/C2 distributions
   of the WIKI-WORKS and SNDREG games, each value with its data in NOTES and
   thresholds.toml"; 31 Oct 2026 (question 38 item 3): "Thresholds from the
@@ -1664,6 +1674,14 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   pass, inside the control's own noise).
 
 ### SWEEPWD: the sweep's watchdog misread three ways a game stops (found and fixed 1 Nov 2026; a bench fault)
+
+- decides = "5597 (5597:4993-4998, the video mode table: modes 0 and 1 are 40x25 in 8x8 cells at 320x200 and in 9x16 cells at 360x400, the two geometries the reader reads; 8x14 at 320x350 is listed too and is not read: a limit, noted 2 Nov 2026); silent for the screens' words (the prompt after a message's own text, the cursor's two phases, DOS's 'Abort, Retry, Fail', 'Packed file is corrupt', DOS/4GW's 'Crash address (unrelocated)'): no document holds them; this bench's own screens decide (test_sweep's cases)"
+- searched = "terms: 40x25; hits: 13 in 1 documents (5597 13); 2 Nov 2026"
+- searched = "terms: Abort, Retry; hits: 5 in 5 documents (INTEL96 1, PBOOK 1, PIIX 1, PIIX4 1, PIIXp 1); 2 Nov 2026" (chipset documents, not DOS's prompt)
+- searched = "terms: critical error; hits: 8 in 4 documents (DOC_INTERRUP_______ 3, DPMI09 2, SHSUCDX 2, DPMI10 1); 2 Nov 2026" (INT 24h named; none gives the prompt's screen form)
+- searched = "terms: Crash address; hits: 0 in 0 documents; 2 Nov 2026"
+- searched = "terms: Packed file; hits: 0 in 0 documents; 2 Nov 2026"
+- searched = "terms: 8x8 font; hits: 0 in 0 documents; 2 Nov 2026"
 
 - Found reading the last screen of every record of plans 28b798e7 and
   4a2b8cd3 (L11), emulator: a message with no newline puts the prompt at
