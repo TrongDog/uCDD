@@ -1,6 +1,6 @@
 # A wavetable board on the SB16: General MIDI through the MPU-401
 
-Michael's CT2290 carries a Dreamblaster X2GS on its wavetable header: a
+Michael's CT2291 carries a Dreamblaster X2GS on its wavetable header: a
 General MIDI and GS synthesiser fed from the card's MPU-401 at 330h. A
 game set up for "General MIDI", "Roland Sound Canvas", "MPU-401",
 "WaveBlaster" or "MT-32" sends MIDI bytes to 330h, and the board plays

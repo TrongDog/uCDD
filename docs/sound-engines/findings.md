@@ -2,7 +2,7 @@
 
 What the 74 traced games showed that matters for uCDD: faults in the
 driver, things the specification does not settle, and what to measure on
-the CT2290. Every item is [trace] (86Box, the engine-trace build of the
+the CT2291. Every item is [trace] (86Box, the engine-trace build of the
 `vcpi-children` line, 128-frame period, a virtual SB16 at 220h, DMA 1 and
 5) unless it says otherwise. Fixed so far: F14 (branch `stray-eoi`); the
 rest are open, each for its own branch and a family check.
@@ -29,7 +29,7 @@ in-service read; in the one 7/7 run that passed, the handler read the
 in-service register (0Bh, then 80h) and acknowledged. The same shape as
 the Miles ESS fault 2 (the virtual IRQ taken for a spurious IRQ 7 when
 it shares the line with the physical card, docs/miles-ess.md), on the
-SB16 path and the DPMI host. Not on Michael's planned set-up (CT2290 on
+SB16 path and the DPMI host. Not on Michael's planned set-up (CT2291 on
 IRQ 5); it is on any machine with the card on IRQ 7.
 
 ### F2. The polled DMA count steps backwards
@@ -103,7 +103,7 @@ interrupts off for set times, lesson L10), then on the PC at 32 frames
 with Hexen and Doom.
 
 23 Oct 2026, the PC [hardware: PLKIT, period-late a1ec3ec at 32 frames,
-the CT2290 on IRQ 5]: idle, no period refilled late in 20 s (periods
+the CT2291 on IRQ 5]: idle, no period refilled late in 20 s (periods
 equal to the timer's ticks within 0.1%); held off by CLIGAP 0.5 ms, 9
 late and none a whole period; 1 ms, 21 and 38; 4 ms, 80 a whole period
 and about 1.6 periods a hold lost against the ticks (the card stopping
@@ -167,12 +167,12 @@ of mode, count or mask the virtual card latches at the command.
 DOSBox-X plays C-Dogs on every card from the SB 2.0 up (the count
 moves through 112-1700 values), so the fault is uCDD's.
 
-**Confirmed on the CT2290 [hw, 19 Oct]:** C-Dogs' exact order (page and
+**Confirmed on the CT2291 [hw, 19 Oct]:** C-Dogs' exact order (page and
 address, E9h, D1h, 48h 61440, 90h, then mode, count and unmask) starts at
 once on the bare card, and also when the unmask comes 20 ms after the
 90h: the count moves within 1 ms. Through uCDD (D7) the count never
 moves, on the virtual SB16 [hw] and SB Pro [trace]. The same holds for a
-1-byte 14h ([ct2290.md](ct2290.md), the late unmask).
+1-byte 14h ([ct2291.md](ct2291.md), the late unmask).
 
 ### F6. Duke Nukem 3D's SB Pro path never starts on the virtual SB Pro
 
@@ -198,10 +198,10 @@ E9h, D1h, 48h 512, 90h, a handler that reads the PIC's in-service
 register) plays on the virtual SB Pro at IRQ 5, one interrupt every 11.6
 ms [trace, 19 Oct]: the stall comes from something else the game does.
 
-### F7-F13. Found by measuring the CT2290 (19 Oct)
+### F7-F13. Found by measuring the CT2291 (19 Oct)
 
-Each is the virtual SB16 under D7 against the bare CT2290 on the same PC,
-both [hw]; the numbers are in [ct2290.md](ct2290.md).
+Each is the virtual SB16 under D7 against the bare CT2291 on the same PC,
+both [hw]; the numbers are in [ct2291.md](ct2291.md).
 
 - **F7.** Time constants: the card plays A5h at 10846 Hz, D3h at 22047,
   E9h at 43383; the virtual card at 11023, 22046 and 44092 (A5h and E9h
@@ -332,12 +332,12 @@ habits there (14h per VOC block, single-cycle).
 ### F18. DMX mixes one block ahead of a count that trails what uCDD has taken
 
 Found reading Hexen's DMX (20 Oct; [dmx.md](dmx.md) steps 15 and 16)
-[code], with the 19 Oct trace of Hexen [trace] and the CT2290's count
+[code], with the 19 Oct trace of Hexen [trace] and the CT2291's count
 [hw, F8].
 
 DMX mixes, at a 140 Hz timer tick after each block interrupt, exactly the
 block after the one the 8237 count is in: at most 11.6 ms ahead. On the
-CT2290 the count is where the DMA has fetched to and sits on the block
+CT2291 the count is where the DMA has fetched to and sits on the block
 boundary at the interrupt, so DMX always writes a block at least 4.5 ms
 before the card takes it. Under uCDD the block interrupt comes when the
 mix (what uCDD has taken from the buffer) crosses the boundary, but the
@@ -374,7 +374,7 @@ nothing above the two references [86Box]. So on the clean build, at
 the PC. Whether this is the chop Michael hears in Hexen is open; F2
 below is the other candidate.
 
-What it says about the count (rule 1): the CT2290's count tells how far
+What it says about the count (rule 1): the CT2291's count tells how far
 the card has taken data. A count that trails that breaks engines writing
 just ahead of the count (DMX); one that runs ahead of it breaks engines
 writing just behind (HMI). On the Sound Blaster models uCDD's mix position
@@ -418,9 +418,9 @@ where uCDD's runs with both cards on IRQ 7 lost the probe interrupt.
 | B1 | HMI SOS | clears 0Ch (the 8-bit controller's flip-flop) before channel 5's address and count | keep channel 5's flip-flop on the 16-bit controller only (D5 in host-cdrom-spec.md) |
 | B2 | Sierra AUDBLAST | reads the count one byte per poll, no flip-flop clear | toggle the flip-flop on every read |
 | B3 | Apogee Sound System | reads channel 5's **current address** and the **page register** 8Bh | the address register moves with the output; page registers read back |
-| B4 | DigPak SB16 | writes mixer 81h = 02h | the CT2290 takes it: 81h is writable there and selects the DMA channels [hw, M2]; the virtual card ignores it (F12) |
-| B5 | HMI SOS, DigPak SB Pro 1993 | write mixer 83h = 0Bh | the CT2290 keeps bits 0-3 (reads FBh after it) and an 8-bit transfer runs the same [hw, M1]; the virtual SB16 reads FFh (F12) |
-| B12 | games set for SB Pro on an SB16 (Rayman's HMI SB Pro module, Castles II, Kyrandia) | select stereo through mixer 0Eh bit 1 | nothing: 0Eh does not exist on the SB16 (the CT2290 reads 00h whatever is written), so they play mono; the virtual SB16 does the same [hw: vsb-spec.md 9.4] |
+| B4 | DigPak SB16 | writes mixer 81h = 02h | the CT2291 takes it: 81h is writable there and selects the DMA channels [hw, M2]; the virtual card ignores it (F12) |
+| B5 | HMI SOS, DigPak SB Pro 1993 | write mixer 83h = 0Bh | the CT2291 keeps bits 0-3 (reads FBh after it) and an 8-bit transfer runs the same [hw, M1]; the virtual SB16 reads FFh (F12) |
+| B12 | games set for SB Pro on an SB16 (Rayman's HMI SB Pro module, Castles II, Kyrandia) | select stereo through mixer 0Eh bit 1 | nothing: 0Eh does not exist on the SB16 (the CT2291 reads 00h whatever is written), so they play mono; the virtual SB16 does the same [hw: vsb-spec.md 9.4] |
 | B6 | DSMI (Cyberdogs) | sets the output rate with 42h only | 42h sets the shared rate register (the virtual SB16 does) |
 | B7 | DSMI, MIDAS, Battle Race | one block of 60000+ samples over a small DMA buffer | the interrupt almost never comes; the count must be right |
 | B8 | DMX, Sierra, Creative, Loudness, Tyrian | find the IRQ by F2h, a 1-byte 14h, or an 80h silence, with several lines open | one interrupt per test, on the card's line, after the command |
@@ -428,12 +428,12 @@ where uCDD's runs with both cards on IRQ 7 lost the probe interrupt.
 | B10 | Castles II | writes IRQ 1's mask bit about 15 times a second | cheap mask writes |
 | B11 | Miles MSS 3; Gateway 2 | latch the PIT's counter often: Albion some 500 times a second (at least 31246 latches in a run of about a minute); Gateway 2 in a tight loop, alternating latch commands 00h and 01h (842000 in a run) | with the host's retrace hint on (it traps 40h and 43h) every latch and its two reads are traps: about 1500 a second for Albion, far more for Gateway 2; the usual builds (`--no-refill-hint`) do not trap them ([music-and-timers.md](music-and-timers.md)) |
 
-## To measure on the CT2290
+## To measure on the CT2291
 
 | # | Question | How |
 |---|---|---|
 | M1 | What does mixer register 83h do (HMI writes 0Bh)? | **Answered [hw, 19 Oct]:** bits 0-3 are kept (0Bh reads back FBh; FFh before); a 1-byte C0h takes the same 50 us with 0Bh in it. What the bits do: not known |
-| M2 | Is mixer 81h writable on the CT2290? | **Answered [hw, 19 Oct]:** yes, and 80h too (81h 22h -> 20h read 20h; 80h F2h -> F4h read F4h; both put back). The card is software-configured |
+| M2 | Is mixer 81h writable on the CT2291? | **Answered [hw, 19 Oct]:** yes, and 80h too (81h 22h -> 20h read 20h; 80h F2h -> F4h read F4h; both put back). The card is software-configured |
 | M3 | Does an auto-init transfer keep running when its interrupt is never acknowledged? | **Answered [hw, 19 Oct]:** no: one interrupt, then the DMA stops within about two blocks; one acknowledge restarts it |
 | M4 | Does channel 5's current address register move with the transfer, and does 8Bh read back? | **Answered [hw, 19 Oct]:** the address moves (address + count constant); 8Bh read back 00h as written (page 0: a weak test) |
 | M5 | Does a 0Ch write disturb channel 5's flip-flop? | **Answered [hw, 19 Oct]:** no, 64 of 64 reads consistent |

@@ -129,7 +129,7 @@ program [code]. The sequence is the same in all of them.
     On the card the count is where its DMA has fetched to: at the
     interrupt it sits exactly on the block boundary, and nothing beyond
     the count has been taken (the FIFO's 16 samples are behind it, taken
-    but not yet heard) [hw, ct2290.md]. So each block is written at
+    but not yet heard) [hw, ct2291.md]. So each block is written at
     least 4.5 ms (one block less one tick) before the card takes it. A
     card or emulation that takes data beyond the count it reports spends
     that margin; past it, the start of a block, or a whole block, plays

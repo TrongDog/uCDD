@@ -22,7 +22,7 @@ does, which the documents do not say (vsb-spec.md 6).
 
 uCDD presents the SB 2.0 (model 3, DSP 2.01) and the SB Pro (model 1, DSP
 3.02); there is no virtual 1.xx. The FM ports are the physical card's:
-on Michael's CT2290 a game set for an SB Pro 1's two OPL2 chips meets an
+on Michael's CT2291 a game set for an SB Pro 1's two OPL2 chips meets an
 OPL3 (SBG:450-454 for the difference) [doc].
 
 ## How each engine reacts [trace]
