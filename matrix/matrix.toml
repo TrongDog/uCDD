@@ -25,7 +25,7 @@ midi = ["off", "gm"]
 # Which kind of program the test runs. A property of the test, not set by
 # the bench; the planner reports which clients a plan covers.
 client = ["real", "dos4gw", "dpmi16", "pmodew"]   # pmodew: T2W bound with PMODE/W (Michael, 28 Oct 2026)
-build = ["p32", "p128", "p256", "verify32", "verify128", "ess32", "ess128", "pinC1", "pinC2", "l4boot", "a1"]
+build = ["p32", "p128", "p256", "verify32", "verify128", "ess32", "ess128", "pinC1", "pinC2", "l4boot", "a1", "a2"]
 
 # Kept here, left out of every plan until taken off this list: the ESS work
 # is parked (20 Oct).
@@ -38,7 +38,7 @@ build = ["ess32", "ess128"]
 [opt_in]
 mode = ["base", "free"]
 # pinC1, pinC2: Project A's pinned build (A0); l4boot: its planted fault.
-build = ["verify32", "verify128", "pinC1", "pinC2", "l4boot", "a1"]
+build = ["verify32", "verify128", "pinC1", "pinC2", "l4boot", "a1", "a2"]
 
 # A run takes these unless its test or a varied axis sets them. The PC's
 # card: an SB16 (CT2290) at 220h, IRQ 5, DMA 1 and 5.
@@ -144,6 +144,11 @@ l4boot = "--resident-audio --no-refill-hint --audio-period-frames 32"
 # frames; his build.py has no --no-refill-hint (Michael, 27 Oct 2026: every
 # candidate row's C2 case run on a1 beside the pin).
 a1 = "--resident-audio --audio-period-frames 32"
+# a2: the author's 0.9.5-a2 (fork main 245759c, exported, scripts/build.py untouched; the bench's
+# fixtures/a2/MANIFEST.txt), the second build from 2 Nov 2026 (Michael: a2 replaces a1; every
+# candidate row's a1 line joined by an a2 line from a 10-run plan; step-aside left off, his
+# default; its own UCDD.CFG layout, version 5). The same options as a1.
+a2 = "--resident-audio --audio-period-frames 32"
 
 [build_dirs]
 p32 = "$UCDD_TREE/build_32$UCDD_SUFFIX"
@@ -157,13 +162,14 @@ pinC2 = "$UCDD_TREE/C2_32$UCDD_SUFFIX"
 pinC1 = "$UCDD_TREE/C1_32$UCDD_SUFFIX"
 l4boot = "$UCDD_TREE/l4_boot_32$UCDD_SUFFIX"
 a1 = "$UCDD_TREE/../a1/C2_32$UCDD_SUFFIX"
+a2 = "$UCDD_TREE/../a2/C2_32$UCDD_SUFFIX"
 
 [run]
 # Probes may share the machine; a recording never does (lesson L6).
 probe_parallel = 7
 # Groups only --group brings in: runs on the PC are Michael's evenings; the
 # Project A lists (below, before the tests) run when their gate asks.
-optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", "t1l4", "t1c0", "t2l4", "cmp", "a1", "cal", "calpc"]
+optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", "t1l4", "t1c0", "t2l4", "cmp", "a1", "a2", "cal", "calpc"]
 
 # How each runner is started, from the bench directory. $UCDD_FIXTEST is the
 # bench's fixtest.py and $UCDD_KIT its kit folder (the caller sets both, as it
@@ -4510,6 +4516,288 @@ client = "dpmi16"
 repeat = 10
 secs = 150
 note = "T2X-P-DMAHI's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: every candidate row's C2 case run on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-P-DMAHI: AI8's playback from a locked XMS block below 16 MB mapped by 0800h, from the raw client (A3, a1)"
+[[test]]
+name = "T2X-S16ON8-A2"
+decides = "VSB:570-603, SBG:1100-1106, SBG:1131-1138, SBG:3837-3872, SBG:2108-2172, SBG:4020-4030, SBG:1029-1056, 8237:485-517"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE S16ON8'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-S16ON8-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-14's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs, beside the pin; a pass there: the fork line lacks the upstream fix, cited, to B's backlog; a fail: an upstream candidate). Expected as T2X-S16ON8. Dev run t2dev-a1on8: PASS, 81h reads back 02h, every format plays on channel 1 (the tone at 2000.0 Hz: a1 plays 41h's rate as asked, not the DSP 4.13's register)"
+
+[[test]]
+name = "T0-CUE-I02-A2"
+decides = "silent: Michael's answer to question 6 (25 Oct 2026) after the author's 0.9.4-a1 note; the README says nothing of it"
+searched = "terms: INDEX 02, INDEX 2 , subindex, index point; hits: 48 in 15 documents (AWE 10, 1543 8, VIPM 7, 1533 4, PIIX4 4, 5597 3); 28 Oct 2026"
+runner = "probe"
+env = "PROBE_RUN='T0:T0CUEA2.COM I02'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 60
+note = "a2 twin of T0-CUE-I02-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-1's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). T0CUE assembled against a1's src (T0CUEA2.COM, the bench's dos/build.sh). As T0-CUE-I02: INDEX 02 and higher: mounts, index 2 ignored for positioning (Michael, 25 Oct 2026, question 6; the author's 0.9.4-a1 note); missing document (Michael, 28 Oct 2026): the CUE sheet syntax reference (the CDRWIN manual), cited here when held; README stays the key for what uCDD accepts"
+
+[[test]]
+name = "T0-CUE-BOM-A2"
+decides = "silent: Michael's answer to question 6 (25 Oct 2026) after the author's 0.9.4-a1 note; the README says nothing of it"
+searched = "terms: byte order mark, EF BB BF, UTF-8; hits: 0 in 0 documents; 28 Oct 2026"
+runner = "probe"
+env = "PROBE_RUN='T0:T0CUEA2.COM BOM'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 60
+note = "a2 twin of T0-CUE-BOM-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-2's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). T0CUE assembled against a1's src (T0CUEA2.COM, the bench's dos/build.sh). As T0-CUE-BOM: a UTF-8 byte order mark before the first line: mounts (Michael, 25 Oct 2026, question 6; the author's 0.9.4-a1 note); missing document (Michael, 28 Oct 2026): the CUE sheet syntax reference (the CDRWIN manual), cited here when held; README stays the key for what uCDD accepts"
+
+[[test]]
+name = "T1-EJECT-A2"
+decides = "MSCDEX"
+runner = "probe"
+env = "PROBE_EXTRA='fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1A.CUE > C:\\OUT\\M.TXT,T1:T1.EXE EJECT'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 90
+note = "a2 twin of T1-EJECT-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-4's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T1-EJECT: disc T1A: IOCTL output Eject Disk, Lock and Unlock Door: no disc after the eject, the image kept open; a locked drive is not changed (MSCDEX:808-896; README Usage and Hotkeys)"
+
+[[test]]
+name = "T1-AONLY-A2"
+decides = "README, MSCDEX"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_EXTRA='fixtures/synth/out/T1C.BIN|T1\\T1C.BIN;fixtures/synth/out/T1C.CUE|T1\\T1C.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1C.CUE > C:\\OUT\\M.TXT,T1:T1.EXE AONLY'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T1-AONLY-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-5's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T1-AONLY: disc T1C: T1C, audio only: mounts; Audio Disk Info tracks 1 to 3; play track 1: 1000 Hz (README Images, as Michael read it 25 Oct 2026, question 6)"
+
+[[test]]
+name = "T1-MDM-A2"
+decides = "README, MSCDEX"
+runner = "probe"
+env = "PROBE_TIMEOUT=150 PROBE_KEYS='40:ctrl+alt+2;45:ctrl+alt+2;50:ctrl+alt+2;55:ctrl+alt+2;60:ctrl+alt+2' PROBE_EXTRA='fixtures/synth/out/T1D.ISO|T1\\T1D.ISO;fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE;fixtures/synth/out/T1C.BIN|T1\\T1C.BIN;fixtures/synth/out/T1C.CUE|T1\\T1C.CUE;fixtures/synth/out/T1E.MDM|T1\\T1E.MDM' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1E.MDM > C:\\OUT\\M.TXT,T1:T1.EXE MDM'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 150
+note = "a2 twin of T1-MDM-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-5's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T1-MDM: disc T1E.MDM (T1D.ISO, T1A.CUE, T1C.CUE): UCDD -mount T1E.MDM: disc 1 (T1D) mounted, volume T1D; Ctrl+Alt+2 from the host (86Box's keyboard, PROBE_KEYS, from 40 s every 5 s): Media Changed FFh, volume T1A (README Multiple discs, Hotkeys). Keys pressed from inside through the 8042 (D2h) do not reach the driver's hook (t1dev-mdmC2_32); the host's keys switch a list of T1D and T1A (t1dev-mdmkeys)"
+
+[[test]]
+name = "T1-LOAD-A2"
+decides = "MSCDEX"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_EXTRA='fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1A.CUE > C:\\OUT\\M.TXT,T1:T1.EXE LOAD'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T1-LOAD-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-6's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T1-LOAD: disc T1A: play track 2 while reading 4 MB (CHECK.TXT four times) in 2 KB requests: every read CRC32 A3A46D5C (fixtures/synth/MANIFEST.txt), the tone as PLAY2 measures it throughout (A2)"
+
+[[test]]
+name = "T2X-PICWORD-A2"
+decides = "8259:565-587, I386:8218-8244"
+runner = "probe"
+env = "PROBE_RUN='T2:T2.EXE PICWORD'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 90
+note = "a2 twin of T2X-PICWORD-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-7's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-PICWORD: word writes to 20h and 21h (one 16-bit OUT: the command at 20h and the mask at 21h) with the card's line in use (A3, C2)"
+
+[[test]]
+name = "T2X-PICROT-A2"
+decides = "8259:615-617, 8259:621-626, 8259:673-691"
+runner = "probe"
+env = "PROBE_RUN='T2:T2.EXE PICROT'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 90
+note = "a2 twin of T2X-PICROT-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-8's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-PICROT: rotating priority, automatic and specific (OCW2), with the card's line in use (A3, C2)"
+
+[[test]]
+name = "T2X-SC8PAGE1-A2"
+decides = "SBG:1590-1591, SBG:3271-3278, VSB:319-324"
+runner = "probe"
+env = "PROBE_RUN='T2:T2.EXE SC8PAGE1'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 90
+note = "a2 twin of T2X-SC8PAGE1-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-9's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-SC8PAGE1: a 4096-byte 8-bit single-cycle block that crosses the 64 KB page, at 11025 and 22050 Hz, steps P0 and P1, chained for 1.5 s: an interrupt a block (split from SC8PAGE, Michael, 26 Oct 2026, question 13) (A3, C2)"
+
+[[test]]
+name = "T2X-AI8-A2"
+decides = "SBG:1300-1326, SBG:1652-1690, SBG:3604-3612, SBG:4035-4041, VSB:325-348"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE AI8'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-AI8-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-10 and CAND-11's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-AI8: 8-bit auto-init (48h, 1Ch) at 22050 Hz (41h): buffers of 2, 8 and 64 KB with half-buffer blocks (A0-A2), each stopped with DAh (exactly one more interrupt, then none); A3 1Ch again after A2's stop; A4 the channel moved at a block end to 8 KB of silence (SW): silence after it, the interrupts going on; the 2 kHz tone with no gap of 20 ms or more (A3, C2)"
+
+[[test]]
+name = "T2X-S16AI-A2"
+decides = "SBG:3837-3872, SBG:2108-2172, SBG:4020-4030, SBG:1029-1056, SBG:1188-1199, SBG:1229-1236, VSB:290-304, 82C206:1407-1440, 82C206:1660-1720"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE S16AI'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-S16AI-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-10's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-S16AI: SB16 16-bit auto-init (B6h, the 4.xx procedure) in its four formats, mono and stereo, signed and unsigned (mode 10h, 00h, 30h, 20h), at 22050, 44100 and 48000 Hz (41h), steps MS22 to SU48 on the 16-bit channel (BLASTER H): each buffer 0.2 s at the asked rate (400 whole cycles of a 2 kHz tone, -6 dBFS; stereo the tone left, silence right), blocks of half; each step two interrupts or more, D9h just "
+
+[[test]]
+name = "T2X-S16ODD1-A2"
+decides = "SBG:3837-3872, SBG:3864, EMUSRC, SBG:2108-2172, SBG:4020-4030, SBG:1029-1056, SBG:1229-1236, 82C206:1407-1440, 82C206:1660-1720"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE S16ODD1'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-S16ODD1-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-12's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-S16ODD1: SB16 16-bit stereo auto-init (B6h) with an odd sample count, signed and unsigned (30h, 20h) at 22050 and 44100 Hz, steps SS22, SU22, SS44, SU44: a buffer of 4410 whole frames (17640 bytes, under CAND-10's cap) holding whole cycles of a 2 kHz tone, left only, and blocks of 4409 samples, half a frame short of half the buffer; each step two interrupts or more, D9h just after one: exactly one more, th"
+
+[[test]]
+name = "T2X-S16ODD2-A2"
+decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2290 decides (AKIT) with DOSBox-X the control at T6 (Michael 26 Oct 2026 question 14)"
+searched = "terms: odd number, odd count, odd length, multiple of 4, multiple of four; hits: 41 in 21 documents (4031 5, VIPM 5, INTEL96 4, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 3, PBOOK 3, 1543 2); 28 Oct 2026"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE S16ODD2'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-S16ODD2-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-13's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-S16ODD2: SB16 16-bit stereo single-cycle (B0h) with an odd sample count, the same formats, rates and tone: blocks of 4409 samples from where the last one ended, the channel and B0h sent again at each interrupt for 27 ticks; DOSBox-X interrupts each block and keeps the odd sample for the next (the left and right stay paired); 86Box's own card reads a frame past the channel's count and gets no data: no inter"
+
+[[test]]
+name = "T2X-PROST-A2"
+decides = "SBG:1930-2034, SBG:1954-1960, SBG:2394-2398, SBG:1418-1430, SBG:2001, VSB:287-289, VSB:302-304, VSB:359-366, EMUSRC, 8237:485-517, SBG:2393-2395, SBG:2476-2478, SBG:1845-1854, ES1868:2457-2459"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE PROST'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "pro" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-PROST-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-15's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-PROST: the virtual SB Pro's 8-bit stereo high-speed auto-init, the guide's procedure (SBG:1930-2034): D1h, mixer 0Eh's stereo switch on (bit 1), one silent byte by 14h with its interrupt, the time constant for two channels (40h: E9h for 22050 Hz, D2h for 11025, the high byte of 65536 - 256000000/(2 x rate), VSB:287-289, the SB Pro counting it as the formula has it, VSB:302-304: 21739.1 and 10869.6 Hz a c; re-graded (Michael, 28 Oct 2026; rule 7: emulation decided before): data sheet, two manufacturers, the application's first byte right either way (the CT1345: SBG:2393-2395, 2476-2478, the silent primer SBG:1845-1854, its toggle persisting; the ESS: ES1868:2457-2459, every transfer right); the PC's ES1868 in AKIT is the hardware reading, an SB Pro 2 low priority"
+
+[[test]]
+name = "T2X-TIMERSTOP-A2"
+decides = "INTEL94:17304-17420, HOSTCD:94-95, silent: the gap check (thresholds.toml [gaps]; Michael 26 Oct 2026)"
+searched = "terms: dropout, audible gap, glitch; hits: 75 in 23 documents (PBOOK 19, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 10, VIPM 9, FIRE 6, INTEL96 6, 756 4); 28 Oct 2026"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_EXTRA='fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1A.CUE > C:\\OUT\\M.TXT,T2:T2.EXE TIMERSTOP 8000 MIX'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-TIMERSTOP-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-16's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-TIMERSTOP: the BIOS timer stopped (PIT channel 0 given a mode 0 control word and no count: no interrupt; 36 ticks timed on channel 2, the BIOS count then put back) and reprogrammed to 8 kHz (the rate a bench parameter, 8000: Michael, 26 Oct 2026) for 2.0 s and back while T1A track 2 plays (C0: T1B's), phases PLAY, STOP, RATE, BACK of 2 s or more: the CD tone at its pitch in each with no gap of 20 ms or more,"
+
+[[test]]
+name = "T2X-DMAMCR-A2"
+decides = "8237:485-491, 8237:225-230, SBG:1590-1591, SBG:1652-1668, SBG:3604-3612, silent: the 2.00 ms window (mine: the CT2290 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
+searched = "terms: FIFO, interrupt latency, request latency; hits: 728 in 61 documents (1533 20, 1543 20, 5582 20, 5597 20, 596B 20, 630 20); 28 Oct 2026"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DMAMCR'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-DMAMCR-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-17's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-DMAMCR: where the first block interrupt comes after an 8237 master clear and the channel set up again (Michael, 27 Oct 2026): the clear is the DMA controller's (8237:485-491) and the block counter the DSP's (SBG:1590-1591, the interrupt after the programmed number of bytes; 1652-1668 and 3604-3612, auto-init's block size in 48h), so the first interrupt after the set-up comes after the remainder of the int"
+
+[[test]]
+name = "T2X-DAC-M-A2"
+decides = "SBG:3250-3261, SBG:1260-1273, SBG:1188-1199, SBG:983-1000, VSB:182, VSB:285-348"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_EXTRA='fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1A.CUE > C:\\OUT\\M.TXT,T2:T2.EXE DAC 8000 MIX'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-DAC-M-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-18's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-DAC-M: mixed: DAC's direct 8-bit output (10h) from IRQ 0 at 8000 Hz asked (PIT divisor 149, 8007.9 Hz, the tone a quarter of it, 2002.0 Hz) for 2.0 s, judged in T2.TXT as T2X-DAC (every byte sent, none given up), while T1A track 2 (1000 Hz; C0: T1B's) plays from TICK MIX, 18 ticks before the DAC's start, to TICK OFF 80 ticks later (one play). The capture: the DAC's tone present in its band (the band's pe"
+
+[[test]]
+name = "T2X-SC8-M-A2"
+decides = "VSB:319-324, SBG:1590-1591, SBG:3271-3278, SBG:3573-3580, 8237:485-517"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_EXTRA='fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1A.CUE > C:\\OUT\\M.TXT,T2:T2.EXE SC8 MIX'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-SC8-M-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-19's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: each candidate's C2 case on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-SC8-M: mixed: SC8's eight steps (8-bit mono single-cycle 14h at 11025 and 22050 Hz, 41h; blocks of 256, 4096, 8191 and 65535 bytes chained at each block's interrupt; an interrupt a block, judged in T2.TXT as T2X-SC8) while T1A track 2 (1000 Hz; C0: T1B's) plays from TICK MIX, 18 ticks before S0, to TICK OFF 440 ticks after MIX; the capture: each step the 2 kHz and the 1 kHz present, the 2 kHz without a d"
+
+[[test]]
+name = "T2X-DAC-A2"
+decides = "SBG:3250-3261, SBG:1260-1273, SBG:1188-1199, SBG:983-1000, VSB:182"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DAC 8000'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-DAC-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-18's plain variant on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026: the plain DAC's fail on C2 is CAND-18's plain variant, and every candidate's C2 case runs on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-DAC: direct DAC (10h and one byte) from IRQ 0 at 8000 Hz asked (PIT divisor 149, 8007.9 Hz, the tone a quarter of it, 2002.0 Hz) for 2.0 s, no CD; judged in T2.TXT as T2X-DAC and the tone's pitch by tonecheck (thresholds.toml tone.freq_tolerance, PITCHCAL)"
+
+[[test]]
+name = "T2X-SC8-A2"
+decides = "VSB:319-324, SBG:1590-1591, SBG:3271-3278, SBG:3573-3580, 8237:485-517"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE SC8'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-SC8-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-19's plain variant on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026: the plain SC8's fail on C2 is CAND-19's plain variant, and every candidate's C2 case runs on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-SC8: 8-bit mono single-cycle (14h) at 11025 and 22050 Hz (41h), blocks of 256, 4096, 8191 and 65535 bytes chained at each block's interrupt, no CD; an interrupt a block, the 2 kHz tone with no gap of 20 ms or more and at its pitch (a1 plays 41h's rate as asked, 2000.0 Hz, inside the tolerance of the pin's 2003.0 Hz)"
+
+[[test]]
+name = "T2X-ADPCM4-A2"
+decides = "VSB:368-379, SBG:3637-3680, EMUSRC, VSB:292-304"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE ADPCM4'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-ADPCM4-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-3's first a1 step (Michael, 28 Oct 2026, question 28: run ADPCM4 plain and mixed on a1 first; if the oracle sees the symptom, that is CAND-3's a1 line; if not, one attempt to %include a1's mixer unmodified in a Tier 0 harness, a needed patch makes it NOT-UNIT-TESTABLE for a1). Predicted before the run: ADPCM4 is a 4-bit block (75h), CAND-3 is the 2.6-bit decoder (76h/77h), so this oracle cannot see CAND-3's symptom whatever a1 does; it shows a1's 4-bit decoder and its timing only. As T2X-ADPCM4: 75h with its reference byte, adpcm4.py's block (EMUSRC decode_ADPCM_4_sample), A5h (SBG:1567), one interrupt 24 to 28 ticks after the command (SBG:1590-1591), none after; tonecheck as on the pin, its expected pitch the DSP 4.13's rate table (VSB:292-304, 1977.1 Hz); a1 plays rates as asked (41h's 22050 Hz at 2000.0 Hz, T2X-SC8-A1), so a 2000 Hz tone here is that difference, not the decoder's"
+
+[[test]]
+name = "T2X-ADPCM4-M-A2"
+decides = "VSB:368-379, SBG:3637-3680, EMUSRC, VSB:285-348, VSB:292-304"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_EXTRA='fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1A.CUE > C:\\OUT\\M.TXT,T2:T2.EXE ADPCM4 MIX'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-ADPCM4-M-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-3's first a1 step (Michael, 28 Oct 2026, question 28: run ADPCM4 plain and mixed on a1 first; if the oracle sees the symptom, that is CAND-3's a1 line; if not, one attempt to %include a1's mixer unmodified in a Tier 0 harness, a needed patch makes it NOT-UNIT-TESTABLE for a1). Predicted before the run: ADPCM4 is a 4-bit block (75h), CAND-3 is the 2.6-bit decoder (76h/77h), so this oracle cannot see CAND-3's symptom whatever a1 does; it shows a1's 4-bit decoder and its timing only. As T2X-ADPCM4-M: the block while T1A track 2 (1000 Hz) plays from TICK MIX to TICK OFF (one play); the capture's checks as on the pin (VSB:285-348 for the mix), its expected pitch the DSP 4.13's rate table (VSB:292-304); a 2000 Hz tone is a1's rate as asked, not the decoder's"
+
+[[test]]
+name = "T2X-DMAMASK-A2"
+decides = "8237:421-427, 8237:493-495, 8237:225-230, SBG:1590-1591, SBG:1652-1668, silent: the 2.00 ms window (DMAMCR's)"
+searched = "terms: FIFO, interrupt latency, request latency; hits: 728 in 61 documents (1533 20, 1543 20, 5582 20, 5597 20, 596B 20, 630 20); 28 Oct 2026"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DMAMASK'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "a2 twin of T2X-DMAMASK-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: CAND-20's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: every candidate row, existing and new, gets its C2 case run on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-DMAMASK: Write All Mask Register Bits (0Fh) half a block into an auto-init block at 22050 Hz, 27 ticks masked (no interrupt, the count unchanged, quiet: 8237:421-427), Clear Mask Register (0Eh, 8237:493-495), the first interrupt within 2.00 ms of the block's remainder, 27 ticks playing"
+
+
+[[test]]
+name = "T2X-P-DMAHI-A2"
+decides = "XMS30:466-492, XMS30:572-590, DPMI09:2502-2533, DPMI09:803-838, DPMI09:939-990, 8237:331-338, SBG:1285-1294"
+runner = "probewav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2P.EXE DMAHI'"
+groups = ["a2"]
+fixed = { build = "a2", vmodel = "sb16" }
+client = "dpmi16"
+repeat = 10
+secs = 150
+note = "a2 twin of T2X-P-DMAHI-A1 (Michael, 2 Nov 2026: a2 replaces a1 as the second build; every candidate row's a1 line joined by an a2 line from a 10-run plan; the bench's fixtures/a2/MANIFEST.txt). The a1 test's note: T2X-P-DMAHI's C2 case on the author's 0.9.5-a1 (build option a1; Michael, 27 Oct 2026, rules-bot's fold: every candidate row's C2 case run on a1, 10 runs; a pass there: the fork line lacks the upstream fix, B's backlog; a fail: an upstream candidate). As T2X-P-DMAHI: AI8's playback from a locked XMS block below 16 MB mapped by 0800h, from the raw client (A3, a1)"
 [[test]]
 name = "SBT16-legacy"
 decides = "SBG"
