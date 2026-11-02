@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """import_hardware.py: a hardware measurement from the PC into the bench.
 
-    python3 METHOD/tools/import_hardware.py TCTABLE.TXT --card ct2290 --source TEXT
+    python3 METHOD/tools/import_hardware.py TCTABLE.TXT --card ct2291 --source TEXT
         [--out FILE] [--compare formula|sb16]
 
 TCTABLE.TXT is TCTABLE.EXE's output (AKIT; the bench's T2.EXE TCTABLE case
@@ -14,7 +14,7 @@ card, the source given, the input's sha256, the date):
      "rates": {"0": 3739.1, ...}, "silent": [...], "one_block": [...]}
 
 written by default to the bench's runs/rec/hw/tctable-CARD.json. tonecheck
-reads tctable-ct2290.json, when it is there, as the hardware-grade table for
+reads tctable-ct2291.json, when it is there, as the hardware-grade table for
 every pitch on the virtual SB16 (the owner, 28 Oct 2026, question 30), in place
 of the DSP 4.13 firmware's.
 
@@ -76,7 +76,7 @@ def compare(rates, against):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     ap.add_argument('file')
-    ap.add_argument('--card', required=True, help='the card measured, e.g. ct2290, es1868')
+    ap.add_argument('--card', required=True, help='the card measured, e.g. ct2291, es1868')
     ap.add_argument('--source', help='where the file came from (kit, run, date)')
     ap.add_argument('--out')
     ap.add_argument('--compare', choices=('formula', 'sb16'))

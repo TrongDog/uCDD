@@ -41,7 +41,7 @@ mode = ["base", "free"]
 build = ["verify32", "verify128", "pinC1", "pinC2", "l4boot", "a1", "a2"]
 
 # A run takes these unless its test or a varied axis sets them. The PC's
-# card: an SB16 (CT2290) at 220h, IRQ 5, DMA 1 and 5.
+# card: an SB16 (CT2291) at 220h, IRQ 5, DMA 1 and 5.
 [defaults]
 physical = "sb16"
 pirq = 5
@@ -685,7 +685,7 @@ groups = ["t0"]
 fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 60
-note = "4-bit ADPCM, block with its reference byte, against a reference decoder written from DOSBox-X's step-shift tables (EMUSRC: src/hardware/sblaster.cpp at f6b476e9, decode_ADPCM_4_sample); graded emulator, not data sheet (the owner, 25 Oct 2026, question 6; AKIT plays one block on the CT2290 to promote it)"
+note = "4-bit ADPCM, block with its reference byte, against a reference decoder written from DOSBox-X's step-shift tables (EMUSRC: src/hardware/sblaster.cpp at f6b476e9, decode_ADPCM_4_sample); graded emulator, not data sheet (the owner, 25 Oct 2026, question 6; AKIT plays one block on the CT2291 to promote it)"
 
 [[test]]
 name = "T0-ADPCM-3"
@@ -696,7 +696,7 @@ groups = ["t0"]
 fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 60
-note = "2.6-bit ADPCM, as T0-ADPCM-4, against a reference decoder written from DOSBox-X's step-shift tables (EMUSRC: src/hardware/sblaster.cpp at f6b476e9, decode_ADPCM_3_sample); graded emulator, not data sheet (the owner, 25 Oct 2026, question 6; AKIT plays one block on the CT2290 to promote it)"
+note = "2.6-bit ADPCM, as T0-ADPCM-4, against a reference decoder written from DOSBox-X's step-shift tables (EMUSRC: src/hardware/sblaster.cpp at f6b476e9, decode_ADPCM_3_sample); graded emulator, not data sheet (the owner, 25 Oct 2026, question 6; AKIT plays one block on the CT2291 to promote it)"
 
 [[test]]
 name = "T0-ADPCM-2"
@@ -707,7 +707,7 @@ groups = ["t0"]
 fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 60
-note = "2-bit ADPCM, as T0-ADPCM-4, against a reference decoder written from DOSBox-X's step-shift tables (EMUSRC: src/hardware/sblaster.cpp at f6b476e9, decode_ADPCM_2_sample); graded emulator, not data sheet (the owner, 25 Oct 2026, question 6; AKIT plays one block on the CT2290 to promote it)"
+note = "2-bit ADPCM, as T0-ADPCM-4, against a reference decoder written from DOSBox-X's step-shift tables (EMUSRC: src/hardware/sblaster.cpp at f6b476e9, decode_ADPCM_2_sample); graded emulator, not data sheet (the owner, 25 Oct 2026, question 6; AKIT plays one block on the CT2291 to promote it)"
 
 [[test]]
 name = "T0-DEEM-1K"
@@ -1484,7 +1484,7 @@ groups = ["t2x"]
 fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "master (30h, 31h) and voice (32h, 33h) stepped while the 2 kHz tone plays (8-bit auto-init at 22050 Hz, 4 KB blocks): nine phases of 27 ticks, V0 to V4 the voice 31, 27, 23, 19, 15 with the master 31, M1 to M4 the master 27, 23, 19, 15 with the voice 31; '5 bits per channel, giving 32 levels. 0 to 31 => -62 dB to 0 dB, in 2 dB steps' (SBG:2681-2689), bits 7:3 (VSB 9.4): each phase's level against V0's, 8, 16, 24, 32 dB down, within 1.0 dB (thresholds.toml volume.step_tol_db: half a step, mine); each register read back as written (the CT2290 keeps its own bits, VSB 9.4); the registers put back after (A3, C2; dev run t2dev-vol2: PASS, every step within 0.2 dB)"
+note = "master (30h, 31h) and voice (32h, 33h) stepped while the 2 kHz tone plays (8-bit auto-init at 22050 Hz, 4 KB blocks): nine phases of 27 ticks, V0 to V4 the voice 31, 27, 23, 19, 15 with the master 31, M1 to M4 the master 27, 23, 19, 15 with the voice 31; '5 bits per channel, giving 32 levels. 0 to 31 => -62 dB to 0 dB, in 2 dB steps' (SBG:2681-2689), bits 7:3 (VSB 9.4): each phase's level against V0's, 8, 16, 24, 32 dB down, within 1.0 dB (thresholds.toml volume.step_tol_db: half a step, mine); each register read back as written (the CT2291 keeps its own bits, VSB 9.4); the registers put back after (A3, C2; dev run t2dev-vol2: PASS, every step within 0.2 dB)"
 
 [[test]]
 name = "T2C0-VOLUME"
@@ -1495,7 +1495,7 @@ groups = ["t2xc0"]
 fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "master (30h, 31h) and voice (32h, 33h) stepped while the 2 kHz tone plays (8-bit auto-init at 22050 Hz, 4 KB blocks): nine phases of 27 ticks, V0 to V4 the voice 31, 27, 23, 19, 15 with the master 31, M1 to M4 the master 27, 23, 19, 15 with the voice 31; '5 bits per channel, giving 32 levels. 0 to 31 => -62 dB to 0 dB, in 2 dB steps' (SBG:2681-2689), bits 7:3 (VSB 9.4): each phase's level against V0's, 8, 16, 24, 32 dB down, within 1.0 dB (thresholds.toml volume.step_tol_db: half a step, mine); each register read back as written (the CT2290 keeps its own bits, VSB 9.4); the registers put back after (A3, C0: the client validated on 86Box's own card before C2; dev run t2dev-vol0: PASS, within 0.1 dB)"
+note = "master (30h, 31h) and voice (32h, 33h) stepped while the 2 kHz tone plays (8-bit auto-init at 22050 Hz, 4 KB blocks): nine phases of 27 ticks, V0 to V4 the voice 31, 27, 23, 19, 15 with the master 31, M1 to M4 the master 27, 23, 19, 15 with the voice 31; '5 bits per channel, giving 32 levels. 0 to 31 => -62 dB to 0 dB, in 2 dB steps' (SBG:2681-2689), bits 7:3 (VSB 9.4): each phase's level against V0's, 8, 16, 24, 32 dB down, within 1.0 dB (thresholds.toml volume.step_tol_db: half a step, mine); each register read back as written (the CT2291 keeps its own bits, VSB 9.4); the registers put back after (A3, C0: the client validated on 86Box's own card before C2; dev run t2dev-vol0: PASS, within 0.1 dB)"
 
 [[test]]
 name = "T2X-VOLUME-M"
@@ -1521,7 +1521,7 @@ note = "mixed: VOLUME's nine phases (master and voice stepped, 2 dB a step, SBG:
 
 [[test]]
 name = "T2X-IRQDET"
-decides = "VSB:474-489, SBG:1030-1076, CT2290"
+decides = "VSB:474-489, SBG:1030-1076, CT2291"
 runner = "probe"
 env = "PROBE_RUN='T2:T2.EXE IRQDET'"
 groups = ["t2x"]
@@ -1532,7 +1532,7 @@ note = "the IRQ detection sequence: F2h, the interrupt on the configured line on
 
 [[test]]
 name = "T2C0-IRQDET"
-decides = "VSB:474-489, SBG:1030-1076, CT2290"
+decides = "VSB:474-489, SBG:1030-1076, CT2291"
 runner = "probe"
 env = "PROBE_RUN='T2:T2.EXE IRQDET C0'"
 groups = ["t2xc0"]
@@ -1543,7 +1543,7 @@ note = "the IRQ detection sequence: F2h, the interrupt on the configured line on
 
 [[test]]
 name = "T2X-IRQDET-M"
-decides = "VSB:474-489, SBG:1030-1076, CT2290"
+decides = "VSB:474-489, SBG:1030-1076, CT2291"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_EXTRA='fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1A.CUE > C:\\OUT\\M.TXT,T2:T2.EXE IRQDET MIX'"
 groups = ["t2x"]
@@ -1554,7 +1554,7 @@ note = "mixed: T1A track 2 (1000 Hz; C0: T1B's) plays from TICK MIX; 18 ticks la
 
 [[test]]
 name = "T2C0-IRQDET-M"
-decides = "VSB:474-489, SBG:1030-1076, CT2290"
+decides = "VSB:474-489, SBG:1030-1076, CT2291"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_CDROM=fixtures/synth/out/T1B.CUE PROBE_RUN='CD:!C:\\MSCDEX.EXE /D:OAKCD001 /L:G > C:\\OUT\\CD.TXT,T2:T2.EXE IRQDET MIX C0'"
 groups = ["t2xc0"]
@@ -1640,7 +1640,7 @@ fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 120
 note = "the same block's wrap: its second half from the page's start (silence beyond the page, so a read across it leaves a gap) and the address after it 0800h (split from SC8PAGE, the owner, 26 Oct 2026, question 13) (A3, C2)"
-todo = "A3: judged on the CT2290 in AKIT (the owner, 26 Oct 2026, question 13); grade data sheet (8237:331-338); DOSBox-X 2025.02.01's dma.cpp corroborates (DmaChannel::Read, dma_wrapping); this 86Box build cannot show it (ISSUES 86DMAPAGE, a build-specific regression)"
+todo = "A3: judged on the CT2291 in AKIT (the owner, 26 Oct 2026, question 13); grade data sheet (8237:331-338); DOSBox-X 2025.02.01's dma.cpp corroborates (DmaChannel::Read, dma_wrapping); this 86Box build cannot show it (ISSUES 86DMAPAGE, a build-specific regression)"
 
 [[test]]
 name = "T2C0-SC8PAGE2"
@@ -1652,7 +1652,7 @@ fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 120
 note = "the same block's wrap: its second half from the page's start (silence beyond the page, so a read across it leaves a gap) and the address after it 0800h (split from SC8PAGE, the owner, 26 Oct 2026, question 13) (A3, C0: the client validated on 86Box's own card before C2)"
-todo = "A3: judged on the CT2290 in AKIT (the owner, 26 Oct 2026, question 13); grade data sheet (8237:331-338); DOSBox-X 2025.02.01's dma.cpp corroborates (DmaChannel::Read, dma_wrapping); this 86Box build cannot show it (ISSUES 86DMAPAGE, a build-specific regression)"
+todo = "A3: judged on the CT2291 in AKIT (the owner, 26 Oct 2026, question 13); grade data sheet (8237:331-338); DOSBox-X 2025.02.01's dma.cpp corroborates (DmaChannel::Read, dma_wrapping); this 86Box build cannot show it (ISSUES 86DMAPAGE, a build-specific regression)"
 [[test]]
 name = "T2X-AI8"
 decides = "SBG:1300-1326, SBG:1652-1690, SBG:3604-3612, SBG:4035-4041, VSB:325-348"
@@ -1820,7 +1820,7 @@ note = "SB16 16-bit stereo auto-init (B6h) with an odd sample count, signed and 
 
 [[test]]
 name = "T2X-S16ODD2"
-decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2290 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
+decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2291 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
 searched = "terms: odd number, odd count, odd length, multiple of 4, multiple of four; hits: 41 in 21 documents (4031 5, VIPM 5, INTEL96 4, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 3, PBOOK 3, 1543 2); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE S16ODD2'"
@@ -1843,7 +1843,7 @@ note = "SB16 16-bit stereo auto-init (B6h) with an odd sample count, signed and 
 
 [[test]]
 name = "T2C0-S16ODD2"
-decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2290 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
+decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2291 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
 searched = "terms: odd number, odd count, odd length, multiple of 4, multiple of four; hits: 41 in 21 documents (4031 5, VIPM 5, INTEL96 4, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 3, PBOOK 3, 1543 2); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE S16ODD2 C0'"
@@ -1852,7 +1852,7 @@ fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 120
 note = "SB16 16-bit stereo single-cycle (B0h) with an odd sample count, the same formats, rates and tone: blocks of 4409 samples from where the last one ended, the channel and B0h sent again at each interrupt for 27 ticks; DOSBox-X interrupts each block and keeps the odd sample for the next (the left and right stay paired); 86Box's own card reads a frame past the channel's count and gets no data: no interrupt (EMUSRC: DOSBox-X src/hardware/sblaster.cpp at 97ff66a, SB_INFO::GenerateDMASound (the odd last sample kept for the next transfer, remain_size); 86Box src/sound/snd_sb_dsp.c at 6311adc, sb_poll_o (two words a frame, the count down by 2: whole frames)). The emulators disagree: the C0 twin waits for DOSBox-X at T6 (question 14); under C2 the frames' pairing is uCDD's own (CAND-13) (A3, C0: the client validated on 86Box's own card before C2)"
-todo = "A3: the control is DOSBox-X at T6, not 86Box's own card (86ODDSC); the CT2290 in AKIT the judge (the owner, 26 Oct 2026, question 14); held for T6 (the owner, 28 Oct 2026, question 35: T6 opens with DOSBox-X's port 61h bit 5 and channel 2 gating read from its source, the runner runs/dbx_test.py validated on SC8 C0 and an L4 plant, the wave capture wired and proven; nothing from DOSBox-X is evidence until then)"
+todo = "A3: the control is DOSBox-X at T6, not 86Box's own card (86ODDSC); the CT2291 in AKIT the judge (the owner, 26 Oct 2026, question 14); held for T6 (the owner, 28 Oct 2026, question 35: T6 opens with DOSBox-X's port 61h bit 5 and channel 2 gating read from its source, the runner runs/dbx_test.py validated on SC8 C0 and an L4 plant, the wave capture wired and proven; nothing from DOSBox-X is evidence until then)"
 
 [[test]]
 name = "T2X-S16ODD-M"
@@ -1878,7 +1878,7 @@ note = "mixed: S16ODD1's auto-init stereo with an odd sample count (B6h, signed 
 
 [[test]]
 name = "T2X-S16ODD2-M"
-decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2290 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
+decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2291 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
 searched = "terms: odd number, odd count, odd length, multiple of 4, multiple of four; hits: 41 in 21 documents (4031 5, VIPM 5, INTEL96 4, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 3, PBOOK 3, 1543 2); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_EXTRA='fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1A.CUE > C:\\OUT\\M.TXT,T2:T2.EXE S16ODD2 MIX'"
@@ -1890,7 +1890,7 @@ note = "mixed: S16ODD2's single-cycle stereo with an odd sample count (B0h, each
 
 [[test]]
 name = "T2C0-S16ODD2-M"
-decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2290 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
+decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2291 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
 searched = "terms: odd number, odd count, odd length, multiple of 4, multiple of four; hits: 41 in 21 documents (4031 5, VIPM 5, INTEL96 4, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 3, PBOOK 3, 1543 2); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_CDROM=fixtures/synth/out/T1B.CUE PROBE_RUN='CD:!C:\\MSCDEX.EXE /D:OAKCD001 /L:G > C:\\OUT\\CD.TXT,T2:T2.EXE S16ODD2 MIX C0'"
@@ -1899,7 +1899,7 @@ fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 120
 note = "mixed: S16ODD2's single-cycle stereo with an odd sample count (B0h, each block from where the last ended), steps SS22, SU22, SS44, SU44 (blocks of 4409 samples, an odd count; judged in T2.TXT as T2X-S16ODD2) while T1A track 2 (1000 Hz; C0: T1B's) plays from TICK MIX, 18 ticks before SS22, to TICK OFF 300 ticks later (one play). The capture: each step the tone left and the 1 kHz present (the peak over the floor and the level above -60 dBFS), the tone's third harmonic 20 dB down or more and no drop of 20 ms or more in its band, the right quiet in the tone's band (under -60 dBFS: the CD is on both sides); the 1 kHz without a drop from MIX+0.3 s to MIX+16.2 s; quiet after OFF; each step's windows end at its TICK DONE (too short to judge under 1 s); (A3, C0; held as T2C0-S16ODD2)"
-todo = "A3: the control is DOSBox-X at T6, not 86Box's own card (86ODDSC); the CT2290 in AKIT the judge (the owner, 26 Oct 2026, question 14); held for T6 (the owner, 28 Oct 2026, question 35: T6 opens with DOSBox-X's port 61h bit 5 and channel 2 gating read from its source, the runner runs/dbx_test.py validated on SC8 C0 and an L4 plant, the wave capture wired and proven; nothing from DOSBox-X is evidence until then)"
+todo = "A3: the control is DOSBox-X at T6, not 86Box's own card (86ODDSC); the CT2291 in AKIT the judge (the owner, 26 Oct 2026, question 14); held for T6 (the owner, 28 Oct 2026, question 35: T6 opens with DOSBox-X's port 61h bit 5 and channel 2 gating read from its source, the runner runs/dbx_test.py validated on SC8 C0 and an L4 plant, the wave capture wired and proven; nothing from DOSBox-X is evidence until then)"
 
 [[test]]
 name = "T2X-S16ON8"
@@ -1910,7 +1910,7 @@ groups = ["t2x"]
 fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "16-bit samples through the 8-bit DMA channel: mixer 81h written with the 8-bit channel's bit alone (02h for D1), read back, then S16AI's four formats at 22050 Hz (MS22, MU22, SS22, SU22: 0.2 s buffers of a 2 kHz tone, stereo left only, blocks of half) on channel 1 (byte counts, mode 59h), each stopped with D9h, and 81h restored. Expected, the CT2290's (vsb-spec 9.4, VSB:570-603: 81h is written on that card, HWPROBE 19 Oct 2026, F12; 16-bit data on the 8-bit channel, SBG:1136-1138): 81h reads back 02h; each step two interrupts or more, exactly one after D9h, none after that; 82h 02h at the first interrupt, 00h after 2xFh; tonecheck as S16AI. the CT2290 is a non-PnP SB16, its 80h and 81h written as any mixer register (SBG:1100-1106; the PnP caveat that stood here, on SBG:1140-1148, struck 27 Oct 2026 by the owner's correction) (A3, C2; the pinned build fails it by reading: CAND-14; the CT2290 in AKIT judges)"
+note = "16-bit samples through the 8-bit DMA channel: mixer 81h written with the 8-bit channel's bit alone (02h for D1), read back, then S16AI's four formats at 22050 Hz (MS22, MU22, SS22, SU22: 0.2 s buffers of a 2 kHz tone, stereo left only, blocks of half) on channel 1 (byte counts, mode 59h), each stopped with D9h, and 81h restored. Expected, the CT2291's (vsb-spec 9.4, VSB:570-603: 81h is written on that card, HWPROBE 19 Oct 2026, F12; 16-bit data on the 8-bit channel, SBG:1136-1138): 81h reads back 02h; each step two interrupts or more, exactly one after D9h, none after that; 82h 02h at the first interrupt, 00h after 2xFh; tonecheck as S16AI. the CT2291 is a non-PnP SB16, its 80h and 81h written as any mixer register (SBG:1100-1106; the PnP caveat that stood here, on SBG:1140-1148, struck 27 Oct 2026 by the owner's correction) (A3, C2; the pinned build fails it by reading: CAND-14; the CT2291 in AKIT judges)"
 
 [[test]]
 name = "T2C0-S16ON8"
@@ -1921,7 +1921,7 @@ groups = ["t2xc0"]
 fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "16-bit samples through the 8-bit DMA channel: mixer 81h written with the 8-bit channel's bit alone (02h for D1), read back, then S16AI's four formats at 22050 Hz (MS22, MU22, SS22, SU22: 0.2 s buffers of a 2 kHz tone, stereo left only, blocks of half) on channel 1 (byte counts, mode 59h), each stopped with D9h, and 81h restored. Expected, the CT2290's (vsb-spec 9.4, VSB:570-603: 81h is written on that card, HWPROBE 19 Oct 2026, F12; 16-bit data on the 8-bit channel, SBG:1136-1138): 81h reads back 02h; each step two interrupts or more, exactly one after D9h, none after that; 82h 02h at the first interrupt, 00h after 2xFh; tonecheck as S16AI. the CT2290 is a non-PnP SB16, its 80h and 81h written as any mixer register (SBG:1100-1106; the PnP caveat that stood here, on SBG:1140-1148, struck 27 Oct 2026 by the owner's correction) (A3, C0: 86Box's own non-PnP SB16 takes the 81h write, snd_sb.c case 0x81; the client validated before C2)"
+note = "16-bit samples through the 8-bit DMA channel: mixer 81h written with the 8-bit channel's bit alone (02h for D1), read back, then S16AI's four formats at 22050 Hz (MS22, MU22, SS22, SU22: 0.2 s buffers of a 2 kHz tone, stereo left only, blocks of half) on channel 1 (byte counts, mode 59h), each stopped with D9h, and 81h restored. Expected, the CT2291's (vsb-spec 9.4, VSB:570-603: 81h is written on that card, HWPROBE 19 Oct 2026, F12; 16-bit data on the 8-bit channel, SBG:1136-1138): 81h reads back 02h; each step two interrupts or more, exactly one after D9h, none after that; 82h 02h at the first interrupt, 00h after 2xFh; tonecheck as S16AI. the CT2291 is a non-PnP SB16, its 80h and 81h written as any mixer register (SBG:1100-1106; the PnP caveat that stood here, on SBG:1140-1148, struck 27 Oct 2026 by the owner's correction) (A3, C0: 86Box's own non-PnP SB16 takes the 81h write, snd_sb.c case 0x81; the client validated before C2)"
 
 [[test]]
 name = "T2X-S16ON8-NOH"
@@ -1932,7 +1932,7 @@ groups = ["t2x"]
 fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "the author's 0.9.3d shape (the owner, 27 Oct 2026: the second row): a game set up with no high DMA channel, BLASTER without H (A220 I5 D1 T6, set before T2.EXE), writes 81h with the 8-bit channel's bit alone and plays 16-bit on channel 1: T2.EXE S16ON8's four formats at 22050 Hz. UCDD.CFG keeps its virtual high channel 5: the config holds only 5, 6 or 7, in the pinned build and in the author's line (setup/config_file.asm, dma16_values), and his 0.9.3d path is switched by the game's 81h write (merge-a6 sb_mixer.asm:31-39). Expected as T2X-S16ON8 (the guide's register map and DMA select, SBG:1100-1106 and 1131-1138; the CT2290 a non-PnP SB16): 81h reads back 02h; each step two interrupts or more, one after D9h, none after it; 82h 02h at the first interrupt, 00h after 2xFh; tonecheck as S16AI (L4: T2L4-S16ON8, the same case and checks) (A3, C2; dev run t2dev-noh2: FAIL as T2X-S16ON8, 81h reads 22h, every step refused: CAND-14)"
+note = "the author's 0.9.3d shape (the owner, 27 Oct 2026: the second row): a game set up with no high DMA channel, BLASTER without H (A220 I5 D1 T6, set before T2.EXE), writes 81h with the 8-bit channel's bit alone and plays 16-bit on channel 1: T2.EXE S16ON8's four formats at 22050 Hz. UCDD.CFG keeps its virtual high channel 5: the config holds only 5, 6 or 7, in the pinned build and in the author's line (setup/config_file.asm, dma16_values), and his 0.9.3d path is switched by the game's 81h write (merge-a6 sb_mixer.asm:31-39). Expected as T2X-S16ON8 (the guide's register map and DMA select, SBG:1100-1106 and 1131-1138; the CT2291 a non-PnP SB16): 81h reads back 02h; each step two interrupts or more, one after D9h, none after it; 82h 02h at the first interrupt, 00h after 2xFh; tonecheck as S16AI (L4: T2L4-S16ON8, the same case and checks) (A3, C2; dev run t2dev-noh2: FAIL as T2X-S16ON8, 81h reads 22h, every step refused: CAND-14)"
 
 [[test]]
 name = "T2C0-S16ON8-NOH"
@@ -1943,7 +1943,7 @@ groups = ["t2xc0"]
 fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "the author's 0.9.3d shape (the owner, 27 Oct 2026: the second row): a game set up with no high DMA channel, BLASTER without H (A220 I5 D1 T6, set before T2.EXE), writes 81h with the 8-bit channel's bit alone and plays 16-bit on channel 1: T2.EXE S16ON8's four formats at 22050 Hz. UCDD.CFG keeps its virtual high channel 5: the config holds only 5, 6 or 7, in the pinned build and in the author's line (setup/config_file.asm, dma16_values), and his 0.9.3d path is switched by the game's 81h write (merge-a6 sb_mixer.asm:31-39). Expected as T2X-S16ON8 (the guide's register map and DMA select, SBG:1100-1106 and 1131-1138; the CT2290 a non-PnP SB16): 81h reads back 02h; each step two interrupts or more, one after D9h, none after it; 82h 02h at the first interrupt, 00h after 2xFh; tonecheck as S16AI (L4: T2L4-S16ON8, the same case and checks) (A3, C0: the client validated on 86Box's own card before C2; dev run t2dev-noh0: PASS)"
+note = "the author's 0.9.3d shape (the owner, 27 Oct 2026: the second row): a game set up with no high DMA channel, BLASTER without H (A220 I5 D1 T6, set before T2.EXE), writes 81h with the 8-bit channel's bit alone and plays 16-bit on channel 1: T2.EXE S16ON8's four formats at 22050 Hz. UCDD.CFG keeps its virtual high channel 5: the config holds only 5, 6 or 7, in the pinned build and in the author's line (setup/config_file.asm, dma16_values), and his 0.9.3d path is switched by the game's 81h write (merge-a6 sb_mixer.asm:31-39). Expected as T2X-S16ON8 (the guide's register map and DMA select, SBG:1100-1106 and 1131-1138; the CT2291 a non-PnP SB16): 81h reads back 02h; each step two interrupts or more, one after D9h, none after it; 82h 02h at the first interrupt, 00h after 2xFh; tonecheck as S16AI (L4: T2L4-S16ON8, the same case and checks) (A3, C0: the client validated on 86Box's own card before C2; dev run t2dev-noh0: PASS)"
 
 [[test]]
 name = "T2X-S16ON8-M"
@@ -2098,7 +2098,7 @@ groups = ["t2x"]
 fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "75h with its reference byte (128): adpcm4.py's block, a 2 kHz tone encoded to DOSBox-X's 4-bit decoder (EMUSRC; uCDD's agrees for 4-bit, Tier 0), 7693 bytes counted as compressed bytes (VSB:368-379, SBG:3294-3296), at the time constant A5h (40h, SBG:1567); one interrupt 24 to 28 ticks after the command (SBG:1590-1591; 15384 codes, 25.5 ticks at 10989.01 Hz), none after; tonecheck: AD+0.1-1.1 s 2000 Hz, no gap of 20 ms or more to +1.3 s, quiet from +1.6 to +2.8 s. The rate of A5h differs by card, by design: 86Box's own SB16 plays the formula's 10989.01 Hz (2000 Hz); uCDD's virtual SB16 takes 40h through the DSP 4.13 firmware's rate table (src/audio/trap.asm 1211-1215, 2742-2745: copied real behaviour), so about 10860 Hz and 1976.7 Hz on t2dev-ad2, 1.2 % low, inside tonecheck's 1.5 %; the CT2290 measured A5h at 10846 Hz (1974 Hz) (A3, C2; dev run t2dev-ad2: PASS)"
+note = "75h with its reference byte (128): adpcm4.py's block, a 2 kHz tone encoded to DOSBox-X's 4-bit decoder (EMUSRC; uCDD's agrees for 4-bit, Tier 0), 7693 bytes counted as compressed bytes (VSB:368-379, SBG:3294-3296), at the time constant A5h (40h, SBG:1567); one interrupt 24 to 28 ticks after the command (SBG:1590-1591; 15384 codes, 25.5 ticks at 10989.01 Hz), none after; tonecheck: AD+0.1-1.1 s 2000 Hz, no gap of 20 ms or more to +1.3 s, quiet from +1.6 to +2.8 s. The rate of A5h differs by card, by design: 86Box's own SB16 plays the formula's 10989.01 Hz (2000 Hz); uCDD's virtual SB16 takes 40h through the DSP 4.13 firmware's rate table (src/audio/trap.asm 1211-1215, 2742-2745: copied real behaviour), so about 10860 Hz and 1976.7 Hz on t2dev-ad2, 1.2 % low, inside tonecheck's 1.5 %; the CT2291 measured A5h at 10846 Hz (1974 Hz) (A3, C2; dev run t2dev-ad2: PASS)"
 
 [[test]]
 name = "T2C0-ADPCM4"
@@ -2109,7 +2109,7 @@ groups = ["t2xc0"]
 fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "75h with its reference byte (128): adpcm4.py's block, a 2 kHz tone encoded to DOSBox-X's 4-bit decoder (EMUSRC; uCDD's agrees for 4-bit, Tier 0), 7693 bytes counted as compressed bytes (VSB:368-379, SBG:3294-3296), at the time constant A5h (40h, SBG:1567); one interrupt 24 to 28 ticks after the command (SBG:1590-1591; 15384 codes, 25.5 ticks at 10989.01 Hz), none after; tonecheck: AD+0.1-1.1 s 2000 Hz, no gap of 20 ms or more to +1.3 s, quiet from +1.6 to +2.8 s. The rate of A5h differs by card, by design: 86Box's own SB16 plays the formula's 10989.01 Hz (2000 Hz); uCDD's virtual SB16 takes 40h through the DSP 4.13 firmware's rate table (src/audio/trap.asm 1211-1215, 2742-2745: copied real behaviour), so about 10860 Hz and 1976.7 Hz on t2dev-ad2, 1.2 % low, inside tonecheck's 1.5 %; the CT2290 measured A5h at 10846 Hz (1974 Hz) (A3, C0: the client validated on 86Box's own card before C2; dev run t2dev-ad0: PASS)"
+note = "75h with its reference byte (128): adpcm4.py's block, a 2 kHz tone encoded to DOSBox-X's 4-bit decoder (EMUSRC; uCDD's agrees for 4-bit, Tier 0), 7693 bytes counted as compressed bytes (VSB:368-379, SBG:3294-3296), at the time constant A5h (40h, SBG:1567); one interrupt 24 to 28 ticks after the command (SBG:1590-1591; 15384 codes, 25.5 ticks at 10989.01 Hz), none after; tonecheck: AD+0.1-1.1 s 2000 Hz, no gap of 20 ms or more to +1.3 s, quiet from +1.6 to +2.8 s. The rate of A5h differs by card, by design: 86Box's own SB16 plays the formula's 10989.01 Hz (2000 Hz); uCDD's virtual SB16 takes 40h through the DSP 4.13 firmware's rate table (src/audio/trap.asm 1211-1215, 2742-2745: copied real behaviour), so about 10860 Hz and 1976.7 Hz on t2dev-ad2, 1.2 % low, inside tonecheck's 1.5 %; the CT2291 measured A5h at 10846 Hz (1974 Hz) (A3, C0: the client validated on 86Box's own card before C2; dev run t2dev-ad0: PASS)"
 
 [[test]]
 name = "T2X-ADPCM4-M"
@@ -2179,7 +2179,7 @@ note = "an 8237 master clear during auto-init playback (8-bit at 22050 Hz, 8 KB 
 
 [[test]]
 name = "T2X-DMAMCR"
-decides = "8237:485-491, 8237:225-230, SBG:1590-1591, SBG:1652-1668, SBG:3604-3612, silent: the 2.00 ms window (mine: the CT2290 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
+decides = "8237:485-491, 8237:225-230, SBG:1590-1591, SBG:1652-1668, SBG:3604-3612, silent: the 2.00 ms window (mine: the CT2291 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
 searched = "terms: FIFO, interrupt latency, request latency; hits: 728 in 61 documents (1533 20, 1543 20, 5582 20, 5597 20, 596B 20, 630 20); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DMAMCR'"
@@ -2187,11 +2187,11 @@ groups = ["t2x"]
 fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "where the first block interrupt comes after an 8237 master clear and the channel set up again (the owner, 27 Oct 2026): the clear is the DMA controller's (8237:485-491) and the block counter the DSP's (SBG:1590-1591, the interrupt after the programmed number of bytes; 1652-1668 and 3604-3612, auto-init's block size in 48h), so the first interrupt after the set-up comes after the remainder of the interrupted block. DMAMC's playback (8-bit auto-init at 22050 Hz, 8 KB, 4 KB blocks); MP 27 ticks; half a block after the next block interrupt (2048 bytes, 92.9 ms: apart from a whole block, 185.8 ms, and from an interrupt at once), with interrupts off the channel's count read (8237:225-230) and the master clear; MC 27 ticks; the set-up, the TSC at the unmask and at the first interrupt after it (the TSC over 18 BIOS ticks); MS 27 ticks; DAh. The remainder 4096 less (8191 - the count) mod 4096 bytes, due its time at 22050 a second; judged within 2.00 ms, MC no interrupt; tonecheck as DMAMC's. The CT2290 confirms on AKIT (86Box can be as wrong here as uCDD). (A3, C2; dev run t2dev-mr2: FAIL, 2011 bytes left, due 91201 us, the interrupt 159 us after the set-up)"
+note = "where the first block interrupt comes after an 8237 master clear and the channel set up again (the owner, 27 Oct 2026): the clear is the DMA controller's (8237:485-491) and the block counter the DSP's (SBG:1590-1591, the interrupt after the programmed number of bytes; 1652-1668 and 3604-3612, auto-init's block size in 48h), so the first interrupt after the set-up comes after the remainder of the interrupted block. DMAMC's playback (8-bit auto-init at 22050 Hz, 8 KB, 4 KB blocks); MP 27 ticks; half a block after the next block interrupt (2048 bytes, 92.9 ms: apart from a whole block, 185.8 ms, and from an interrupt at once), with interrupts off the channel's count read (8237:225-230) and the master clear; MC 27 ticks; the set-up, the TSC at the unmask and at the first interrupt after it (the TSC over 18 BIOS ticks); MS 27 ticks; DAh. The remainder 4096 less (8191 - the count) mod 4096 bytes, due its time at 22050 a second; judged within 2.00 ms, MC no interrupt; tonecheck as DMAMC's. The CT2291 confirms on AKIT (86Box can be as wrong here as uCDD). (A3, C2; dev run t2dev-mr2: FAIL, 2011 bytes left, due 91201 us, the interrupt 159 us after the set-up)"
 
 [[test]]
 name = "T2C0-DMAMCR"
-decides = "8237:485-491, 8237:225-230, SBG:1590-1591, SBG:1652-1668, SBG:3604-3612, silent: the 2.00 ms window (mine: the CT2290 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
+decides = "8237:485-491, 8237:225-230, SBG:1590-1591, SBG:1652-1668, SBG:3604-3612, silent: the 2.00 ms window (mine: the CT2291 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
 searched = "terms: FIFO, interrupt latency, request latency; hits: 728 in 61 documents (1533 20, 1543 20, 5582 20, 5597 20, 596B 20, 630 20); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DMAMCR C0'"
@@ -2199,11 +2199,11 @@ groups = ["t2xc0"]
 fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "where the first block interrupt comes after an 8237 master clear and the channel set up again (the owner, 27 Oct 2026): the clear is the DMA controller's (8237:485-491) and the block counter the DSP's (SBG:1590-1591, the interrupt after the programmed number of bytes; 1652-1668 and 3604-3612, auto-init's block size in 48h), so the first interrupt after the set-up comes after the remainder of the interrupted block. DMAMC's playback (8-bit auto-init at 22050 Hz, 8 KB, 4 KB blocks); MP 27 ticks; half a block after the next block interrupt (2048 bytes, 92.9 ms: apart from a whole block, 185.8 ms, and from an interrupt at once), with interrupts off the channel's count read (8237:225-230) and the master clear; MC 27 ticks; the set-up, the TSC at the unmask and at the first interrupt after it (the TSC over 18 BIOS ticks); MS 27 ticks; DAh. The remainder 4096 less (8191 - the count) mod 4096 bytes, due its time at 22050 a second; judged within 2.00 ms, MC no interrupt; tonecheck as DMAMC's. The CT2290 confirms on AKIT (86Box can be as wrong here as uCDD). (A3, C0: the client validated on 86Box's own card before C2; dev run t2dev-mr0: PASS, 2034 bytes left, due 92244 us, came 92240 us)"
+note = "where the first block interrupt comes after an 8237 master clear and the channel set up again (the owner, 27 Oct 2026): the clear is the DMA controller's (8237:485-491) and the block counter the DSP's (SBG:1590-1591, the interrupt after the programmed number of bytes; 1652-1668 and 3604-3612, auto-init's block size in 48h), so the first interrupt after the set-up comes after the remainder of the interrupted block. DMAMC's playback (8-bit auto-init at 22050 Hz, 8 KB, 4 KB blocks); MP 27 ticks; half a block after the next block interrupt (2048 bytes, 92.9 ms: apart from a whole block, 185.8 ms, and from an interrupt at once), with interrupts off the channel's count read (8237:225-230) and the master clear; MC 27 ticks; the set-up, the TSC at the unmask and at the first interrupt after it (the TSC over 18 BIOS ticks); MS 27 ticks; DAh. The remainder 4096 less (8191 - the count) mod 4096 bytes, due its time at 22050 a second; judged within 2.00 ms, MC no interrupt; tonecheck as DMAMC's. The CT2291 confirms on AKIT (86Box can be as wrong here as uCDD). (A3, C0: the client validated on 86Box's own card before C2; dev run t2dev-mr0: PASS, 2034 bytes left, due 92244 us, came 92240 us)"
 
 [[test]]
 name = "T2X-DMAMASK"
-decides = "8237:421-427, 8237:493-495, 8237:225-230, SBG:1590-1591, SBG:1652-1668, silent: the 2.00 ms window (DMAMCR's: the CT2290 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
+decides = "8237:421-427, 8237:493-495, 8237:225-230, SBG:1590-1591, SBG:1652-1668, silent: the 2.00 ms window (DMAMCR's: the CT2291 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
 searched = "terms: FIFO, interrupt latency, request latency; hits: 728 in 61 documents (1533 20, 1543 20, 5582 20, 5597 20, 596B 20, 630 20); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DMAMASK'"
@@ -2215,7 +2215,7 @@ note = "an 8237 mask during auto-init playback (8-bit at 22050 Hz, 8 KB of the 2
 
 [[test]]
 name = "T2C0-DMAMASK"
-decides = "8237:421-427, 8237:493-495, 8237:225-230, SBG:1590-1591, SBG:1652-1668, silent: the 2.00 ms window (DMAMCR's: the CT2290 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
+decides = "8237:421-427, 8237:493-495, 8237:225-230, SBG:1590-1591, SBG:1652-1668, silent: the 2.00 ms window (DMAMCR's: the CT2291 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
 searched = "terms: FIFO, interrupt latency, request latency; hits: 728 in 61 documents (1533 20, 1543 20, 5582 20, 5597 20, 596B 20, 630 20); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DMAMASK C0'"
@@ -2227,29 +2227,29 @@ note = "an 8237 mask during auto-init playback (8-bit at 22050 Hz, 8 KB of the 2
 
 [[test]]
 name = "T2X-DMAREAD"
-decides = "8237:225-230, 8237:253-256, VSB:395-465, CT2290, SBG:1590-1591"
+decides = "8237:225-230, 8237:253-256, VSB:395-465, CT2291, SBG:1590-1591"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DMAREAD'"
 groups = ["t2x"]
 fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "the 8-bit channel's current address and count read through the flip-flop during auto-init playback (DMAMC's: 8-bit at 22050 Hz, 8 KB of the 2 kHz tone in 4 KB blocks), in bursts of 256 readings as fast as the reads go, each followed by an idle to the next BIOS tick, for 27 ticks from TICK DR; each reading two passes with interrupts off, kept when they lie within 8 bytes (a read torn across a byte's carry is 256 out). The count drops by one per transfer and the address moves with it (8237:253-256); the virtual card's count moves sample by sample and never back within a lap (VSB 7.8, VSB:395-465; the CT2290's one byte at a time, two reads agreeing). Judged in T2.TXT: every address and count inside the buffer, the two of a reading within 8 bytes, no step back within a lap, 3 or 4 laps, 7 or 8 interrupts (SBG:1590-1591); the largest step printed, not judged. tonecheck: the tone in DR, no gap of 20 ms or more. Bursts, not one flat-out loop: read flat out the loop held 86Box's thread at the ceiling and the recorder ran dry (dev runs t2dev-dr0b, -dr2: 5 underruns, all in the reading); paced by the tick, not by a single HLT: under C2 uCDD's period interrupt ends a HLT at once (plan 6fc1a31d's first takes, 4 broken captures in 14; the owner, 28 Oct 2026, question 29: a HLT that returns at once is not a wait) (A3, C2; dev runs t2dev-dr2e and -dr2f: PASS, 6912 readings, the largest step 4 bytes, 3 laps)"
+note = "the 8-bit channel's current address and count read through the flip-flop during auto-init playback (DMAMC's: 8-bit at 22050 Hz, 8 KB of the 2 kHz tone in 4 KB blocks), in bursts of 256 readings as fast as the reads go, each followed by an idle to the next BIOS tick, for 27 ticks from TICK DR; each reading two passes with interrupts off, kept when they lie within 8 bytes (a read torn across a byte's carry is 256 out). The count drops by one per transfer and the address moves with it (8237:253-256); the virtual card's count moves sample by sample and never back within a lap (VSB 7.8, VSB:395-465; the CT2291's one byte at a time, two reads agreeing). Judged in T2.TXT: every address and count inside the buffer, the two of a reading within 8 bytes, no step back within a lap, 3 or 4 laps, 7 or 8 interrupts (SBG:1590-1591); the largest step printed, not judged. tonecheck: the tone in DR, no gap of 20 ms or more. Bursts, not one flat-out loop: read flat out the loop held 86Box's thread at the ceiling and the recorder ran dry (dev runs t2dev-dr0b, -dr2: 5 underruns, all in the reading); paced by the tick, not by a single HLT: under C2 uCDD's period interrupt ends a HLT at once (plan 6fc1a31d's first takes, 4 broken captures in 14; the owner, 28 Oct 2026, question 29: a HLT that returns at once is not a wait) (A3, C2; dev runs t2dev-dr2e and -dr2f: PASS, 6912 readings, the largest step 4 bytes, 3 laps)"
 
 [[test]]
 name = "T2C0-DMAREAD"
-decides = "8237:225-230, 8237:253-256, VSB:395-465, CT2290, SBG:1590-1591"
+decides = "8237:225-230, 8237:253-256, VSB:395-465, CT2291, SBG:1590-1591"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DMAREAD C0'"
 groups = ["t2xc0"]
 fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "the 8-bit channel's current address and count read through the flip-flop during auto-init playback (DMAMC's: 8-bit at 22050 Hz, 8 KB of the 2 kHz tone in 4 KB blocks), in bursts of 256 readings as fast as the reads go, each followed by an idle to the next BIOS tick, for 27 ticks from TICK DR; each reading two passes with interrupts off, kept when they lie within 8 bytes (a read torn across a byte's carry is 256 out). The count drops by one per transfer and the address moves with it (8237:253-256); the virtual card's count moves sample by sample and never back within a lap (VSB 7.8, VSB:395-465; the CT2290's one byte at a time, two reads agreeing). Judged in T2.TXT: every address and count inside the buffer, the two of a reading within 8 bytes, no step back within a lap, 3 or 4 laps, 7 or 8 interrupts (SBG:1590-1591); the largest step printed, not judged. tonecheck: the tone in DR, no gap of 20 ms or more. Bursts, not one flat-out loop: read flat out the loop held 86Box's thread at the ceiling and the recorder ran dry (dev runs t2dev-dr0b, -dr2: 5 underruns, all in the reading); paced by the tick, not by a single HLT: under C2 uCDD's period interrupt ends a HLT at once (plan 6fc1a31d's first takes, 4 broken captures in 14; the owner, 28 Oct 2026, question 29: a HLT that returns at once is not a wait) (A3, C0: the client validated on 86Box's own card before C2; dev run t2dev-dr0e: PASS, 6912 readings, the largest step 1 byte, 3 laps)"
+note = "the 8-bit channel's current address and count read through the flip-flop during auto-init playback (DMAMC's: 8-bit at 22050 Hz, 8 KB of the 2 kHz tone in 4 KB blocks), in bursts of 256 readings as fast as the reads go, each followed by an idle to the next BIOS tick, for 27 ticks from TICK DR; each reading two passes with interrupts off, kept when they lie within 8 bytes (a read torn across a byte's carry is 256 out). The count drops by one per transfer and the address moves with it (8237:253-256); the virtual card's count moves sample by sample and never back within a lap (VSB 7.8, VSB:395-465; the CT2291's one byte at a time, two reads agreeing). Judged in T2.TXT: every address and count inside the buffer, the two of a reading within 8 bytes, no step back within a lap, 3 or 4 laps, 7 or 8 interrupts (SBG:1590-1591); the largest step printed, not judged. tonecheck: the tone in DR, no gap of 20 ms or more. Bursts, not one flat-out loop: read flat out the loop held 86Box's thread at the ceiling and the recorder ran dry (dev runs t2dev-dr0b, -dr2: 5 underruns, all in the reading); paced by the tick, not by a single HLT: under C2 uCDD's period interrupt ends a HLT at once (plan 6fc1a31d's first takes, 4 broken captures in 14; the owner, 28 Oct 2026, question 29: a HLT that returns at once is not a wait) (A3, C0: the client validated on 86Box's own card before C2; dev run t2dev-dr0e: PASS, 6912 readings, the largest step 1 byte, 3 laps)"
 
 [[test]]
 name = "T2X-DMAREAD-M"
-decides = "8237:225-230, 8237:253-256, VSB:395-465, CT2290, SBG:1590-1591, VSB:285-348"
+decides = "8237:225-230, 8237:253-256, VSB:395-465, CT2291, SBG:1590-1591, VSB:285-348"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_EXTRA='fixtures/synth/out/T1A.BIN|T1\\T1A.BIN;fixtures/synth/out/T1A.CUE|T1\\T1A.CUE' PROBE_RUN='CD:!C:\\SHSUCDX.COM /D:UCDD0001 /L:G > C:\\OUT\\CD.TXT,M:!C:\\UCDD\\UCDD.EXE -mount C:\\T1\\T1A.CUE > C:\\OUT\\M.TXT,T2:T2.EXE DMAREAD MIX'"
 groups = ["t2x"]
@@ -2260,7 +2260,7 @@ note = "mixed: DMAREAD's reading (the 8-bit channel's address and count during a
 
 [[test]]
 name = "T2C0-DMAREAD-M"
-decides = "8237:225-230, 8237:253-256, VSB:395-465, CT2290, SBG:1590-1591, VSB:285-348"
+decides = "8237:225-230, 8237:253-256, VSB:395-465, CT2291, SBG:1590-1591, VSB:285-348"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_CDROM=fixtures/synth/out/T1B.CUE PROBE_RUN='CD:!C:\\MSCDEX.EXE /D:OAKCD001 /L:G > C:\\OUT\\CD.TXT,T2:T2.EXE DMAREAD MIX C0'"
 groups = ["t2xc0"]
@@ -2389,7 +2389,7 @@ fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 90
 note = "special mask mode: with IRQ 0 in service and masked and OCW3 68h written the card's lower request comes at once (split from PICSMM, the owner, 26 Oct 2026, question 12) (A3, C2)"
-todo = "A3: judged on the CT2290 in AKIT (the owner, 26 Oct 2026, question 12): 86Box's 8259 has no special mask mode (ISSUES 86SMM) and the driver drops OCW3 68h, so a C2 run here cannot be told from the emulator"
+todo = "A3: judged on the CT2291 in AKIT (the owner, 26 Oct 2026, question 12): 86Box's 8259 has no special mask mode (ISSUES 86SMM) and the driver drops OCW3 68h, so a C2 run here cannot be told from the emulator"
 
 [[test]]
 name = "T2C0-PICSMM2"
@@ -2401,7 +2401,7 @@ fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 90
 note = "special mask mode: with IRQ 0 in service and masked and OCW3 68h written the card's lower request comes at once (split from PICSMM, the owner, 26 Oct 2026, question 12) (A3, the control: DOSBox-X, read)"
-todo = "A3: the control is DOSBox-X's special mask path, read (the owner, 26 Oct 2026, question 12; grade emulator); not run: 86Box cannot (86SMM) and DOSBox-X is not wired into the runners (tightening r3, T6). The CT2290 in AKIT judges"
+todo = "A3: the control is DOSBox-X's special mask path, read (the owner, 26 Oct 2026, question 12; grade emulator); not run: 86Box cannot (86SMM) and DOSBox-X is not wired into the runners (tightening r3, T6). The CT2291 in AKIT judges"
 
 [[test]]
 name = "T2X-PICSMM2-M"
@@ -2413,7 +2413,7 @@ fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 120
 note = "mixed (T1A track 2 playing, both peaks in the capture): special mask mode: with IRQ 0 in service and masked and OCW3 68h written the card's lower request comes at once (split from PICSMM, the owner, 26 Oct 2026, question 12) (A3, C2)"
-todo = "A3: judged on the CT2290 in AKIT (the owner, 26 Oct 2026, question 12): 86Box's 8259 has no special mask mode (ISSUES 86SMM) and the driver drops OCW3 68h, so a C2 run here cannot be told from the emulator; and the sound cases wait on tonecheck"
+todo = "A3: judged on the CT2291 in AKIT (the owner, 26 Oct 2026, question 12): 86Box's 8259 has no special mask mode (ISSUES 86SMM) and the driver drops OCW3 68h, so a C2 run here cannot be told from the emulator; and the sound cases wait on tonecheck"
 
 [[test]]
 name = "T2C0-PICSMM2-M"
@@ -2425,7 +2425,7 @@ fixed = { mode = "base", vmodel = "sb16" }
 repeat = 10
 secs = 120
 note = "mixed (T1A track 2 playing, both peaks in the capture): special mask mode: with IRQ 0 in service and masked and OCW3 68h written the card's lower request comes at once (split from PICSMM, the owner, 26 Oct 2026, question 12) (A3, the control: DOSBox-X, read)"
-todo = "A3: the control is DOSBox-X's special mask path, read (the owner, 26 Oct 2026, question 12; grade emulator); not run: 86Box cannot (86SMM) and DOSBox-X is not wired into the runners (tightening r3, T6). The CT2290 in AKIT judges"
+todo = "A3: the control is DOSBox-X's special mask path, read (the owner, 26 Oct 2026, question 12; grade emulator); not run: 86Box cannot (86SMM) and DOSBox-X is not wired into the runners (tightening r3, T6). The CT2291 in AKIT judges"
 
 [[test]]
 name = "T2X-PICSEOI"
@@ -2524,8 +2524,8 @@ groups = ["t2x"]
 fixed = { build = "pinC2", vmodel = "sb16" }
 repeat = 10
 secs = 120
-note = "the time constant (40h) down a ladder of seven rates, 5000, 8000, 11025, 16000, 22050, 32000, 44100 Hz (rule 7: the old text said \"from 4000 to 44100 Hz\"; DSP 4.xx's normal mode plays 8-bit mono from 5000 Hz, SBG:1424, and 4000 puts a 2 kHz tone at Nyquist), each the high byte of 65536 - 256000000/rate (SBG:1249-1257, 3553-3568): 38h, 83h, A5h, C1h, D2h, E0h, E9h; each step a tone of round(2000 x 8192 / rate) whole cycles over the 8 KB buffer, 4 KB auto-init blocks, TICK TCnn 27 ticks, DAh, the block's end, TICK DONE. Judged in T2.TXT: each step's interrupts within 2 of the blocks completed at 1000000/(256-TC) bytes a second (SBG:1590-1591); tonecheck: each step's pitch against its own card's rate, no gap of 20 ms or more. On C2 the virtual SB16 plays the DSP 4.13's rate register by its table (VSB:285-304); tonecheck's sb16_tc_plays reckons it as the floor of 23 x rate / 4096, which the 4.13's table (src/audio/trap.asm sb16_time_table at 7994cd1, [fw]) contradicts in 28 of its 236 entries, 83h among them (45, not 44: dev run t2dev-tr2, TC08 2003.1 Hz against 1958): no key independent of the driver decides each step's rate (A3, C2). Question 30 (the owner, 28 Oct 2026): the CT2290's measured table decides (TCTABLE.EXE in AKIT, ingested by tools/import_hardware.py; tonecheck takes runs/rec/hw/tctable-ct2290.json when it is there); meanwhile tonecheck's model is the 4.13 firmware table, the closer one, recorded as a firmware-grade observation, not a verdict. The 28 constants where the 4.13 table and the old floor of 23 x rate / 4096 disagree: 16h, 28h, 30h, 64h, 68h, 6Ch, 70h, 77h, 83h, 8Bh, 94h, 96h, 98h, B2h, B3h, B7h, B8h, CAh, CBh, CCh, D0h, D7h, D9h, DCh, E5h, E6h, E8h, EBh (of this row's seven, 83h). The observation (a), firmware grade, not a verdict: the dev capture t2dev-tr2 judged under the table model, every step on its mark, TC08 2003.1 Hz against 2003.5 (the floor had wanted 1958)"
-todo = "A3: held until the hardware table exists (the owner, 28 Oct 2026, question 30: TCTABLE.EXE on the CT2290 in AKIT decides)"
+note = "the time constant (40h) down a ladder of seven rates, 5000, 8000, 11025, 16000, 22050, 32000, 44100 Hz (rule 7: the old text said \"from 4000 to 44100 Hz\"; DSP 4.xx's normal mode plays 8-bit mono from 5000 Hz, SBG:1424, and 4000 puts a 2 kHz tone at Nyquist), each the high byte of 65536 - 256000000/rate (SBG:1249-1257, 3553-3568): 38h, 83h, A5h, C1h, D2h, E0h, E9h; each step a tone of round(2000 x 8192 / rate) whole cycles over the 8 KB buffer, 4 KB auto-init blocks, TICK TCnn 27 ticks, DAh, the block's end, TICK DONE. Judged in T2.TXT: each step's interrupts within 2 of the blocks completed at 1000000/(256-TC) bytes a second (SBG:1590-1591); tonecheck: each step's pitch against its own card's rate, no gap of 20 ms or more. On C2 the virtual SB16 plays the DSP 4.13's rate register by its table (VSB:285-304); tonecheck's sb16_tc_plays reckons it as the floor of 23 x rate / 4096, which the 4.13's table (src/audio/trap.asm sb16_time_table at 7994cd1, [fw]) contradicts in 28 of its 236 entries, 83h among them (45, not 44: dev run t2dev-tr2, TC08 2003.1 Hz against 1958): no key independent of the driver decides each step's rate (A3, C2). Question 30 (the owner, 28 Oct 2026): the CT2291's measured table decides (TCTABLE.EXE in AKIT, ingested by tools/import_hardware.py; tonecheck takes runs/rec/hw/tctable-ct2291.json when it is there); meanwhile tonecheck's model is the 4.13 firmware table, the closer one, recorded as a firmware-grade observation, not a verdict. The 28 constants where the 4.13 table and the old floor of 23 x rate / 4096 disagree: 16h, 28h, 30h, 64h, 68h, 6Ch, 70h, 77h, 83h, 8Bh, 94h, 96h, 98h, B2h, B3h, B7h, B8h, CAh, CBh, CCh, D0h, D7h, D9h, DCh, E5h, E6h, E8h, EBh (of this row's seven, 83h). The observation (a), firmware grade, not a verdict: the dev capture t2dev-tr2 judged under the table model, every step on its mark, TC08 2003.1 Hz against 2003.5 (the floor had wanted 1958)"
+todo = "A3: held until the hardware table exists (the owner, 28 Oct 2026, question 30: TCTABLE.EXE on the CT2291 in AKIT decides)"
 
 [[test]]
 name = "T2C0-TCROUND"
@@ -2657,7 +2657,7 @@ secs = 120
 note = "PICHOLD on IRQ 12, the PC's line (the owner, 26 Oct 2026: its own plan, AKIT lists IRQ 12 as the PC's line; the PC's serial ports are off): T2.EXE PICHOLD MIX AUX raises IRQ 12 by the keyboard controller's D3h (the byte handed back as if from the auxiliary device, its interrupt on in the command byte, the port's state put back after); each interrupt: the byte read at port 60h, STI, 6 ms on PIT channel 2, then the slave's EOI and the cascade's (8259:630-637); one every 50 ms for 10 s while the 2 kHz tone and T1A track 2 play (C0: T1B's): both tones with no gap of 20 ms or more. In service, IRQ 12 holds the master's IR2, the cascade, and so IRQ 3 to 7 (the card's IRQ 5 among them) and every slave line (8259:602-620, 815-830); IRQ 0 and 1 unaffected. Development runs t2dev-ph0a (C0) and t2dev-ph2a (C2): 200 of 200, none lost, 0 not asked for, both tones 10/10 windows, no band drop (26 Oct 2026). Related notes as T2X-PICHOLD's (the author's 0.9.4-a2, RELEASE-NOTES.md:158; 0.9.4-a6, :98); the Logo=0 bench; the library audit (the owner, 28 Oct 2026, LIBAUDIT; rule 7: decides said \"silent: the keyboard controller's D3h (in no document of the library; how IRQ 12 is raised and not what is judged)\"): the library has it, VIA's integrated keyboard controller, D3h \"Write Mouse Output Buffer & set status bit-5 (write following byte to mouse; put value in mouse input buffer so it appears to have come from the mouse)\" (586B:1763-1765; 596B:1848-1850 the same): how IRQ 12 is raised, still not what is judged"
 [[test]]
 name = "T2X-P-IRQDET"
-decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-489, CT2290"
+decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-489, CT2291"
 runner = "probe"
 env = "PROBE_RUN='T2:T2P.EXE IRQDET'"
 groups = ["t2x"]
@@ -2668,7 +2668,7 @@ secs = 150
 note = "the IRQ detection sequence from the raw 16-bit DPMI client (T2P.EXE, NASM; its own vectors through INT 31h 0204h and 0205h, to which the host routes a hardware interrupt whichever mode it lands in, DPMI09:351-400): T2X-W-IRQDET's sequence and judgement in T2.TXT: one interrupt on the card's line, none on IRQ 7 or 10, 82h bit 0 set in the handler and clear after the 2xEh acknowledge (SBG:1030-1076, VSB:474-489) (A3, C2; dev run t2pdev-id2: PASS, 82h 81h then 80h, uCDD's host 0.90 flags 0001h, CPL 3)"
 [[test]]
 name = "T2C0-P-IRQDET"
-decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-489, CT2290"
+decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-489, CT2291"
 runner = "probe"
 env = "PROBE_RUN='H:!C:\\HDPMI16.EXE -r > C:\\OUT\\H.TXT,T2:T2P.EXE IRQDET C0'"
 groups = ["t2xc0"]
@@ -2840,7 +2840,7 @@ note = "T2W's first case, the toolchain's proof as a row (the owner, 28 Oct 2026
 
 [[test]]
 name = "T2X-WP-IRQDET"
-decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-512, CT2290"
+decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-512, CT2291"
 runner = "probe"
 env = "PROBE_RUN='T2W:T2PMW.EXE IRQDET'"
 groups = ["t2x"]
@@ -2853,7 +2853,7 @@ note = "T2W bound with PMODE/W v1.33 (T2PMW.EXE; the owner, 28 Oct 2026: the sam
 
 [[test]]
 name = "T2C0-WP-IRQDET"
-decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-512, CT2290"
+decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-512, CT2291"
 runner = "probe"
 env = "PROBE_RUN='T2W:T2PMW.EXE IRQDET C0'"
 groups = ["t2xc0"]
@@ -3039,7 +3039,7 @@ note = "W-HLT (the owner, 28 Oct 2026): a client's HLT under DOS/4GW (T2D4GW.EXE
 
 [[test]]
 name = "T2X-W-IRQDET"
-decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-512, CT2290"
+decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-512, CT2291"
 runner = "probe"
 env = "PROBE_RUN='D:!SET DOS4GPATH=C:\\DOS4GW.EXE,T2W:T2D4GW.EXE IRQDET'"
 groups = ["t2x"]
@@ -3051,7 +3051,7 @@ note = "the IRQ detection sequence from protected mode under DOS/4GW (T2D4GW.EXE
 
 [[test]]
 name = "T2C0-W-IRQDET"
-decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-512, CT2290"
+decides = "DPMI09:351-400, SBG:1030-1076, VSB:474-512, CT2291"
 runner = "probe"
 env = "PROBE_RUN='D:!SET DOS4GPATH=C:\\DOS4GW.EXE,T2W:T2D4GW.EXE IRQDET C0'"
 groups = ["t2xc0"]
@@ -3139,7 +3139,7 @@ fixed = { build = "pinC2", vmodel = "sb16" }
 client = "dos4gw"
 repeat = 10
 secs = 120
-note = "the 8259 from protected mode under DOS/4GW (T2D4GW.EXE, DOS4GW.EXE beside it), T2.EXE's PICSEOI and PICSMM1 with the handlers through INT 21h 25h (DPMI09:351-400). SEOI: F2h; in the card's handler the ISR read (OCW3 0Bh), a specific EOI (OCW2 60h + level) for another line (3, or 4 where the card is on 3) and the ISR again, one for the card's own and the ISR again: 'a Specific End of Interrupt ... includes as part of the command the IS level to be reset' (8259:589-595, 565-587), so the card's bit set, still set, then clear; one interrupt. NEST: in IRQ 0's protected-mode handler, IRQ 0 in service, interrupts on, F2h and 5 ms by PIT channel 0's latched count: the card's lower request waits until IRQ 0 is ended (the fully nested mode, 8259:615-617): 0 during, 1 after. Judged in T2.TXT. Special mask mode, in the row as planned, is not here: 86Box's 8259 has none (ISSUES 86SMM) and the owner held PICSMM2 for the CT2290 (26 Oct 2026, question 12); the planned citation 8259:565-599 ran into the special mask note (596-599), so 565-595 and 615-617 (28 Oct 2026) (A3, C2; dev run t2wdev-pic2: PASS, the ISR 20h, 20h, 00h; NEST 0 during, 1 after)"
+note = "the 8259 from protected mode under DOS/4GW (T2D4GW.EXE, DOS4GW.EXE beside it), T2.EXE's PICSEOI and PICSMM1 with the handlers through INT 21h 25h (DPMI09:351-400). SEOI: F2h; in the card's handler the ISR read (OCW3 0Bh), a specific EOI (OCW2 60h + level) for another line (3, or 4 where the card is on 3) and the ISR again, one for the card's own and the ISR again: 'a Specific End of Interrupt ... includes as part of the command the IS level to be reset' (8259:589-595, 565-587), so the card's bit set, still set, then clear; one interrupt. NEST: in IRQ 0's protected-mode handler, IRQ 0 in service, interrupts on, F2h and 5 ms by PIT channel 0's latched count: the card's lower request waits until IRQ 0 is ended (the fully nested mode, 8259:615-617): 0 during, 1 after. Judged in T2.TXT. Special mask mode, in the row as planned, is not here: 86Box's 8259 has none (ISSUES 86SMM) and the owner held PICSMM2 for the CT2291 (26 Oct 2026, question 12); the planned citation 8259:565-599 ran into the special mask note (596-599), so 565-595 and 615-617 (28 Oct 2026) (A3, C2; dev run t2wdev-pic2: PASS, the ISR 20h, 20h, 00h; NEST 0 during, 1 after)"
 [[test]]
 name = "T2C0-W-PIC"
 decides = "DPMI09:351-400, 8259:565-595, 8259:615-617"
@@ -3150,7 +3150,7 @@ fixed = { mode = "base", vmodel = "sb16" }
 client = "dos4gw"
 repeat = 10
 secs = 120
-note = "the 8259 from protected mode under DOS/4GW (T2D4GW.EXE, DOS4GW.EXE beside it), T2.EXE's PICSEOI and PICSMM1 with the handlers through INT 21h 25h (DPMI09:351-400). SEOI: F2h; in the card's handler the ISR read (OCW3 0Bh), a specific EOI (OCW2 60h + level) for another line (3, or 4 where the card is on 3) and the ISR again, one for the card's own and the ISR again: 'a Specific End of Interrupt ... includes as part of the command the IS level to be reset' (8259:589-595, 565-587), so the card's bit set, still set, then clear; one interrupt. NEST: in IRQ 0's protected-mode handler, IRQ 0 in service, interrupts on, F2h and 5 ms by PIT channel 0's latched count: the card's lower request waits until IRQ 0 is ended (the fully nested mode, 8259:615-617): 0 during, 1 after. Judged in T2.TXT. Special mask mode, in the row as planned, is not here: 86Box's 8259 has none (ISSUES 86SMM) and the owner held PICSMM2 for the CT2290 (26 Oct 2026, question 12); the planned citation 8259:565-599 ran into the special mask note (596-599), so 565-595 and 615-617 (28 Oct 2026) (A3, C0: the client validated on 86Box's own card before C2; dev run t2wdev-pic0: PASS, the ISR 20h, 20h, 00h; NEST 0 during, 1 after)"
+note = "the 8259 from protected mode under DOS/4GW (T2D4GW.EXE, DOS4GW.EXE beside it), T2.EXE's PICSEOI and PICSMM1 with the handlers through INT 21h 25h (DPMI09:351-400). SEOI: F2h; in the card's handler the ISR read (OCW3 0Bh), a specific EOI (OCW2 60h + level) for another line (3, or 4 where the card is on 3) and the ISR again, one for the card's own and the ISR again: 'a Specific End of Interrupt ... includes as part of the command the IS level to be reset' (8259:589-595, 565-587), so the card's bit set, still set, then clear; one interrupt. NEST: in IRQ 0's protected-mode handler, IRQ 0 in service, interrupts on, F2h and 5 ms by PIT channel 0's latched count: the card's lower request waits until IRQ 0 is ended (the fully nested mode, 8259:615-617): 0 during, 1 after. Judged in T2.TXT. Special mask mode, in the row as planned, is not here: 86Box's 8259 has none (ISSUES 86SMM) and the owner held PICSMM2 for the CT2291 (26 Oct 2026, question 12); the planned citation 8259:565-599 ran into the special mask note (596-599), so 565-595 and 615-617 (28 Oct 2026) (A3, C0: the client validated on 86Box's own card before C2; dev run t2wdev-pic0: PASS, the ISR 20h, 20h, 00h; NEST 0 during, 1 after)"
 [[test]]
 name = "T2X-W-TIMERSTOP"
 decides = "DPMI09:351-400, DPMI09:1613-1652, INTEL94:17304-17420, HOSTCD:94-95, MSCDEX:1030-1044, silent: the gap check (thresholds.toml [gaps]; the owner 26 Oct 2026)"
@@ -4381,7 +4381,7 @@ note = "CAND-12's C2 case on the author's 0.9.5-a1 (build option a1; the owner, 
 
 [[test]]
 name = "T2X-S16ODD2-A1"
-decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2290 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
+decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2291 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
 searched = "terms: odd number, odd count, odd length, multiple of 4, multiple of four; hits: 41 in 21 documents (4031 5, VIPM 5, INTEL96 4, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 3, PBOOK 3, 1543 2); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE S16ODD2'"
@@ -4416,7 +4416,7 @@ note = "CAND-16's C2 case on the author's 0.9.5-a1 (build option a1; the owner, 
 
 [[test]]
 name = "T2X-DMAMCR-A1"
-decides = "8237:485-491, 8237:225-230, SBG:1590-1591, SBG:1652-1668, SBG:3604-3612, silent: the 2.00 ms window (mine: the CT2290 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
+decides = "8237:485-491, 8237:225-230, SBG:1590-1591, SBG:1652-1668, SBG:3604-3612, silent: the 2.00 ms window (mine: the CT2291 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
 searched = "terms: FIFO, interrupt latency, request latency; hits: 728 in 61 documents (1533 20, 1543 20, 5582 20, 5597 20, 596B 20, 630 20); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DMAMCR'"
@@ -4663,7 +4663,7 @@ note = "a2 twin of T2X-S16ODD1-A1 (the owner, 2 Nov 2026: a2 replaces a1 as the 
 
 [[test]]
 name = "T2X-S16ODD2-A2"
-decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2290 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
+decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2291 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
 searched = "terms: odd number, odd count, odd length, multiple of 4, multiple of four; hits: 41 in 21 documents (4031 5, VIPM 5, INTEL96 4, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 3, PBOOK 3, 1543 2); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE S16ODD2'"
@@ -4698,7 +4698,7 @@ note = "a2 twin of T2X-TIMERSTOP-A1 (the owner, 2 Nov 2026: a2 replaces a1 as th
 
 [[test]]
 name = "T2X-DMAMCR-A2"
-decides = "8237:485-491, 8237:225-230, SBG:1590-1591, SBG:1652-1668, SBG:3604-3612, silent: the 2.00 ms window (mine: the CT2290 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
+decides = "8237:485-491, 8237:225-230, SBG:1590-1591, SBG:1652-1668, SBG:3604-3612, silent: the 2.00 ms window (mine: the CT2291 FIFO of 16 samples 0.73 ms at 22050 Hz; one output period at 32 frames under uCDD 0.73 ms; 0.5 ms for the count read and the polling)"
 searched = "terms: FIFO, interrupt latency, request latency; hits: 728 in 61 documents (1533 20, 1543 20, 5582 20, 5597 20, 596B 20, 630 20); 28 Oct 2026"
 runner = "probewav"
 env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE DMAMCR'"
@@ -4850,7 +4850,7 @@ note = "the driver's state for the step-aside leak test (QPI entry, fault byte, 
 
 [[test]]
 name = "E2TEST"
-decides = "VSB:222, CT2290"
+decides = "VSB:222, CT2291"
 runner = "perf"
 args = "T:E2TEST.COM"
 groups = ["probes"]
@@ -4934,7 +4934,7 @@ note = "the same under the legacy cases on the virtual SB Pro"
 
 [[test]]
 name = "F2TEST"
-decides = "CT2290"
+decides = "CT2291"
 runner = "probe"
 env = "PROBE_RUN='F2:F2TEST.COM'"
 groups = ["irq", "probes"]
@@ -4966,14 +4966,14 @@ todo = "a verdict: runs/tonechk.py on the recording"
 
 [[test]]
 name = "DMACNT"
-decides = "8237, CT2290"
+decides = "8237, CT2291"
 runner = "probe"
 env = "PROBE_RUN='F:DMACNT.COM F,N:DMACNT.COM N'"
 groups = ["probes", "irq"]
 allow = { vmodel = ["sb16"], mode = ["engaged", "base"] }
 secs = 30
-note = "how the 16-bit auto-init count moves when read as fast as possible (ns per read, run lengths, steps, Battle Race 95's two-reads-agree tries); 86Box steps one word at a time, the CT2290 decides"
-todo = "a verdict: compare with the CT2290's numbers (vsb/hw)"
+note = "how the 16-bit auto-init count moves when read as fast as possible (ns per read, run lengths, steps, Battle Race 95's two-reads-agree tries); 86Box steps one word at a time, the CT2291 decides"
+todo = "a verdict: compare with the CT2291's numbers (vsb/hw)"
 
 [[test]]
 name = "CDRS"
@@ -5198,14 +5198,14 @@ todo = "an entry in runs/sndreg/games.py and its references (Fade to Black carri
 
 [[test]]
 name = "HWPROBE"
-decides = "CT2290"
+decides = "CT2291"
 runner = "pc"
 game = "HWPROBE"
 groups = ["pc"]
 findings = ["F7", "F8", "F9", "F10", "F11", "F12", "F13"]
 allow = { mode = ["engaged", "base"] }
 secs = 60
-note = "the CT2290 bare and through uCDD, TSC timed"
+note = "the CT2291 bare and through uCDD, TSC timed"
 
 # Areas: a change to these paths needs these groups (and tests), varied
 # over these axes. "full" axes are covered in every combination; the rest

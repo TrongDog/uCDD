@@ -318,7 +318,10 @@ README = "README.md"
 # notes 953244a), where refcheck finds it through the rows refs.
 SPECFIRST = "docs/spec-first.md"
 SNDLIB = "docs/sound-engines/findings.md"
-CT2290 = "docs/sound-engines/ct2290.md"
+CT2291 = "docs/sound-engines/ct2291.md"
+# the old name of CT2291 (the owner, 2 Nov 2026: the PC's card is a CT2291, never a CT2290), kept so the
+# citations in published commit messages and FIXED.md still resolve; cite CT2291 in anything new
+CT2290 = "docs/sound-engines/ct2291.md"
 
 # What each hand-named key decides, for refs/INDEX.md (tools/refindex.py) and
 # the recall's document search. A few words each; a key with no line here is
@@ -373,7 +376,8 @@ HOSTCD = "the fork's DPMI host and CD-ROM driver specification (D-, M-, P, DMA, 
 PDMA = "the fork's platform fast DMA table and sources"
 SPECFIRST = "the fork's spec-first plan and the mantra"
 SNDLIB = "the sound engine library's findings (F1 to F18)"
-CT2290 = "the CT2290 measurements: what the real card does"
+CT2291 = "the CT2291 measurements: what the real card does"
+CT2290 = "the old name of CT2291 (the same card, misnamed until 2 Nov 2026): cite CT2291"
 
 # The keys renamed at T4 (r3) and the aliases added at r3.3, subjects written when
 # r3.5 was installed (26 Oct 2026), from each document's title and the key it aliases.
