@@ -28,7 +28,7 @@ as 41h.
 
 Findings: C-Dogs writes the 8237's mode and count and unmasks the channel
 only after its 90h; a real DSP waits for the channel and plays, uCDD's
-never starts ([findings.md](findings.md) F5; confirmed on the CT2290
+never starts ([findings.md](findings.md) F5; confirmed on the CT2291
 [hw, 19 Oct]: the bare card starts within 1 ms of the unmask, D7 never).
 Cyberdogs' polled count went up between reads 13 times in 234 (F2;
 the reads were far apart, so less sure). Since 24 Oct on `count-position`

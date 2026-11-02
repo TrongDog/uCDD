@@ -48,7 +48,7 @@ gives where the evidence is. Find the game's engine first in the
 
 | Seen with | Likely cause | Where |
 |---|---|---|
-| A game set for "Sound Blaster Pro" played on an SB16 or the virtual SB16 (Rayman's HMI SB Pro module) | SB Pro stereo is switched on with mixer 0Eh bit 1; the SB16 has no register 0Eh (the CT2290 reads 00h), so the game plays its interleaved stream as mono, at the right pitch. The real card does the same: set the game to SB16 if it offers it | [findings.md](findings.md) B12, vsb-spec.md 9.4 |
+| A game set for "Sound Blaster Pro" played on an SB16 or the virtual SB16 (Rayman's HMI SB Pro module) | SB Pro stereo is switched on with mixer 0Eh bit 1; the SB16 has no register 0Eh (the CT2291 reads 00h), so the game plays its interleaved stream as mono, at the right pitch. The real card does the same: set the game to SB16 if it offers it | [findings.md](findings.md) B12, vsb-spec.md 9.4 |
 
 ## Music wrong (FM)
 

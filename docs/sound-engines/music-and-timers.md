@@ -97,7 +97,7 @@ documented delay, and the Koei games 27, like Westwood's.
   real OPL2 a fast CPU then outruns the chip's 23 us, and notes are lost
   or wrong; an OPL3 needs far shorter waits [recall]. The engines were
   written for a 286 or 386, where the instructions between writes were
-  the delay. On the CT2290 this is the FM chip's business, not uCDD's,
+  the delay. On the CT2291 this is the FM chip's business, not uCDD's,
   which never sees these writes.
 - **Delay readers** take 14 to 77 ISA reads per register write: Descent's
   834 writes a second cost 26000 status reads a second, about 26 ms of
@@ -142,7 +142,7 @@ CD folder names SBPRO.DRV, its floppy folder GENMIDI.DRV) [file].
   for program changes), so every message carries its status byte.
 - **Status polling**: Miles checks 331h once per byte; HMI and Sierra
   poll it 20 to 490 times per byte. On a real MPU or a wavetable board
-  (the X2GS on the CT2290's header) the port is ready at once, so this
+  (the X2GS on the CT2291's header) the port is ready at once, so this
   is CPU time, not lost data.
 - **The interrupt.** On an SB16 the MPU-401's interrupt is the card's
   line, raised for each byte the MPU sends back (the FEh after each

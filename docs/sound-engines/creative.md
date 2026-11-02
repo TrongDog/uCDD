@@ -62,7 +62,7 @@ from the interrupt handler, with the time constant from the VOC header
 | Item | What they do | What it needs | Where |
 |---|---|---|---|
 | E0h, E4h/E8h | identify, test register | the 2.0+ commands answered on every model | vsb-spec.md section 5 |
-| E2h | one byte written by DMA into memory (mode 45h) | the DMA write path, the byte the 4.13 computes; no reply when the 8-bit channel is masked (CT2290) | vsb-spec.md 13, D11 |
+| E2h | one byte written by DMA into memory (mode 45h) | the DMA write path, the byte the 4.13 computes; no reply when the 8-bit channel is masked (CT2291) | vsb-spec.md 13, D11 |
 | 80h silence | interrupt after a silence, no DMA | a timed interrupt from 80h | irq.asm sb_silence_tick |
 | VOC chains | single-cycle blocks with pauses | 14h chaining from the handler without a gap | vsb-spec.md 7.1 |
 | Sounds at their length | Jill of the Jungle (CT-VOICE linked into its game program) | each block played once, at its rate | [findings.md](findings.md) F17: a 1.5 s sound lasts about 6 s on the virtual SB16 and SB Pro [86Box, 20 Oct, D7 and D9 alike]; open. Rule 10: the other games of this family on the virtual cards come first |

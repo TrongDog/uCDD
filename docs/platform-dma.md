@@ -183,7 +183,7 @@ virtual card, and stepped aside again after the unmount. Evidence: emulator.
   and its ISA DMA path does not read the extended mode register (section 8),
   so the DCEM runs show detection and no harm, not the write.
 - Still to do: the real PC (PIIX3), the 13 Oct numbers again through the
-  platform path, and the CT2290 SB16 on Type F (its first test with fast
+  platform path, and the CT2291 SB16 on Type F (its first test with fast
   DMA). Open, needs hardware we do not have: any method but MBDMA on a real
   board; each card's tolerance (the switch stays the user's).
 
