@@ -78,7 +78,7 @@ The original README follows, updated where the fork changed things.
 
 - 386 or later, DOS 5 or later, and a CD redirector: [SHSUCDX](http://adoxa.altervista.org/shsucdx/) or MSCDEX.
 - For CD-Audio: [JEMMEX](https://github.com/Baron-von-Riedesel/Jemm) 5.86 or 5.87, which provides the XMS, VCPI and port-trap services the audio driver needs, including the port-trap callback interface changed in 5.87pre1. HIMEM alone does not provide these, and Microsoft EMM386 is not supported: its port-trap interface cannot reach the DMA controller, so a game could take over the physical audio transfer.
-- A Sound Blaster (1.5/2.0, Pro, or 16), a Windows Sound System codec, or an ESS AudioDrive. **Initialize the card before `UCDD -install`.** μCDD does not configure it. Set the jumpers, or run the card's Plug and Play or setup utility (CTCM, UNISOUND, and so on) first. UNISOUND also sets the jumperless Sound Blaster 16 boards without Plug and Play (CT2230, CT2290, CT2291).
+- A Sound Blaster (1.5/2.0, Pro, or 16), a Windows Sound System codec, or an ESS AudioDrive. **Initialize the card before `UCDD -install`.** μCDD does not configure it. Set the jumpers, or run the card's Plug and Play or setup utility (CTCM, UNISOUND, and so on) first. UNISOUND also sets the jumperless Sound Blaster 16 boards without Plug and Play (CT2230, CT2291, CT2291).
 
 **Protected-mode game support is incomplete.**
 
