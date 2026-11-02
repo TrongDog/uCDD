@@ -1675,7 +1675,7 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 
 ### SWEEPWD: the sweep's watchdog misread three ways a game stops (found and fixed 1 Nov 2026; a bench fault)
 
-- decides = "5597 (5597:4993-4998, the video mode table: modes 0 and 1 are 40x25 in 8x8 cells at 320x200 and in 9x16 cells at 360x400, the two geometries the reader reads; 8x14 at 320x350 is listed too and is not read: a limit, noted 2 Nov 2026); silent for the screens' words (the prompt after a message's own text, the cursor's two phases, DOS's 'Abort, Retry, Fail', 'Packed file is corrupt', DOS/4GW's 'Crash address (unrelocated)'): no document holds them; this bench's own screens decide (test_sweep's cases)"
+- decides = "5597 (5597:4993-4998, the video mode table: modes 0 and 1 are 40x25 in 8x8 cells at 320x200 and in 9x16 cells at 360x400, the two geometries the reader read first; 8x14 at 320x350 (5597:4994, 4997), listed too, read since 2 Nov 2026: rule 7, the old text \"is not read: a limit, noted 2 Nov 2026\"); silent for the screens' words (the prompt after a message's own text, the cursor's two phases, DOS's 'Abort, Retry, Fail', 'Packed file is corrupt', DOS/4GW's 'Crash address (unrelocated)'): no document holds them; this bench's own screens decide (test_sweep's cases)"
 - searched = "terms: 40x25; hits: 13 in 1 documents (5597 13); 2 Nov 2026"
 - searched = "terms: Abort, Retry; hits: 5 in 5 documents (INTEL96 1, PBOOK 1, PIIX 1, PIIX4 1, PIIXp 1); 2 Nov 2026" (chipset documents, not DOS's prompt)
 - searched = "terms: critical error; hits: 8 in 4 documents (DOC_INTERRUP_______ 3, DPMI09 2, SHSUCDX 2, DPMI10 1); 2 Nov 2026" (INT 24h named; none gives the prompt's screen form)
@@ -1722,6 +1722,18 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   ok after. Re-judge: Assault Rigs' six runs HANG -> CRASH (the same dump
   on C0 and C2), nothing else moved in 28b798e7, 4a2b8cd3, fda2f4b5 (bench
   7f8057d, 5cd47a2, 878940d, 2042f2d).
+- The EGA shape (the owner, 2 Nov 2026: "Add the EGA 40-column shape (8x14,
+  350 lines) to the screen reader with a plant before A6; it is the SWEEPWD
+  search's finding"): plant CRASH40E (mode 1 after 350 scan lines selected;
+  fixtures/sweepplant, bench 403303b), development run pcb6-plant-CRASH40E
+  with GL_VOODOO=1, read RUNNING before the change. 86Box draws the 350
+  lines scaled to 400: each 14-line cell in 16 pixels, glyph rows 4 and 11
+  doubled; 8 dots at 9/4. The maps of all three geometries fitted to the
+  plants' known text, 0 pixels off each; the first 8-dot map (x / 2.25) had
+  been 908 pixels off on CRASH40L and read within MAXDIST. screen.py reads
+  the 8x14 shape with the BIOS's 8x14 font (bench a426e9e); test_sweep: the
+  CRASH40E case BAD before, ok after, with the 400- and 200-line plants and
+  every earlier case, 0 bad.
 
 ### VOODOO: 86Box's Voodoo Graphics on the sweep machine (proven 2 Nov 2026; a bench setting)
 
