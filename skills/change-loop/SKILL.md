@@ -174,8 +174,8 @@ passes anywhere.
 
 Nothing from this fork goes to vorvek (the owner, 20 Oct 2026): no pull
 request, issue, comment or @mention on his repository, and no link to his
-issues in a commit or a note. Pull requests, if any, go to EarBoye/uCDD only
-(`gh pr create --repo EarBoye/uCDD`). The guard and the hook refuse the rest.
+issues in a commit or a note. Pull requests, if any, go to TrongDog/uCDD only
+(`gh pr create --repo TrongDog/uCDD`). The guard and the hook refuse the rest.
 
 ## The matrix
 
