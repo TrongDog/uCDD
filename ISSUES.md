@@ -1739,6 +1739,8 @@ Closed (Michael, 27 Oct 2026): a missed refill cannot move the closing beep; onl
 - searched = "terms: Crash address; hits: 0 in 0 documents; 2 Nov 2026"
 - searched = "terms: Packed file; hits: 0 in 0 documents; 2 Nov 2026"
 - searched = "terms: 8x8 font; hits: 0 in 0 documents; 2 Nov 2026"
+- searched = "terms: reboot, reset vector, power-on self test; hits: 55 in 25 documents (DOC_INTERRUP__ 6, 766 5, 768 5, EMS 5, JR 4, SIO93 4); 2 Nov 2026" (REBOOT: the chipsets' reset logic and A20 at a reset; none gives what a screen shows after one)
+- searched = "terms: FFFF:0000, FFFF0; hits: 42 in 15 documents (I386 7, INTEL94 7, INTEL96 6, 1543 4, PIIX4 3, 1523 2); 2 Nov 2026" (I386:9993, execution begins at FFFFFFF0H after a reset: the plant's jump goes there in real mode; what the machine shows after is the bench's own screens, the plants decide)
 
 - Found reading the last screen of every record of plans 28b798e7 and
   4a2b8cd3 (L11), emulator: a message with no newline puts the prompt at
@@ -1791,6 +1793,28 @@ Closed (Michael, 27 Oct 2026): a missed refill cannot move the closing beep; onl
   the 8x14 shape with the BIOS's 8x14 font (bench a426e9e); test_sweep: the
   CRASH40E case BAD before, ok after, with the 400- and 200-line plants and
   every earlier case, 0 bad.
+  REBOOT (2 Nov 2026; Michael, the fifth decision, item 2: "the boot marker
+  written twice, or a POST screen after launch, proven on a plant that jumps
+  to FFFF:0000"): the watchdog had no state for a machine that restarts; the
+  plant REBOOT (fixtures/sweepplant, bench d5faee7: a line, then jmp
+  FFFF:0000) restarts 86Box every few seconds under JemmEx on C0 and under
+  the pin on C2 (development runs pcb7-plant-REBOOT-c0 and -c2: 10 and 8
+  boots in the window), and both read RUNNING. Now (bench ce23c37, taken by
+  the hourly backup, its record f97d577): game_live's GL_BOOTMARK writes
+  "boot" to C:\OUT\BOOT.TXT from AUTOEXEC's first line, the sweep sets it
+  and records boots; REBOOT, before every other state, when the marker is
+  there twice or the S3 video BIOS's banner is a shot's first line after
+  the beep. Only the banner on the first line: the BIOS's later lines (PCI
+  device listing, Update ESCD, Starting Windows 98) are still on screen
+  after the launch in 332 to 394 of 28b798e7's 504 runs, none restarted,
+  and Twinsen's Odyssey prints the banner's words on line 19 as it starts
+  (5 runs). test_sweep (e1b0e42): 6 bad before (both plants RUNNING; the
+  marker cases without the parameter), 0 bad after (REBOOT by shots and
+  marker, by the shots alone, by the marker alone; one boot RUNNING).
+  Re-judge of 28b798e7, 4a2b8cd3, fda2f4b5: 0 moved. End to end with the
+  changed sweep (pcb8-plant-REBOOT-c0, -c2): "REBOOT at 1.9 s", 10 boots;
+  "REBOOT at 1.4 s", 8 boots. calclass ranks REBOOT as a stop. Evidence:
+  emulator (development runs, recompiler off; not ledger plans).
 
 ### VOODOO: 86Box's Voodoo Graphics on the sweep machine (proven 2 Nov 2026; a bench setting)
 
