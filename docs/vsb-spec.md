@@ -1,11 +1,11 @@
 # The virtual Sound Blasters: behaviour specification
 
-Version 0.3, 17 Oct 2026: the CT2290's answers (section 14, grade [hw]),
+Version 0.3, 17 Oct 2026: the CT2291's answers (section 14, grade [hw]),
 and the virtual SB16 a DSP 4.13, the version Michael's card carries (0.2 the
 16th, after the firmware; 0.1 the same day, from Creative's documents
 alone). Creative's Hardware Programming Guide is the spine; where it is
 silent, the DSP's own firmware decides, then the emulators, then the Sound
-Blaster 16 CT2290 in Michael's PC, and every disagreement is written down
+Blaster 16 CT2291 in Michael's PC, and every disagreement is written down
 (section 13).
 
 ## 0. Rules, sources and conventions
@@ -37,7 +37,7 @@ The project's mantra (context/CONTEXT.md) shapes this document:
     on real cards (marked **[emu-x, hw note]**);
   - **[emu-86]** 86Box's source (master, src/sound/snd_sb.c,
     snd_sb_dsp.c, snd_mpu401.c);
-  - **[hw]** the CT2290 in Michael's PC, a DSP 4.13 (section 14: what was
+  - **[hw]** the CT2291 in Michael's PC, a DSP 4.13 (section 14: what was
     measured on 17 Oct 2026 and what is still to measure);
   - **[86Box]** 86Box runs of this project's test programs;
   - **[inference]** reasoning, to be confirmed.
@@ -270,7 +270,7 @@ A4h 6Fh, keeps the carry 41h's sum loses on the 4.05, and has 64h at C8h in
 its time-constant table (6); 4.16 gives D2h and D7h a flag of their own
 [fw]. Everything else a program can see is the same: the other handlers,
 the ADPCM decoders and the RAM addresses F9h reads. The virtual SB16 is a
-4.13 since 17 Oct 2026; the CT2290 answers every probed command as the
+4.13 since 17 Oct 2026; the CT2291 answers every probed command as the
 4.13's tables have it [hw].
 
 uCDD's answers for chip state it does not keep: CSP reads FFh, 09h 00h
@@ -296,7 +296,7 @@ DOSBox-X have them, except 41h-47h as 40h (DOSBox-X) and 04h replying 88h
   play 2849 Hz slow; the 4.13 keeps it). 40h looks R up in a table that
   rounds down: D3h gives 124, the same as 41h 22050, so both play 22083 Hz
   where the formula above gives 22222 for D3h; the 4.05's table has C8h at
-  C8h (35617 Hz), the 4.13's 64h (17809 Hz) [fw]. The CT2290 plays 41h
+  C8h (35617 Hz), the 4.13's 64h (17809 Hz) [fw]. The CT2291 plays 41h
   22050 and 40h D3h alike, 22900 Hz right and C8h near 17.8 kHz; its step
   came out 176.9-177.9 Hz against 4096/23 = 178.09, from 60 s counts
   whose resolution is 68 Hz (SBKIT2 times them to the PIT) [hw]. uCDD's
@@ -386,7 +386,7 @@ the block size and start with 90h or 91h. [doc]
     silent byte becomes the first frame's left. Rule 1: the document read
     two ways, two emulators agreeing, no hardware: emulation decides.
     Hardware: UNCONFIRMED; there is no SB Pro on the bench or the PC (the
-    CT2290 has no 0Eh, 9.4), and an SB Pro 2 is on Michael's
+    CT2291 has no 0Eh, 9.4), and an SB Pro 2 is on Michael's
     missing-hardware list.
   - The transfer after the first, with and without a DSP reset between:
     EMU_DISPUTE until hardware answers. 86Box starts every transfer right
@@ -466,11 +466,11 @@ What a real card does:
   (8237A.txt:253-256): it marks what the card has fetched, not the sample
   being heard. The DSP interrupts "after transferring the programmed
   number of bytes" (SBG:1590). [doc]
-- The CT2290's count steps one word at a time at the programmed rate, with
+- The CT2291's count steps one word at a time at the programmed rate, with
   no bursts, and two reads agree at the first try; at every block's
   interrupt it sits exactly on the block boundary; its FIFO holds 16
   samples, so what is heard trails the count by at most 16 samples, 0.73
-  ms at 22050 Hz (fork docs/sound-engines/ct2290.md, HWKIT 19 Oct). [hw]
+  ms at 22050 Hz (fork docs/sound-engines/ct2291.md, HWKIT 19 Oct). [hw]
 - On a real card a program cannot tell the count from the sound; under
   uCDD it can, because between them lies uCDD's pipeline: what it has
   taken from the game's buffer leads what is heard by one to two output
@@ -491,14 +491,14 @@ The rule for the virtual Sound Blasters: one position, the card's fetch
 point. The count a program reads moves sample by sample at the programmed
 rate, never passes what uCDD has taken, never moves back within a lap, and
 the block interrupt comes when that same position crosses a block's end,
-so the count sits on the boundary there as the CT2290's does. [doc, hw]
+so the count sits on the boundary there as the CT2291's does. [doc, hw]
 
 Today (count-position, 30c82ca, 23 Oct 2026): auto-init follows the
 rule. One position, the frame being heard plus one period, never past what
 the mix has taken, never back within the transfer, held while paused
 (trap.asm game_elapsed_at): the count reads it, the block interrupt comes
 when it crosses a block's end, and DAh and D9h end the block it is in. At
-32 frames one period at 44.1 kHz is 0.73 ms, the CT2290's FIFO at 22050 Hz.
+32 frames one period at 44.1 kHz is 0.73 ms, the CT2291's FIFO at 22050 Hz.
 [emu, 86Box, regression r32cp against r32ib: the count at every auto-init
 block interrupt on the boundary or up to one period past it, where the
 mix-led interrupt read it short by one to two periods (F8)].
@@ -550,7 +550,7 @@ DSP Read-Buffer Status port once." [doc]
   interrupt is not its own (SBG:969-971, 997-1018). [doc]
 - 82h bits 7:4 read the DSP's revision: 20h on a DSP 4.05, 10h on 4.04,
   80h from 4.11, 40h otherwise [emu-86]; DOSBox-X ORs 20h on every SB16
-  [emu-x]. Reserved per the guide (SBG:981). The CT2290 (4.13) reads 80h
+  [emu-x]. Reserved per the guide (SBG:981). The CT2291 (4.13) reads 80h
   idle and 84h with an MPU-401 acknowledge waiting [hw]. The virtual SB16,
   a 4.13: 80h.
 
@@ -634,13 +634,13 @@ No mixer at the card's base (section 2). [doc]
 | 81h | DMA select: bits 0, 1, 3 channel 0, 1, 3; 5, 6, 7 channel 5, 6, 7 | the card's |
 | 82h | interrupt status (8.2) | |
 
-- **80h and 81h: written as on the CT2290** (changed 26 Oct 2026,
+- **80h and 81h: written as on the CT2291** (changed 26 Oct 2026,
   Michael, Project A question 15; the mantra's rule 7: the old text kept
   below, the new beside it, with the evidence).
   - Old text (to 26 Oct 2026): "80h and 81h are "Read Only for PnP
     boards"; programs should not write them (SBG:1047-1052). The virtual
     card reads them as its own settings. [doc]"
-  - New text: the virtual SB16 answers as the CT2290 it presents, a
+  - New text: the virtual SB16 answers as the CT2291 it presents, a
     software-configured card: a write to 81h takes effect, and with no
     16-bit channel bit set, only an 8-bit one, the DSP moves 16-bit data
     on that 8-bit channel ("DSP version 4.xx also supports the transfer
@@ -648,14 +648,14 @@ No mixer at the card's base (section 2). [doc]
     possible, set all the 16-bit DMA channel bits to '0' leaving only an
     8-bit DMA channel set", SBG:1136-1138). 80h's write takes effect the
     same way on the card. [hw, doc]
-  - Evidence: the CT2290, HWPROBE on 19 Oct 2026, the bare card in the
+  - Evidence: the CT2291, HWPROBE on 19 Oct 2026, the bare card in the
     JEMM boot (vsb/hw/ct2290_20261019/hwkit, JHW1.TXT and JHW2.TXT, in the
     top folder): `X W80 F2 F4 F4 F2 F2` and `X W81 22 20 20 22 22`, each
     value read, written, read back, restored, read back: 81h written 20h
     reads 20h. The virtual card in the UCDD boot (UHW1.TXT, UHW2.TXT):
     `X W81 22 20 22 22 22`, the write ignored. The sound engine library's
-    F12 (docs/sound-engines/findings.md, ct2290.md "The mixer", on the
-    sound-engine-library branch). What the CT2290 does with 16-bit data
+    F12 (docs/sound-engines/findings.md, ct2291.md "The mixer", on the
+    sound-engine-library branch). What the CT2291 does with 16-bit data
     on the 8-bit channel was not measured: the guide's line decides it,
     86Box's own non-PnP SB16 does it (snd_sb.c at master, mixer case
     0x81; snd_sb_dsp.c, sb_16_dmanum 4) [emu-86], and Project A's
@@ -666,15 +666,15 @@ No mixer at the card's base (section 2). [doc]
       80h and 81h are Read Only for PnP boards", and applications should
       not write them, only system software such as SBCONFIG.EXE
       (SBG:1140-1148). A PnP SB16 keeps its settings whatever a program
-      writes; the CT2290 is not one, and the virtual card follows it."
-    - New text: none beside this card. The CT2290 is a second-generation,
+      writes; the CT2291 is not one, and the virtual card follows it."
+    - New text: none beside this card. The CT2291 is a second-generation,
       non-PnP SB16; on it 80h and 81h are written as any mixer register
       is (SBG:1100-1106: "Reading and writing the register 80h and 81h are
       accomplished in the same manner as reading and writing any of the
       other mixer registers"; the DMA select and the 16-bit data on an
       8-bit channel, SBG:1131-1138). The guide's PnP note (SBG:1148) is
       another card's and is not this one's expected result.
-    - Why: the caveat was read as if it applied to the CT2290, twice
+    - Why: the caveat was read as if it applied to the CT2291, twice
       (question 15's record and the CAND-14 hold of 27 Oct 2026, both
       withdrawn by Michael the same evening).
   - The pinned build (count-position 7994cd1) still reads both as its own
@@ -682,9 +682,9 @@ No mixer at the card's base (section 2). [doc]
     CAND-14 (no fix under Project A's freeze).
 - Reset values in the emulators are louder than the guide's: 86Box sets
   30h-37h to F8h; DOSBox-X sets master, voice, FM and CD to 31 [emu-x,
-  emu-86]. The guide decides, and the CT2290 reads exactly the guide's
+  emu-86]. The guide decides, and the CT2291 reads exactly the guide's
   values [hw].
-- Read-back on the CT2290 [hw]: a register keeps only its own bits, the
+- Read-back on the CT2291 [hw]: a register keeps only its own bits, the
   others read 0 (FFh written: 30h and 32h F8h, 3Bh C0h, 3Ch 1Fh, 40h C0h,
   44h F0h; the bits are the table's above); registers the chip does not
   have read 00h below 80h (0Ch, 0Eh, 14h, 50h among them, whatever is
@@ -692,7 +692,7 @@ No mixer at the card's base (section 2). [doc]
   DOSBox-X notes the same of real cards, its PC-98 path [emu-x]).
   DOSBox-X keeps 3Bh-47h whole and returns 0Ah for missing registers;
   86Box keeps whole bytes [emu-x, emu-86]. The virtual SB16 reads as the
-  CT2290 does (3Dh and 3Eh keep bits 6:0, 43h bit 0, from the guide;
+  CT2291 does (3Dh and 3Eh keep bits 6:0, 43h bit 0, from the guide;
   not read on the card).
 
 ## 10. MIDI (SBG chapter 5)
@@ -742,7 +742,7 @@ No mixer at the card's base (section 2). [doc]
 
 | Point | SBG | DOSBox-X | 86Box | Decision |
 |---|---|---|---|---|
-| 90h-99h on 4.xx | not available (SBG:3751-3801) | accepted | accepted | accepted: both emulators, and the SB16 is sold as SB Pro compatible; to confirm on the CT2290 |
+| 90h-99h on 4.xx | not available (SBG:3751-3801) | accepted | accepted | accepted: both emulators, and the SB16 is sold as SB Pro compatible; to confirm on the CT2291 |
 | Mixer reset levels | 4 (SB Pro), 12/24 (SB16), CD 0 | all at maximum | 30h-37h F8h | the guide |
 | 2xEh on the SB16 | 8-bit acknowledge | 8-bit | clears 8-bit and 16-bit | the guide |
 | AAh after reset | about 100 us | 20 us | at once | at once is within "about"; the guide gives no minimum |
@@ -759,28 +759,28 @@ Against the firmware [fw]:
 | Speaker after a reset | off (3.02 output, 4.05 flag) | kept | the firmware: "its default state" |
 | 45h, 47h | port pins only; DAh's exit stands | continue auto-init (DOSBox-X) | the firmware |
 | 41h below 4864 Hz, from 45312 Hz | 4986 Hz, 45412 Hz | DOSBox-X clamps differently | the firmware |
-| 41h rates with the lost carry (5699-5887, 8549-8703, 11398-11519, ..., 42741-42751 Hz: 1652 rates) | the 4.05's rate register 16 low: 2849 Hz slower (FW405 X09a7); the 4.13 keeps the carry | as asked | settled: the virtual SB16 is a 4.13 [hw: the CT2290 plays 22900 Hz right] |
-| Time constant C8h on the SB16 | the 4.05's table: C8h (35617 Hz) for 64h; the 4.13's: 64h | as the formula | settled: the 4.13's [hw: the CT2290 near 17.8 kHz] |
-| SB16 rate steps | rate register x 4096/23 Hz (22050 and D3h play at 22083) | exact; D3h by the formula, 22222 | the firmware's register for 40h and 41h-43h [hw: the CT2290 plays 41h 22050 and D3h alike, a step of 176.9-177.9 Hz; SBKIT2 measures finer] |
+| 41h rates with the lost carry (5699-5887, 8549-8703, 11398-11519, ..., 42741-42751 Hz: 1652 rates) | the 4.05's rate register 16 low: 2849 Hz slower (FW405 X09a7); the 4.13 keeps the carry | as asked | settled: the virtual SB16 is a 4.13 [hw: the CT2291 plays 22900 Hz right] |
+| Time constant C8h on the SB16 | the 4.05's table: C8h (35617 Hz) for 64h; the 4.13's: 64h | as the formula | settled: the 4.13's [hw: the CT2291 near 17.8 kHz] |
+| SB16 rate steps | rate register x 4096/23 Hz (22050 and D3h play at 22083) | exact; D3h by the formula, 22222 | the firmware's register for 40h and 41h-43h [hw: the CT2291 plays 41h 22050 and D3h alike, a step of 176.9-177.9 Hz; SBKIT2 measures finer] |
 | 0Bh, 0Ch, 3.02 08h-0Fh | the DSP halts until a reset | various | the firmware |
 | 30h-33h | the next byte written ends the mode and is dropped | taken as a command | the firmware (and SBG:3450, "send the command 31h again") |
 | A reply not yet read | the next waits behind it | 86Box queues, DOSBox-X queues | queued |
 
-Against the CT2290 [hw], 17 Oct 2026 (SBKIT, the bare card; the logs in
+Against the CT2291 [hw], 17 Oct 2026 (SBKIT, the bare card; the logs in
 vsb/hw/ct2290_20261017):
 
-| Point | CT2290 | Emulators | Decision |
+| Point | CT2291 | Emulators | Decision |
 |---|---|---|---|
 | Single-cycle during auto-init | four interrupts, the last half a block (L, C, B) | three | the guide, as before: confirmed |
 | Mixer reset levels | the guide's | louder | the guide: confirmed |
-| E2h with the 8-bit channel masked | no reply at 2xAh | 86Box and uCDD 40h; Staging none | the CT2290 and the 4.13's code: the SB16 waits for the DMA |
-| Mixer read-back | own bits only; missing registers 00h below 80h | whole bytes; FFh or 0Ah | the CT2290 |
-| 80h bits 7:4 | 1111 | 0000 | the CT2290 |
-| 82h bits 7:4 | 8 (80h) | 86Box by version (8 from 4.11), DOSBox-X 2 | 80h: 86Box's rule and the CT2290 agree for a 4.13 |
+| E2h with the 8-bit channel masked | no reply at 2xAh | 86Box and uCDD 40h; Staging none | the CT2291 and the 4.13's code: the SB16 waits for the DMA |
+| Mixer read-back | own bits only; missing registers 00h below 80h | whole bytes; FFh or 0Ah | the CT2291 |
+| 80h bits 7:4 | 1111 | 0000 | the CT2291 |
+| 82h bits 7:4 | 8 (80h) | 86Box by version (8 from 4.11), DOSBox-X 2 | 80h: 86Box's rule and the CT2291 agree for a 4.13 |
 | 23h, direct input | FFh | 80h (silence) | open: SBKIT2's DIRECTIN reads 20h and 23h with the inputs on and off |
 | 2x5h idle | FFh | 00h | not a difference of model: it shows whichever register was selected last |
 
-## 14. Measured on the CT2290 (Michael's SB16)
+## 14. Measured on the CT2291 (Michael's SB16)
 
 17 Oct 2026, SBKIT on the bare card (the U run reached the bare card too:
 the driver had stepped aside). Logs: vsb/hw/ct2290_20261017. [hw]
