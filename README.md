@@ -1,7 +1,7 @@
 # μCDD: a fork with fixes, an ESS AudioDrive path, and a test harness that measures it
 
 **Everything in this fork was written by an AI (Claude), directed and tested
-by one person.** 
+by one person.**
 
 This is a fork of [vorvek's μCDD](https://github.com/vorvek/uCDD), a DOS
 driver that mounts CD images from a hard disk and plays their CD audio by
@@ -9,80 +9,111 @@ becoming a virtual Sound Blaster. All credit for the driver is his. For
 what μCDD is and how to use it, read his README and releases; this page is
 about what the fork did to it and what it found.
 
-This fork began as an attempt to give μCDD a native ESS AudioDrive path, and grew into a review of the driver and a test
-harness as the ESS work kept turning up things that needed measuring. 
+This fork began as an attempt to give μCDD a native ESS AudioDrive path,
+and grew into a review of the driver and a test harness as the ESS work
+kept turning up things that needed measuring. The pages linked below are
+written for a reader with no background in the driver; the detail behind
+every claim is one link further in.
 
-## What is here, in three parts
+## Features
 
-**1. Fixes and features** The fork began as an
-attempt to give μCDD a native ESS AudioDrive output path and grew into a
-review of the whole driver against the hardware documents. Fixes that were found neccessary while testing on a real-hardware system include: disk controller IRQs passed straight to DOS, the
-driver stepping aside when it has nothing to add, and the chipset's fast
-DMA timing. The fork's own line, with its history, stays on
-[`count-position`](https://github.com/TrongDog/uCDD/tree/count-position)
-and [`merge-a6`](https://github.com/TrongDog/uCDD/tree/merge-a6); the
-feature branches stay as the record of the work. See
-[docs/HISTORY.md](docs/HISTORY.md).
+- **Native ESS AudioDrive output**: 44.1 kHz 16-bit stereo through the
+  chip's extended mode, the ES1868 and ES1878 clock trimmed to an exact
+  44.1 kHz, and the chip correctly identified so the trim runs.
+- **A virtual ESS AudioDrive** for games set to an ESS, built from the
+  ESS data sheets: the ESS command set, 16-bit data on the 8-bit channel,
+  demand-mode DMA, ESS ADPCM and ESPCM.
+- **PCI disk controller IRQs passed straight to DOS**, so DOS/4GW games no
+  longer freeze on a controller on IRQ 10 or 11; the installer finds the
+  controllers through the PCI BIOS and UCDDSET shows them.
+- **The driver steps aside** while no mounted disc has CD audio and the
+  physical card can be the virtual one, so a game runs exactly as without
+  it.
+- **Fast DMA**: the chipset's Type F timing on the output channel (PIIX,
+  82378, ALi, OPTi, VIA, AMD-756, SiS), which gives back most of the memory
+  bus the CD stream takes.
+- **Interrupt counters** and `UCDD -status`, so a sound fault can be
+  described in numbers.
+- **UCDDSET redone**: a Disk row, Options and Detected columns, switches
+  that explain themselves when greyed.
 
-**2. A test harness.** Since late October the fork has been running a
-harness against a pinned build of its own line and against the author's
-releases: unit tests of the parsers and converters, driver conformance
-against the MSCDEX interface on synthetic discs, virtual Sound Blaster
-conformance against Creative's programming guide and the 8237 and 8259
-data sheets, a calibration against the games the author's wiki says work,
-and a zero-interaction sweep of an 838-game library. How it works and why
-its numbers can be trusted is in [docs/METHOD.md](docs/METHOD.md); the
-machine it runs on is in [docs/BENCH.md](docs/BENCH.md).
+The full list, with what each one was tested on, is in
+[docs/FEATURES.md](docs/FEATURES.md).
 
-**3. Findings.** Twenty-one candidate faults so far, each with the line of
-the specification it departs from and the run that shows it, sorted into
-three lists: present in the author's current code as well, fixed upstream
-but still in the fork's line, and introduced by the fork itself. The full table is in
-[docs/FINDINGS.md](docs/FINDINGS.md); the calibration result, including
-how a known-good game is told from a broken one, is in
-[docs/CALIBRATION.md](docs/CALIBRATION.md).
+## Fixes
 
-## The findings in one table
+- The virtual Sound Blaster (SB16, SB Pro, SB 2.0) read against Creative's
+  programming documents and the real card, with dozens of command, timing
+  and status corrections; the virtual SB16 now answers as a DSP 4.13.
+- Single-cycle playback no longer loses its first milliseconds; very short
+  blocks and over-long blocks are accepted.
+- The DMA count and the block interrupt come from one position, the card's
+  fetch point, and the polled count follows the output clock as a real
+  counter does.
+- A 512-frame output ring, so a late period interrupt no longer throws the
+  clock back.
+- The DPMI host: no memory corruption after exit with a protected-mode
+  pointer to MSCDEX; INT 1Ch/23h/24h handlers of protected-mode programs
+  delivered; clean termination at any nesting depth.
+- Discs with non-standard root directory headers mount; the CUE parser in
+  a far buffer; mixed-mode images.
+- Two memory holes closed; CD audio at 2 to 3 % of a Pentium 233 after the
+  performance pass.
 
-Status as of 2 November 2026. "Pin" is the fork's line at the pinned
-commit; "a1" is the author's 0.9.5-a1 built unchanged. Every row has a
-ten-run plan behind it in the ledger; the IDs link to the row in
-[ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md).
+Every fix has its row, its evidence and its hardware status in
+[ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md),
+and the readable summary is in [docs/FEATURES.md](docs/FEATURES.md).
 
-| ID | Tier | What the driver does | Pin | a1 | List |
-|---|---|---|---|---|---|
-| CAND-4 | 1 | After Eject, the device status never reports the door open | fails | fails (refuses the eject while audio is attached) | open upstream |
-| CAND-8 | 2 | OCW2 Set Priority is dropped; after a rotating EOI neither pending request is served | fails | fails (narrower) | open upstream |
-| CAND-10B | 2 | A full 64 KB 8-bit auto-init buffer is refused | fails | fails | open upstream |
-| CAND-11 | 2 | The DMA channel moved at a block end is not followed; the old buffer keeps sounding | fails | fails 3/10 | open upstream |
-| CAND-12 | 2 | A 16-bit stereo auto-init block of an odd sample count is refused | fails | fails (block plays, no interrupt after D9h) | open upstream |
-| CAND-13 | 2 | Odd-count 16-bit stereo single-cycle blocks swap channels every other block | fails | fails (unsigned refused) | open upstream |
-| CAND-15 | 2 | SB Pro stereo: the first data byte after the silent byte goes left; two data sheets say right | fails | fails | open upstream |
-| CAND-17 | 2 | After an 8237 master clear and re-setup, the block interrupt comes at once, not after the block's remainder | fails | fails | open upstream |
-| CAND-18 | 2 | Direct DAC at 8 kHz plays 1 to 3 % slow under the trap; time is lost in the interrupt handler | fails | further off | open upstream (hardware pending) |
-| CAND-20 | 2 | While the channel is masked, the virtual transfer runs on; the count moves and the interrupt arrives early | fails | fails | open upstream |
-| CAND-1, -2, -5 | 0, 1 | CUE sheets with INDEX 02, a byte order mark, or only audio tracks are refused | fails | passes | fork lacks the upstream fix |
-| CAND-7, -9, -10A, -14, -16, -21 | 2 | Word OUT to the PIC dropped; 8-bit block past a 64 KB page refused; 16-bit buffers over 32 KB refused; 16-bit on the 8-bit channel refused; CD audio stalls with the timer stopped; buffers above 1 MB silent | fails | passes | fork lacks the upstream fix |
-| CAND-6 | 1 | CD audio drops out for up to a third of a second during data reads | fails | passes (never had it) | fork regression |
-| CAND-19 | 2 | 256-byte single-cycle blocks play 1.9 % low with sidebands while CD audio plays | fails | passes (never had it) | fork regression |
-| CAND-3 | 0 | 2.6-bit ADPCM decodes differently from DOSBox-X | fails | undetermined | undetermined |
+## What the harness found
 
-The calibration (84 games, including every game the author's wiki marks
-working that is in the library) found 15 of 54 wiki-confirmed games
-matching the bare card under the pinned build and 38 differing, most on
-the CD-audio side; Quake plays about 5 % slow. Those are calibration bins,
-not final ones: the sweep re-classifies every game with three runs and the
-context of the other games that share its sound engine and extender.
+Since late October the fork has been running a test harness against a
+pinned build: unit tests of the parsers and converters, driver conformance
+on synthetic discs, virtual Sound Blaster conformance against Creative's
+guide and the 8237 and 8259 data sheets, a calibration against games known
+to work, and a zero-interaction sweep of an 838-game library. It has found
+twenty-one candidate faults so far, each with the line of the
+specification it departs from and the recorded run that shows it.
+
+- [docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md): the table of every
+  candidate fault, and which version of the driver has it.
+- [docs/FINDINGS.md](docs/FINDINGS.md): each fault in a paragraph, with the
+  document that decides it.
+- [docs/CALIBRATION.md](docs/CALIBRATION.md): how a working game is told
+  from a broken one, and the result on 84 known games.
+- [docs/METHOD.md](docs/METHOD.md): how a result is produced and what it is
+  allowed to mean.
+- [docs/BENCH.md](docs/BENCH.md): the machine the numbers come from.
+
+## Plans
+
+Development of the driver is paused while the harness runs, so that the
+thing under test stays still. When it resumes:
+
+- Fix the faults the harness found, ranked by how many games each one
+  reaches.
+- Bisect and fix the two faults the fork's own work introduced (CD-audio
+  dropouts during disc reads; 256-byte single-cycle blocks playing flat).
+- The virtual ESS's compatibility-mode stereo channel order, per the ES1868
+  data sheet.
+- The virtual SB16's time-constant table measured from a real card.
+- A DPMI host that absorbs a client's HLT instead of faulting it, if the
+  sweep finds a game that needs it.
+- The ESS half-rate mode, which needs a mixer change first.
+- A hardware kit for a real Pentium MMX 233 with a Sound Blaster 16 CT2291 or
+  an ESS ES1868F, so every candidate can be confirmed by a human ear.
+
+The history of how it got here is in [docs/HISTORY.md](docs/HISTORY.md).
 
 ## Branches
 
 | Branch | Holds |
 |---|---|
-| `main` | The author's releases, unchanged (now 0.9.5-a2). |
+| `main` | The upstream releases, unchanged. |
 | `fixes` | This page and the fork's combined line to 20 October 2026, kept for its history. |
 | `count-position` | The fork's line, the build the harness pins. |
-| `merge-a6` | The fork's line with the author's 0.9.4-a6 merged in; built, not run. |
-| `feature/disk-irq`, `feature/step-aside`, `feature/fast-dma`, `feature/ess` | The feature branches, each one change on the author's 0.9.4-a6; the first three now exist upstream in 0.9.5-a2 in the author's own form. |
+| `merge-a6` | The fork's line with upstream 0.9.4-a6 merged in; built, not run. |
+| `feature/disk-irq`, `feature/step-aside`, `feature/fast-dma`, `feature/ess` | The feature branches, each one change on upstream 0.9.4-a6. |
+| `play-harness` | UCDDPLAY, the CD player: a reference pass against its own specification, a faster FFT and scroller, and `scripts/playcheck`, which runs the player against an earlier build of itself and compares the output. |
 | `notes` | The harness's rows: ISSUES.md, the candidate reports, the lessons. |
 | `claude/brave-franklin-6h9xzo` | The method package: the commit checks, the ledger, the test matrix, the GitHub workflow. |
 | `sound-engine-library`, `reference-library`, `spec-first` | The game-engine census, text copies of the data sheets and specifications, and the design notes. |
