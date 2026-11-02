@@ -32,7 +32,10 @@ CT2291, MS-DOS 7.1); "emulator" means 86Box, DOSBox-X or QEMU only.
 
 - SB16, SB Pro and SB 2.0 read against Creative's two programming
   documents and the DSP firmware's command tables; the virtual SB16 answers
-  as a DSP 4.13, matching the real CT2291. Dozens of command-parsing,
+  as a DSP 4.13, matching the real CT2291 (upstream answers 4.05, the
+  version of the firmware that has been disassembled; the fork answers as
+  the card in the PC does, and the two differ in a few replies and rates a
+  program can see). Dozens of command-parsing,
   timing and status corrections. Emulator, with the CT2291's answers as the
   reference.
 - Single-cycle playback: four fixes, including a new sound no longer
