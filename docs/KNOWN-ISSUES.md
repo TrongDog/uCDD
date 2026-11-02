@@ -32,7 +32,7 @@ design rather than of the fork's changes.
 | After Eject, the device status never reports the door open | Present | Present; the eject itself is refused while CD audio is attached | [CAND-4](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-4) |
 | OCW2 Set Priority is dropped; after a rotating EOI neither pending request is served | Present | Present; Set Priority passes, the rotating EOI is still lost | [CAND-8](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-8) |
 | A full 64 KB 8-bit auto-init buffer is refused | Present | Present | [CAND-10B](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-10b) |
-| A DMA channel moved at a block end is not followed; the old buffer keeps sounding | Present | Present in 3 runs of 10 | [CAND-11](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-11) |
+| A DMA channel moved at a block end is not followed; the old buffer keeps sounding | Present | Present in 2 runs of 10 | [CAND-11](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-11) |
 | A 16-bit stereo auto-init block of an odd sample count is refused | Present | Present; the block plays but no interrupt follows the exit command | [CAND-12](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-12) |
 | Odd-count 16-bit stereo single-cycle blocks swap channels every other block | Present | Present; the unsigned case is refused outright | [CAND-13](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-13) |
 | SB Pro stereo: the first data byte after the silent byte goes left; two data sheets say right | Present | Present | [CAND-15](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-15) |

@@ -16,7 +16,9 @@ fork's line at the pinned commit (an older base than the author's
 releases). "a1" is the author's 0.9.5-a1 built unchanged with his own
 build script. The author's 0.9.5-a2 (29 October), built the same way, has
 since been run against every row, ten runs each: every case gives the
-same result on a2 as on a1, so what is said of a1 below holds for a2.
+same result on a2 as on a1, so what is said of a1 below holds for a2,
+except one rate: CAND-11's old buffer sounds on in 2 runs of 10 on a2,
+3 of 10 on a1.
 
 <a id="present-in-both"></a>
 ## 1. Present in this fork and in the upstream release
