@@ -14,7 +14,7 @@ Example: the last paragraph of the message, one trailer a line:
     Issue: F17
     Evidence: data sheet: SBG 6-12, a 14h block ends on its last byte
     Evidence: emulator: plan 3f2a91c4, 18 runs, all passed (ledger), D10 against D9: F17 gone
-    Evidence: hardware: the PC, D10 kit, Jill on the CT2290
+    Evidence: hardware: the PC, D10 kit, Jill on the CT2291
 
 Or, for a change the binaries do not see:
 

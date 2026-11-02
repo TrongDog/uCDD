@@ -9,7 +9,7 @@ names nothing we hold is refused: the document was not open when the fix
 was written, which is the failure this check exists for.
 
     Evidence: data sheet: SBG 6-12, a 14h block ends on its last byte   (SBG is a key)
-    Evidence: data sheet: silent; 86Box and the CT2290 decide (HWPROBE 19 Oct)
+    Evidence: data sheet: silent; 86Box and the CT2291 decide (HWPROBE 19 Oct)
 
 Called from lib/checks.py: `problems += refcheck.problems(message)` beside
 the other code-commit checks. Only the data-sheet grade is checked here;

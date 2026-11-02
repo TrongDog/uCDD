@@ -65,7 +65,7 @@ def build_world(root):
     (wt / 'README.md').write_text('upstream\n')
     commit(wt, 'Prepare Beta 0.9.4-a6 (the author, no trailers)')
     git(wt, 'checkout', '-q', '-b', 'count-position')
-    (wt / 'ISSUES.md').write_text('# Issues\n\n- **F13** The DSP busy bit on 22Ch: the CT2290 is busy in 46% of idle reads.\n'
+    (wt / 'ISSUES.md').write_text('# Issues\n\n- **F13** The DSP busy bit on 22Ch: the CT2291 is busy in 46% of idle reads.\n'
                                   '- **F14** Stray EOI marks: Mortal Kombat Trilogy at speed 2.38.\n')
     (wt / 'docs' / 'vsb-spec.md').write_text('# vsb spec\n\n## 7.8 the count\nUPA6 is the merge row.\n')
     commit(wt, 'ISSUES: F13 and F14, the rows before the fixes')
@@ -184,7 +184,7 @@ def main():
         with_tests = base + ('\n[[test]]\nname = "T-NODEC"\nrunner = "perf"\nargs = "x"\ngroups = ["core"]\n'
                              '\n[[test]]\nname = "T-BADKEY"\nrunner = "perf"\nargs = "x"\ngroups = ["core"]\ndecides = "BOGUS 1-2"\n'
                              '\n[[test]]\nname = "T-SILENT"\nrunner = "perf"\nargs = "x"\ngroups = ["core"]\ndecides = "silent"\n'
-                             '\n[[test]]\nname = "T-GOOD"\nrunner = "perf"\nargs = "x"\ngroups = ["core"]\ndecides = "SBG:6-12, silent: the CT2290 decides"\nsearched = "terms: x; hits: 0 in 0 documents; 28 Oct 2026"\n'
+                             '\n[[test]]\nname = "T-GOOD"\nrunner = "perf"\nargs = "x"\ngroups = ["core"]\ndecides = "SBG:6-12, silent: the CT2291 decides"\nsearched = "terms: x; hits: 0 in 0 documents; 28 Oct 2026"\n'
                              '\n[[test]]\nname = "T-UNSEARCHED"\nrunner = "perf"\nargs = "x"\ngroups = ["core"]\ndecides = "silent: the bench decides"\n')
         mtoml.write_text(with_tests)
         done = subprocess.run([PY, str(pkg / 'matrix' / 'plan.py'), 'check'], cwd=str(wt),
@@ -229,7 +229,7 @@ def main():
         check(bad and 'not a reference key' in bad[0], 'refcheck: an unknown key is refused')
         missing = refcheck.problems('Fix\n\nIssue: F13\nEvidence: data sheet: MISSING 1, x\n')
         check(missing and 'not in' in missing[0], 'refcheck: a key whose file is absent is refused')
-        silent_ok = refcheck.problems('Fix\n\nEvidence: data sheet: silent; the CT2290 decides (HWPROBE 19 Oct)\n')
+        silent_ok = refcheck.problems('Fix\n\nEvidence: data sheet: silent; the CT2291 decides (HWPROBE 19 Oct)\n')
         check(silent_ok == [], 'refcheck: silent with what decided passes')
         silent_bad = refcheck.problems('Fix\n\nEvidence: data sheet: silent\n')
         check(silent_bad and 'what decided' in silent_bad[0], 'refcheck: a bare silent is refused')

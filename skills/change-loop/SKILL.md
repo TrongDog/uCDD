@@ -120,7 +120,7 @@ Commit with the trailers in the last paragraph of the message:
     Issue: F17
     Evidence: data sheet: SBG 6-12, a 14h block ends on its last byte
     Evidence: emulator: plan 3f2a91c4, 46 runs, all passed (ledger), D10 against D9: F17 gone
-    Evidence: hardware: the PC, D10 kit, Jill on the CT2290
+    Evidence: hardware: the PC, D10 kit, Jill on the CT2291
     Paths: audio_irq.acknowledged, all four incoming paths checked
     Family: creative: CT-VOICE's 14h blocks, surveyed in plan 3f2a91c4
     Lesson: L7

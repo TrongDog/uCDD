@@ -93,7 +93,7 @@ trailers in the last paragraph of its message:
   - `none`
 
   Every code commit needs a `data sheet` line (rule 1). When the documents
-  are silent, the line says so: `Evidence: data sheet: silent; the CT2290
+  are silent, the line says so: `Evidence: data sheet: silent; the CT2291
   decided`.
 - **A plan named in an emulator line** ("plan 3f2a91c4") is checked against
   the ledger: the plan must be saved and unedited, every one of its runs

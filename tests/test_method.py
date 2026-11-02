@@ -445,7 +445,7 @@ class HookTests(unittest.TestCase):
             result = self.commit(message)
             self.append('src/audio/irq.asm', '; y\n')
             silent = self.commit(self.good('test-row-x6').replace(
-                'data sheet: SBG 6-12', 'data sheet: silent; the CT2290 decides (HWPROBE 19 Oct)'))
+                'data sheet: SBG 6-12', 'data sheet: silent; the CT2291 decides (HWPROBE 19 Oct)'))
         finally:
             if saved is None:
                 del os.environ['UCDD_METHOD_LOCAL']
