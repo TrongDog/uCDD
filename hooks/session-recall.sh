@@ -62,6 +62,19 @@ if [ -f "$state" ]; then
     fi
   done
 fi
+# r3.8 (2 Nov 2026): METHOD, the package this hook is in (the block below names it; set -u)
+METHOD="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# r3.8: paste this block into hooks/session-recall.sh after the STATE.md gate tables
+# (the "for sec in" loop). It prints the lessons_read check for every IN_PROGRESS gate
+# at session start, resume and compaction, so a gate worked on without its pre-read is
+# seen before the work resumes, not after the next hit.
+lessons="$top/context/LESSONS.md"
+if [ -f "$lessons" ] && [ -f "$state" ]; then
+  echo "--- Lessons pre-read (r3.8): every IN_PROGRESS gate carries lessons_read = \"terms: ...; lessons: ...; date\" ---"
+  python3 "$METHOD/tools/lessons_recall.py" check --register "$lessons" --state "$state" 2>&1 | head -6
+  echo "    before a gate or a new tool: python3 METHOD/tools/lessons_recall.py <terms> --line  (paste the line into the gate row)"
+  echo "    a hit line ends '| read: yes' if the lesson was in that gate's pre-read list, else '| read: no' (a reading failure)"
+fi
 
 cat <<'EOF'
 --- Standing rules that compaction loses first ---
