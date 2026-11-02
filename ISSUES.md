@@ -1411,6 +1411,44 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   candidate row of its own: CAND-13 (every other block starts on the right
   channel, plan a0c1f221, 10/10).
 
+### DBXPIT2: DOSBox-X 2025.02.01 restarts PIT channel 2's mode 0 count as if 65536 had been loaded when the gate goes high; short counts end at once (an emulator disagreement with the data sheet; found 2 Nov 2026)
+
+- Seen [DOSBox-X] in Project A's T6 (development runs dbxdev-sc0, -sc0b,
+  -sc0c, 28 Oct 2026, DOSBox-X 2025.02.01 SDL2, Ubuntu's package, core
+  normal): T2.EXE SC8 on C0, a case that passes 10/10 on 86Box, gave "0
+  blocks, 0 interrupts, a block's interrupt never came" in every step,
+  each step ending in the BIOS tick it began. T2.EXE's short waits
+  (wait_pit) gate channel 2 off, write mode 0 (B0h) and the count, gate it
+  on at port 61h bit 0, and poll OUT at port 61h bit 5.
+- DOSBox-X's own source at the tag dosbox-x-v2025.02.01
+  (src/hardware/timer.cpp, read 2 Nov 2026): the count's write loads it at
+  once (write_latch: reset_count_at, latch_next_counter, which also sets
+  last_counter to it); the gate's rise in mode 0 calls
+  restart_counter_at(now, last_counter.counter), which sets the time
+  already counted to (65536 - count) clocks, so OUT reads high at once
+  for any count below 32768 (1193 for T2's 1 ms) and early for any other
+  but 0 (65536). Port 61h bit 5 is TIMER_GetOutput2() or the gate off
+  (src/hardware/keyboard.cpp, read_p61).
+- The data sheet (the 82C54, INTEL94:66588-66606): in mode 0 "OUT is
+  initially low, and will remain low until the Counter reaches zero";
+  "GATE = 1 enables counting; GATE = 0 disables counting"; "for an
+  initial count of N, OUT does not go high until N + 1 CLK pulses after
+  the initial count is written". 86Box follows it (SC8 C0 10/10).
+- decides = "INTEL94:66588-66606 (the 82C54's mode 0: the gate enables
+  counting, OUT high only after the count's N + 1 clocks)"
+- DOSBox-X's master and its release dosbox-x-v2026.10.01 (2 Oct 2026)
+  count the time from the count loaded (restart_counter_at, modes 0 and 4:
+  cntr_cur - counter); 2026.08.31 and earlier do not (checked at each
+  release tag's timer.cpp, 2 Nov 2026). Not run here: the bench's
+  DOSBox-X is Ubuntu's package, and the newer release would be a
+  downloaded build.
+- Nothing in uCDD or in T2.EXE changes for this row (the owner, 28 Oct
+  2026, question 35: no instrument change for an emulator quirk). Until a
+  DOSBox-X that follows the sheet is on the bench, no T2.EXE case runs on
+  DOSBox-X, so the T6 twins of 86ODDSC and 86DMAPAGE wait (STATE,
+  question 49). Evidence: emulator (development runs) and the emulator's
+  source; data sheet. Hardware: not run.
+
 ### 86THRE: 86Box's 16550 raises the transmit-empty interrupt a second time when the shift register empties (an emulator difference; found 26 Oct 2026)
 
 - Seen [86Box] in Project A's T2X-PICHOLD and T2C0-PICHOLD (gate A3; plans
