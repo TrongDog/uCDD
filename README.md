@@ -112,7 +112,7 @@ The history of how it got here is in [docs/HISTORY.md](docs/HISTORY.md).
 | `fixes` | This page and the fork's combined line to 20 October 2026, kept for its history. |
 | `count-position` | The fork's line, the build the harness pins. |
 | `merge-a6` | The fork's line with upstream 0.9.4-a6 merged in; built, not run. |
-| `feature/disk-irq`, `feature/step-aside`, `feature/fast-dma`, `feature/ess` | The feature branches, each one change on upstream 0.9.4-a6. |
+| `feature/disk-irq`, `feature/step-aside`, `feature/fast-dma`, `feature/ess` | The feature branches, each one change on upstream 0.9.4-a6. Disk-irq, step-aside and fast-dma now exist upstream in 0.9.5-a2, in the author's own form; upstream has also dropped Microsoft EMM386, as the fork had. |
 | `play-harness` | UCDDPLAY, the CD player: a reference pass against its own specification, a faster FFT and scroller, and `scripts/playcheck`, which runs the player against an earlier build of itself and compares the output. |
 | `notes` | The harness's rows: ISSUES.md, the candidate reports, the lessons. |
 | `claude/brave-franklin-6h9xzo` | The method package: the commit checks, the ledger, the test matrix, the GitHub workflow. |
