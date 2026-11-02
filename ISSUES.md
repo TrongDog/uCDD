@@ -1723,6 +1723,14 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   on C0 and C2), nothing else moved in 28b798e7, 4a2b8cd3, fda2f4b5 (bench
   7f8057d, 5cd47a2, 878940d, 2042f2d).
 
+### VOODOO: 86Box's Voodoo Graphics on the sweep machine (proven 2 Nov 2026; a bench setting)
+
+- decides = "silent: the owner's ruling of 31 Oct 2026 (question 39 (a): added for A6 once proven on the watchdog plants, one Glide game, and one non-Glide known-good game whose C0/C2 pair must match its pre-Voodoo pair, timing and recorder unchanged) and the measurement; the PC's card is a Diamond Voodoo 1, 4 MB (the owner, 2 Nov 2026)"
+- searched = "terms: Voodoo; hits: 1 in 1 documents (docs/history.md 1); 2 Nov 2026" (the bench's own history, naming the PC's card)
+- searched = "terms: Glide; hits: 1 in 1 documents (DOC_INTERRUP__ 1); 2 Nov 2026" (an interrupt-list entry, not the card)
+- The setting: game_live.py GL_VOODOO=1 (bench 5aab3e1, ceaa5c9): [Video] voodoo = 1 and [3Dfx Voodoo Graphics] type 0, framebuffer_memory 2, texture_memory 2 (4 MB, as the PC's), 86Box's defaults otherwise (bilinear 1, dithersub 1, dacfilter 0, recompiler 1: the rasterizer's, not the CPU's), render_threads 2 (host load, L6). 86Box saves the section under that name.
+- Proven [86Box 6.0 b9001, recompiler off, Pentium 133, the PC's boot; development runs pcb5-vd-*]: the five watchdog plants (HANG, CRASH, EXIT, CRASH40, CRASH40L) read as without the Voodoo, no underruns, inserted under 0.03 %; Shadow Warrior's Glide build (SW3DFX, "Version 1.2 (3Dfx v1.1)") reaches its 3D menu with sound on C0 and C2, where without the Voodoo it stopped at its Glide check (C2 against C0: match 1.00, cover 0.93, speed 1.00); Alone in the Dark with the Voodoo against 28b798e7's C0 run 1 without it: C0 x3 and C2 x3 pass the classifier's limits (calclass.judge_run), first audio 1.27-1.28 s and 2.15 s as without (1.26-1.27, 2.14-2.15), inserted at most 0.1 %, underruns at most 4 as before (bench 397b202, results/calibration/voodoo_pairs.csv).
+
 ### TOL2: "within 2" in the interrupt counts of CLIGAP, PICHOLD and DMAMC (a bench tolerance; written 27 Oct 2026)
 
 - What: T2.EXE judges the card's interrupts over a span against the blocks
