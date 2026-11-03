@@ -1237,7 +1237,7 @@ Cell: none (Tier 2: T2P.EXE, the raw 16-bit DPMI client, no game), scope not app
 Affected: not known. Controls: C0 PASS 10/10 (T2C0-P-DMAHI, plan 1854895f: HDPMI16 on 86Box's own card, the 16 KB at physical 0024C000h, 3, 1, 0 interrupts, 1999.9 Hz); C1 not applicable.
 Related: UPA6's table (this file, 24 Oct 2026): "trap.asm, a DMA buffer above 1 MB | every format, single-cycle and auto-init (a2) | 8-bit mono single-cycle only | his": the author's line takes every format there, the fork's line 8-bit mono single-cycle only; merge-a6 keeps his (built, not run).
 Structure (Michael, 28 Oct 2026, question 28): pin and a1 sections, one expectation and citation.
-Expected: the channel programmed with a physical address at or above 1 MB and below 16 MB (the page register's 24 bits; 8237:331-338, SBG:1285-1294; Michael, 28 Oct 2026, question 33) reads that memory as any other: AI8's playback from it, 3 to 5 block interrupts in 27 ticks, 1 after DAh, 0 after (SBG:3328-3345, 1678-1680), and the tone. The buffer: a locked XMS block (XMS30:572-590: "32-bit physical address of the locked block") mapped into the client by INT 31h 0800h (DPMI09:2502-2533).
+Expected: the channel programmed with a physical address at or above 1 MB and below 16 MB (the page register's 24 bits; 8237:405-410, SBG:1285-1294; Michael, 28 Oct 2026, question 33) reads that memory as any other: AI8's playback from it, 3 to 5 block interrupts in 27 ticks, 1 after DAh, 0 after (SBG:3328-3345, 1678-1680), and the tone. The buffer: a locked XMS block (XMS30:572-590: "32-bit physical address of the locked block") mapped into the client by INT 31h 0800h (DPMI09:2502-2533).
 Observed, pin: T2X-P-DMAHI, plan 442cbb02 `fail: 10` (runs 442cbb02-011 to -020 by the plan's order): the 16 KB at physical 00217400h (linear 00400400h through uCDD's host) in all ten; 0 interrupts in 27 ticks, 0 after DAh; tonecheck no tone in AI (`AI+0.2-1.2 s 2002 Hz: 0/1 windows (peak nan Hz, SNR -inf dB) FAIL`). T2.TXT, the dev run t2pdev-hi2: `FAIL DMAHI a DMA buffer above 1 MB from XMS (locked, mapped by INT 31h 0800h): the 16 KB at physical 00217400h ... 1 request(s), linear 00400400h; AI8's playback from it: 0 interrupts in 27 ticks (3 to 5), 0 after DAh (1), 0 after that (0)`. Underruns: none in a case.
 Stall or guest (Michael, 26 Oct 2026): not applicable: no interrupt at all; the failing checks are the guest's own counts and the absent tone.
 L4 (the checks fail on a known-bad input, on C0 where they pass): T2L4-P-DMAHI-P, plan da543803 `fail` (L4P: 11025 Hz, the tone at 999.9 Hz); the counts' plant is AI8's (T2L4-P-AI8, a5a88cca), the same code.
@@ -1355,7 +1355,7 @@ Closed (Michael, 27 Oct 2026): a missed refill cannot move the closing beep; onl
   block. The channel's current address reads back 0000h straight after
   F800h was written, and 1000h after the block.
 - The 8237A: the current address register is 16 bits and the page lies
-  outside it (8237:331-338); a transfer cannot straddle a page and wraps in
+  outside it (8237:405-410); a transfer cannot straddle a page and wraps in
   it (SBG:1285-1294). 86Box's own source at master (src/dma.c,
   dma_channel_read_legacy and dma_advance_n, read 26 Oct 2026) masks an
   8-bit channel's address to 16 bits and keeps the page: it should wrap,
@@ -1378,8 +1378,33 @@ Closed (Michael, 27 Oct 2026): a missed refill cannot move the closing beep; onl
   the wrap.) SC8PAGE split:
   SC8PAGE1 (the crossing block's interrupt) on the bench, C0 10/10 (plan
   5fb0d861), C2 0/10 (plan 49b66842, CAND-9); SC8PAGE2 (the wrap) decides
-  8237:331-338, grade data sheet, DOSBox-X's dma.cpp corroborating, judged
+  8237:405-410, grade data sheet, DOSBox-X's dma.cpp corroborating, judged
   on the CT2291 in AKIT (STATE's AKIT list).
+- Citation corrected (3 Nov 2026): this row and the SC8PAGE2 rows cited
+  8237:331-338 for the 16-bit register; those lines are the data sheet's
+  memory-to-memory transfer. The register is 8237:405-410: "Each channel
+  has a 16-bit Current Address register. This register holds the value of
+  the address used during DMA transfers. The address is automatically
+  incremented or decremented after each transfer". The cited text was never
+  quoted, so the wrong lines went unseen from 26 Oct (lesson L42). T2.EXE
+  still prints the old lines in its verdict (t2.asm, t_page_cite) until its
+  next build; T2.TXT lines quoted above stay as printed.
+- T6's twin on DOSBox-X 2026.10.01 (3 Nov 2026; plan 74def8fa,
+  T2C0-SC8PAGE2-DBX, ten runs, the runner proven by plan 797ac16e;
+  emulator): every run the same, recorded fail. T2.TXT: "FAIL SC8PAGE2 C0
+  P0 4096 bytes at 11025 Hz: 4 blocks, 4 interrupts, the address after it
+  1000h (0800h: wrapped within the page); P1 4096 bytes at 22050 Hz: 8
+  blocks, 8 interrupts, the address after it 1000h". tonecheck: "PASS
+  SC8PAGE2", the 2 kHz tone through each block with no gap of 20 ms or
+  more. So DOSBox-X plays the block's second half from the page's start
+  (the wrap, as its source reads) and interrupts each block, but reads
+  back 1000h, where a 16-bit Current Address register that wrapped holds
+  0800h (8237:405-410). 86Box read 1000h after the block too (above). Two
+  emulators on one value the data sheet does not give: either both read
+  the register back alike, or T2.EXE's read is wrong (dma_address: the
+  flip-flop cleared, then the low and high bytes of port 2 for channel 1).
+  Not traced; the next step is DOSBox-X's dma.cpp at its 2026.10.01 tag.
+  The CT2291 in AKIT judges, as ruled.
 
 ### 86ODDSC: 86Box's own SB16 gives no interrupt for a 16-bit stereo single-cycle block of an odd count of samples; DOSBox-X carries the odd sample (an emulator disagreement; found 26 Oct 2026; uCDD's own behaviour is CAND-13)
 
@@ -1410,6 +1435,21 @@ Closed (Michael, 27 Oct 2026): a missed refill cannot move the closing beep; onl
   the emulator's. What uCDD does under C2 is its own and deterministic, a
   candidate row of its own: CAND-13 (every other block starts on the right
   channel, plan a0c1f221, 10/10).
+- T6's twin on DOSBox-X 2026.10.01 (3 Nov 2026; plan 74def8fa,
+  T2C0-S16ODD2-DBX, ten runs, the runner proven by plan 797ac16e;
+  emulator): every run the same, recorded fail. T2.TXT: "PASS S16ODD2 C0",
+  an interrupt each block in all four formats (SS22 and SU22: 15 blocks,
+  15 interrupts; SS44 and SU44: 30 and 30), as DOSBox-X's source reads
+  and unlike 86Box's own card. tonecheck FAIL:
+  - SS22: the right channel, due silent, at -46.8 dBFS;
+  - SU22: no 2 kHz on the left ("peak 0.2 Hz"), the right at -9.6 dBFS:
+    the tone on the wrong channel;
+  - SS44 and SU44: right (2 kHz on the left, the right silent).
+  So DOSBox-X interrupts each block, but the left and right do not stay
+  paired at 22050 Hz: the source reading above ("the frames still
+  paired") holds at 44100 Hz only. Neither emulator gives S16ODD2's
+  expected sound; the CT2291 in AKIT is the judge, as ruled. Nothing in
+  uCDD changes (CAND-13 is uCDD's own).
 
 ### DBXPIT2: DOSBox-X 2025.02.01 restarts PIT channel 2's mode 0 count as if 65536 had been loaded when the gate goes high; short counts end at once (an emulator disagreement with the data sheet; found 2 Nov 2026)
 
@@ -2546,7 +2586,7 @@ Michael, 28 Oct 2026, from rules-bot: for every matrix row whose `decides` says 
 - **BUILD-COMPARISON** (3 rows: SADUMP verify-mix verify-mix-legacy). terms: verify; hits 543 in 41 files; most: 1996_Intel_Peripheral_Components.txt (175), 1994_Intel_Peripheral_Components.txt (152), 241732-003_Pentium_and_Pentium_Pro_Processors_and_Related_Products_1996.txt (50), 241731-002_Intel486_Microprocessors_and_Related_Products_1995.txt (26), Intel_80C52_Data_Sheet.txt (13), 290562_82371AB_PCI-TO-ISA_IDE_XCELERATOR_PIIX4_199704.txt (13). comparisons between builds with no expected value; procedural; silent stands.
 - **ENVELOPE** (1 rows: TONE4). terms: envelope; hits 209 in 9 files; most: adip301.txt (85), emu8kpgm.txt (50), SiS-630_199910.txt (36), Yamaha YM3812 Application Manual_text.txt (24), 241732-003_Pentium_and_Pentium_Pro_Processors_and_Related_Products_1996.txt (5), YMF262_199411.txt (3). a measurement with no expected value (the fast mode's pair averaging is the driver's design); silent stands.
 - **GAME-RECORDING** (15 rows: MKTRIL THEMHOSP DESCENT HEXENBEY DUKE3D XCOMUF GK1 JILLJUNG SWDFORC SSTRDUST KYRA1 F4-highspeed DUNGKE01 F1-probe F15-fade). terms: game; hits 496 in 39 files; most: VT8231_PC99_South_Bridge_199910.txt (54), VT82C686A_Super_South_Bridge_V1.1_199904.txt (40), VT82C686B.txt (33), CS4232_datasheet.txt (32), DS1869_other_revision.txt (32), DS1869.txt (32). each game's recording without uCDD decides (CONTEXT.md: checking a game); procedural; silent stands.
-- **SC8PAGE2** (2 rows: T2X-SC8PAGE2 T2C0-SC8PAGE2). terms: page register; wrap; roll over; rolls over; 64K boundary; 64 KB boundary; page boundary; hits 934 in 69 files; most: 241732-003_Pentium_and_Pentium_Pro_Processors_and_Related_Products_1996.txt (161), 1993_Intel_82378_PCI-ISA_System_IO.txt (105), 1996_Intel_Peripheral_Components.txt (88), 1994_Intel_Peripheral_Components.txt (73), 82374EB.txt (49), 290571-001_82378ZB_82379ZB_System_IO_and_System_IO_APIC_199603.txt (45). held for the emulator (86DMAPAGE), not for a document: 8237:331-338 already decides; the chipset hits restate the 8237's page registers; no change.
+- **SC8PAGE2** (2 rows: T2X-SC8PAGE2 T2C0-SC8PAGE2). terms: page register; wrap; roll over; rolls over; 64K boundary; 64 KB boundary; page boundary; hits 934 in 69 files; most: 241732-003_Pentium_and_Pentium_Pro_Processors_and_Related_Products_1996.txt (161), 1993_Intel_82378_PCI-ISA_System_IO.txt (105), 1996_Intel_Peripheral_Components.txt (88), 1994_Intel_Peripheral_Components.txt (73), 82374EB.txt (49), 290571-001_82378ZB_82379ZB_System_IO_and_System_IO_APIC_199603.txt (45). held for the emulator (86DMAPAGE), not for a document: 8237:405-410 already decides; the chipset hits restate the 8237's page registers; no change.
 - **PICSMM2** (4 rows: T2X-PICSMM2 T2C0-PICSMM2 T2X-PICSMM2-M T2C0-PICSMM2-M). terms: special mask mode; SMM; hits 1569 in 38 files; most: 241731-002_Intel486_Microprocessors_and_Related_Products_1995.txt (422), 1996_Intel_Peripheral_Components.txt (208), 241732-003_Pentium_and_Pentium_Pro_Processors_and_Related_Products_1996.txt (196), M1487_M1489_486_PCI_Chip_Set_199707.txt (101), 1994_Intel_Peripheral_Components.txt (84), 82C700_Firestar_Single-Chip_Notebook_Solution_199702.txt (70). held for the emulator (86SMM), not for a document: 8259:669-681 already decides; no change.
 - **TCROUND** (1 rows: T2X-TCROUND). terms: time constant; TC table; sample rate table; 1 MHz; 1MHz; hits 217 in 29 files; most: Sound_Blaster_Series_Hardware_Programming_Guide.txt (39), 1994_Intel_Peripheral_Components.txt (25), Developer_Kit_SB_Series_Hardware_Programming_Reference.txt (24), 241732-003_Pentium_and_Pentium_Pro_Processors_and_Related_Products_1996.txt (19), 1996_Intel_Peripheral_Components.txt (15), 241731-002_Intel486_Microprocessors_and_Related_Products_1995.txt (14). SBG's formula (1249-1257, 3553-3568) and the 4.13 firmware table; SB202SPEC's 1 MHz timer concerns the DSP 2.0x, not the SB16; held for the CT2291's measured table (question 30); no change.
 
