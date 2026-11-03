@@ -1717,6 +1717,36 @@ Closed (Michael, 27 Oct 2026): a missed refill cannot move the closing beep; onl
 | ADOM | 0.20 % hang | 0.10 % hang | 0.03 % hang | 0.00 % hang |  |  |  |  |
 | worst | 17.63 % | 9.58 % | 3.09 % | 0.50 % | 15.15 % | 10.29 % | 2.91 % | 0.01 % |
 
+- Restated (Michael, 3 Nov 2026, question 51: filled time counts the
+  confirmed underruns only, those the recorder's record shows as AL_STOPPED
+  and the restart; "Restate TIER3CPU's inserted-silence figures under the
+  new counting for the record"; rule 7 form, the table above kept as
+  measured). The same runs (cpu-*, pm1-*), the worst source's share of the
+  90 s window on confirmed underruns, and the worst union over sources (the
+  sweep's own measure since 3 Nov, question 48's reading 1):
+
+| game | 233 C2 | 200 C2 | 166 C2 | 133 C2 | 233 C0 | 200 C0 | 166 C0 | 133 C0 |
+|---|---|---|---|---|---|---|---|---|
+| LOLLYPOP | 3.98 % | 1.48 % | 0.00 % | 0.00 % | 4.76 % | 1.89 % | 0.09 % | 0.00 % |
+| REDRAMRA | 0.11 % | 0.05 % | 0.00 % | 0.00 % |  |  |  |  |
+| BATTLEAR | 12.66 % | 6.61 % | 1.76 % | 0.00 % | 11.98 % | 7.14 % | 1.73 % | 0.00 % |
+| TRACKATT | 0.08 % | 0.00 % | 0.00 % | 0.33 % |  |  |  |  |
+| DEDERBY | 0.46 % | 0.07 % | 0.08 % | 0.00 % |  |  |  |  |
+| STARGENE | 0.08 % | 0.00 % | 0.16 % | 0.00 % |  |  |  |  |
+| FXFIGHTE | 0.00 % | 0.00 % | 0.00 % | 0.00 % |  |  |  |  |
+| GOB3 | 0.09 % | 0.06 % | 0.09 % | 0.00 % |  |  |  |  |
+| XCOMUF | 1.50 % | 0.00 % | 0.00 % | 0.00 % | 1.19 % | 0.06 % | 0.14 % | 0.00 % |
+| ADOM | 0.20 % | 0.08 % | 0.00 % | 0.00 % |  |  |  |  |
+| worst | 12.66 % | 6.61 % | 1.76 % | 0.33 % | 11.98 % | 7.14 % | 1.73 % | 0.00 % |
+| worst, union | 22.55 % | 12.12 % | 3.82 % | 0.65 % | 19.47 % | 12.92 % | 3.53 % | 0.00 % |
+
+  The planted stalls on the same counting: 3000 ms 3.33 to 3.42 % (each one
+  confirmed span of 3.0 s), 1000 ms 1.09 to 1.14 %. As TIER3CPU measured it
+  (the worst source), MMX 166 would now meet the 29 Oct rule (1.76 % on C2,
+  1.73 % on C0); on the sweep's union it fails (BATTLEAR 3.82 %, 3.53 %),
+  and the Pentium 133 stays under (0.65 % at worst, TRACKATT C2). The CPU is
+  unchanged: the charter sets it per batch and nothing changes mid-sweep
+  but the referee (Michael, 3 Nov 2026).
 - Chosen: the Pentium 133 (pentium_p54c, 133 MHz, multiplier 2), every
   game under 2 % on C2 (0.50 % at worst) and on C0 (0.01 %). MMX 200
   fails on two games, MMX 166 on one. Set in the bench's thresholds.toml
