@@ -169,7 +169,7 @@ a2 = "$UCDD_TREE/../a2/C2_32$UCDD_SUFFIX"
 probe_parallel = 7
 # Groups only --group brings in: runs on the PC are Michael's evenings; the
 # Project A lists (below, before the tests) run when their gate asks.
-optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", "t1l4", "t1c0", "t2l4", "cmp", "a1", "a2", "cal", "calpc",
+optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", "t1l4", "t1c0", "t2l4", "cmp", "t6dbx", "a1", "a2", "cal", "calpc",
                    # A6 (2 Nov 2026): the dry run and the batches of 50 games (caltests.py --sweep)
                    "sweepdry", "sweep-b01", "sweep-b02", "sweep-b03", "sweep-b04", "sweep-b05", "sweep-b06", "sweep-b07", "sweep-b08", "sweep-b09", "sweep-b10", "sweep-b11", "sweep-b12", "sweep-b13", "sweep-b14", "sweep-b15", "sweep-b16", "sweep-b17"]
 
@@ -193,6 +193,14 @@ base_command = "{env} python3 runs/probe_test.py $UCDD_TREE/build_32$UCDD_SUFFIX
 # plan_run.py with T1.EXE's line and runs/rec/tonecheck.py's.
 kind = "recording"
 command = "{env} python3 runs/probe_test.py {build_dir} {id} {vmodel} {mode_word}"
+[runner.dbxwav]
+# runs/dbx_test.py: a T2 case on the second emulator, DOSBox-X 2026.10.01 (Debian sid's
+# 2026.10.01+dfsg-1, the bench's VERSIONS), its own SB16 and its own wave capture on the
+# emulated clock; the bare card only (jemm), so the build directory is not loaded. A
+# recording: one at a time (lesson L6). Judged by plan_run.py as T2's recordings are.
+kind = "recording"
+command = "{env} python3 runs/dbx_test.py $UCDD_TREE/build_32$UCDD_SUFFIX {id} {vmodel} jemm"
+base_command = "{env} python3 runs/dbx_test.py $UCDD_TREE/build_32$UCDD_SUFFIX {id} {vmodel} jemm"
 [runner.perf]
 # the standard regression's SBT16 and verify rows: fixtest.py perf, steps
 # "OUT:PROGRAM ARGS,..." in {args}; rsum.py compares them with a base run
@@ -3328,6 +3336,28 @@ note = "disc T1AQ: planted: T1A with track 4 a 1000 Hz tone at -40 dBFS; PLAY4's
 # Probes (regress.sh list a), checked against the bench 20 Oct. PROBE_RUN
 # is "TAG:PROGRAM ARGS,..."; the perf and verify runners take the same steps
 # as {args}. The case lists are regress.sh's.
+
+[[test]]
+name = "T2C0-SC8-DBX"
+decides = "VSB:319-324, SBG:1590-1591, SBG:3271-3278, SBG:3573-3580, 8237:485-517"
+runner = "dbxwav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE SC8 C0'"
+groups = ["t6dbx"]
+fixed = { mode = "base", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "T2C0-SC8 on the second emulator, DOSBox-X 2026.10.01 (runs/dbx_test.py; Debian sid's 2026.10.01+dfsg-1, the bench's VERSIONS): the runner proven before DOSBox-X judges anything (Michael, 3 Nov 2026, questions 49 and 50 (1): proven on SC8 C0 10/10 and an L4 plant); the expected result is T2C0-SC8's: steps S0-S7, an interrupt a block and the 2 kHz tone with no gap of 20 ms or more (T6)"
+
+[[test]]
+name = "T2L4-SC8-DBX"
+decides = "silent: a planted fault (L4): the check it is planted for must fail"
+searched = "terms: planted fault; hits: 2 in 2 documents (SNDLIB 1, docs/sound-engines/dmx.md 1); 3 Nov 2026"
+runner = "dbxwav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE SC8 C0 L4'"
+groups = ["t6dbx"]
+fixed = { mode = "base", vmodel = "sb16" }
+secs = 120
+note = "planted: T2.EXE SC8 C0 with the tone at 1 kHz (the word L4) on DOSBox-X 2026.10.01: every step's 2 kHz tone check must FAIL (T6, L4 for tonecheck on the second emulator's capture)"
 
 [[test]]
 name = "T2L4-SC8"
