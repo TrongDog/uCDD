@@ -1493,7 +1493,7 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   count; 4674-4677, the closest, has the default CLOCK$ as "the BIOS
   time-of-day clock". libsearch: "terms: CLOCK$, tick count, ticks since
   midnight, 1A01, real-time clock; hits: 179 in 23 documents; 28 Oct
-  2026", none on a reset.
+  2026", none on a reset. Searched again over the whole library (tightening r3.9, T11 item 4): "terms: CLOCK$, tick count, ticks since midnight, 1A01, real-time clock; hits: 246 in 42 documents (206 20, 756 20, 766 20, 768 20, PIIX4 18, PBOOK 12); 3 Nov 2026", still none on a reset; the closest new lines RBIL_L:529 (the MS-DOS 7 kernel's "count of days" in the default CLOCK$ driver) and RBIL_G:8809 (the CLOCK$ transfer record).
 - For the sweep and the kit (the owner, 28 Oct 2026, question 32): on MS-DOS
   7.1 a BIOS tick count read across a DOS date or time call is unreliable;
   the sweep's alignment (the beep before launch) is unaffected; AKIT
@@ -1631,7 +1631,7 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 
 - decides = "silent: the owner's ruling of 29 Oct 2026 (the highest count of recordings at once that matches the single run) and the measurement"
 - searched = "terms: parallel instances; hits: 0 in 0 documents; 2 Nov 2026"
-- searched = "terms: underrun; hits: 72 in 7 documents (INTEL96 20, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 13, INTEL94 10, CS4231A 9, CS4232 9, 630 6); 2 Nov 2026" (chip FIFO underruns, not 86Box's recorder)
+- searched = "terms: underrun; hits: 84 in 14 documents (INTEL96 20, INTEL486_1995 13, INTEL94 10, CS4231A 9, CS4232 9, 630 6); 3 Nov 2026" (chip FIFO underruns, not 86Box's recorder; r3.9's new hits the same, PORTS_B's devices)
 
 - Asked (the owner, 29 Oct 2026): "ten selected games recorded one at a time,
   then two at a time, then four, each instance with its own display, work
@@ -1761,7 +1761,7 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 ### CALTHRESH: the sweep's pass limits, from the control's own spread (set 1 Nov 2026 from plan 28b798e7; a bench setting)
 
 - decides = "silent: the owner's rulings of 30 and 31 Oct 2026 (the limits from the control's own run-to-run spread on the known-good games) and plan 28b798e7's measurement; no document sets a pass limit for this comparison"
-- searched = "terms: threshold; hits: 227 in 27 documents (1543 20, 5597 20, 630 20, DOC_241731_002_INTEL486_MICROPROCESSORS_AND_ 20, INTEL94 20, INTEL96 20); 2 Nov 2026" (electrical and FIFO thresholds of chips, none a sound comparison)
+- searched = "terms: threshold; hits: 316 in 40 documents (1543 20, 5597 20, 630 20, INTEL486_1995 20, INTEL94 20, INTEL96 20); 3 Nov 2026" (electrical and FIFO thresholds of chips, none a sound comparison; r3.9's new hits the same)
 
 - Ruled (the owner, 30 Oct 2026): "Thresholds from the C0/C2 distributions
   of the WIKI-WORKS and SNDREG games, each value with its data in NOTES and
@@ -1801,14 +1801,14 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 ### SWEEPWD: the sweep's watchdog misread three ways a game stops (found and fixed 1 Nov 2026; a bench fault)
 
 - decides = "5597 (5597:4993-4998, the video mode table: modes 0 and 1 are 40x25 in 8x8 cells at 320x200 and in 9x16 cells at 360x400, the two geometries the reader read first; 8x14 at 320x350 (5597:4994, 4997), listed too, read since 2 Nov 2026: rule 7, the old text \"is not read: a limit, noted 2 Nov 2026\"); silent for the screens' words (the prompt after a message's own text, the cursor's two phases, DOS's 'Abort, Retry, Fail', 'Packed file is corrupt', DOS/4GW's 'Crash address (unrelocated)'): no document holds them; this bench's own screens decide (test_sweep's cases)"
-- searched = "terms: 40x25; hits: 13 in 1 documents (5597 13); 2 Nov 2026"
-- searched = "terms: Abort, Retry; hits: 5 in 5 documents (INTEL96 1, PBOOK 1, PIIX 1, PIIX4 1, PIIXp 1); 2 Nov 2026" (chipset documents, not DOS's prompt)
-- searched = "terms: critical error; hits: 8 in 4 documents (DOC_INTERRUP_______ 3, DPMI09 2, SHSUCDX 2, DPMI10 1); 2 Nov 2026" (INT 24h named; none gives the prompt's screen form)
+- searched = "terms: 40x25; hits: 43 in 7 documents (RBIL_A 20, 5597 13, DOC_MEMORY 4, RBIL_B 3, DOC_CMOS 1, RBIL_M 1); 3 Nov 2026" (r3.9: RBIL_A's INT 10h mode table names the same 40x25 modes; 5597 decides)
+- searched = "terms: Abort, Retry; hits: 874 in 74 documents (1533 20, 1543 20, 496 20, 5582 20, 5597 20, 630 20); 3 Nov 2026" (chipset documents, not DOS's prompt; r3.9: RBIL_K:999 is another API's response codes; no document gives DOS's prompt)
+- searched = "terms: critical error; hits: 56 in 13 documents (RBIL_G 14, RBIL_J 13, RBIL_K 8, RBIL_F 7, RBIL_H 3, DPMI09 2); 3 Nov 2026" (INT 24h named; none gives the prompt's screen form; r3.9: RBIL_J:8914 is INT 24h itself, RBIL_J:8955-8958 has COMMAND.COM's handler replace the kernel's; none gives the prompt's screen form)
 - searched = "terms: Crash address; hits: 0 in 0 documents; 2 Nov 2026"
 - searched = "terms: Packed file; hits: 0 in 0 documents; 2 Nov 2026"
-- searched = "terms: 8x8 font; hits: 0 in 0 documents; 2 Nov 2026"
-- searched = "terms: reboot, reset vector, power-on self test; hits: 55 in 25 documents (DOC_INTERRUP__ 6, 766 5, 768 5, EMS 5, JR 4, SIO93 4); 2 Nov 2026" (REBOOT: the chipsets' reset logic and A20 at a reset; none gives what a screen shows after one)
-- searched = "terms: FFFF:0000, FFFF0; hits: 42 in 15 documents (I386 7, INTEL94 7, INTEL96 6, 1543 4, PIIX4 3, 1523 2); 2 Nov 2026" (I386:9993, execution begins at FFFFFFF0H after a reset: the plant's jump goes there in real mode; what the machine shows after is the bench's own screens, the plants decide)
+- searched = "terms: 8x8 font; hits: 2 in 1 documents (RBIL_M 2); 3 Nov 2026" (r3.9: RBIL_M:4464 is another product's 80x43 mode)
+- searched = "terms: reboot, reset vector, power-on self test; hits: 104 in 44 documents (RBIL_L 11, RBIL_C 6, 766 5, 768 5, EMS 5, RBIL_D 5); 3 Nov 2026" (REBOOT: the chipsets' reset logic and A20 at a reset; none gives what a screen shows after one; r3.9: the new hits are BIOS and chipset reset services; the watchdog's REBOOT is the bench's)
+- searched = "terms: FFFF:0000, FFFF0; hits: 56 in 20 documents (DOC_OPCODES 7, I386 7, INTEL94 7, INTEL96 6, 1543 4, PIIX4 3); 3 Nov 2026" (I386:9993, execution begins at FFFFFFF0H after a reset: the plant's jump goes there in real mode; what the machine shows after is the bench's own screens, the plants decide; r3.9: the same, I386:9993 still the line)
 
 - Found reading the last screen of every record of plans 28b798e7 and
   4a2b8cd3 (L11), emulator: a message with no newline puts the prompt at
