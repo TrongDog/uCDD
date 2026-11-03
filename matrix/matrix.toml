@@ -169,7 +169,7 @@ a2 = "$UCDD_TREE/../a2/C2_32$UCDD_SUFFIX"
 probe_parallel = 7
 # Groups only --group brings in: runs on the PC are the owner's evenings; the
 # Project A lists (below, before the tests) run when their gate asks.
-optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", "t1l4", "t1c0", "t2l4", "cmp", "t6dbx", "a1", "a2", "cal", "calpc",
+optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", "t1l4", "t1c0", "t2l4", "cmp", "t6dbx", "t6twin", "a1", "a2", "cal", "calpc",
                    # A6 (2 Nov 2026): the dry run and the batches of 50 games (caltests.py --sweep)
                    "sweepdry", "sweep-b01", "sweep-b02", "sweep-b03", "sweep-b04", "sweep-b05", "sweep-b06", "sweep-b07", "sweep-b08", "sweep-b09", "sweep-b10", "sweep-b11", "sweep-b12", "sweep-b13", "sweep-b14", "sweep-b15", "sweep-b16", "sweep-b17"]
 
@@ -3359,6 +3359,29 @@ fixed = { mode = "base", vmodel = "sb16" }
 secs = 120
 note = "planted: T2.EXE SC8 C0 with the tone at 1 kHz (the word L4) on DOSBox-X 2026.10.01: every step's 2 kHz tone check must FAIL (T6, L4 for tonecheck on the second emulator's capture)"
 
+
+[[test]]
+name = "T2C0-S16ODD2-DBX"
+decides = "SBG:1230-1237, SBG:3864, SBG:2161-2164, silent: the guide gives the 16-bit stereo order (left word then right) and the count in 16-bit samples but nothing on where a block of an odd count leaves the next one; the CT2291 decides (AKIT) with DOSBox-X the control at T6 (the owner 26 Oct 2026 question 14)"
+searched = "terms: odd number, odd count, odd length, multiple of 4, multiple of four; hits: 58 in 27 documents (RBIL_Q 6, 4031 5, VIPM 5, INTEL96 4, DOC_MEMORY 3, INTEL486_1995 3); 3 Nov 2026"
+runner = "dbxwav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE S16ODD2 C0'"
+groups = ["t6twin"]
+fixed = { mode = "base", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "86ODDSC's twin (the owner, 26 Oct 2026, question 14: DOSBox-X the control at T6, the CT2291 in AKIT the judge): T2C0-S16ODD2 on DOSBox-X 2026.10.01 (runs/dbx_test.py, the runner proven by plan 797ac16e): 16-bit stereo single-cycle B0h blocks of 4409 samples, each from where the last ended; expected from DOSBox-X's source (sblaster.cpp at 97ff66a, GenerateDMASound, remain_size): an interrupt each block, the odd last sample kept for the next transfer, the tone unbroken; 86Box's own card gives none (86ODDSC)"
+
+[[test]]
+name = "T2C0-SC8PAGE2-DBX"
+decides = "8237:331-338, SBG:1285-1294"
+runner = "dbxwav"
+env = "PROBE_WAV=1 PROBE_RUN='T2:T2.EXE SC8PAGE2 C0'"
+groups = ["t6twin"]
+fixed = { mode = "base", vmodel = "sb16" }
+repeat = 10
+secs = 120
+note = "86DMAPAGE's twin (the owner, 26 Oct 2026, question 13: the wrap decided by 8237:331-338, judged on the CT2291 in AKIT, DOSBox-X corroborating): T2C0-SC8PAGE2 on DOSBox-X 2026.10.01 (runs/dbx_test.py, the runner proven by plan 797ac16e): the 4096-byte block programmed at F800h wraps to the page's start (the second half silent, the address after it 0800h); 86Box 6.0 build 9001 crosses the page instead (86DMAPAGE)"
 [[test]]
 name = "T2L4-SC8"
 decides = "silent: a planted fault (L4): the check it is planted for must fail"
