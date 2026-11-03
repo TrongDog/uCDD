@@ -78,10 +78,16 @@ class SilentNeedsSearched(unittest.TestCase):
                                   capture_output=True, text=True, cwd=tmp)
             return done.returncode, done.stdout + done.stderr
 
-    def test_silent_without_searched_warns(self):
+    def test_silent_without_searched_is_flagged(self):
+        # r3.9: a warning before [matrix].searched_required, a problem after it (T9 item 3);
+        # the test accepts either, so it holds on an installed bench as well as a scratch one.
         code, out = self.run_check('silent: the bench decides')
         self.assertIn('without a "searched" line', out)
-        self.assertIn('warning', out)
+        # plan.py check prints a warning as "warning: ..." and a problem as the bare line, exiting 1
+        # (decides: matrix/plan.py's own main, the check branch); the word "problem" is never printed,
+        # so the package's form failed on an installed bench (3 Nov 2026)
+        line = next(l for l in out.splitlines() if 'without a "searched" line' in l)
+        self.assertTrue(line.startswith('warning: ') or code == 1, out)
 
     def test_silent_with_searched_passes(self):
         code, out = self.run_check('silent: the bench decides',
