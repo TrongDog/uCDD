@@ -75,6 +75,22 @@ if [ -f "$lessons" ] && [ -f "$state" ]; then
   echo "    before a gate or a new tool: python3 METHOD/tools/lessons_recall.py <terms> --line  (paste the line into the gate row)"
   echo "    a hit line ends '| read: yes' if the lesson was in that gate's pre-read list, else '| read: no' (a reading failure)"
 fi
+# r3.9: paste this block into hooks/session-recall.sh after the r3.8 lessons block.
+# It prints the library's search coverage at session start, resume and compaction, so a
+# document that joined the library and is not searched (question 54's failure: 32 files
+# of Ralf Brown's list unread for a week) is seen before the next "silent" is written.
+# Installed with one change (3 Nov 2026): the package tested `libsearch.py --coverage | tail -4`,
+# whose status is tail's, so the LIBRARY line could never print (L33); the tool's own exit
+# is kept and read here.
+if [ -d "$METHOD" ]; then
+  echo "--- Library search coverage (r3.9): every document searched, PDFs through their extraction ---"
+  coverage="$(python3 "$METHOD/tools/libsearch.py" --coverage 2>&1)"
+  coverage_exit=$?
+  printf '%s\n' "$coverage" | tail -4
+  if [ "$coverage_exit" -ne 0 ]; then
+    echo "    LIBRARY: a document is unsearched; add its extraction before any silent is written"
+  fi
+fi
 
 cat <<'EOF'
 --- Standing rules that compaction loses first ---
