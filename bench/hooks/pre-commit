@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""The bench repository's pre-commit check: no game, program, disc or big file, and no
-absolute home path in any file.
+"""The bench repository's pre-commit check: no commit while a plan records, no game, program,
+disc or big file, and no absolute home path in any file.
 
 The bench is private, but we never ship game code anywhere, and a backup is
 only useful if it can be cloned onto a new machine in minutes. Built
@@ -11,6 +11,7 @@ bench repository: one shell glob a line, # comments allowed.
 
 from pathlib import Path
 import fnmatch
+import os
 import re
 import subprocess
 import sys
@@ -23,13 +24,42 @@ BENCH = tomllib.loads((Path(__file__).resolve().parent.parent / 'bench.toml').re
 REFUSED = set(methodlib.CONFIG['games']['suffixes']) | set(BENCH['refuse'])
 LOCAL_PATH = re.compile(next(entry['pattern'] for entry in methodlib.CONFIG['banned']
                              if 'local path' in entry['why']))
+# runs/recording.flag (the owner, 4 Nov 2026, from rules-bot, lesson L6: "the bench's pre-commit
+# refuses any commit while the recording flag is set, the same flag the backup honours; a commit
+# that must wait, waits"). The flag is the bench's, found from this hook's own place
+# (<bench>/runs/src/method/bench/hooks), so the top folder, which uses this hook too, waits as
+# well. As runs/quiet.sh reads it for the backups: the recorder's PID first, and a flag whose PID
+# is gone is stale and ignored. UCDD_RECORDING_FLAG names another flag (the tests).
+RECORDING_FLAG = Path(os.environ.get('UCDD_RECORDING_FLAG') or
+                      Path(__file__).resolve().parents[4] / 'recording.flag')
 
 
 def git(*args):
     return subprocess.run(['git', *args], capture_output=True, check=True).stdout
 
 
+def recording():
+    """The flag's first line while the PID it names is alive, else None."""
+    try:
+        line = RECORDING_FLAG.read_text().splitlines()[0]
+        pid = int(line.split()[0])
+    except (OSError, IndexError, ValueError):
+        return None
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return None
+    except PermissionError:
+        pass
+    return line
+
+
 def main():
+    held = recording()
+    if held:
+        print(f'pre-commit: refused: a plan is recording ({RECORDING_FLAG}: {held}); nothing is '
+              'committed while it records (L6): commit once the flag clears', file=sys.stderr)
+        return 1
     top = Path(git('rev-parse', '--show-toplevel').decode().strip())
     allow_file = top / '.bench-allow'
     allowed = [line.split('#')[0].strip() for line in allow_file.read_text().splitlines()] \

@@ -632,18 +632,36 @@ class BenchTests(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def git(self, *args):
-        return subprocess.run(['git', *args], cwd=self.top, capture_output=True, text=True)
+    def git(self, *args, env=None):
+        return subprocess.run(['git', *args], cwd=self.top, capture_output=True, text=True, env=env)
 
-    def commit(self, name, content=b'x'):
+    def commit(self, name, content=b'x', env=None):
         path = self.top / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(content)
         self.git('add', '-A')
-        return self.git('commit', '-q', '-m', 'Bench: a change')
+        return self.git('commit', '-q', '-m', 'Bench: a change', env=env)
 
     def test_scripts_go_in(self):
         self.assertEqual(self.commit('runs/plan_run.py', b'print(1)\n').returncode, 0)
+
+    def test_no_commit_while_recording(self):
+        # decides: the owner, 4 Nov 2026 (from rules-bot, L6): "the bench's pre-commit refuses any
+        # commit while the recording flag is set, the same flag the backup honours"; read as
+        # runs/quiet.sh reads it: the PID first, a flag whose PID is gone stale
+        flag = Path(self.tmp.name) / 'recording.flag'
+        env = dict(os.environ, UCDD_RECORDING_FLAG=str(flag))
+        recorder = subprocess.Popen(['sleep', '60'])
+        try:
+            flag.write_text(f'{recorder.pid} plan_run abcd1234\n')
+            result = self.commit('runs/plan_run.py', b'print(1)\n', env=env)
+            self.assertEqual(result.returncode, 1, result.stderr)
+            self.assertIn('a plan is recording', result.stderr)
+        finally:
+            recorder.kill()
+            recorder.wait()
+        # the recorder gone, its flag is stale and the same commit goes in
+        self.assertEqual(self.git('commit', '-q', '-m', 'Bench: a change', env=env).returncode, 0)
 
     def test_game_and_heavy_files_stay_out(self):
         for name in ('kit/UCDD.EXE', 'dos/SBT16.COM', 'runs/sr_x/sound.wav', 'roms/bios.rom',
