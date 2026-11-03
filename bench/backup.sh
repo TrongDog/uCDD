@@ -18,6 +18,16 @@ set -eu
 here=$(cd "$(dirname "$0")" && pwd)
 repo=$1
 shift
+# The review flag (the owner, 3 Nov 2026, lesson L38): a tool whose output is read before it is
+# committed (the catalogue run, read through catalogue/rundiff.py) leaves runs/review.flag in the
+# bench (this script's worktree is <bench>/runs/src/method); while it is there no backup commits,
+# in either repository, and the log says so. The agent removes it once the diff is read, as
+# runs/recording.flag clears when a plan ends. The nightly snapshot does not wait on it.
+flag="$(cd "$here/../../../.." && pwd)/runs/review.flag"
+if [ -f "$flag" ]; then
+    echo "$(date -u +%Y-%m-%dT%H:%MZ) $repo not backed up: a review is open ($(head -1 "$flag"))"
+    exit 0
+fi
 for folder in "$@"; do
     mkdir -p "$repo/mirror"
     if command -v rsync >/dev/null; then
