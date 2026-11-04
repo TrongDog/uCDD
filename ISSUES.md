@@ -1264,6 +1264,70 @@ Hypothesis (labelled, not tested; mine): SETMUL's CPU detection raises a process
 0.9.5-a2 (Michael, 2 Nov 2026: a2 the second build): T2X-SETMUL-A2, plan ba483de6 `pass: 10` (runs -021 to -030): both calls exit 0, as on C0 (fixtures/a2/MANIFEST.txt; UCDD.EXE 8421d411).
 Evidence: emulator (plan ba483de6), dynarec off. Hardware: UNCONFIRMED (the PC's UCDD boot runs the SLOW helpers in every such game's launcher; the kit can carry SETMUL alone).
 
+### CAND-23 A6 sweep, first sound: a CD-audio game's first sound comes 1.22 s later on the pinned build than without uCDD (median of 15; ADARK1 the largest, 4.71 s) (found 4 Nov 2026 in the baseline's runs; a finding for the PC at A7, open)
+
+- decides = "silent: Michael's ruling of 4 Nov 2026, question 57 (the family medians are findings, one candidate row per family per build); no document sets a first-sound allowance"
+- searched = "terms: start latency, load time, spin-up, spin up time, first sound, seek time; hits: 74 in 18 documents (INTEL94 20, INTEL96 20, INTEL486_1995 10, 1543 3, MSCDEX 3, RBIL_E 3); 4 Nov 2026"
+Pinned: count-position 7994cd1 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33). Bin: a finding, the CD-audio family's baseline for CANDIDATE_UCDD_LOAD (question 57).
+Cell: the CD-audio family (the bench's catalogue: a disc with one or more audio tracks): 152 of the 838 games.
+Controls: C0 in the same plan, one take each: 86Box's own drive with OAKCDROM and MSCDEX, the same boot, the same JemmEx line.
+Expected: no document sets how soon a game's first sound comes after its launch (the search above; the closest, MSCDEX:128, names CD-ROM drives' "comparatively long seek times" and sets no allowance). By the ruling (Michael, 4 Nov 2026, question 57) the family's median delta is a finding, one row per family per build, and the family's largest delta plus 3.0 s, over C0's median, is a CD-audio title's first-sound limit; a pair past it whose sound still arrives in the window is CANDIDATE_UCDD_LOAD.
+Affected: every CD-audio game's start under the pin; in the sweep so far 30 C2 and A2 pairs over the limit with their sound inside the window, each a CANDIDATE_UCDD_LOAD until the 2-of-3 re-runs (the bench's STATE lists them; the first five batches ran on v1's drives, so their membership waits for v2 re-runs).
+Observed, pin: plan a06419fc (the bench environment v2: the PC's DOS, E: and F: FAT32 at 32 KB clusters; the 15 CD-audio games that passed the calibration), each C2 first sound less its C0's, in the guest's time, the detector at its calibrated 0.17 s (question 58): THEPATRI +0.28, RAYMAN +0.58, TEMPEST2 +0.60, FWARS +0.61, SPIREXC +0.68, SUPERKAR +0.87, LOOM +1.01, CEO +1.22, REDRAMRA +1.68, LEGENDS +1.75, TOMBRAIG +1.80, ARCHIMED +2.04, BATTLEAR +2.47, MI1 +3.89, ADARK1 +4.71 s: median +1.22 s over 15.
+L4: the detector's own test (the bench's test_sweep: one frame short, the length exactly, a short burst then the length) fails 2 of 3 cases planted at 0.02, 0.16 and 0.18 s; the re-judge reproduces the records' instants at the old length in 447 of 462 checks, the other 15 being the frame grid's alignment (both readings reproduced by a shift of up to 24 samples). No plant of a known-late build.
+Trace: none (B is frozen).
+Hypothesis (labelled, not tested; mine): two parts, not separated. The launcher mounts the disc with uCDD after the launch beep, where C0's drive is ready before it (the 31 Oct calibration's note on first_audio_extra_s); and uCDD reads the image through DOS, so the first read depends on the file system: on the bench's v2 drives the pin's first sound falls as the clusters grow (ADARK1 6.92, 6.05, 5.95 s at 4, 16 and 32 KB; MI1 7.39, 5.67, 5.39; C0 unmoved), and the PC's E: and F: are at 32 KB.
+0.9.5-a2: CAND-24, the same family on a2: median +1.27 s, largest +4.74 s (ADARK1), so the delay is upstream's as much as the fork's.
+Evidence: emulator (plan a06419fc, dynarec off), one take per game and configuration. Hardware: UNCONFIRMED (A7: the same titles' first sound on the PC from the UCDD boot against a real CD in the JEMM boot).
+
+### CAND-24 A6 sweep, first sound: a CD-audio game's first sound comes 1.27 s later on 0.9.5-a2 than without uCDD (median of 14; ADARK1 the largest, 4.74 s) (found 4 Nov 2026 in the baseline's runs; a finding for the PC at A7, open; the author's build)
+
+- decides = "silent: Michael's ruling of 4 Nov 2026, question 57 (one candidate row per family per build); no document sets a first-sound allowance"
+- searched = "terms: start latency, load time, spin-up, spin up time, first sound, seek time; hits: 74 in 18 documents (INTEL94 20, INTEL96 20, INTEL486_1995 10, 1543 3, MSCDEX 3, RBIL_E 3); 4 Nov 2026"
+Pinned: 0.9.5-a2, fork main 245759c (UCDD.EXE 8421d411; the bench's fixtures/a2/MANIFEST.txt). Bin: a finding, the CD-audio family's baseline for CANDIDATE_UCDD_LOAD on a2 (question 57).
+Cell: the CD-audio family (the bench's catalogue: a disc with one or more audio tracks): 152 of the 838 games.
+Controls: C0 in the same plan, one take each: 86Box's own drive with OAKCDROM and MSCDEX, the same boot, the same JemmEx line.
+Expected: no document sets how soon a game's first sound comes after its launch (the search above; the closest, MSCDEX:128, names CD-ROM drives' "comparatively long seek times" and sets no allowance). By the ruling (Michael, 4 Nov 2026, question 57) the family's median delta is a finding, one row per family per build, and the family's largest delta plus 3.0 s, over C0's median, is a CD-audio title's first-sound limit; a pair past it whose sound still arrives in the window is CANDIDATE_UCDD_LOAD.
+Affected: every CD-audio game's start under a2.
+Observed, a2: plan a06419fc, as CAND-23: THEPATRI +0.29, SUPERKAR +0.60, FWARS +0.71, TEMPEST2 +0.73, SPIREXC +0.76, CEO +1.05, LOOM +1.13, TOMBRAIG +1.41, REDRAMRA +1.53, LEGENDS +1.71, BATTLEAR +2.23, ARCHIMED +2.24, MI1 +2.87, ADARK1 +4.74 s: median +1.27 s over 14 (RAYMAN has no sound on A2: a06419fc-024, as in the sweep's b02).
+L4: the detector's own test (the bench's test_sweep: one frame short, the length exactly, a short burst then the length) fails 2 of 3 cases planted at 0.02, 0.16 and 0.18 s; the re-judge reproduces the records' instants at the old length in 447 of 462 checks, the other 15 being the frame grid's alignment (both readings reproduced by a shift of up to 24 samples). No plant of a known-late build.
+Trace: none (B is frozen).
+Hypothesis (labelled, not tested; mine): two parts, not separated. The launcher mounts the disc with uCDD after the launch beep, where C0's drive is ready before it (the 31 Oct calibration's note on first_audio_extra_s); and uCDD reads the image through DOS, so the first read depends on the file system: on the bench's v2 drives the pin's first sound falls as the clusters grow (ADARK1 6.92, 6.05, 5.95 s at 4, 16 and 32 KB; MI1 7.39, 5.67, 5.39; C0 unmoved), and the PC's E: and F: are at 32 KB.
+Pin: CAND-23 (+1.22 s).
+Evidence: emulator (plan a06419fc, dynarec off), one take per game and configuration. Hardware: UNCONFIRMED (A7).
+
+### CAND-25 A6 sweep, memory: on the same 64 MB machine and the same JemmEx line, a DOS extender's program sees about 31 MB without uCDD and about 62 MB under it, and some games fail on one side only (found 4 Nov 2026 in b06 and b07; open; both builds; a finding by Michael's ruling)
+
+- decides = "JR:134-137 (VCPI memory limited by MAX=, default 120 MB), JR:230-233 (EMS limited to 2048 pages, 32 MB); the driver's own policy, VCPI hidden while it provides DPMI (docs/host-cdrom-spec.md D-16); silent on which a game's extender takes: the games' own messages decide"
+- searched = "terms: MAX=, VCPI memory, JemmEx, Jemm386, NOVCPI; hits: 24 in 10 documents (JR 6, notes/hosts-and-cdrom.md 6, docs/history.md 3, VCPI 2, notes/processors.md 2, INDEX.md 1); 4 Nov 2026"
+Pinned: count-position 7994cd1 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: a finding (Michael, 4 Nov 2026: "If both boots run the same manager, the difference is uCDD's: VCPI memory capped by the manager under C0, uCDD's DPMI host offering all of it under C2 and A2; that is a finding in its own right").
+Controls: the boots' CONFIG.SYS (the sweep's b07, STAR's three runs): C0, C2 and A2 each start with "DEVICE=C:\JEMMEX.EXE", no options, the same file (sha256 407233e2313a4f2f...); C0 adds only "DEVICEHIGH=C:\OAKCDROM.SYS /D:OAKCD001". MEM /C in the same boots: C0 and C2 the same XMS (65,962,672 and 65,962,688 bytes). So the manager is the same; the difference is uCDD's.
+Cell: games whose extender takes VCPI or EMS from JemmEx without uCDD and DPMI from uCDD's host under it (DOS/4GW among them).
+Affected (the sweep so far): Zork Nemesis (DOS/4GW 1.97) prints "Detected 32276480 bytes of available memory" on C0, 62590976 on the pin and 62574592 on a2 (b06). I Have No Mouth and I Must Scream (DOS/4GW) runs on C0 and stops on both builds with a memory message (CAND-26). Pirates! Gold stops on C0 alone, "A PAGE FAULT HAS OCCURRED DUE TO INSUFFICIENT MEMORY", and runs with sound on both builds (b07). Wing Commander Armada runs with sound on C0 and stops on both builds at "EMS driver is not VCPI compliant." (b07): the other side, VCPI hidden while uCDD provides DPMI. Star Trail prints 33554432 bytes of free EMS (2048 pages) on all three boots and stops at its own check on all three: not this row's.
+Expected: rule 1 (the real hardware's behaviour): the PC's UCDD boot is the same JemmEx; without uCDD a VCPI client gets VCPI memory up to MAX (default 120 MB, JR:134-137) and EMS up to 2048 pages (JR:230-233). Under uCDD the memory a game sees is the DPMI host's, and VCPI is hidden by the driver's design (D-16).
+Observed: as Affected; the screens' text in the sweep's records (b06 plan c87998b0, b07 plan acca1005).
+L4: none (the games' own messages; no plant).
+Trace: none (B is frozen).
+Hypothesis (labelled, not tested; mine): Zork Nemesis's 32276480 bytes sit just under EMS's 2048 pages (33554432) and far under VCPI's 120 MB default, so its extender meets JemmEx's EMS limit without uCDD; which call it makes is not read, and the library holds no DOS/4GW document (searched = "terms: DOS/4GW, DOS4GW, DOS/4G; hits: 15 in 4 documents (RBIL_C 4, RBIL_J 4, docs/history.md 4, RBIL_L 3); 4 Nov 2026").
+0.9.5-a2: the same as the pin in all four games (the a2 lines above).
+Evidence: emulator (dynarec off), one take per game and configuration. Hardware: UNCONFIRMED (A7: Zork Nemesis's line in the JEMM and the UCDD boots).
+
+### CAND-26 A6 sweep, b06: I Have No Mouth and I Must Scream stops under uCDD with a memory message (pin "Can't allocate enough memory for scene cache.", a2 "Unable to initialize temp image memory pool.") and runs with sound without it (found 4 Nov 2026 in b06, a row the same day; open; both builds)
+
+- decides = "silent: the game's own messages and its run without uCDD decide; no document says what memory the game asks for"
+- searched = "terms: scene cache, image memory pool, temp image, available memory; hits: 8 in 6 documents (RBIL_F 2, RBIL_N 2, PORTS_B 1, RBIL_G 1, RBIL_P 1, RBIL_Q 1); 4 Nov 2026"
+Pinned: count-position 7994cd1 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33). Bin: CANDIDATE_UCDD_HOST (Michael, 4 Nov 2026: "a C2-only failure whose message names memory (IHNMAIMS this batch) is a _HOST candidate with 'memory path: DPMI host, not VCPI' on its row"). memory path: DPMI host, not VCPI.
+Cell: CAND-25's (DOS/4GW, bound; Miles MSS 3; a data disc).
+Affected: this game's runs under uCDD.
+Controls: C0 c87998b0-094: into its graphics, first sound at 3.62 s, RUNNING at the window's end.
+Expected: as on C0 (rule 1: the PC's UCDD boot has the same JemmEx).
+Observed, pin: c87998b0-095, "Can't allocate enough memory for scene cache.", then the prompt, no sound.
+L4: none (the game's own message).
+Trace: none (B is frozen).
+Hypothesis (labelled, not tested; mine): under uCDD the game gets its memory from the DPMI host, whose answer it reads as too little for its caches, where without uCDD its extender takes JemmEx's VCPI and XMS (CAND-25); the opposite direction to Zork Nemesis, so the size alone does not explain it.
+0.9.5-a2: c87998b0-096, "Unable to initialize temp image memory pool.", then the prompt, no sound: a different message, an earlier stop.
+Evidence: emulator (dynarec off), one take per configuration. Hardware: UNCONFIRMED (A7).
+
 ### FLAKY-1 Tier 2, T2X-PICHOLD and T2X-PICHOLD12: 2 of 10 and 1 of 10 runs under C2 lose 20 ms of the 2 kHz tone in silence of the recorder stall's shape (filed 27 Oct 2026, closed the same day: recorder insertions)
 
 Pinned: count-position 7994cd1 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33). Bin: FLAKY (Michael, 27 Oct 2026; project_a.md has no FLAKY bin: as on 25 Oct, "9/10 is FAIL with the count" carries it), until the host's record can be cited.
