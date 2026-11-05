@@ -2014,16 +2014,24 @@ has run):
 | AC-2 | the first sound before a reboot (REBOOT cut) | sweep.py main | AC (bench 03dd357) |
 | AC-3 | the watchdog's silence test (HANG) and silent waits | sweep.py watchdog | AC (bench 03dd357; the filled-span mask runs on by the filter's settling time) |
 | AC-4 | fsmin: calibrate (the length) and rejudge (first_rejudged_ac.csv) | runs/rec/fsmin.py | AC (bench e3123d9) |
-| AC-5 | the harness rule's first sound found again (harness_rejudged_ac.csv) | runs/rec/rejudge_inserted.py | to mark |
-| AC-6 | the re-judged watchdog, REBOOT cut and sound in the window (watchdog_rejudged_ac.csv) | runs/rec/rejudge.py | to mark |
-| AC-7 | audiocmp --whole present (a pair's sound in the window) | runs/rec/audiocmp.py | to mark |
-| AC-8 | audiocmp --whole first | runs/rec/audiocmp.py | to mark |
-| AC-9 | audiocmp --whole gaps | runs/rec/audiocmp.py | to mark |
-| AC-10 | audiocmp --whole cover | runs/rec/audiocmp.py | to mark |
+| AC-5 | the harness rule's first sound found again (harness_rejudged_ac.csv) | runs/rec/rejudge_inserted.py | AC (bench fbcfb09, 19eb4dd: harness_rejudged_ac.csv on the 18 A6 plans; the raw reproduction, run lines identical on b01 to b03) |
+| AC-6 | the re-judged watchdog, REBOOT cut and sound in the window (watchdog_rejudged_ac.csv) | runs/rec/rejudge.py | AC (bench fbcfb09, daaa855, 19eb4dd: watchdog_rejudged_ac.csv on every A5 and A6 plan; the raw reproduction, "0 runs otherwise" on c8b067d9 and a06419fc) |
+| AC-7 | audiocmp --whole present (a pair's sound in the window) | runs/rec/audiocmp.py | AC (bench fbcfb09: test_audiocmp "0 bad", wholeplant's silent, dchold and tone50) |
+| AC-8 | audiocmp --whole first | runs/rec/audiocmp.py | AC (bench fbcfb09: test_audiocmp's burst trains and tone) |
+| AC-9 | audiocmp --whole gaps | runs/rec/audiocmp.py | AC (bench fbcfb09: test_audiocmp's C0 hold, wholeplant's gap and dcafter) |
+| AC-10 | audiocmp --whole cover | runs/rec/audiocmp.py | AC (bench fbcfb09: test_audiocmp's cover case, grid 1.01; cover_rule "grid" provisional, STATE question 66 (1)) |
 
 - Derived (read no samples; AC through the above): calclass.py,
   calpairs.py, calthresh.py, sweeppairs.py, loadcheck.py, calbatch.py's C0
   reference for C2 and A2, the re-run set.
+- Measured at the re-judge (5 Nov 2026, bench fbcfb09): audiocmp's counts (pieces, steps back, jumps,
+  on time) move by one to ten with the window's decode, not the filter: the whole recording decoded
+  and cut (the AC path) against ffmpeg's windowed decode (the raw path). wholeplant's repeat plant
+  (a 0.3 s piece played three more times) reads back 6 against the clean copy's 4 on the windowed
+  decode (as on 29 Oct) and 5 against 5 on the whole decode, with the filter or without it. So the
+  re-judge's fast path keeps the counts and match from the raw reports and reads present, first, gaps
+  and cover again on the AC signal; its proofs (27 pairs read whole too) agree on present, gaps,
+  cover and match in all 27 and differ only in the counts (STATE question 66 (3), for Michael).
 - AC already (by their own band or each frame's mean), unchanged:
   audiocmp's match, speed, back, jumps, ontime (150 to 4000 Hz); locate,
   envelope, the CD lag (300 to 3000 Hz); cdlevel; sweep.launch_beep;
