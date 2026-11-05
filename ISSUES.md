@@ -1345,6 +1345,57 @@ By design: the code says so for its mix (mix.asm:150, its unity gain halves each
 Hypothesis (labelled; mine): headroom for the sum of the disc and the game's sound in 16 bits.
 0.9.5-a2: the same 6.0 dB and the same code (above): upstream.
 Evidence: emulator (the captures of plan 28b798e7 and the sweep; MIXREAD one boot each). Hardware: UNCONFIRMED. A7: the same track recorded from the card's line-out through a real CD on the card's CD input (the JEMM boot) and through uCDD (the UCDD boot), the levels compared.
+Accepted as applied (Michael, 5 Nov 2026, on the 13:22Z report: "58 and 59 as applied are accepted, the 6 dB row carrying both comments and the code line"). a2's mixer reset is filed here as a disagreement with the data sheet: after a reset (SBDK:2651-2652, "After a reset, all the registers will be restored to their default values") a2's virtual mixer reads C0h in 36h/37h, CD at 24 (-14 dB), where SBDK:2688 and 2696 give the CD's default as "0 => - 62 dB" (MIXREAD after SBPROBE's reset, results/mixer/mixread_a2.txt); the pin reads 00h, SBDK's. For the line-out measurement at A7 (the PC's CT2291 read after the same reset). 86Box's own card's reset is 86MIXRESET (the emulator disagreements).
+
+### CAND-28 A6 sweep, a class: DOS's "Packed file is corrupt" under uCDD where the bare card runs the same game, CANDIDATE_UCDD_LOWMEM (the class from 5 Nov 2026; no member yet; both builds)
+
+- decides = "silent: DOS's own loader message decides, the bare card's run of the same game (C0) the control (Michael, 5 Nov 2026, the EXEPACK ruling)"
+- searched = "terms: Packed file is corrupt, EXEPACK, LOADFIX; hits: 2 in 1 documents (RBIL_G 2); 5 Nov 2026"
+Bin: CANDIDATE_UCDD_LOWMEM (Michael, 5 Nov 2026: "a run whose screen shows "Packed file is corrupt" under uCDD while the bare card runs the same game is a candidate of a new class, CANDIDATE_UCDD_LOWMEM, open in both builds, remedy LOADFIX; where the bare card fails too (Contra, Thexder) the row is GAME_FAULT with the message").
+Cell: any program packed with EXEPACK that the game's launcher runs under uCDD's boot.
+The class's number, each boot's free low memory (MEM /C in the sweep's v2 boot, results/env-v2/memc_*.txt, line 12 and line 29): C0 free conventional 609,888 bytes, largest executable program 609,616; the pin 635,584 and 635,312; a2 630,624 and 630,352. uCDD's boots leave 25 KB (the pin) and 20 KB (a2) more low memory free, so a program loads that much lower.
+Members: none so far. GAME_FAULT with the message (the bare card fails too; results/calibration/bins.csv): THEXDER (the calibration: C0 and C2 at "Packed file is corrupt"), CONTRA (b08: C0 a black screen after its own loader; C2 and A2 at "Packed file is corrupt", A2 after "JemmEx: exception 06 occured at CS:EIP=0000:0000C38D" in program 052C).
+Hypothesis (the calibration's, untested): the loader's unpacking fails when the program is loaded below 64 KB with DOS high; LOADFIX the remedy. Not measured: the load address.
+Classifier: calclass.py's packed() and the bin before the other candidates (test_calclass.py, three real screens).
+Evidence: emulator.
+
+### CAND-29 A6 sweep, b07: Gabriel Knight 2 stops under uCDD at DOS's "General failure reading drive G" (the pin) and "General failure reading device aep" (a2), 1.4 s after the launch, and runs with sound without it (found 4 Nov 2026 in b07; a row 5 Nov 2026; open; both builds)
+
+- decides = "MSCDEX:347 ('C  General failure'): the device driver's error code 0Ch, which DOS reports as "General failure reading drive G"; which request uCDD failed is not read"
+- searched = "terms: General failure, drive not ready, reading drive; hits: 30 in 12 documents (RBIL_G 6, DOC_MEMORY 4, MSCDEX 3, RBIL_J 3, RBIL_K 3, RBIL_B 2); 5 Nov 2026"
+Pinned: count-position 7994cd1 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: a candidate on both builds (Michael, 5 Nov 2026: "GK2's "General failure reading drive G" is a candidate on both builds ... confirmed by the 2-of-3 rule"); its sub-type waits for the re-runs.
+Cell: GK2 is a five-disc set mounted through uCDD's .MDM list (catalogue/games.csv: multi_disc_n 5, image_type MDM); DOS/4GW, its own SB and AdLib code.
+Controls: C0 acca1005-055 (86Box's drive, OAKCDROM, MSCDEX): RUNNING with sound from 6.32 s (guest time at 0.17 s).
+Observed: the pin acca1005-056 and a2 acca1005-057, both "Abort, Retry, Fail?" at 1.4 s (CRASH); a2's device name garbled ("aep"), a lead not followed.
+Re-runs: two more takes of each build (the 2-of-3 rule), in the re-run set.
+Evidence: emulator, one take each.
+
+### CAND-30 A6 sweep, b07: Ultimate Domain plays no sound on the pinned build where a2 and the bare card do (a fork-regression candidate; found 4 Nov 2026 in b07; a row 5 Nov 2026; open; the pin only)
+
+- decides = "silent: the author's 0.9.5-a2 on the same bench is the control for a fork regression (Michael, 4 Nov 2026, question 57: a pin-to-a2 gap is a fork-regression candidate until the re-run says otherwise)"
+- searched = "terms: Ultimate Domain, ULTIDOMA; hits: 0 in 0 documents; 5 Nov 2026"
+Pinned: count-position 7994cd1 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); control 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: fork-regression candidate (Michael, 5 Nov 2026: "Ultimate Domain a fork-regression candidate ... confirmed by the 2-of-3 rule").
+Cell: Ultimate Domain (1994), real mode, its own SB and AdLib code (catalogue/games.csv); one ISO.
+Observed: the same pictures on all three, RUNNING to the end; first sound C0 12.86 s, a2 13.11 s (acca1005-142, -144); the pin none in the window (acca1005-143).
+Re-runs: two more takes on the pin (the 2-of-3 rule), in the re-run set.
+Evidence: emulator, one take each.
+
+### CAND-31 A6 sweep, the calibration and b08: Gabriel Knight 1's menu is silent on the pinned build where a2 and the bare card play on to the end (a fork-regression candidate; seen 2 Nov 2026 in the calibration as cover 0.16, read 5 Nov 2026 from the pictures; open; the pin only)
+
+- decides = "silent: the author's 0.9.5-a2 on the same bench is the control for a fork regression (Michael, 4 Nov 2026, question 57: a pin-to-a2 gap is a fork-regression candidate until the re-run says otherwise)"
+- searched = "terms: Gabriel Knight, GK1, menu music; hits: 0 in 0 documents; 5 Nov 2026"
+Pinned: count-position 7994cd1 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); control 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: fork-regression candidate by question 57, as CAND-30.
+Cell: GK1 (Sierra SCI, DOS/4GW; catalogue/games.csv), a data disc (no audio track): its music is the game's own, through the virtual card.
+Observed (b08, v2 at 32 KB; sound spans over -60 dBFS from the launch): C0 eecd58bf-013 2.7 to 15.4 s and 16.2 to 96.4 s; a2 eecd58bf-015 5.6 to 18.3 s and 18.4 to 96.5 s; the pin eecd58bf-014 6.4 to 19.1 s only, then the menu (RESTORE, PLAY, INTRO, QUIT) still and silent from 21.4 s to the end, HANG under question 62 (a). The pictures are the same on all three (the Sierra logo, then the menu). The calibration's three takes on the pin (28b798e7-448 to -450): cover 0.16 against C0 (28b798e7-445), HANG; C0's three takes RUNNING with cover 1.00.
+Corrected (rule 7 form, 5 Nov 2026): old text (question 62, 4 Nov 2026): "GK1's C2, its Sierra logo held silent over 20 s before the menu"; new text: the logo has sound on the pin (6.4 to 19.1 s); the still, silent screen is the menu, to the end of the run. The first-sound delta (+3.65 s on the pin) stands as measured and goes to the LOAD check as ruled.
+Re-runs: two more takes of a2 (the 2-of-3 rule for the control), in the re-run set.
+Evidence: emulator; the pin 4 takes of 4, a2 1 take.
+
+### CTRL-ONLY A6 sweep: games that run under uCDD and not under the control (a list, no verdict; from 5 Nov 2026)
+
+Michael, 5 Nov 2026: "Control failures where only the bare card fails (Pirates! Gold, Bruce Lee) are listed for A7 and for the docs as "runs under uCDD, not under the control", cause unread, no verdict."
+- PIRATES (b07, acca1005-031 to -033): C0 "A PAGE FAULT HAS OCCURRED DUE TO INSUFFICIENT MEMORY"; the pin and a2 run with sound. Cause unread.
+- BRUCELEE (b08, eecd58bf-097 to -099): C0 restarts the machine 3.7 s after its title, again on every boot (9 boots in the window); the pin and a2 run to the game's play screen, silent. Cause unread.
 
 ### FLAKY-1 Tier 2, T2X-PICHOLD and T2X-PICHOLD12: 2 of 10 and 1 of 10 runs under C2 lose 20 ms of the 2 kHz tone in silence of the recorder stall's shape (filed 27 Oct 2026, closed the same day: recorder insertions)
 
@@ -1748,6 +1799,14 @@ Closed (Michael, 27 Oct 2026): a missed refill cannot move the closing beep; onl
   then spinning (wait_mark looping on INT 1Ah). T1.EXE converted to halting
   waits (bench 060dc9e): the same plant twice (t1h-prop, -prop2) with
   intact captures. T1.EXE's earlier evidence stands as recorded.
+
+### 86MIXRESET: 86Box's SB16 mixer keeps 0 dB after a reset; the data sheet's defaults are -14 dB and -62 dB (an emulator disagreement; found 4 Nov 2026, filed 5 Nov 2026)
+
+- decides = "SBDK:2651-2652 ('Write any 8-bit value to this register to reset the mixer. After a reset, all the registers will be restored to their default values.'), 2686 (master, voice and MIDI: 'Default is 24 => - 14 dB.') and 2688, 2696 (CD: 'Default is 0 => - 62 dB.')"
+- Seen [86Box] with the bench's MIXREAD 1.0 (results/mixer/mixread_c0.txt; C0, 86Box's own SB16, no uCDD; one boot, 4 Nov 2026): after SBPROBE writes 00h to register 00h, 30h-37h still read F8h (31, 0 dB) where SBDK's defaults are C0h (24, -14 dB) for master, voice and MIDI and 00h (0, -62 dB) for CD. The boot leaves F8h in all eight on C0, the pin and a2 alike.
+- Filed (Michael, 5 Nov 2026, on the 13:22Z report): "the mixer reset values of 86Box's card and of a2's virtual mixer are filed as disagreements with the data sheet, 86Box's on the emulator-dispute list, a2's on CAND-27, both for the line-out measurement at A7". The PC's CT2291 after the same reset, read at A7, says which the real card does; the DOSBox-X twin (T6) the second emulator's.
+- Effect on the sweep: none seen; no game in the sweep is known to reset the mixer and rely on the default levels (not searched).
+- Evidence: emulator (one boot). Hardware: UNCONFIRMED.
 
 ### PARALLEL: how many 86Box recordings at once (A5's measured setting: one; measured 29 Oct 2026; a bench limit)
 
