@@ -1939,6 +1939,82 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 - Timing: the bench's sweep timing comes from a Pentium 133; the PC at MMX
   233 decides timing (A7's kit entries say so).
 
+### ACSIG: every sound measure reads the AC signal (the owner, 5 Nov 2026, questions 64 (a) and 63 (a); a bench setting)
+
+- decides = "silent: the owner's ruling of 5 Nov 2026 (question 64 (a), with 63 (a)); no document describes this bench's capture or its measures"
+- searched = "terms: DC offset, DC level, AC coupled, high-pass, DAC output, silence; hits: 108 in 27 documents (CS4231A 12, ES1869 12, ES1869B 12, CS4232 10, SB202SPEC 9, ES1878 7); 5 Nov 2026" (closest: ES1869:645 "FOUT_R is AC-coupled externally to CIN_R to remove DC offsets", an ESS sheet; SB202SPEC:103, the DAC's mute and its pops)
+
+- Ruled (the owner, 5 Nov 2026, on the 04:35Z report): "64: (a), with these
+  additions. The high-pass is applied to the whole recording before every
+  measure that reads samples: the first-sound detector, sound in the
+  window, the watchdog's silence test, cover, and any other consumer the
+  agent lists (the list is in the row, and each is marked AC after the
+  change). The filter's corner and order are recorded in thresholds.toml,
+  chosen as the lowest corner at which the planted flat step (-10 dBFS, no
+  sound) reads silent with margin under the detector's length and a planted
+  50 Hz tone at -40 dBFS reads as sound; both plants in the test." 63: "gaps
+  of up to one recorder buffer (20 ms) are bridged before the length test;
+  a planted burst train (14-frame bursts, 10 ms gaps) must read as one
+  sound starting at its first burst; the detector length is re-derived with
+  bridging on."
+- Why: 86Box's own SB16 holds its DAC's last value (a DC level near -10
+  dBFS on C0), a held PC speaker leaves one on any configuration, and a
+  card's line out is AC-coupled; the measures read each frame's RMS with
+  the DC in, so C0's DAC hold read as sound (acfirst.csv: 148 of 497 A6 C0
+  runs read otherwise).
+- The filter: runs/rec/acsig.py, a Butterworth high-pass ([sweep] hp_order,
+  hp_corner_hz), causal, run once over the whole recording from its first
+  sample before any window is cut; the stored capture is never changed.
+  The bridge: [sweep] first_sound_bridge_s (0.02 s). Plants:
+  runs/rec/test_plants.py; the corner: runs/rec/corner_select.py
+  (results/sweep/hp_corner.txt).
+- Set (5 Nov 2026, bench 03dd357 and e3123d9; emulator): order 1 at 6.4 Hz,
+  the lowest corner at which the -10 dBFS step runs at most 12 frames over
+  -50 dBFS (17 less a margin of 5) and the 50 Hz tone at -40 dBFS reads as
+  sound from its first frame. The length then re-derived by the 58 rule on
+  the AC signal with the bridge: 35 frames, 0.35 s (HEXENBEY's takes part
+  from 14 to 34 frames; the bridge alone gives 35 on the raw signal too).
+  For 35 frames the corner rule's lowest would be 2.5 Hz, where the launch
+  beep's tail reads as sound and the 58 rule falls to 2 frames: the corner
+  kept at 6.4 Hz, the question put to the owner (STATE question 65).
+  Reproduction: the new code with the filter and bridge off passes the old
+  detector's 54 test cases and fsmin's 4 Nov calibration line for line.
+- Known limits (test_plants.py info lines): a sound-free DC step inside a
+  still stretch keeps the watchdog at RUNNING at any corner the 50 Hz tone
+  allows; a step to full scale runs 14 to 15 frames.
+
+The list (the consumers that read a capture's samples, from reading every
+reader in runs/ and runs/rec; marked AC once its change is in and its test
+has run):
+
+| AC | Consumer | Where | Mark |
+|---|---|---|---|
+| AC-1 | the first-sound detector and sound in the window (first_audio_s, first_audio_guest_s, audio_present), and through it the harness rule's instant (C0's own; C2's and A2's from the C0 twin) | sweep.py main | AC (bench 03dd357) |
+| AC-2 | the first sound before a reboot (REBOOT cut) | sweep.py main | AC (bench 03dd357) |
+| AC-3 | the watchdog's silence test (HANG) and silent waits | sweep.py watchdog | AC (bench 03dd357; the filled-span mask runs on by the filter's settling time) |
+| AC-4 | fsmin: calibrate (the length) and rejudge (first_rejudged_ac.csv) | runs/rec/fsmin.py | AC (bench e3123d9) |
+| AC-5 | the harness rule's first sound found again (harness_rejudged_ac.csv) | runs/rec/rejudge_inserted.py | to mark |
+| AC-6 | the re-judged watchdog, REBOOT cut and sound in the window (watchdog_rejudged_ac.csv) | runs/rec/rejudge.py | to mark |
+| AC-7 | audiocmp --whole present (a pair's sound in the window) | runs/rec/audiocmp.py | to mark |
+| AC-8 | audiocmp --whole first | runs/rec/audiocmp.py | to mark |
+| AC-9 | audiocmp --whole gaps | runs/rec/audiocmp.py | to mark |
+| AC-10 | audiocmp --whole cover | runs/rec/audiocmp.py | to mark |
+
+- Derived (read no samples; AC through the above): calclass.py,
+  calpairs.py, calthresh.py, sweeppairs.py, loadcheck.py, calbatch.py's C0
+  reference for C2 and A2, the re-run set.
+- AC already (by their own band or each frame's mean), unchanged:
+  audiocmp's match, speed, back, jumps, ontime (150 to 4000 Hz); locate,
+  envelope, the CD lag (300 to 3000 Hz); cdlevel; sweep.launch_beep;
+  tonecheck's silence, side, tone and band checks.
+- Kept raw on purpose (they read exact zeros, ramps or sample-exact
+  repeats, which a high-pass would remove): the readers (the bench's read_wav,
+  sweep.wav_tail), the capture hash and store, tonecheck's exact-zero,
+  ramp, grid and edge checks and beep_onset, capbreak, stalls, hoststall,
+  underruns, pitchcal, stale.py, closing_beep, the live launch-beep poll.
+- Outside A5 and A6, reading the DC, not in this change (for a later row):
+  tonecheck's onset check and sndreg's loudness.
+
 ### CALTHRESH: the sweep's pass limits, from the control's own spread (set 1 Nov 2026 from plan 28b798e7; a bench setting)
 
 - decides = "silent: the owner's rulings of 30 and 31 Oct 2026 (the limits from the control's own run-to-run spread on the known-good games) and plan 28b798e7's measurement; no document sets a pass limit for this comparison"
