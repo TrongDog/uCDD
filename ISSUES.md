@@ -1979,9 +1979,30 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   kept at 6.4 Hz, the question put to the owner (STATE question 65).
   Reproduction: the new code with the filter and bridge off passes the old
   detector's 54 test cases and fsmin's 4 Nov calibration line for line.
+- Answered (the owner, 5 Nov 2026, question 65): "The corner and the length are
+  one calibration, not two: the corner must make every bench-made transient
+  (the planted -10 dBFS step and the launch beep's end) read silent within
+  the detector length, with the planted 50 Hz tone at -40 dBFS still reading
+  as sound; the length is the 58 agreement length or the longest bench-made
+  transient at that corner plus margin, whichever is greater. The pair 6.4
+  Hz with 0.35 s satisfies this and is adopted". Its 64 wording "the lowest
+  corner at which the step reads silent" withdrawn (rule 7 form: the text
+  above kept). The pair's plants recorded beside it (bench 7648958;
+  thresholds.toml [sweep] ac_transient_step_frames = 12, the -10 dBFS step;
+  ac_transient_beep_frames = 8, the launch beep's end; the length 35 frames,
+  the greater of the 58 agreement length and the longest plus the margin of
+  5) and checked by test_plants.py; corner_select.py --pair checks a pair
+  against the rule: 2.0 Hz does not hold (the step needs 43 frames), nor
+  100 Hz (the tone's quietest frame -52.11 dBFS); 2.5 Hz with 35 frames
+  does (30 + 5), so the rule bounds the pair and the ruling chose 6.4 Hz.
 - Known limits (test_plants.py info lines): a sound-free DC step inside a
   still stretch keeps the watchdog at RUNNING at any corner the 50 Hz tone
-  allows; a step to full scale runs 14 to 15 frames.
+  allows; a step to full scale runs 14 to 15 frames. Notes shorter than the
+  length (the owner, 5 Nov 2026, question 65): HEROLANC's PC-speaker music,
+  notes of 0.21 to 0.23 s with gaps of 40 to 50 ms, reads no first sound on
+  C0 and the pin at 0.35 s; a known limit of the detector, its row judged on
+  match and cover; a detector counting a run of short notes as one sound is
+  listed for A7's instrument review, not changed now.
 
 The list (the consumers that read a capture's samples, from reading every
 reader in runs/ and runs/rec; marked AC once its change is in and its test
@@ -2140,6 +2161,18 @@ has run):
   changed sweep (pcb8-plant-REBOOT-c0, -c2): "REBOOT at 1.9 s", 10 boots;
   "REBOOT at 1.4 s", 8 boots. calclass ranks REBOOT as a stop. Evidence:
   emulator (development runs, recompiler off; not ledger plans).
+- Known limit (seen 5 Nov 2026 in A6 batch b11, plan e6399b69; not changed:
+  for A7's instrument review): the HANG test reads the level over the whole
+  still stretch, from the first shot that matches to the window's end, and
+  the shots are 2 s apart, so the state follows the shot grid's phase.
+  FLY1984: the same still screen and silence on all three after a short
+  opening sound (its last frame over -60 dBFS at 1.69 to 1.82 s); C0 and C2
+  HANG, A2 RUNNING, because A2's first still shot came before the sound's
+  end (the stretch at -45.5 dBFS on the AC signal against -60). OSTEALTH:
+  all three silent at the same screen whose TOP SECRET blinks slowly; the
+  shots caught a change near the end on C0 and A2 (RUNNING) and none in
+  C2's last 28 s (HANG at 67.4 s). Read from the pictures and the AC
+  signal (scratch stilllvl.py, spanlvl.py, keys.py); evidence: emulator.
 
 ### VOODOO: 86Box's Voodoo Graphics on the sweep machine (proven 2 Nov 2026; a bench setting)
 
