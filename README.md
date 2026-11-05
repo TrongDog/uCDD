@@ -13,7 +13,7 @@ order of work into these pieces:
 | `tools/trailers.py` | Counts Issue:, Lesson: and Evidence: trailers in the history |
 | `tools/game.py` | Before a game runs: its engine, driver versions and family, looked up in the library; what the notes lack |
 | `tools/ci.py`, `ci/method.yml` | The checks on GitHub: every branch built with its headroom, and the hook's checks on commits made after the hook went in |
-| `bench/` | The bench's backups: the bench folder in a private repository, the notes versioned on the machine only, a pre-commit check against game and heavy files, the hourly backup, and how to restore it all on a new machine (bench/README.md) |
+| `bench/` | The bench's backups: the bench folder in a private repository, the notes versioned on the machine only, a pre-commit check against game and heavy files, the hourly snapshot on a ref of its own (never on the working branch), and how to restore it all on a new machine (bench/README.md) |
 | `install.sh`, `tests/test_method.py`, `lib/methodlib.py` | Install per worktree; self-tests; what the pieces share |
 
 Standard library only: Python 3.11 or later (tomllib), git, sh.
@@ -61,8 +61,8 @@ From the uCDD clone:
   `sh install.sh --claude <dir>` prints the lines to compare.
 - **The ledger** (`ledger/`, or `[ledger] path`): its results and saved plans
   exist only where the runners wrote them. Keep it in the bench's top
-  folder, versioned on the machine and copied to the backup disk
-  (bench/README.md); a lost ledger means plans are saved and run again
+  folder, versioned on the machine (each hour's snapshot holds it) and
+  copied to the backup disk (bench/README.md); a lost ledger means plans are saved and run again
   before a commit can cite them.
 - **The self-tests** need `UCDD_REPO` (a uCDD clone) and `UCDD_REF`, and NASM
   on PATH, or most of them skip.
