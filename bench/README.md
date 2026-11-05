@@ -6,14 +6,32 @@ each part holds:
 
 | What | Where | Why there |
 |---|---|---|
-| The bench folder: the runners and their wiring, the test programs' sources, the 86Box machine configurations (text), the kit scripts | its own git repository, pushed hourly to the private `TrongDog/ucdd-bench` | the costliest part to rebuild, and it holds nothing about the owner; off the machine, so it survives losing the machine and the disk together |
-| The notes (CONTEXT, HANDOFF, STATE, LESSONS and lessons.py), Claude's settings (`.claude/`), Claude's memory (mirrored in), the ledger, the bench's method.local.toml | a git repository at the top folder with **no remote**, committed hourly | they hold local paths, the old machine's account name and details about the owner, so they do not leave the machine, private repository or not. An hourly push would also send whatever an agent wrote, unread |
+| The bench folder: the runners and their wiring, the test programs' sources, the 86Box machine configurations (text), the kit scripts | its own git repository on the private `TrongDog/ucdd-bench`: the agent's commits, pushed by the agent, and each hour a snapshot of the working tree on `refs/backup/hourly` | the costliest part to rebuild, and it holds nothing about the owner; off the machine, so it survives losing the machine and the disk together |
+| The notes (CONTEXT, HANDOFF, STATE, LESSONS and lessons.py), Claude's settings (`.claude/`), Claude's memory (mirrored in), the ledger, the bench's method.local.toml | a git repository at the top folder with **no remote**: the agent's commits, and each hour a snapshot of its working tree on its own `refs/backup/hourly`, on this machine only | they hold local paths, the old machine's account name and details about the owner, so they do not leave the machine, private repository or not. An hourly push would also send whatever an agent wrote, unread |
 | The games, disc images, recordings, ROMs and machine images | the backup disk only | game content or licensed software, never in any repository |
 
 The nightly snapshot to the backup disk copies both repositories with their
-`.git` folders, so the disk holds their history too. The local history is
-worth having on its own: `git log -p` on LESSONS.md shows when a lesson
-changed and what it said before, whoever changed it.
+`.git` folders, so the disk holds their history and their snapshot refs too.
+The local history is worth having on its own: `git log -p` on LESSONS.md
+shows each commit that changed it, and `git log -p refs/backup/hourly --
+<path>` each hour's state of it.
+
+## The hourly snapshot
+
+`backup.sh` never commits on the working branch (the owner, 5 Nov 2026): the
+working branch carries only the agent's commits. Each hour it writes one
+commit to `refs/backup/hourly`: the working tree as `git add -A` would stage
+it, and the folders named after the repository (Claude's memory) as
+`mirror/<name>`, built in an index of its own, so the branch, the index and
+the working tree are never touched. Its parents are the previous snapshot,
+then HEAD: `git log --first-parent refs/backup/hourly` walks the snapshots,
+and `git diff HEAD refs/backup/hourly` shows what the last one holds beyond
+the commits. Nothing new since the last one (same tree, HEAD inside it): no
+snapshot. A repository with a remote (the bench) pushes the ref to the same
+name there, never forced; a snapshot whose push was refused goes again the
+next hour. The agent pushes its own branch. A clone does not fetch the ref:
+`git fetch origin refs/backup/hourly:refs/backup/hourly`. The review flag of
+3 Nov 2026 is retired with this: nothing reads `runs/review.flag`.
 
 **What this does not cover:** losing the machine and the disk together
 (theft, fire, a surge through both). The bench folder then comes back from
@@ -25,9 +43,12 @@ remote storage, or a second disk kept elsewhere), not GitHub.
 
 The pre-commit check (`bench/hooks/pre-commit`, settings in `bench.toml`)
 refuses game, program, disc, recording and image files and anything over
-20 MB. `backup.sh` runs it itself before every backup, so the hourly path does
-not depend on a hook being installed. `install.sh --bench` links it into a
-repository's `.git/hooks` for commits made by hand.
+20 MB, an absolute home path in a repository with a remote (2 Nov 2026), and
+any commit while a plan records (4 Nov 2026). `backup.sh` runs it on every
+snapshot before the ref is written (git commit-tree runs no hook), on the
+files the snapshot holds beyond HEAD, a moved file read as a new one, so the
+hourly path does not depend on a hook being installed. `install.sh --bench`
+links it into a repository's `.git/hooks` for commits made by hand.
 
 Neither ever moves `core.hooksPath`: the guard refuses that, and must keep
 refusing it, since a moved hooks path is how a uCDD commit would skip its
@@ -75,8 +96,10 @@ are the case it is for:
        17 * * * * sh <method>/bench/backup.sh <bench folder> >> <top>/backup.log 2>&1
        19 * * * * sh <method>/bench/backup.sh <top> <Claude's memory folder> >> <top>/backup.log 2>&1
 
-   An hour later `backup.log` names a commit for each (or is silent when
-   nothing changed), and GitHub shows the bench folder's.
+   An hour later `backup.log` names a snapshot for each ("backed up <hash>
+   on refs/backup/hourly", or nothing when nothing changed), and
+   `git ls-remote origin refs/backup/hourly` in the bench folder shows the
+   bench's.
 6. The backup disk: check that the nightly snapshot takes both `.git`
    folders (some tools skip hidden folders). Prefer a snapshot that keeps
    old copies (restic, borg, rsnapshot, btrfs or zfs snapshots) to a plain
@@ -84,15 +107,25 @@ are the case it is for:
    deleted note is still in the history; a deleted repository is not.
 
 The method guard refuses shell commands that name the ledger's files.
-`backup.sh` adds everything with `git add -A` and runs as a script, so it is
-not refused. Never check out, reset or revert the ledger: it only grows.
+`backup.sh` takes the ledger into each snapshot with `git add -A` into its own
+index and runs as a script, so it is not refused. The working branch's copy
+of the ledger is no longer committed hourly: it stays at its last commit
+while the file grows, so a `git checkout -- .`, `git restore .`, `git stash`
+or `git reset --hard` in the top folder would throw away its newer lines (the
+snapshot keeps them). Never check out, reset or revert the ledger: it only
+grows.
 
 ## On a new machine
 
-1. Restore the top folder from the backup disk, `.git` folders included, and
-   copy `mirror/<memory>` back to Claude's memory folder. Then
-   `git -C <bench folder> pull`: GitHub has the last hour, the disk the last
-   night. If the disk is lost too, clone the bench folder from
+1. Restore the top folder from the backup disk, `.git` folders included.
+   Each working tree's last hour is its snapshot: `git -C <repo> restore
+   --source=refs/backup/hourly --worktree -- .` (HEAD and the index stay;
+   `git status` then shows the uncommitted work as it was). Copy
+   `mirror/<memory>` back to Claude's memory folder from there
+   (`git -C <top> archive refs/backup/hourly mirror | tar -x -C <scratch>`).
+   For the bench, GitHub has the last hour: `git -C <bench folder> pull` and
+   `git -C <bench folder> fetch origin refs/backup/hourly:refs/backup/hourly`
+   (refused, rightly, when the disk's is the newer). If the disk is lost too, clone the bench folder from
    `https://github.com/TrongDog/ucdd-bench.git` and start the notes again.
 2. Clone the fork, add the method branch as a worktree, and run `install.sh`
    for the worktrees, for Claude, and with `--bench` for both bench

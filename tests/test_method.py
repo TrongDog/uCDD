@@ -702,22 +702,76 @@ class BenchTests(unittest.TestCase):
         (self.top / '.bench-allow').write_text('dos/FIXTURE.COM  # a 12-byte test fixture\n')
         self.assertEqual(self.commit('dos/FIXTURE.COM').returncode, 0)
 
-    def test_backup_commits_and_pushes(self):
+    def snapshot(self, repo):
+        """refs/backup/hourly's commit in repo, or '' when there is none."""
+        return subprocess.run(['git', 'rev-parse', '-q', '--verify', 'refs/backup/hourly'],
+                              cwd=repo, capture_output=True, text=True).stdout.strip()
+
+    def remote_ref(self, name):
+        return subprocess.run(['git', '--git-dir', str(self.remote), 'rev-parse', '-q', '--verify',
+                               name], capture_output=True, text=True).stdout.strip()
+
+    def parents(self, repo, commit):
+        return subprocess.run(['git', 'rev-list', '--parents', '-n', '1', commit], cwd=repo,
+                              capture_output=True, text=True).stdout.split()[1:]
+
+    def test_backup_leaves_the_working_branch_alone(self):
+        # decides: the owner, 5 Nov 2026 (L38): "the hourly backup never commits on the working
+        # branch again. It writes its snapshot to a backup ref of its own (refs/backup/hourly, or
+        # a backup branch), pushed to the private remote, and the working branch carries only
+        # the agent's commits"
+        self.assertEqual(self.commit('runs/plan_run.py', b'print(1)\n').returncode, 0)
+        head = self.git('rev-parse', 'HEAD').stdout.strip()
+        (self.top / 'runs/plan_run.py').write_text('print(2)\n')      # a tracked change
+        (self.top / 'notes.md').write_text('notes\n')                 # an untracked file
         memory = Path(self.tmp.name) / 'memory'
         memory.mkdir()
         (memory / 'MEMORY.md').write_text('a note\n')
-        (self.top / 'notes.md').write_text('notes\n')
+        (memory / 'old.md').write_text('to go\n')
+        quiet = dict(os.environ, GIT_OPTIONAL_LOCKS='0')              # status writes no index
+        status = self.git('status', '--porcelain', '--untracked-files=all', env=quiet).stdout
+        index = (self.top / '.git/index').read_bytes()
         backup = ['sh', str(PACKAGE / 'bench/backup.sh'), str(self.top), str(memory)]
         first = subprocess.run(backup, capture_output=True, text=True)
         self.assertEqual(first.returncode, 0, first.stderr)
         self.assertIn('backed up', first.stdout)
-        self.assertTrue((self.top / 'mirror/memory/MEMORY.md').exists())
-        pushed = subprocess.run(['git', '--git-dir', str(self.remote), 'log', '--oneline', 'main'],
-                                capture_output=True, text=True).stdout
-        self.assertIn('Backup:', pushed)
+        # the working branch, the index and the working tree as they were
+        self.assertEqual(self.git('rev-parse', 'HEAD').stdout.strip(), head)
+        self.assertEqual((self.top / '.git/index').read_bytes(), index)
+        self.assertEqual(self.git('status', '--porcelain', '--untracked-files=all',
+                                  env=quiet).stdout, status)
+        self.assertFalse((self.top / 'mirror').exists())
+        # the snapshot: the working tree and the memory, over HEAD
+        snap = self.snapshot(self.top)
+        self.assertEqual(self.git('show', f'{snap}:runs/plan_run.py').stdout, 'print(2)\n')
+        self.assertEqual(self.git('show', f'{snap}:notes.md').stdout, 'notes\n')
+        self.assertEqual(self.git('show', f'{snap}:mirror/memory/MEMORY.md').stdout, 'a note\n')
+        self.assertEqual(self.parents(self.top, snap), [head])
+        # pushed: the snapshot on its own ref; no branch (the agent pushes its own commits)
+        self.assertEqual(self.remote_ref('refs/backup/hourly'), snap)
+        self.assertEqual(self.remote_ref('refs/heads/main'), '')
+        # nothing new: no snapshot, nothing said
         again = subprocess.run(backup, capture_output=True, text=True)
         self.assertEqual(again.returncode, 0, again.stderr)
-        self.assertNotIn('backed up', again.stdout)
+        self.assertEqual(again.stdout, '')
+        self.assertEqual(self.snapshot(self.top), snap)
+        # a file gone from the memory: the next snapshot follows the last, over the same HEAD
+        (memory / 'old.md').unlink()
+        third = subprocess.run(backup, capture_output=True, text=True)
+        self.assertEqual(third.returncode, 0, third.stderr)
+        snap2 = self.snapshot(self.top)
+        self.assertEqual(self.parents(self.top, snap2), [snap, head])
+        self.assertNotIn('mirror/memory/old.md',
+                         self.git('ls-tree', '-r', '--name-only', snap2).stdout)
+        self.assertEqual(self.remote_ref('refs/backup/hourly'), snap2)
+        # the agent commits: the next snapshot is over the new HEAD; main still the agent's to push
+        self.assertEqual(self.commit('runs/other.py', b'print(3)\n').returncode, 0)
+        head2 = self.git('rev-parse', 'HEAD').stdout.strip()
+        fourth = subprocess.run(backup, capture_output=True, text=True)
+        self.assertEqual(fourth.returncode, 0, fourth.stderr)
+        self.assertEqual(self.parents(self.top, self.snapshot(self.top)), [snap2, head2])
+        self.assertEqual(self.remote_ref('refs/heads/main'), '')
+        self.assertEqual(self.remote_ref('refs/backup/hourly'), self.snapshot(self.top))
 
     def backup(self, top):
         return subprocess.run(['sh', str(PACKAGE / 'bench/backup.sh'), str(top)],
@@ -730,8 +784,13 @@ class BenchTests(unittest.TestCase):
             (notes / 'LESSONS.md').write_text(text)
             result = self.backup(notes)
             self.assertEqual(result.returncode, 0, result.stderr)
-        log = subprocess.run(['git', 'log', '--oneline'], cwd=notes, capture_output=True, text=True)
+        log = subprocess.run(['git', 'log', '--format=%s', 'refs/backup/hourly'], cwd=notes,
+                             capture_output=True, text=True)
         self.assertEqual(log.stdout.count('Backup:'), 2)
+        # the working branch still has no commit: only the agent makes one
+        head = subprocess.run(['git', 'rev-parse', '-q', '--verify', 'HEAD'], cwd=notes,
+                              capture_output=True)
+        self.assertNotEqual(head.returncode, 0)
 
     def test_backup_checks_without_the_hook(self):
         notes = Path(self.tmp.name) / 'notes'
@@ -741,9 +800,50 @@ class BenchTests(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertIn('pre-commit: refused', result.stderr)
         self.assertIn('not backed up', result.stderr)
-        head = subprocess.run(['git', 'rev-parse', '-q', '--verify', 'HEAD'], cwd=notes,
-                              capture_output=True)
-        self.assertNotEqual(head.returncode, 0)
+        self.assertEqual(self.snapshot(notes), '')
+        # nothing left staged in the repository's own index
+        staged = subprocess.run(['git', 'diff', '--cached', '--name-only'], cwd=notes,
+                                capture_output=True, text=True)
+        self.assertEqual(staged.stdout, '')
+
+    def test_backup_checks_home_paths_before_the_push(self):
+        # decides: the owner, 2 Nov 2026 (question 41) for the check; 5 Nov 2026 (L38) for the
+        # ref: commit-tree runs no hook, so the backup runs the check before the ref is written
+        (self.top / 'results').mkdir()
+        (self.top / 'results/r.json').write_text('{"build": "/home/someone/bench/x"}\n')
+        result = self.backup(self.top)
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn('a local path', result.stderr)
+        self.assertEqual(self.snapshot(self.top), '')
+        self.assertEqual(self.remote_ref('refs/backup/hourly'), '')
+
+    def test_backup_reads_a_moved_file(self):
+        # the hook keeps git diff's A and M entries; a rename (R) would pass unread
+        body = ''.join(f'line {n}\n' for n in range(40))
+        self.assertEqual(self.commit('runs/a.py', body.encode()).returncode, 0)
+        (self.top / 'runs/a.py').rename(self.top / 'runs/b.py')
+        (self.top / 'runs/b.py').write_text(body + 'where = "/home/someone/bench/x"\n')
+        result = self.backup(self.top)
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn('runs/b.py', result.stderr)
+        self.assertIn('a local path', result.stderr)
+
+    def test_backup_pushes_a_snapshot_left_behind(self):
+        # a refused push keeps the snapshot here; the next hour, with nothing new, pushes it again
+        (self.top / 'notes.md').write_text('notes\n')
+        away = Path(self.tmp.name) / 'remote.away'
+        self.remote.rename(away)
+        first = self.backup(self.top)
+        self.assertEqual(first.returncode, 1, first.stdout)
+        self.assertIn('kept here, not pushed', first.stderr)
+        snap = self.snapshot(self.top)
+        self.assertNotEqual(snap, '')
+        away.rename(self.remote)
+        again = self.backup(self.top)
+        self.assertEqual(again.returncode, 0, again.stderr)
+        self.assertEqual(again.stdout, '')
+        self.assertEqual(self.snapshot(self.top), snap)
+        self.assertEqual(self.remote_ref('refs/backup/hourly'), snap)
 
     def test_install_leaves_hooks_path_alone(self):
         self.assertEqual(self.git('config', 'core.hooksPath').returncode, 1)
