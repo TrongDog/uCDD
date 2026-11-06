@@ -54,8 +54,8 @@ reaches a protected path is refused; so in the top folder, which holds the
 ledger and the libraries, no whole-tree form passes and files are named.
 Where the words cannot say, the reading is wide, never narrow (this reading,
 the bare reset and reset --soft, and the commands that write from commits:
-the agent's choice, question 68, applied, for Michael to confirm): a word that
-may be a branch or a path reaches the whole tree unless it is a path that
+the agent's choice, confirmed by Michael 6 Nov 2026 (68.1), applied): a word
+that may be a branch or a path reaches the whole tree unless it is a path that
 exists; an exclusion frees only a path it names literally (':!*.md' frees
 nothing); a writing command whose folder, git dir or a path is not known
 before the line runs (a variable the line does not set, a substitution, a
@@ -82,7 +82,8 @@ by hand are refused; ledger.py itself refuses a token that does not name its
 parent runner. Built, not run (6 Nov 2026; revised the same day on the
 review: pattern exclusions, the line's variables, unknown folders and paths,
 sh -c and eval, the git dir's repository; and again with the agent's choices
-of question 68 applied: a program named by a variable the line sets).
+confirmed by Michael 6 Nov 2026 (68.1) applied: a program named by a variable
+the line sets).
 
 lessons_read = "terms: guard, git, ledger, token, runner, commit, hook, shell, variable; lessons: L38, L1, L9, L20, L40, L33, L10, L21, L22, L39, L31, L32, L24, L36, L23; 6 Nov 2026"
 """
@@ -546,7 +547,7 @@ def git_reach(command, rest, is_path):
         return operands or [WHOLE]      # no path: the whole index from HEAD
     # <commit> <paths>: those paths. <commit> alone moves HEAD, with --soft too: what HEAD had
     # then reads as staged against it (over a commit-runs commit, the runs file): refused with the
-    # bare reset, the agent's choice, question 68.
+    # bare reset, the agent's choice, confirmed by Michael 6 Nov 2026 (68.1).
     return operands[1:] or [WHOLE]
 
 
