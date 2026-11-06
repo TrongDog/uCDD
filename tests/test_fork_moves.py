@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-"""The fork's commit-msg check lists a moved file's paths (the owner's decision of 6 Nov 2026 on
-question 67 (7): "the fork's commit-msg check lists files with renames off").
+"""The fork's commit-msg check reads a moved file: its paths (the owner's decision of 6 Nov 2026 on
+question 67 (7): "the fork's commit-msg check lists files with renames off") and its lines (his
+decision of 6 Nov 2026 on question 68: "68.4 and 68.5: yes to both"; 68.4 asked "renames off for
+the line checks too?").
 
     python3 METHOD/tests/test_fork_moves.py [CHECKS]
 
@@ -11,8 +13,10 @@ harmless file, then moves it with git mv, with rename detection on for every git
 whatever the user's own configuration says (GIT_CONFIG_COUNT: diff.renames=true; the global and
 system files off, so no hook of the user's runs in it), and runs the checks on the staged tree as
 the commit-msg hook does (checks.check(message, checks.Target()), the ledger off). The two lists
-the decision names are the check's lists of files: Target.files (which says whether a commit
-changes code) and the game-code check's list of added files (game_code_problems).
+the decision of question 67 names are the check's lists of files: Target.files (which says
+whether a commit changes code) and the game-code check's list of added files
+(game_code_problems); the line readings 68.4 names are added_lines (banned patterns, listings,
+decompiled code, game names in driver code).
 
   1 git's own listing        docs/notes.txt moved, unchanged, to docs/SETUP.EXE is one R100 entry
                              in git diff --cached --name-status; the game-code listing as it was
@@ -28,38 +32,57 @@ changes code) and the game-code check's list of added files (game_code_problems)
                              answers"), as a deletion of it would (Target.files)
   4 a clean move             docs/c.txt, forty plain lines, moved to docs/d.txt: no problem and no
                              code (a move is listed, not refused)
+  5 a listing moved          docs/a.txt, three lines of a made-up disassembly listing (built here
+                             from numbers, so this file holds none) then forty plain lines, moved
+                             unchanged to docs/b.txt: refused, "docs/b.txt:3: a disassembly
+                             listing; say in words what the code does, we never ship game code"
+                             (the line readings, 68.4)
+  6 a banned word moved      docs/e.txt, forty plain lines and a 41st holding the bench's old
+                             nickname (built here from two parts, so this file holds none), moved
+                             unchanged to docs/f.txt: refused, 'docs/f.txt:41 adds "<the
+                             nickname>": no test-bench nicknames (mantra rule 7)' (the line
+                             readings, 68.4; 68.4's own "cost": an old file holding a banned word
+                             cannot be moved until the word goes)
 
-  A named comparison, printed as "info", not counted: a listing moved. docs/a.txt, three lines of a
-  made-up disassembly listing (built here from numbers, so this file holds none) then forty plain
-  lines, moved unchanged to docs/b.txt. The line readings (added_lines) keep git's default, so an
-  unchanged move adds no lines and the listing is not read: "not refused" is expected on this
-  change and before it. It shows what the decision's "lists files" leaves (question 68, part
-  U2-1), and it is not this change's test.
+Corrected (rule 7 form, 6 Nov 2026). Old text: "A named comparison, printed as "info", not
+counted: a listing moved. ... The line readings (added_lines) keep git's default, so an unchanged
+move adds no lines and the listing is not read: "not refused" is expected on this change and
+before it. It shows what the decision's "lists files" leaves (question 68, part U2-1), and it is
+not this change's test." New text: case 5 (68.4 answered yes: the comparison is now a counted
+case, its expected answer reversed), with case 6 beside it.
 
-The known-bads (lesson L4; the draft's NOTES.md has the commands): lib/checks.py before the
-change: cases 2 and 3 BAD, "2 bad"; this change without --no-renames in Target.files (the game-code
-list alone): case 3 BAD, "1 bad"; this change without it in the game-code list (Target.files
-alone): case 2 BAD, "1 bad"; this change with the game-code check refusing every staged move (each
-R entry git lists with renames on): case 4 BAD, "1 bad". Case 1 is a control with no known-bad: it
-reads git's own listing, not checks.py, so no copy of checks.py can fail it; it fails only when
-the installed git lists a move otherwise. Prints ok or BAD per case, the info line, and "N bad"
+The known-bads (lesson L4; the draft's NOTES.md has the commands): lib/checks.py as it stands
+before this change (renames off on the two file lists only, each call carrying its own
+--no-renames, the line readings on git's default): cases 5 and 6 BAD, "2 bad"; this change with
+--no-renames taken out of Target.diff (the one place it now sits): cases 2, 3, 5 and 6 BAD, "4
+bad"; this change with added_lines' diff given '-M' after it (rename detection on again for the
+line readings alone; git reads its options left to right, the later one standing): cases 5 and 6
+BAD, "2 bad". The known-bads of the file lists' change (67 (7)) were run on 6 Nov 2026 against the
+file as it was then; they name lines this change has moved. Case 1 is a control with no
+known-bad: it reads git's own listing, not checks.py, so no copy of checks.py can fail it; it
+fails only when the installed git lists a move otherwise. Prints ok or BAD per case and "N bad"
 last; exits 1 on a BAD. Built, not run (6 Nov 2026): every count here is a prediction
 (UNMEASURED).
 
-What decides each expected value: the rule, the owner's decision of 6 Nov 2026 on question 67 (7)
-("the fork's commit-msg check lists files with renames off"): case 2, the game-code list, which
-question 67 (7) named (lib/checks.py:430); case 3, Target.files, the other list the check makes,
-by the reading of "lists files" as the check's two lists of files, the line checks left as they
-are (the agent's choice, question 68); the refusals themselves, method.toml's [games] (the
-suffixes: the owner's hard rule of 20 Oct 2026, we never ship game code) and [commit] code (a code
+What decides each expected value: the file lists, the owner's decision of 6 Nov 2026 on question 67
+(7) ("the fork's commit-msg check lists files with renames off"): case 2, the game-code list,
+which question 67 (7) named; case 3, Target.files, the other list the check makes, by the reading
+of "lists files" as the check's two lists of files (the agent's choice, confirmed by the owner 6 Nov
+2026 (68.3)); the line readings, the owner's decision of 6 Nov 2026 on question 68 ("68.4 and 68.5:
+yes to both"): cases 5 and 6; the refusals themselves, method.toml's [games] (the suffixes, the
+listing pattern and listing_lines 3: the owner's hard rule of 20 Oct 2026, we never ship game code),
+its [[banned]] nickname pattern (mantra rule 7: no bench nickname in the fork) and [commit] code (a code
 commit names its row); git's listing of a move (R100; --diff-filter=AM keeping none of it;
 --no-renames splitting it into D and A), silent: git-diff(1), asserted on the installed git as
-tests/test_moves.py does for the bench's check. The comparison's "not refused" decides nothing:
-it is information.
+tests/test_moves.py does for the bench's check; git reading a later -M over an earlier
+--no-renames (the third known-bad), silent: git-diff(1), not asserted here (if git kept the first,
+that plant would pass and say so: the known-bad's own check).
 
-decides = "the owner's decision of 6 Nov 2026 on question 67 (7): \"the fork's commit-msg check lists files with renames off\" (case 2, the game-code list it named); case 3, Target.files: the agent's choice, question 68 (the check's two lists of files, the line checks unchanged); git's listing silent: git-diff(1), asserted here"
+decides = "the owner's decision of 6 Nov 2026 on question 67 (7): \"the fork's commit-msg check lists files with renames off\" (case 2, the game-code list it named); case 3, Target.files: the agent's choice, confirmed by the owner 6 Nov 2026 (68.3); cases 5 and 6, the line readings: the owner's decision of 6 Nov 2026 on question 68: \"68.4 and 68.5: yes to both\"; git's listing silent: git-diff(1), asserted here"
 searched = ""terms: rename, staged, commit-msg, diff-filter; hits: 109 in 22 documents (RBIL_J 20, RBIL_G 19, RBIL_F 10, RBIL_H 9, RBIL_M 7, MSCDEX 5); 6 Nov 2026""
+searched = "terms: rename, banned, listing, moved; hits: 582 in 104 documents (INTEL486_1995 20, INTEL94 20, INTEL96 20, PBOOK 20, PEAK 20, PIIX4 20); 6 Nov 2026"
 lessons_read = "terms: rename, commit-msg, hook, check, staged, game; lessons: L11, L4, L38, L2, L30, L7, L35, L1, L20, L40, L33, L5, L8, L13, L19, L37, L41, L10, L15, L21, L22, L12, L14, L25, L31, L32, L42, L43, L26, L36, L23; 6 Nov 2026"
+lessons_read = "terms: rename, commit-msg, check, staged, banned, listing; lessons: L11, L4, L38, L2, L30, L7, L35, L40, L33, L13, L19, L37, L41, L15, L21, L22, L12, L25, L31, L32, L42, L43, L26, L36, L23; 6 Nov 2026"
 """
 
 from pathlib import Path
@@ -74,6 +97,9 @@ PACKAGE = Path(__file__).resolve().parent.parent
 BODY = ''.join(f'line {n}\n' for n in range(40))
 # a made-up listing (address, bytes, mnemonic), built from numbers so no line of this file is one
 LISTING = ''.join('%04X:%04X  %02X %02X  mov ah, %d\n' % (0x1000, 0x100 + 2 * n, 0xB4, n, n) for n in range(3))
+# the bench's old nickname, method.toml's first [[banned]] pattern, built from two parts so this
+# file never holds the word itself (the commit-msg check reads this file's lines too)
+NICKNAME = 'r' + 'ig86'
 MESSAGE = 'Notes: a file moved\n'
 NO_ROW = 'no Issue: trailer naming the row this change answers'
 # rename detection on for every git command here, the checks' own included (they inherit this
@@ -166,13 +192,17 @@ def main():
         found, code = checked()
         report(not found and code == [], 'a clean move', '%s; code %r' % (' | '.join(found) or 'no problem', code))
 
-        # the named comparison, not counted: an unchanged moved listing (the line readings)
-        moved(tmp / 'listing', 'docs/a.txt', 'docs/b.txt', LISTING + BODY)
+        # 5. an unchanged moved listing: every line of the moved file read (68.4)
+        moved(tmp / 'five', 'docs/a.txt', 'docs/b.txt', LISTING + BODY)
         found, code = checked()
-        hit = [p for p in found if p.startswith('docs/b.txt:3: a disassembly listing;')]
-        print('info %-26s %s' % ('a listing moved', 'refused: %s' % hit[0] if hit else
-                                  'not refused (an unchanged move adds no lines: question 68, part U2-1)'),
-              flush=True)
+        want = 'docs/b.txt:3: a disassembly listing; say in words what the code does, we never ship game code'
+        report(want in found, 'a listing moved', ' | '.join(found) or 'NO PROBLEM FOUND')
+
+        # 6. an unchanged moved file holding a banned word: refused at its new name and line (68.4)
+        moved(tmp / 'six', 'docs/e.txt', 'docs/f.txt', BODY + 'see the %s notes\n' % NICKNAME)
+        found, code = checked()
+        want = 'docs/f.txt:41 adds "%s": no test-bench nicknames (mantra rule 7)' % NICKNAME
+        report(want in found, 'a banned word moved', ' | '.join(found) or 'NO PROBLEM FOUND')
     finally:
         os.chdir(here)
         shutil.rmtree(tmp, ignore_errors=True)

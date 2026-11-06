@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """The bench repository's pre-commit check: no commit while a plan records, no game, program,
-disc or big file, and no absolute home path in any file.
+disc or big file, no absolute home path in any file, and in the top folder's notes no time
+heading the clock tool did not write.
 
 The bench is private, but we never ship game code anywhere, and a backup is
 only useful if it can be cloned onto a new machine in minutes. Built
@@ -21,6 +22,28 @@ limit, is refused as before; every other check still reads the runs file. Until 
 file grows past 20 MB in the top folder only. Built, not run (6 Nov 2026): tests/test_runs_size.py.
 The lessons for this change: lessons_read = "terms: ledger, size, hook, commit; lessons: L38,
 L20, L40, L33, L41, L10, L22, L39, L32; 6 Nov 2026"; the line below is the renames change's.
+
+The clock check (the owner's decision of 6 Nov 2026, lesson L40: "every time heading in HANDOFF and
+STATE is written by a tool from the clock, and the commit check refuses a time line the tool did
+not write"): when a commit adds or changes context/HANDOFF.md or context/STATE.md (the top
+folder's notes; the bench repository holds neither, so nothing changes there), this hook runs the
+repository's own context/clockhead.py check on those files, and each line it prints is a
+refusal. What it reads (its docstring has the line forms and why): every new '## ' entry
+heading of HANDOFF (its stamp, and a clock time typed in its title), and the new time ranges that
+open STATE's dated results and gap paragraphs, outside quotes and backquotes, each against the
+record of what clockhead.py issued. A clocked file staged with no context/clockhead.py
+in the repository is refused (a check that went missing never passes a commit). Not on the
+hourly backup's snapshot (bench/backup.sh runs this hook on an index of its own): the check is
+for commits, and a typed heading in the working tree must never cost a backup; the commit is
+still refused. Told apart by fact, both together: the hook is not run by git (its parent process
+is not git; a commit's hook always is) and its index (GIT_INDEX_FILE) lies outside the
+repository's git folder (backup.sh's lies in a temporary folder; a commit's is the git folder's
+index, its lock, or a next-index file there). That a commit cannot reach the skip rests on git
+being its hook's parent even when GIT_INDEX_FILE names another index (silent: githooks(5)):
+UNMEASURED until tests/test_clock_hook.py's cases 8 and 9 run on this host's git. Built, not run
+(6 Nov 2026): tests/test_clock_hook.py (the wiring, with a stand-in tool) and the top folder's
+context/test_clockhead.py (the tool, and the two typed headings of 6 Nov through this hook).
+lessons_read = "terms: clock, heading, time, hook, commit, backup; lessons: L38, L40, L20, L33, L10, L18, L22, L16, L32, L43; 6 Nov 2026"
 
 lessons_read = "terms: rename, hook, commit, check, staged, backup; lessons: L11, L4, L38, L2, L30, L7, L35, L20, L40, L33, L13, L19, L37, L41, L10, L15, L22, L12, L25, L31, L32, L42, L43, L21, L26, L36, L23; 6 Nov 2026"
 """
@@ -70,6 +93,59 @@ def recording():
     return line
 
 
+# The notes whose time headings the top folder's clock check reads, and its tool, as paths in the
+# repository being committed (the owner's decision of 6 Nov 2026, lesson L40)
+CLOCKED = ('context/HANDOFF.md', 'context/STATE.md')
+CLOCK_TOOL = 'context/clockhead.py'
+
+
+def run_by_git():
+    """Whether git runs this hook (its parent process is git), as for every commit; a parent that
+    cannot be read counts as git, so the clock check is never skipped by a failed reading."""
+    try:
+        return Path(f'/proc/{os.getppid()}/comm').read_text().strip() == 'git'
+    except OSError:
+        return True
+
+
+def own_index():
+    """Whether the index this hook reads is the repository's own: GIT_INDEX_FILE unset, or a file
+    inside the git folder (the index, its lock, a next-index file); backup.sh's snapshot index,
+    in a temporary folder, is not."""
+    index = os.environ.get('GIT_INDEX_FILE')
+    if not index:
+        return True
+    git_dir = Path(git('rev-parse', '--absolute-git-dir').decode().strip()).resolve()
+    path = Path(index) if Path(index).is_absolute() else Path.cwd() / index
+    try:
+        path.resolve().relative_to(git_dir)
+    except ValueError:
+        return False
+    return True
+
+
+def clock_problems(top, names):
+    """The clock check's refusals for the clocked notes among NAMES (staged, added or changed),
+    from TOP's own context/clockhead.py check: one line each, as it prints them. None staged, or
+    the backup's snapshot (not run by git, on an index of its own): nothing to check."""
+    staged = [name for name in CLOCKED if name in names]
+    if not staged or (not run_by_git() and not own_index()):
+        return []
+    tool = top / CLOCK_TOOL
+    if not tool.is_file():
+        return [f'{name}: its time headings are checked by {CLOCK_TOOL}, which this repository does '
+                'not hold (L40): restore it before committing the notes' for name in staged]
+    done = subprocess.run([sys.executable, str(tool), 'check', *staged], cwd=top,
+                          capture_output=True, text=True, errors='replace')
+    if done.returncode == 0:
+        return []
+    said = [line.strip() for line in done.stdout.splitlines() if line.strip()]
+    if said:
+        return said
+    err = ' | '.join(line.strip() for line in done.stderr.splitlines() if line.strip()) or 'no message'
+    return [f'{CLOCK_TOOL} check: exit {done.returncode}: {err[-400:]}']
+
+
 def runs_file_in(top):
     """The ledger's runs file as a path in the repository at TOP, in git's form, or None when it
     lies outside it (the bench repository). Its path is methodlib's: the ledger folder
@@ -105,6 +181,8 @@ def main():
     # which holds the ledger and the notes with their paths, and never gets one) is not checked for it
     pushed = bool(git('remote').strip())
     runs_name = runs_file_in(top)
+    # the time headings of the top folder's notes (L40), whatever .bench-allow says
+    clock = clock_problems(top, names)
     problems = []
     for name in names:
         if any(fnmatch.fnmatchcase(name, pattern) for pattern in allowed):
@@ -126,12 +204,20 @@ def main():
                 if LOCAL_PATH.search(line):
                     problems.append(f'{name}:{number}: a local path; write it as ~/ or relative to the bench')
                     break
-    if not problems:
+    if not problems and not clock:
         return 0
-    print('pre-commit: refused (bench/bench.toml in the method package)', file=sys.stderr)
-    for problem in problems:
-        print(f'  - {problem}', file=sys.stderr)
-    print('An exception goes in .bench-allow with a comment saying why.', file=sys.stderr)
+    if problems:
+        print('pre-commit: refused (bench/bench.toml in the method package)', file=sys.stderr)
+        for problem in problems:
+            print(f'  - {problem}', file=sys.stderr)
+        print('An exception goes in .bench-allow with a comment saying why.', file=sys.stderr)
+    if clock:
+        print(f'pre-commit: refused: a time line the clock tool did not write (L40; {CLOCK_TOOL})',
+              file=sys.stderr)
+        for problem in clock:
+            print(f'  - {problem}', file=sys.stderr)
+        print(f'Write each with python3 {CLOCK_TOOL} (handoff for a HANDOFF heading, range for '
+              'STATE), never by hand; .bench-allow does not except them.', file=sys.stderr)
     return 1
 
 

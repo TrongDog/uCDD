@@ -13,19 +13,29 @@ Notes commits are exempt from those. Every commit is refused banned patterns
 in its message and added lines, and game code: a program or driver file, a
 disassembly listing, a game named in driver code.
 
-The two lists of a commit's files are made with renames off (the owner's
-decision of 6 Nov 2026 on question 67 (7): "the fork's commit-msg check
-lists files with renames off"), as the bench's check has had since the same
-day: Target.files, which says whether a commit changes code, and the
-game-code check's list of added files (read as the check's two lists of
-files: the agent's choice, question 68). A file moved with git mv is listed
-as a new file under its new name and its old path as deleted. The line
-readings (added_lines: banned patterns, listings, decompiled code, game
-names in driver code) keep git's default: an unchanged move adds no lines
-there (whether they should have renames off too: question 68, part U2-1).
-Built, not run (6 Nov 2026): tests/test_fork_moves.py.
+Every diff the checks read is made with renames off (Target.diff). First the
+two lists of a commit's files (the owner's decision of 6 Nov 2026 on question
+67 (7): "the fork's commit-msg check lists files with renames off"), as the
+bench's check has had since the same day: Target.files, which says whether a
+commit changes code, and the game-code check's list of added files (read as
+the check's two lists of files: the agent's choice, confirmed by the owner 6
+Nov 2026 (68.3)). Then the line readings too (the owner's decision of 6 Nov
+2026 on question 68: "68.4 and 68.5: yes to both"; 68.4 asked "renames off
+for the line checks too?"): added_lines (banned patterns, listings,
+decompiled code, game names in driver code) and changed_lines (the joins). A
+file moved with git mv is a new file under its new name, every line of it
+added and read, and its old path deleted. The cost, as 68.4 named it: moving
+an old file that still holds a banned word (the old nickname, a home path) is
+refused until the word goes.
+Corrected (rule 7 form, 6 Nov 2026). Old text: "The line readings ... keep
+git's default: an unchanged move adds no lines there (whether they should
+have renames off too: question 68, part U2-1)." New text: the paragraph
+above (68.4 answered yes). Built, not run (6 Nov 2026):
+tests/test_fork_moves.py, cases 5 and 6 for the line readings.
 
 lessons_read = "terms: rename, commit-msg, hook, check, staged, game; lessons: L11, L4, L38, L2, L30, L7, L35, L1, L20, L40, L33, L5, L8, L13, L19, L37, L41, L10, L15, L21, L22, L12, L14, L25, L31, L32, L42, L43, L26, L36, L23; 6 Nov 2026"
+The line above is the file lists' change (67 (7)); this one is the line readings' (68.4):
+lessons_read = "terms: rename, commit-msg, check, staged, banned, listing; lessons: L11, L4, L38, L2, L30, L7, L35, L40, L33, L13, L19, L37, L41, L15, L21, L22, L12, L25, L31, L32, L42, L43, L26, L36, L23; 6 Nov 2026"
 """
 
 from pathlib import Path
@@ -79,15 +89,19 @@ class Target:
         return 'HEAD' if ref_exists('HEAD') else None
 
     def diff(self, *args):
+        # Renames off for every diff the checks read (the owner's decisions of 6 Nov 2026: on question
+        # 67 (7), "the fork's commit-msg check lists files with renames off", and on question 68,
+        # 68.4, the line checks too). git diff detects renames by default (diff.renames; copies
+        # with diff.renames=copies), and a moved file is then one entry under its new name only:
+        # a code file moved out of the code paths read as no code change, a file moved in was
+        # dropped by the A and M filter, and an unchanged move added no lines to read. With
+        # --no-renames the old path is a deletion and the new one an added file, read whole.
         base = ['--cached'] if not self.commit else [self.parent() or EMPTY_TREE, self.commit]
-        return git('diff', *base, '--no-color', '--no-ext-diff', *args).stdout
+        return git('diff', *base, '--no-color', '--no-ext-diff', '--no-renames', *args).stdout
 
     def files(self):
-        # Listed with renames off (the owner's decision of 6 Nov 2026 on question 67 (7)): git diff
-        # detects renames by default (diff.renames), and a moved file is then one entry under its
-        # new name only, so a code file moved out of the code paths read as no code change. With
-        # --no-renames the old path is listed too (deleted), as a plain deletion would be.
-        return [name for name in self.diff('--name-only', '--no-renames', '-z').split('\0') if name]
+        # renames off in diff (above): a moved file's old path is listed too, as a deletion
+        return [name for name in self.diff('--name-only', '-z').split('\0') if name]
 
     def blob(self, name):
         shown = subprocess.run(['git', 'cat-file', 'blob', f'{self.commit or ""}:{name}'],
@@ -139,7 +153,8 @@ def grade_of(value):
 
 
 def added_lines(target):
-    """File, line number and text of every line the commit adds."""
+    """File, line number and text of every line the commit adds; a moved file's every line
+    (renames off in Target.diff: the owner's decision of 6 Nov 2026 on question 68, 68.4)."""
     name, number = None, 0
     for line in target.diff('-U0').splitlines():
         if line.startswith('+++ '):
@@ -445,11 +460,9 @@ def strings(code):
 def game_code_problems(target):
     """We never ship game code: its files, its listings, or a special case naming a game."""
     games, problems, why = CONFIG['games'], [], 'we never ship game code'
-    # listed with renames off (the owner's decision of 6 Nov 2026 on question 67 (7)): with renames
-    # on, a file moved in with git mv is one R entry, which the A and M filter dropped unread; with
-    # --no-renames it is an A of its new name (and a D of the old, which the filter leaves out)
-    added = [name for name in target.diff('--name-only', '--no-renames', '--diff-filter=AM', '-z').split('\0')
-             if name]
+    # renames off in Target.diff (67 (7)): a file moved in with git mv is an A of its new name
+    # (and a D of the old, which the filter leaves out), never one R entry the filter drops
+    added = [name for name in target.diff('--name-only', '--diff-filter=AM', '-z').split('\0') if name]
     census = set(re.findall(r'^\| ([0-9a-f]{8}) \|', library_page(target, 'census.md'), re.M))
     for name in added:
         if any(fnmatch.fnmatchcase(name, pattern) for pattern in games['allowed']):
