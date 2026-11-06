@@ -1396,6 +1396,10 @@ Evidence: emulator; the pin 4 takes of 4, a2 1 take.
 Michael, 5 Nov 2026: "Control failures where only the bare card fails (Pirates! Gold, Bruce Lee) are listed for A7 and for the docs as "runs under uCDD, not under the control", cause unread, no verdict."
 - PIRATES (b07, acca1005-031 to -033): C0 "A PAGE FAULT HAS OCCURRED DUE TO INSUFFICIENT MEMORY"; the pin and a2 run with sound. Cause unread.
 - BRUCELEE (b08, eecd58bf-097 to -099): C0 restarts the machine 3.7 s after its title, again on every boot (9 boots in the window); the pin and a2 run to the game's play screen, silent. Cause unread.
+Michael, 6 Nov 2026 (question 68): "FLYINGTI: control fails, control-only list." So the list also takes a game whose control fails where uCDD fails too; its entries say which builds fail.
+- FLYINGTI (b14, 6d5d7c39-046 to -048; DOS/4GW 1.97): C0 and the pin "DOS/4GW Professional error (2001): exception 0Eh (page fault)" 3.4 to 3.8 s in; a2 stops at the DOS/4GW banner. The control fails, and both uCDD builds fail too. Cause unread.
+- MCKIDS (b15, ebdee792-004 to -006): C0 boots, then stays black and silent to the end of the window; the pin and a2 play the Virgin intro with sound (first sound 9.49 and 9.52 s). Cause unread; to the re-runs (the 2-of-3 rule).
+- SF2 (b15, ebdee792-034 to -036): C0 "JemmEx: exception 0D occured at CS:EIP=53E1:000002D9, ERRC=00000000 ... Press ESC to abort program" (40-column text); the pin and a2 run with sound. Cause unread; to the re-runs.
 
 ### FLAKY-1 Tier 2, T2X-PICHOLD and T2X-PICHOLD12: 2 of 10 and 1 of 10 runs under C2 lose 20 ms of the 2 kHz tone in silence of the recorder stall's shape (filed 27 Oct 2026, closed the same day: recorder insertions)
 
