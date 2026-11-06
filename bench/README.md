@@ -44,11 +44,15 @@ remote storage, or a second disk kept elsewhere), not GitHub.
 The pre-commit check (`bench/hooks/pre-commit`, settings in `bench.toml`)
 refuses game, program, disc, recording and image files and anything over
 20 MB, an absolute home path in a repository with a remote (2 Nov 2026), and
-any commit while a plan records (4 Nov 2026). `backup.sh` runs it on every
-snapshot before the ref is written (git commit-tree runs no hook), on the
-files the snapshot holds beyond HEAD, a moved file read as a new one, so the
-hourly path does not depend on a hook being installed. `install.sh --bench`
-links it into a repository's `.git/hooks` for commits made by hand.
+any commit while a plan records (4 Nov 2026). It lists the staged files with
+rename detection off, so a moved file is read as a new one under its new
+name (the owner's decision of 6 Nov 2026; tests/test_moves.py): with renames
+on, git shows a move as one R entry, which the check's A and M filter used
+to drop unread. `backup.sh` runs it on every snapshot before the ref is
+written (git commit-tree runs no hook), on the files the snapshot holds
+beyond HEAD, so the hourly path does not depend on a hook being installed.
+`install.sh --bench` links it into a repository's `.git/hooks` for commits
+made by hand and by the tools (`ledger.py commit-runs`).
 
 Neither ever moves `core.hooksPath`: the guard refuses that, and must keep
 refusing it, since a moved hooks path is how a uCDD commit would skip its
@@ -106,14 +110,23 @@ are the case it is for:
    mirror: a mirror copies a mistake the next night. With git inside, a
    deleted note is still in the history; a deleted repository is not.
 
-The method guard refuses shell commands that name the ledger's files.
-`backup.sh` takes the ledger into each snapshot with `git add -A` into its own
+The method guard refuses shell commands other than git that name the
+ledger's files. Corrected 6 Nov 2026 (the rule 7 form). Old text: "The
+method guard refuses shell commands that name the ledger's files." New
+text: git commands are not checked for the ledger's files (guard.py's
+bash_refusal sends a git command to its git rules alone), so a `git add`,
+`git checkout --` or `git restore` naming the runs file passes the guard;
+open: question 67, for rules-bot and the owner. `backup.sh` takes the ledger into each snapshot with `git add -A` into its own
 index and runs as a script, so it is not refused. The working branch's copy
-of the ledger is no longer committed hourly: it stays at its last commit
-while the file grows, so a `git checkout -- .`, `git restore .`, `git stash`
-or `git reset --hard` in the top folder would throw away its newer lines (the
+of the ledger's runs file is committed by the tool at the end of each plan
+calbatch.py runs (the owner's decision of 6 Nov 2026: calbatch.py runs
+`ledger.py commit-runs`, the file alone on main, never by the agent's hand
+and no longer by the backup; the method README, "The ledger"; plan_run.py
+and sndreg commit nothing at their ends: question 67). Between plans it is ahead of its
+last commit, so a `git checkout -- .`, `git restore .`, `git stash` or
+`git reset --hard` in the top folder would throw away its newer lines (the
 snapshot keeps them). Never check out, reset or revert the ledger: it only
-grows.
+grows, and commit-runs refuses a file whose committed lines changed.
 
 ## On a new machine
 
