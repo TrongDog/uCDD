@@ -9,6 +9,7 @@
     ledger.py audit PLAN
     ledger.py commit-runs PLAN [--why TEXT] [--dry-run]     (a runner's only)
     ledger.py commit-plan PLAN [--why TEXT]
+    ledger.py supersede PATH ... --why TEXT
 
 record is for the runners (plan_run.py, which regress.sh runs through;
 sndreg; calbatch.py) to call once a run is judged; the Claude Code guard
@@ -77,7 +78,8 @@ that script (its command line in /proc); otherwise it refuses before it reads
 anything, --dry-run included, and the next plan's end takes the lines. The
 guard refuses the token set by hand and commit-runs typed by hand. The three
 runners, and --dry-run refused by hand by the decision's "refuses to run":
-the agent's choice, question 68. Built, not run.
+the agent's choice, confirmed by the owner 6 Nov 2026 (68.1, 68.3 (a)). Built,
+not run.
 
 commit-plan is plan.py --save's: the saved plan's file committed alone on
 main in the repository that holds the ledger, as commit-runs commits the runs
@@ -88,11 +90,82 @@ same decision: "the guard treats a git command that stages, restores or
 checks out a guard-protected path as a write to it"). A saved plan never
 changes (methodlib.save_plan writes it once): a file that differs from its
 committed copy is refused; one committed as it is commits nothing and says
-so. Typed by hand it is allowed (the agent's choice, question 68): it commits
+so. Typed by hand it is allowed (the agent's choice,
+confirmed by the owner 6 Nov 2026 (68.1)): it commits
 a saved plan whose commit at the save was refused (while a plan records the
 top folder's check refuses any commit). Its subject is "Plan <tag>:
 <--why>", "saved by plan.py --save" when none is given. Exit 0 committed or
 committed already; 1 refused. Built, not run.
+
+supersede is for files set aside (the owner's decision of 6 Nov 2026 on
+question 68: "The "moved aside by hand" whole-file reports are recorded as
+superseded in the ledger, never deleted"). Each PATH, a file or a report
+folder with every file under it, is recorded in the ledger's file of its own,
+superseded.jsonl beside the runs file (SUPERSEDED), one line a file: its
+path, sha256 and size, why (--why), the date and time (UTC), the PATH named,
+where the file moved to, and the host. Paths are written relative to the top
+of the repository that holds the ledger (the top folder), never absolute.
+Each PATH is then renamed beside itself to NAME.superseded-YYYYMMDD (the UTC
+date), never deleted, and the file is committed alone on main as commit-plan
+commits a saved plan: refused off main and while anything else is staged,
+through the repository's own pre-commit (which refuses while a plan
+records), and refused when the file's committed lines changed (it only
+grows, as the runs file). Before anything changes it also refuses: an empty
+--why; a plan recording (the recording flag read as the bench's pre-commit
+reads it, recording_line: L6, so nothing is renamed or staged beside a
+recording, the hook's refusal kept behind it); a ledger folder that does not
+exist or lies in no git repository; a file that ends inside a line or holds
+a line that is not a record; a PATH that does not exist, or one already
+recorded (the PATH or any file under it, as a file's path, a PATH named or
+a place a file moved to, on any earlier line: a path is superseded once);
+one outside that repository or its top itself; one in or around the ledger
+folder; one in or around a game library (the guard's reading: UCDD_GAMES,
+else method.toml's [games] paths; this command renames with no guard
+between); one in or around this repository's own git folder (git rev-parse
+--git-dir and --git-common-dir), one with a part named .git (another
+repository's, or a worktree's file), and one holding a .git; a symbolic link
+(the PATH or anything under it); a name in the NAME.superseded-YYYYMMDD form
+(the PATH, any folder above it inside the repository, or anything under it:
+set aside already); a target that exists; anything that is neither a plain
+file nor a folder; a folder that cannot be read whole; a folder with no file
+or with more than MAX_FILES (counted as they are found, so a mistaken PATH
+such as runs/ is refused before its files are read: L21); and two PATHs one
+inside the other. The renames come first and the commit last: a rename that
+fails, a record that cannot be written and a refused commit each put
+everything back (the file's bytes, the index, each PATH under its own name),
+say so, and name any PATH that could not be put back (its own name taken
+again in between). Several PATHs go in one call and one commit
+(alignpairs.py --supersede-whole-file's four). Typed by hand it is allowed,
+as commit-plan. Exit 0 committed; 1 refused.
+Not the bench's archive of superseded captures (results/archive/captures.tsv,
+the manifest with each hash; $UCDD_ARCHIVE/captures/ on the backup disk:
+the bench's CLAUDE.md): that moves captures off this machine to the backup disk,
+which is no work area; the decision says "in the ledger" and "never
+deleted", and R5 "renamed beside", so a superseded report stays where it
+was, renamed, and its record is in the ledger. Whether superseded.jsonl
+should name the archive's manifest (or the manifest these records) at A7:
+question 69.
+The guard covers the file as part of the ledger folder: an edit of it and a
+git command that stages it are refused; a shell command naming it by a
+relative path is not (names_ledger: question 69).
+decides (the record, "never deleted"): the owner's decision of 6 Nov 2026 on
+question 68 (quoted above). decides (a file of its own and its name, its
+fields, the commit alone on main as commit-plan, the rename to
+NAME.superseded-YYYYMMDD, the refusals of a PATH already recorded or
+missing): the agent's choice, question 69 (the main agent's ruling R5).
+decides (the recording flag read before anything changes): the owner, 4 Nov
+2026, L6 ("the bench's pre-commit refuses any commit while the recording
+flag is set ... a commit that must wait, waits"), read here as well: the
+agent's choice, question 69 (the review of 6 Nov 2026). decides (the other
+refusals, several PATHs in one commit, the UTC date, MAX_FILES 200, the
+renames before the commit and put back on a failure, typed by hand
+allowed): the agent's choice, question 69.
+decides (the mechanism as a whole): silent: no document in the library
+decides it (the search below, its hits read), the agent's choice, question 69;
+searched = "terms: superseded, ledger, provenance, rename, archive; hits: 204 in 35 documents (RBIL_G 20, RBIL_J 20, RBIL_L 17, DOC_BIBLIO 14, RBIL_F 11, RBIL_H 10); 6 Nov 2026"
+lessons_read = "terms: supersede, ledger, rename, commit, report, hash, recording, git; lessons: L11, L6, L38, L40, L3, L20, L33, L5, L37, L15, L21, L22, L39, L32, L24, L36; 6 Nov 2026"
+Built, not run (6 Nov 2026): tests/test_ledger_supersede.py, its known-bads in
+its docstring.
 
 lessons_read = "terms: ledger, commit, plan, runner, flag, backup, batch, hook; lessons: L6, L38, L2, L1, L9, L20, L40, L33, L37, L10, L22, L39, L32, L36; 6 Nov 2026"
 lessons_read = "terms: ledger, commit, token, runner, plan, guard; lessons: L38, L1, L20, L40, L33, L37, L22, L39, L32, L24, L36; 6 Nov 2026"
@@ -124,6 +197,17 @@ COMMIT_HASH = re.compile(r'^[0-9a-f]{40}([0-9a-f]{24})?$')     # SHA-1, or SHA-2
 # has end with commit-runs too.
 RUNNER_TOKEN = 'UCDD_LEDGER_RUNNER'
 RUNNERS = ('calbatch.py', 'plan_run.py', 'sndreg.py')
+# supersede (DECISION_68): the decision's words; the ledger's file of its own, beside the runs file;
+# the form a superseded PATH is renamed to; the most files one PATH may hold (a report folder holds
+# a handful: audiocmp writes report.txt and four pictures, its docstring; UNMEASURED, the folders
+# not listed, L21), counted as they are found
+DECISION_68 = "the owner's decision of 6 Nov 2026 on question 68"
+NEVER_DELETED = ('The "moved aside by hand" whole-file reports are recorded as superseded in the '
+                 'ledger, never deleted')
+SUPERSEDED = 'superseded.jsonl'
+SUPERSEDED_AS = re.compile(r'\.superseded-\d{8}$')
+MAX_FILES = 200          # the agent's choice, question 69
+GIT_NAME = '.git'        # a repository's own folder, or a worktree's file naming it: never moved
 
 
 def plan_or_exit(tag):
@@ -465,6 +549,287 @@ def commit_plan(args):
     return 0
 
 
+def libraries():
+    """The game libraries as guard/guard.py's library_paths reads them (UCDD_GAMES, else
+    method.toml's [games] paths), resolved. supersede renames with no guard between, so it refuses
+    them itself: we never alter game files (the owner, 20 Oct 2026)."""
+    given = os.environ.get('UCDD_GAMES')
+    paths = given.split(os.pathsep) if given else methodlib.CONFIG.get('games', {}).get('paths', [])
+    return [Path(path).expanduser().resolve() for path in paths if path]
+
+
+def recording_line():
+    """'FLAG: its first line' while the PID that line names is alive, else None: the recording flag read
+    as the bench's pre-commit reads it (bench/hooks/pre-commit's recording(); the owner, 4 Nov 2026, L6):
+    the flag UCDD_RECORDING_FLAG names (the tests), else the bench's runs/recording.flag, found from this
+    package's own place (<bench>/runs/src/method) as the hook finds it from its own. A flag whose PID is
+    gone is stale and ignored, as runs/quiet.sh reads it for the backups."""
+    flag = Path(os.environ.get('UCDD_RECORDING_FLAG') or methodlib.PACKAGE.parents[1] / 'recording.flag')
+    try:
+        line = flag.read_text().splitlines()[0]
+        pid = int(line.split()[0])
+    except (OSError, IndexError, ValueError):
+        return None
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return None
+    except PermissionError:                      # alive, another account's
+        pass
+    return f'{flag}: {line}'
+
+
+def files_of(place):
+    """(the files PLACE holds, sorted; '') or (None, why): PLACE itself when it is a file, else every
+    file under it, read without following a link. Each name under it is looked at as it is found, the
+    folders' with the files': refused are a symbolic link, a .git (a repository's own folder, or a
+    worktree's file naming one), a name in the NAME.superseded-YYYYMMDD form (set aside already), anything
+    that is neither a plain file nor a folder, a folder that cannot be read (its files would be left out
+    of the record), no file at all, and more than MAX_FILES (counted as they are found, so a mistaken PATH
+    is never read whole: L21)."""
+    if place.is_file():
+        return [place], ''
+    if not place.is_dir():
+        return None, 'neither a plain file nor a folder'
+    found = []
+
+    def fail(error):
+        raise error
+
+    try:
+        for folder, folders, names in os.walk(place, onerror=fail):
+            for name in sorted(folders) + sorted(names):
+                path = Path(folder) / name
+                if path.is_symlink():
+                    return None, f'{path.relative_to(place)} is a symbolic link'
+                if name == GIT_NAME:
+                    return None, (f'it holds {path.relative_to(place)}, a repository\'s own (.git): '
+                                  'nothing of git\'s is moved')
+                if SUPERSEDED_AS.search(name):
+                    return None, (f'{path.relative_to(place)} is set aside already (its name ends '
+                                  '.superseded-YYYYMMDD): a path is superseded once')
+            for name in sorted(names):
+                path = Path(folder) / name
+                if not path.is_file():
+                    return None, f'{path.relative_to(place)} is not a plain file'
+                found.append(path)
+                if len(found) > MAX_FILES:
+                    return None, (f'more than {MAX_FILES} files: a report folder holds a handful; is it '
+                                  'the right PATH?')
+    except OSError as error:
+        return None, f'not readable ({error})'
+    if not found:
+        return None, 'no file in it'
+    return sorted(found), ''
+
+
+def supersede(args):
+    """Each PATH recorded in the ledger's file of its own and renamed beside itself, never deleted
+    (DECISION_68: NEVER_DELETED); the file committed alone on main as commit_plan commits a saved
+    plan, with its own copy of the steps (commit_plan's docstring: one helper at A7's method
+    review). Every refusal comes before anything changes; the renames come before the commit, and a
+    refused commit puts each one back with the file's bytes and the index. Every refusal has its
+    known-bad plant in tests/test_ledger_supersede.py's docstring; the names here (busy, toplevel, on,
+    beside, kept, held, stuck) are its own, not commit_runs' or commit_plan's, so each plant's line is
+    unique in this file."""
+    command = 'supersede'
+    why = ' '.join(args.why.split())
+    if not why:
+        return refuse('--why is empty: say why these are set aside (it goes on every record); nothing '
+                      'changed', command)
+    # nothing renamed or staged beside a recording (L6): read before anything changes; the bench's
+    # pre-commit refuses the commit as well, behind this
+    busy = recording_line()
+    if busy:
+        return refuse(f'a plan is recording ({busy}): nothing is set aside while it records (L6; the bench '
+                      'check would refuse the commit too); nothing changed: run it at a gap', command)
+    ledger = methodlib.ledger_dir().resolve()
+    if not ledger.is_dir():
+        return refuse(f'the ledger folder {ledger} does not exist; nothing changed', command)
+    record_file = ledger / SUPERSEDED
+    # a caller's git settings never steer the commit (as commit_runs and bench/backup.sh)
+    env = {key: value for key, value in os.environ.items()
+           if key not in ('GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_OBJECT_DIRECTORY')}
+
+    def git(*words, binary=False):
+        return subprocess.run(['git', *words], cwd=top, env=env, capture_output=True, text=not binary)
+
+    top = ledger
+    toplevel = git('rev-parse', '--show-toplevel')
+    if toplevel.returncode:
+        return refuse(f'{ledger} is in no git repository; nothing changed', command)
+    top = Path(toplevel.stdout.strip()).resolve()
+    # git's own folders for this repository, whatever their names (its git dir and common dir, as git
+    # prints them, resolved against the top): nothing in or around them is moved
+    gits = sorted({(top / line.strip()).resolve() for line in
+                   git('rev-parse', '--git-dir', '--git-common-dir').stdout.splitlines() if line.strip()})
+    name = record_file.relative_to(top).as_posix()
+    on = git('symbolic-ref', '-q', '--short', 'HEAD').stdout.strip()
+    if on != BRANCH:
+        return refuse(f'{top} is on {on or "a detached HEAD"}, not {BRANCH}: the superseded file '
+                      f'is committed on {BRANCH} only; nothing changed', command)
+    staged = git('diff', '--cached', '--no-renames', '--name-only', '-z').stdout
+    beside = sorted(path for path in staged.split('\0') if path and path != name)
+    if beside:
+        return refuse(f'other files are staged in {top} ({", ".join(beside)}); the superseded file is '
+                      'committed alone: commit or unstage them first; nothing changed', command)
+    head = git('rev-parse', '-q', '--verify', 'HEAD^{commit}').stdout.strip()
+    tracked = bool(head) and git('cat-file', '-e', f'HEAD:{name}').returncode == 0
+    kept = git('cat-file', 'blob', f'HEAD:{name}', binary=True).stdout if tracked else b''
+    existed = record_file.exists()
+    held = record_file.read_bytes() if existed else b''
+    if not held.startswith(kept):
+        return refuse(f'{name} is not its last commit\'s lines with lines added after them: it only '
+                      'grows, as the runs file; nothing changed, say so to the owner', command)
+    if held and not held.endswith(b'\n'):
+        return refuse(f'{name} ends inside a line; nothing changed, say so to the owner', command)
+    try:
+        old = [json.loads(line) for line in held.decode('utf-8').splitlines() if line.strip()]
+    except ValueError:                           # UnicodeDecodeError is one too
+        old = None
+    if old is None or not all(isinstance(entry, dict) for entry in old):
+        return refuse(f'{name} holds a line that is not a record; nothing changed, say so to the owner',
+                      command)
+    # a path is superseded once: each record's file where it was, the PATH named and where the file went
+    # (every moved_to holds a .superseded-YYYYMMDD part, so the parts check below meets those first)
+    recorded = {entry.get(key) for entry in old for key in ('path', 'named', 'moved_to')}
+    now = datetime.datetime.now(datetime.timezone.utc)
+    stamp = now.strftime('%Y%m%d')               # the UTC date, as every time in the ledger
+    libs = libraries()
+    moves, entries, seen = [], [], []
+    for given in args.paths:
+        place = Path(given).expanduser().absolute()       # not resolved yet: a link is seen as one
+        if not os.path.lexists(place):
+            return refuse(f'{given} does not exist; nothing changed', command)
+        if place.is_symlink():
+            return refuse(f'{given} is a symbolic link: name what it points to; nothing changed', command)
+        real = place.resolve()
+        if real == top or not real.is_relative_to(top):
+            return refuse(f'{given} is not inside {top}, the repository that holds the ledger (its path '
+                          'is recorded relative to it); nothing changed', command)
+        parts = real.relative_to(top).parts
+        if real.is_relative_to(ledger) or ledger.is_relative_to(real):
+            return refuse(f'{given} is in the ledger folder or holds it; nothing changed', command)
+        if any(real.is_relative_to(library) or library.is_relative_to(real) for library in libs):
+            return refuse(f'{given} is in a game library or holds one: nothing there is moved (we never '
+                          'alter game files); nothing changed', command)
+        if any(real.is_relative_to(own) or own.is_relative_to(real) for own in gits):
+            return refuse(f'{given} is in this repository\'s git folder or holds it '
+                          f'({", ".join(str(own) for own in gits)}): nothing of git\'s is moved; nothing '
+                          'changed', command)
+        if GIT_NAME in parts:
+            return refuse(f'{given} lies in a .git folder (a repository\'s own, or a worktree\'s file): '
+                          'nothing of git\'s is moved; nothing changed', command)
+        if any(SUPERSEDED_AS.search(part) for part in parts):
+            return refuse(f'{given} is set aside already (it, or a folder above it, ends '
+                          '.superseded-YYYYMMDD): a path is superseded once; nothing changed', command)
+        if any(real.is_relative_to(other) or other.is_relative_to(real) for other in seen):
+            return refuse(f'{given} is named twice, or lies inside another PATH given or holds one; '
+                          'nothing changed', command)
+        seen.append(real)
+        named = real.relative_to(top).as_posix()
+        files, why_not = files_of(real)
+        if files is None:
+            return refuse(f'{given}: {why_not}; nothing changed', command)
+        again = [path for path in [named] + [file.relative_to(top).as_posix() for file in files]
+                 if path in recorded]
+        if again:
+            return refuse(f'{again[0]} is recorded in {name} already: a path is superseded once; nothing '
+                          'changed', command)
+        target = real.with_name(f'{real.name}.superseded-{stamp}')
+        moved = target.relative_to(top).as_posix()
+        if os.path.lexists(target):
+            return refuse(f'{moved} exists already: nothing is overwritten; nothing changed', command)
+        size = 0
+        for file in files:
+            bytes_ = file.stat().st_size
+            size += bytes_
+            # where the file will be: the PATH's new name, or its place inside the renamed folder
+            lands = target if file == real else target / file.relative_to(real)
+            entries.append({
+                'time': now.isoformat(timespec='seconds'), 'date': now.date().isoformat(),
+                'path': file.relative_to(top).as_posix(), 'moved_to': lands.relative_to(top).as_posix(),
+                'named': named, 'sha256': methodlib.sha256(file), 'size': bytes_, 'why': why,
+                'host': platform.node()})
+        moves.append((real, target, named, moved, len(files), size))
+    done = []
+
+    def put_back():
+        """Each PATH renamed so far back under its own name, the last first; what could not be (its
+        own name taken again in between: never renamed over, since a rename over an empty folder
+        succeeds and would hide it)."""
+        stuck = []
+        for real, target, named, moved, _, _ in reversed(done):
+            try:
+                if os.path.lexists(real):
+                    raise OSError(f'{named} exists again')
+                os.rename(target, real)
+            except OSError as error:
+                stuck.append(f'{moved} ({error})')
+        return stuck
+
+    def undo(reason):
+        """The way back once every PATH is renamed (a record that cannot be written, a refused git add
+        or commit): the index, the file's bytes, then each PATH."""
+        if not tracked:
+            git('rm', '-q', '--cached', '--ignore-unmatch', '--', name)
+        try:
+            if existed:
+                with open(record_file, 'r+b') as file:
+                    file.truncate(len(held))
+            else:
+                record_file.unlink(missing_ok=True)
+        except OSError as error:
+            reason += f'; {name} NOT restored ({error}): say so to the owner'
+        left = put_back()
+        return refuse(f'{reason}; nothing recorded, ' + (
+            f'but NOT put back: {", ".join(left)} (rename each back by hand)' if left
+            else 'every PATH back under its own name'), command)
+
+    for move in moves:
+        real, target, named, moved = move[:4]
+        try:
+            if os.path.lexists(target):          # made since it was checked: never overwritten
+                raise OSError(f'{moved} exists now')
+            os.rename(real, target)
+        except OSError as error:
+            had = len(done)
+            left = put_back()
+            return refuse(f'could not rename {named} to {moved} ({error}); nothing recorded, '
+                          + (f'NOT put back: {", ".join(left)} (rename each back by hand)' if left
+                             else f'the {had} renamed before it put back' if had else 'nothing moved'),
+                          command)
+        done.append(move)
+    try:
+        with open(record_file, 'ab') as file:
+            file.write(''.join(json.dumps(entry, sort_keys=True) + '\n' for entry in entries).encode())
+    except OSError as error:
+        return undo(f'could not write {name} ({error})')
+    if not tracked:
+        added = git('add', '--', name)
+        if added.returncode:
+            return undo(f'git add said: {(added.stderr or added.stdout).strip()}')
+    plural = lambda count, word: f'{count} {word}' + ('' if count == 1 else 's')
+    subject = (f'Ledger: superseded {plural(len(moves), "path")}, {plural(len(entries), "file")} '
+               '(ledger.py supersede)')
+    body = [f'The superseded file alone, by ledger.py supersede ({DECISION_68}: "{NEVER_DELETED}"): '
+            'each file\'s path, sha256 and size, why and the date; nothing deleted, each PATH renamed '
+            f'beside itself to NAME.superseded-{stamp}.',
+            f'Why: {why}',
+            '\n'.join(f'{named} -> {moved}: {plural(count, "file")}, {size} bytes'
+                      for _, _, named, moved, count, size in moves)]
+    # --only: the commit holds the superseded file and nothing else; the hook runs on its own index
+    committed = git('commit', '-q', '--only', '-m', subject, '-m', '\n\n'.join(body), '--', name)
+    if committed.returncode:
+        hook = (committed.stderr or committed.stdout).strip()
+        return undo(f'git commit said: {hook or "exit %d" % committed.returncode}')
+    print(f'ledger: committed {name} as {git("rev-parse", "--short", "HEAD").stdout.strip()} on '
+          f'{BRANCH}: {subject}')
+    for _, _, named, moved, count, size in moves:
+        print(f'  {named} -> {moved} ({plural(count, "file")}, {size} bytes; never deleted)')
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     commands = parser.add_subparsers(dest='command', required=True)
@@ -495,9 +860,14 @@ def main():
     saved.add_argument('plan')
     saved.add_argument('--why', default='saved by plan.py --save',
                        help="what the plan is for: its commit's subject after \"Plan <tag>: \"")
+    aside = commands.add_parser('supersede', help='record files set aside and rename them beside, '
+                                                  'never deleted (question 68)')
+    aside.add_argument('paths', nargs='+', metavar='PATH', help='a file, or a report folder and all in it')
+    aside.add_argument('--why', required=True, help='why they are set aside: on every record and in the commit')
     args = parser.parse_args()
     return {'record': record, 'show': show, 'spot': spot, 'audit': audit,
-            'commit-runs': commit_runs, 'commit-plan': commit_plan}[args.command](args) or 0
+            'commit-runs': commit_runs, 'commit-plan': commit_plan,
+            'supersede': supersede}[args.command](args) or 0
 
 
 if __name__ == '__main__':
