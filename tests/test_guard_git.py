@@ -155,9 +155,10 @@ class GitWrites(unittest.TestCase):
         # read as its folder and ':(icase)' as its root, a pattern exclusion freeing nothing, the
         # line's variables, a folder or path not known before the line runs read wide, code given
         # to sh -c or eval, a git dir's own repository, a newline as the shell's command break, a
-        # comment and a here-document body taken out): the agent's choice, question 68 (applied, for
-        # the owner to confirm: a bare reset and reset --soft stay refused in the top folder, so do
-        # merge, rebase, cherry-pick, revert, pull, am and apply, and the wide reading as drafted;
+        # comment and a here-document body taken out): the agent's choice, confirmed by the owner 6
+        # Nov 2026 (68.1) (applied, confirmed: a bare reset and reset --soft stay refused in the top
+        # folder, so do merge, rebase, cherry-pick, revert, pull, am and apply, and the wide
+        # reading as drafted;
         # bench/README.md beside it: "Never check out, reset or revert the ledger");
         # searched = "terms: git, reset, revert, merge, pathspec, variable, substitution; hits: 2132 in 128 documents (1487 20, 1523 20, 1533 20, 1543 20, 206 20, 4031 20); 6 Nov 2026"
         top, other, root = self.top, self.other, self.root
@@ -213,8 +214,9 @@ class GitWrites(unittest.TestCase):
         # dry runs, a new branch from HEAD, a variable the line sets to another folder, a
         # substitution or a here-document in a commit's message, a here-document's body (input,
         # not commands), read-only code given to sh -c or eval, a push from a folder the guard
-        # cannot follow: the agent's choice, question 68 (they stage, restore and check out no
-        # protected path; the wide reading as drafted, applied, for the owner to confirm);
+        # cannot follow: the agent's choice, confirmed by the owner 6 Nov 2026 (68.1) (they stage,
+        # restore and check out no protected path; the wide reading as drafted, applied, confirmed
+        # (the owner's decision of 6 Nov 2026: "The guard's wide reading stands"));
         # searched = "terms: git, dry run, read-only, variable; hits: 1253 in 113 documents (1543 20, 630 20, AWE 20, CS4231A 20, CS4232 20, DOC_BIBLIO 20); 6 Nov 2026"
         top, other = self.top, self.other
         message = "git commit -m \"$(cat <<'EOF'\nMichael's fix (7): 1) the guard\nEOF\n)\" -- notes.md"
@@ -243,9 +245,11 @@ class GitWrites(unittest.TestCase):
         self.assertEqual(self.wrong(at_top, 0, top) + self.wrong(in_other, 0, other), [])
 
     def test_line_variables_other_rules(self):
-        # decides: the agent's choice, question 68 (the guard's ledger and library rules read a word
-        # as the shell will pass it, with the line's own variables; the rules themselves are the
-        # guard's before this change; the wide reading as drafted, applied, for the owner to confirm);
+        # decides: the agent's choice, confirmed by the owner 6 Nov 2026 (68.1) (the guard's ledger
+        # and library rules read a word as the shell will pass it, with the line's own variables;
+        # the rules themselves are the guard's before this change; the wide reading as drafted,
+        # applied, confirmed (the owner's decision of 6 Nov 2026: "The guard's wide reading
+        # stands"));
         # searched = "terms: guard, variable, ledger, library; hits: 570 in 83 documents (AWE 20, I386 20, INTEL486_1995 20, PBOOK 20, RBIL_K 20, RBIL_M 20); 6 Nov 2026"
         top, other = self.top, self.other
         refused = [f'L={top}/ledger; rm "$L/plans/{TAG}.json"', f'G={top}/LIB; rm -rf "$G/GAME"']
@@ -253,10 +257,10 @@ class GitWrites(unittest.TestCase):
         self.assertEqual(self.wrong(refused, 2, other) + self.wrong(allowed, 0, other), [])
 
     def test_plan_save_commits_its_file(self):
-        # decides: the agent's choice, question 68, on the owner's decision of 6 Nov 2026 on question
-        # 67 (7) ("the guard treats a git command that stages, restores or checks out a
-        # guard-protected path as a write to it"): with no hand staging of a saved plan, plan.py
-        # --save commits its own file alone on main (applied, for the owner to confirm);
+        # decides: the agent's choice, confirmed by the owner 6 Nov 2026 (68.1), on the owner's
+        # decision of 6 Nov 2026 on question 67 (7) ("the guard treats a git command that stages,
+        # restores or checks out a guard-protected path as a write to it"): with no hand staging
+        # of a saved plan, plan.py --save commits its own file alone on main (applied, confirmed);
         # searched = "terms: plan, save, commit, saved plan; hits: 1057 in 96 documents (5597 20, 586B 20, 596B 20, 630 20, 686A 20, 686B 20); 6 Nov 2026"
         (self.top / 'notes.md').write_text('changed\n')
         before = self.head()
@@ -279,8 +283,8 @@ class GitWrites(unittest.TestCase):
         self.assertEqual(self.head(), committed)
 
     def test_commit_plan_refusals(self):
-        # decides: the agent's choice, question 68 (applied, for the owner to confirm; commit-plan may
-        # be typed by hand): commit-plan refused while another file is staged and off main, the
+        # decides: the agent's choice, confirmed by the owner 6 Nov 2026 (68.1) (applied; commit-plan
+        # may be typed by hand): commit-plan refused while another file is staged and off main, the
         # index left as found, as commit-runs is (tests/test_ledger_commit.py); a saved plan
         # never changes (methodlib.save_plan writes a
         # plan once and never over it, and lib/checks.py refuses a plan that no longer matches its

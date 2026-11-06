@@ -608,9 +608,9 @@ def check(matrix):
 def commit_saved(tag, why):
     """The saved plan's file committed alone on the top folder's main by ledger.py commit-plan
     (the owner's decision of 6 Nov 2026 on question 67 (7): no hand staging of a ledger path; that
-    plan.py commits it: the agent's choice, question 68). Its lines go to stderr, the plan to
-    stdout. A refused commit leaves the plan saved: the runners record against the file, not its
-    commit."""
+    plan.py commits it: the agent's choice, confirmed by the owner 6 Nov 2026 (68.1)). Its lines go
+    to stderr, the plan to stdout. A refused commit leaves the plan saved: the runners record
+    against the file, not its commit."""
     done = subprocess.run([sys.executable, str(LEDGER), 'commit-plan', tag, '--why', why],
                           capture_output=True, text=True)
     for text in (done.stdout, done.stderr):

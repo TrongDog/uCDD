@@ -137,8 +137,8 @@ class CommitToken(unittest.TestCase):
         # decides: the owner's decision of 6 Nov 2026 on question 67 (7) ("`ledger.py commit-runs`
         # refuses to run unless invoked by calbatch (a token calbatch sets), so a hand invocation
         # fails"). The token bound to its process and that process's script, and --dry-run refused
-        # as well: the agent's choice, question 68, on "invoked by" and "refuses to run" (applied,
-        # for the owner to confirm); searched = "terms: token, invoked, dry run; hits: 339 in 54 documents (INTEL486_1995 20, RBIL_K 20, RBIL_M 20, RBIL_Q 20, VIPM 20, INTEL96 19); 6 Nov 2026"
+        # as well: the agent's choice, confirmed by the owner 6 Nov 2026 (68.1), on "invoked by" and
+        # "refuses to run" (applied, confirmed); searched = "terms: token, invoked, dry run; hits: 339 in 54 documents (INTEL486_1995 20, RBIL_K 20, RBIL_M 20, RBIL_Q 20, VIPM 20, INTEL96 19); 6 Nov 2026"
         cases = [((), None, f'{TOKEN} is not set'),
                  (('--dry-run',), None, f'{TOKEN} is not set'),
                  ((), f'calbatch.py:{os.getpid()}', 'not calbatch.py'),
@@ -155,9 +155,9 @@ class CommitToken(unittest.TestCase):
     def test_runner_commit_goes_in(self):
         # decides: the owner's decision of 6 Nov 2026 on question 67 (7) for calbatch: "unless
         # invoked by calbatch (a token calbatch sets)". plan_run.py and sndreg let through as
-        # well: the agent's choice, question 68, on "every runner that writes ledger rows
-        # (plan_run.py, sndreg) records the bench's commit hash and ends with commit-runs" beside
-        # it (applied, for the owner to confirm);
+        # well: the agent's choice, confirmed by the owner 6 Nov 2026 (68.1, 68.3 (a)), on "every
+        # runner that writes ledger rows (plan_run.py, sndreg) records the bench's commit hash and
+        # ends with commit-runs" beside it (applied, confirmed);
         # searched = "terms: runner, commit-runs, plan_run, sndreg; hits: 22 in 3 documents (docs/history.md 20, RBIL_N 1, docs/second-emulator/README.md 1); 6 Nov 2026"
         done = self.tool('commit-runs', TAG, '--why', 'all runs complete', runner='calbatch.py')
         self.assertEqual(done.returncode, 0, done.stderr)
@@ -172,11 +172,11 @@ class CommitToken(unittest.TestCase):
         self.assertEqual(self.head(), committed)
 
     def test_guard_refuses_the_token_by_hand(self):
-        # decides: the agent's choice, question 68, on the owner's decision of 6 Nov 2026 on question
-        # 67 (7) ("`ledger.py commit-runs` refuses to run unless invoked by calbatch (a token
-        # calbatch sets), so a hand invocation fails"): the token set by hand and commit-runs typed
-        # by hand are refused at the guard too, and what still passes (applied, for the owner to
-        # confirm);
+        # decides: the agent's choice, confirmed by the owner 6 Nov 2026 (68.1), on the owner's
+        # decision of 6 Nov 2026 on question 67 (7) ("`ledger.py commit-runs` refuses to run
+        # unless invoked by calbatch (a token calbatch sets), so a hand invocation fails"): the
+        # token set by hand and commit-runs typed by hand are refused at the guard too, and what
+        # still passes (applied, confirmed);
         # searched = "terms: guard, environment variable, by hand, token; hits: 188 in 47 documents (Sound Cards/Superset references/Developer_Kit_SB_Series_Programmers_Guide.txt 20, RBIL_M 18, Sound Cards/Superset references/Developer_Kit_SB_Series_Library_Reference.txt 12, DOC_OPCODES 10, RBIL_G 10, RBIL_Q 10); 6 Nov 2026"
         refused = [f'{TOKEN}=calbatch.py:1 python3 tools/ledger.py show {TAG}',
                    f'{TOKEN}=calbatch.py:1 python3 tools/ledger.py commit-runs {TAG}',
@@ -204,8 +204,9 @@ class CommitToken(unittest.TestCase):
         self.assertEqual(wrong, [])
 
     def test_one_token_name(self):
-        # decides: the agent's choice, question 68 (two files name the token, so a test keeps them
-        # one name; the runners as test_runner_commit_goes_in; applied, for the owner to confirm);
+        # decides: the agent's choice, confirmed by the owner 6 Nov 2026 (68.1) (two files name the
+        # token, so a test keeps them one name; the runners as test_runner_commit_goes_in; applied,
+        # confirmed);
         # searched = "terms: token, runner, name; hits: 1648 in 123 documents (1487 20, 1533 20, 1543 20, 4031 20, 496 20, 5582 20); 6 Nov 2026"
         guard = load('guard_under_test', GUARD)
         ledger = load('ledger_under_test', TOOL)

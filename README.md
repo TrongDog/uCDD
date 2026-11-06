@@ -287,7 +287,17 @@ each verdict once a run is judged:
   committed before the next plan.
 - **Where it lives:** `ledger/` beside this README (ignored by git), or
   `[ledger] path` in method.toml, or `UCDD_LEDGER`. The ledger is append
-  only: `runs.jsonl` and the saved plans in `plans/`.
+  only: `runs.jsonl`, the saved plans in `plans/`, and `superseded.jsonl`,
+  the files set aside (the owner's decision of 6 Nov 2026 on question 68:
+  "The "moved aside by hand" whole-file reports are recorded as superseded
+  in the ledger, never deleted"). `ledger.py supersede PATH ... --why
+  TEXT` records each file's path, sha256 and size with why and the date,
+  renames each PATH beside itself to NAME.superseded-YYYYMMDD, and commits
+  the file alone on main as commit-plan does. It is refused while a plan
+  records (its own check and the hook's), and a failed rename, write or
+  commit puts everything back (tests/test_ledger_supersede.py). Corrected
+  6 Nov 2026 (rule 7 form); old text: "The ledger is append only:
+  `runs.jsonl` and the saved plans in `plans/`."
 - **Its commits** (the owner's decision of 6 Nov 2026: "the ledger's runs file
   on the top folder's main is committed by the tool at each plan's end
   (calbatch invoking ledger), never by the agent's hand and no longer by the
@@ -333,7 +343,8 @@ each verdict once a run is judged:
   `commit-runs --dry-run` refused by "refuses to run"; `commit-plan` typed
   by hand allowed; the guard's bare `git reset` and `reset --soft`, the
   commands that write the work tree from commits, and its wide reading,
-  below) the agent chose, applied, and put the set to the owner (question 68).
+  below) the agent chose, applied, and put the set to the owner: the agent's
+  choice, confirmed by the owner 6 Nov 2026 (68.1).
   calbatch.py's and plan_run.py's plans commit at their ends (plan_run.py's
   closing line "plan P: ended, all runs done|stopped by boxcheck (...)"),
   and sndreg run by hand commits at its end when it wrote its entry, its
