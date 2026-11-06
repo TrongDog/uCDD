@@ -7,6 +7,11 @@ only useful if it can be cloned onto a new machine in minutes. Built
 binaries (UCDD.EXE, the test .COM programs, the kits) come back from their
 sources and are not kept. Exceptions go in .bench-allow at the top of the
 bench repository: one shell glob a line, # comments allowed.
+
+A moved file is read as a new one (the owner's decision of 6 Nov 2026: "the bench pre-commit lists
+staged files with renames off (--no-renames) so a moved file is read"); tests/test_moves.py.
+
+lessons_read = "terms: rename, hook, commit, check, staged, backup; lessons: L11, L4, L38, L2, L30, L7, L35, L20, L40, L33, L13, L19, L37, L41, L10, L15, L22, L12, L25, L31, L32, L42, L43, L21, L26, L36, L23; 6 Nov 2026"
 """
 
 from pathlib import Path
@@ -65,7 +70,14 @@ def main():
     allowed = [line.split('#')[0].strip() for line in allow_file.read_text().splitlines()] \
         if allow_file.exists() else []
     allowed = [pattern for pattern in allowed if pattern]
-    names = [name for name in git('diff', '--cached', '--name-only', '--diff-filter=AM', '-z')
+    # Renames off (the owner's decision of 6 Nov 2026). git diff detects renames by default
+    # (diff.renames), and a moved file is then one R entry, old path to new, which the A and M
+    # filter drops: a file moved with git mv, or moved and edited, was never read here, under its
+    # new name or any other. With --no-renames it is a D of the old path, which needs no check,
+    # and an A of the new one, read whole like any other added file. Copies (diff.renames=copies)
+    # are split the same way.
+    names = [name for name in git('diff', '--cached', '--no-renames', '--name-only',
+                                  '--diff-filter=AM', '-z')
              .decode('utf-8', 'replace').split('\0') if name]
     # the home-path check is for what goes to GitHub: a repository with no remote (the top folder,
     # which holds the ledger and the notes with their paths, and never gets one) is not checked for it
