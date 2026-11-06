@@ -36,11 +36,11 @@ temporary folder, removed at its end.
 What decides each expected value: the exclusion and that it is by path, Michael's decision of 6
 Nov 2026 on question 67 (7) ("the bench size check excludes the ledger's runs file by path");
 by that exact path only, in whichever repository holds it, with no further condition (no test
-of whether the repository has a remote), the agent's choice, question 68; every other file over
+of whether the repository has a remote), the agent's choice, confirmed by Michael 6 Nov 2026 (68.3); every other file over
 the limit refused, bench.toml's max_mb (20) and its refusal's own words (the hook); the ledger's
 path, methodlib.ledger_dir with UCDD_LEDGER, as ledger.py commit-runs reads it.
 
-decides = "Michael's decision of 6 Nov 2026 on question 67 (7): \"the bench size check excludes the ledger's runs file by path\"; by the exact path only: the agent's choice, question 68; the limit, bench.toml max_mb"
+decides = "Michael's decision of 6 Nov 2026 on question 67 (7): \"the bench size check excludes the ledger's runs file by path\"; by the exact path only: the agent's choice, confirmed by Michael 6 Nov 2026 (68.3); the limit, bench.toml max_mb"
 searched = ""terms: ledger, size, limit, pre-commit; hits: 2007 in 131 documents (1487 20, 1533 20, 1543 20, 4031 20, 460 20, 471 20); 6 Nov 2026""
 lessons_read = "terms: ledger, size, hook, commit; lessons: L38, L20, L40, L33, L41, L10, L22, L39, L32; 6 Nov 2026"
 """
