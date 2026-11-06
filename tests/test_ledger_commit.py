@@ -38,6 +38,18 @@ before the change fails all three in setUp (FAILED (failures=3),
 draft has the commands. Built, not run: the counts are predictions
 (UNMEASURED).
 
+Since the owner's decision of 6 Nov 2026 on question 67 (7) ("`ledger.py
+commit-runs` refuses to run unless invoked by calbatch (a token calbatch
+sets), so a hand invocation fails"), commit-runs is called here through a
+stand-in runner, a script named calbatch.py that sets the token as calbatch
+does (STAND_IN); test_commit_token.py proves the refusal. The plants above
+are unchanged by it. The same decision has the bench size check skip the
+runs file by its path ("the bench size check excludes the ledger's runs file
+by path"; bench/hooks/pre-commit, tests/test_runs_size.py), so --dry-run's
+size line now says so; its known-bad is the ledger.py before this change
+(the line read "the bench check refuses over 20 MB"): FAILED (failures=1)
+in 1, the draft's G2. Built, not run.
+
 decides = "silent: the owner's ruling of 6 Nov 2026 (the decision on the 15:50Z, 21:11Z and 23:31Z reports)"
 searched = "terms: ledger, commit, reproducibility; hits: 107 in 32 documents (DPMI10 20, docs/history.md 12, PBOOK 8, INTEL486_1995 7, RBIL_H 7, RBIL_N 6); 6 Nov 2026"
 lessons_read = "terms: ledger, commit, plan, runner, flag, backup, batch, hook; lessons: L6, L38, L2, L1, L9, L20, L40, L33, L37, L10, L22, L39, L32, L36; 6 Nov 2026"
@@ -56,6 +68,12 @@ TOOL = PACKAGE / 'tools' / 'ledger.py'
 TAG = 'abcd1234'
 BENCH = '0123456789abcdef0123456789abcdef01234567'
 RUNS = 'ledger/runs.jsonl'
+# A stand-in runner (question 67 (7)): it sets the token for its child as calbatch.py's commit_runs
+# does, <its own file name>:<its process id>, and runs the rest of its command line as that child.
+STAND_IN = '''import os, subprocess, sys
+env = dict(os.environ, UCDD_LEDGER_RUNNER=os.path.basename(__file__) + ':' + str(os.getpid()))
+sys.exit(subprocess.run([sys.executable, *sys.argv[1:]], env=env).returncode)
+'''
 
 
 def line(plan, run, verdict):
@@ -82,6 +100,10 @@ class CommitRuns(unittest.TestCase):
         (self.top / 'notes.md').write_text('notes\n')
         self.flag = Path(self.tmp.name) / 'recording.flag'
         self.env = dict(os.environ, UCDD_LEDGER=str(self.ledger), UCDD_RECORDING_FLAG=str(self.flag))
+        self.env.pop('UCDD_LEDGER_RUNNER', None)
+        self.runner = Path(self.tmp.name) / 'runner' / 'calbatch.py'
+        self.runner.parent.mkdir()
+        self.runner.write_text(STAND_IN)
         self.git('add', '-A')
         self.assertEqual(self.git('commit', '-q', '-m', 'Notes: first').returncode, 0)
         self.first = self.head()
@@ -101,7 +123,9 @@ class CommitRuns(unittest.TestCase):
         return self.git('rev-parse', 'HEAD').stdout.strip()
 
     def tool(self, *args):
-        return subprocess.run([sys.executable, str(TOOL), *args], cwd=self.tmp.name,
+        # commit-runs runs only from a runner (question 67 (7)): through the stand-in calbatch.py
+        runner = [str(self.runner)] if args[:1] == ('commit-runs',) else []
+        return subprocess.run([sys.executable, *runner, str(TOOL), *args], cwd=self.tmp.name,
                               capture_output=True, text=True, env=self.env)
 
     def record(self, run, verdict, *extra):
@@ -136,7 +160,11 @@ class CommitRuns(unittest.TestCase):
         (self.top / 'scratch.txt').write_text('scratch\n')
         dry = self.tool('commit-runs', TAG, '--why', 'all runs complete', '--dry-run')
         self.assertEqual(dry.returncode, 0, dry.stderr)
-        self.assertIn('MB (the bench check refuses over 20 MB)', dry.stdout)
+        # the size beside the bench check's limit, which skips this file: the owner's decision of
+        # 6 Nov 2026 on question 67 (7) ("the bench size check excludes the ledger's runs file by
+        # path"); 20 MB: bench.toml's max_mb
+        self.assertIn('MB (the bench check skips this file by its path, its 20 MB limit kept for '
+                      'every other file)', dry.stdout)
         # %h is at least 7 digits (core.abbrev may make it longer), HEAD's always 7: each half apart
         self.assertIn(f'since its last commit {self.first[:7]}', dry.stdout)
         self.assertIn(f' (HEAD {notes[:7]}): {TAG} 2, ffff0000 1.', dry.stdout)

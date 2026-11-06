@@ -43,7 +43,12 @@ remote storage, or a second disk kept elsewhere), not GitHub.
 
 The pre-commit check (`bench/hooks/pre-commit`, settings in `bench.toml`)
 refuses game, program, disc, recording and image files and anything over
-20 MB, an absolute home path in a repository with a remote (2 Nov 2026), and
+20 MB but the ledger's runs file, which is let in by its exact path alone
+(the owner's decision of 6 Nov 2026 on question 67 (7): "the bench size check
+excludes the ledger's runs file by path, and from A7 the ledger rolls the
+file per gate"; the exact path only, the agent's choice, question 68;
+tests/test_runs_size.py; built, not run), an absolute home
+path in a repository with a remote (2 Nov 2026), and
 any commit while a plan records (4 Nov 2026). It lists the staged files with
 rename detection off, so a moved file is read as a new one under its new
 name (the owner's decision of 6 Nov 2026; tests/test_moves.py): with renames
@@ -116,13 +121,30 @@ method guard refuses shell commands that name the ledger's files." New
 text: git commands are not checked for the ledger's files (guard.py's
 bash_refusal sends a git command to its git rules alone), so a `git add`,
 `git checkout --` or `git restore` naming the runs file passes the guard;
-open: question 67, for rules-bot and the owner. `backup.sh` takes the ledger into each snapshot with `git add -A` into its own
+open: question 67, for rules-bot and the owner. Answered (the owner's decision
+of 6 Nov 2026 on question 67 (7): "the guard treats a git command that
+stages, restores or checks out a guard-protected path as a write to it";
+built, not run): a git command that stages, restores or checks out the
+ledger's files or a game library, by name or through its whole work tree,
+is refused, so in the top folder no whole-tree form (`git add -A` or `.`,
+`git commit -a`, `git checkout -- .`, `git restore .`, `git stash`, `git
+reset` with no path, with a commit alone (`--soft` too) or `--hard`, a
+branch checkout, `merge`, `revert` and the like) passes and the agent names
+the files it commits (the bare reset, `reset --soft` and the commands that
+write from commits refused there: the agent's choice, question 68);
+`plan.py --save` commits a saved plan itself (`ledger.py commit-plan`), and
+`ledger.py commit-runs` runs only from a runner (the token; the method
+README, "The ledger"). `backup.sh` takes the ledger into each snapshot with `git add -A` into its own
 index and runs as a script, so it is not refused. The working branch's copy
 of the ledger's runs file is committed by the tool at the end of each plan
 calbatch.py runs (the owner's decision of 6 Nov 2026: calbatch.py runs
 `ledger.py commit-runs`, the file alone on main, never by the agent's hand
 and no longer by the backup; the method README, "The ledger"; plan_run.py
-and sndreg commit nothing at their ends: question 67). Between plans it is ahead of its
+commits at each plan's end too, and sndreg at its own end when run by hand
+and it wrote its entry, each with the token in tools/ledger.py's form:
+the owner's decision of 6 Nov 2026 on question 67 (7), built, not run; old
+text: "plan_run.py and sndreg commit nothing at their ends: question 67").
+Between plans it is ahead of its
 last commit, so a `git checkout -- .`, `git restore .`, `git stash` or
 `git reset --hard` in the top folder would throw away its newer lines (the
 snapshot keeps them). Never check out, reset or revert the ledger: it only
