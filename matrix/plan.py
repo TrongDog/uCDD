@@ -3,13 +3,26 @@
 
     plan.py [plan] [--base REF | --files F ...] [--area A] [--group G]
                    [--test T] [--family F [--driver FILE]] [--baseline]
-                   [--save] [--format md|tsv|json]
+                   [--save [--why TEXT]] [--format md|tsv|json]
     plan.py check
 
 A plan takes the changed files to their areas in matrix.toml, the areas to
 their tests, and each test to the configurations it runs in: every value
 of a varied axis, every pair of values across two varied axes, and every
 combination of an area's "full" axes. Run it from the uCDD worktree.
+
+--save saves the plan in the ledger and commits its file alone on main in
+the repository that holds the ledger (ledger.py commit-plan; its subject
+"Plan <tag>: <--why>"), since the guard treats a git command that stages a
+ledger path as a write to it (Michael's decision of 6 Nov 2026 on question
+67 (7): "the guard treats a git command that stages, restores or checks out
+a guard-protected path as a write to it"). A refused commit (a plan
+recording: the top folder's check refuses any commit then; another file
+staged; not on main) leaves the plan saved and usable, says so on stderr
+and names `ledger.py commit-plan <tag>` for later; the exit stays 0, the
+plan on stdout as asked. Built, not run.
+
+lessons_read = "terms: plan, ledger, commit, guard; lessons: L38, L20, L40, L33, L37, L22, L39, L32, L24, L36; 6 Nov 2026"
 
 Other programs read the matrix through load():
 
@@ -30,6 +43,7 @@ import sys
 import tomllib
 
 HERE = Path(__file__).resolve().parent
+LEDGER = HERE.parent / 'tools' / 'ledger.py'
 sys.path.insert(0, str(HERE.parent / 'lib'))
 import methodlib  # noqa: E402
 PHASES = {'probe': 1, 'recording': 2, 'hardware': 3}
@@ -591,6 +605,22 @@ def check(matrix):
     return problems, warnings
 
 
+def commit_saved(tag, why):
+    """The saved plan's file committed alone on the top folder's main by ledger.py commit-plan
+    (Michael's decision of 6 Nov 2026 on question 67 (7): no hand staging of a ledger path; that
+    plan.py commits it: the agent's choice, question 68). Its lines go to stderr, the plan to
+    stdout. A refused commit leaves the plan saved: the runners record against the file, not its
+    commit."""
+    done = subprocess.run([sys.executable, str(LEDGER), 'commit-plan', tag, '--why', why],
+                          capture_output=True, text=True)
+    for text in (done.stdout, done.stderr):
+        if text.strip():
+            print(text.strip(), file=sys.stderr)
+    if done.returncode:
+        print(f'plan {tag}: saved, not committed (above); `ledger.py commit-plan {tag}` commits it '
+              'once that is cleared', file=sys.stderr)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     parser.add_argument('command', nargs='?', default='plan', choices=('plan', 'check'))
@@ -608,7 +638,11 @@ def main():
                         help='add a run without uCDD (mode base) beside each run (step 3)')
     parser.add_argument('--format', choices=('md', 'tsv', 'json'), default='md')
     parser.add_argument('--save', action='store_true',
-                        help='save the plan in the ledger, so its runs can be recorded')
+                        help='save the plan in the ledger, so its runs can be recorded, and commit '
+                             'its file alone on the top folder\'s main (ledger.py commit-plan)')
+    parser.add_argument('--why', default='saved by plan.py --save',
+                        help="with --save: what the plan is for, its commit's subject after "
+                             '"Plan <tag>: "')
     args = parser.parse_args()
     matrix = load(args.matrix)
     if args.command == 'check':
@@ -639,6 +673,7 @@ def main():
         saved = methodlib.save_plan({'tag': plan['tag'], 'files': files, 'families': args.family,
                                      'runs': plan['runs']})
         print(f'plan {plan["tag"]} saved: {saved}', file=sys.stderr)
+        commit_saved(plan['tag'], args.why)
     if args.format == 'json':
         print(json.dumps(plan, indent=1))
     elif args.format == 'tsv':

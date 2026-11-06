@@ -8,13 +8,13 @@ order of work into these pieces:
 | `skills/change-loop/SKILL.md` | A Claude Code skill: the order of one change (spec, family, baseline, reproduce, row first, fix, prove, close), honest results, the check before `fixes` |
 | `hooks/commit-msg`, `method.toml` | A git hook that refuses a code commit without its row and its evidence |
 | `matrix/matrix.toml`, `matrix/plan.py` | One definition of the test matrix, and a planner that turns a diff into the runs it needs |
-| `tools/ledger.py` | The results ledger: the runners record each verdict and the binaries it was for, and calbatch.py the bench's commit on every entry it records; the hook reads it; the batch runner commits its runs file at each plan's end (`commit-runs`) |
-| `guard/guard.py` | A Claude Code hook: no `--no-verify`, no hand-written ledger, no write into the game library, no commits through the GitHub tools, nothing to the upstream |
+| `tools/ledger.py` | The results ledger: the runners record each verdict and the binaries it was for, and the bench's commit on every entry they record; the hook reads it; the runners commit its runs file at each plan's end (`commit-runs`, a runner's only: the token; calbatch.py, plan_run.py, and sndreg run by hand), and `plan.py --save` a saved plan (`commit-plan`) |
+| `guard/guard.py` | A Claude Code hook: no `--no-verify`, no hand-written ledger, no git command that stages, restores or checks out a protected path, no runners' token by hand, no write into the game library, no commits through the GitHub tools, nothing to the upstream |
 | `tools/trailers.py` | Counts Issue:, Lesson: and Evidence: trailers in the history |
 | `tools/game.py` | Before a game runs: its engine, driver versions and family, looked up in the library; what the notes lack |
 | `tools/ci.py`, `ci/method.yml` | The checks on GitHub: every branch built with its headroom, and the hook's checks on commits made after the hook went in |
 | `bench/` | The bench's backups: the bench folder in a private repository, the notes versioned on the machine only, a pre-commit check against game and heavy files, the hourly snapshot on a ref of its own (never on the working branch), and how to restore it all on a new machine (bench/README.md) |
-| `install.sh`, `tests/test_method.py`, `lib/methodlib.py` | Install per worktree; self-tests (the others in `tests/`: each round's or decision's own, such as `test_moves.py` and `test_ledger_commit.py`, 6 Nov 2026); what the pieces share |
+| `install.sh`, `tests/test_method.py`, `lib/methodlib.py` | Install per worktree; self-tests (the others in `tests/`: each round's or decision's own, such as `test_moves.py` and `test_ledger_commit.py`, 6 Nov 2026, and `test_guard_git.py`, `test_commit_token.py`, `test_fork_moves.py` and `test_runs_size.py`, question 67 (7), with the runners' own `runs/test_runner_end.py` in the bench); what the pieces share |
 
 Standard library only: Python 3.11 or later (tomllib), git, sh.
 
@@ -70,7 +70,9 @@ From the uCDD clone:
 
 There are no other environment variables: `UCDD_LEDGER`, `UCDD_GAMES` and
 `UCDD_METHOD_LOCAL` only override method.toml, and `UCDD_SPOT=1` marks a
-spot check.
+spot check. `UCDD_LEDGER_RUNNER` is the runners' token for their own
+`commit-runs` call (question 67 (7)): nobody sets it by hand, and the guard
+refuses a shell command that does.
 
 ## The hook
 
@@ -263,12 +265,15 @@ each verdict once a run is judged:
 - **What an entry holds:** the time, the plan and run, the verdict, the hash
   of every EXE and BIN in the build directory, the hash of each tool given
   (it pins the instrument exactly, whatever its folder's history says), the hash of
-  each output, the host, and, on every entry calbatch.py records, the
-  bench's commit the plan started from and how many tracked files differed
-  from it then (`--bench-commit`, `--bench-changed N`; the files themselves
-  are named once, in the plan's log; null when git could not read them, and
-  null from the other runners, plan_run.py and sndreg, which do not pass
-  them yet: question 67). Michael's decision of 6 Nov 2026: "The 'bench
+  each output, the host, and, on every entry calbatch.py, plan_run.py and
+  sndreg record, the bench's commit the plan started from and how many
+  tracked files differed from it then (`--bench-commit`, `--bench-changed
+  N`; the files themselves are named once, in the plan's log; null when git
+  could not read them; sndreg run by plan_run carries the plan's, as
+  plan_run read it at the plan's start: Michael's decision of 6 Nov 2026 on
+  question 67 (7), built, not run. Corrected 6 Nov 2026, the rule 7 form;
+  old text: "and null from the other runners, plan_run.py and sndreg, which
+  do not pass them yet: question 67"). Michael's decision of 6 Nov 2026: "The 'bench
   commits before a plan' rule stays, its reason now reproducibility: the
   plan's commit hash is in the ledger". So every bench change a plan will
   use is committed before the plan starts, and the hash names the bench's
@@ -301,11 +306,45 @@ each verdict once a run is judged:
   off main, and when the file's earlier lines differ from its last commit
   (the ledger only grows). A refused commit, a kill or a crash commits
   nothing; the next plan's end takes every line since. `--dry-run` says
-  what it would commit, and the file's size against the bench check's
-  20 MB, and commits nothing. The saved plan is the agent's to commit, with
-  the plan. Only calbatch.py's plans commit at their ends: plan_run.py and
+  what it would commit, and the file's size beside the bench check's
+  20 MB, which skips this file by its path (Michael's decision of 6 Nov 2026
+  on question 67 (7): "the bench size check excludes the ledger's runs file
+  by path, and from A7 the ledger rolls the file per gate"; built, not run;
+  old text: "and the file's size against the bench check's 20 MB"), and
+  commits nothing. commit-runs runs only when a runner invoked
+  it (Michael's decision of 6 Nov 2026 on question 67 (7): "`ledger.py
+  commit-runs` refuses to run unless invoked by calbatch (a token calbatch
+  sets), so a hand invocation fails"): the runner (calbatch.py, plan_run.py
+  or sndreg) puts `UCDD_LEDGER_RUNNER=<its script's file name>:<its process
+  id>` in the environment of its commit-runs call, run as its own child with
+  no shell between, and commit-runs refuses unless that process is its
+  parent and runs that script; typed by hand it refuses, `--dry-run`
+  included, and the guard refuses it and the token set by hand
+  (tests/test_commit_token.py). Corrected 6 Nov 2026 (the rule 7 form). Old
+  text: "The saved plan is the agent's to commit, with the plan." New text:
+  `plan.py --save` commits the saved plan's file alone on main
+  (`ledger.py commit-plan <tag> [--why TEXT]`, its subject "Plan <tag>:
+  <why>"), refused off main and while anything else is staged, as
+  commit-runs; a refused one (while a plan records the top folder's check
+  refuses any commit) is committed later by `ledger.py commit-plan <tag>`,
+  which may be typed by hand. A saved plan's file is never staged by hand:
+  the guard refuses it (tests/test_guard_git.py). Built, not run. Where the
+  decision's words are silent (all three runners hold the token; a hand
+  `commit-runs --dry-run` refused by "refuses to run"; `commit-plan` typed
+  by hand allowed; the guard's bare `git reset` and `reset --soft`, the
+  commands that write the work tree from commits, and its wide reading,
+  below) the agent chose, applied, and put the set to Michael (question 68).
+  calbatch.py's and plan_run.py's plans commit at their ends (plan_run.py's
+  closing line "plan P: ended, all runs done|stopped by boxcheck (...)"),
+  and sndreg run by hand commits at its end when it wrote its entry, its
+  closing line in its run's own name ("sndreg TAG: ended, check|judge
+  (...)"); under plan_run, sndreg commits nothing and plan_run's end takes
+  its lines; each sets the token above on its own commit-runs call
+  (Michael's decision of 6 Nov 2026 on question 67 (7); built, not run:
+  runs/test_runner_end.py). Corrected 6 Nov 2026 (the rule 7 form). Old
+  text: "Only calbatch.py's plans commit at their ends: plan_run.py and
   sndreg do not, so their lines wait for the next calbatch plan's end
-  (question 67).
+  (question 67)."
 - **Who writes it:** the runners only. `record` refuses a plan that was not
   saved first (`plan.py --save`) and a run the plan does not have. The guard
   refuses `ledger.py record` typed by Claude, edits of the ledger's files, and
@@ -315,8 +354,45 @@ each verdict once a run is judged:
   sends a git command to its git rules alone), so `git add`, `git commit -a`,
   `git checkout --`, `git restore` or `git reset` naming the runs file pass
   the guard: "never by the agent's hand" holds by the agent's discipline
-  only. Open: question 67, for rules-bot and Michael. Michael can record a
-  run by hand in his own shell.
+  only. Open: question 67, for rules-bot and Michael. Answered (Michael's
+  decision of 6 Nov 2026 on question 67 (7): "the guard treats a git command
+  that stages, restores or checks out a guard-protected path as a write to
+  it"; built, not run): the guard reads what a git command reaches, its
+  paths (a pattern as the folder its fixed part names, git's `:/` and `:!`
+  magic read) and the whole work tree for a whole-tree form (`add -A`, `-u`,
+  `.`; `commit -a`; a branch checkout or switch; `checkout -f`; `reset` with
+  no path, with a commit alone (`--soft` too) or with `--hard`; `stash`;
+  `clean` the folder it runs in; `merge`,
+  `rebase`, `cherry-pick`, `revert`, `pull`, `am`, `apply`), from the folder
+  it runs in (the cwd, a `cd` earlier on the line, `-C`, `--work-tree`,
+  `GIT_WORK_TREE`), and refuses one that reaches the ledger's folder or a
+  game library. In the top folder, which holds both, no whole-tree form
+  passes: its files are named (`git add FILE`, `git restore --staged FILE`,
+  `git commit -m MSG -- FILE`). Read-only commands (`log`, `show`, `diff`,
+  `status`, `cat-file`, `ls-files`, `blame`) and dry runs pass. It reads the
+  words only, never the index or the .gitignore. The line's own variables
+  (`T=DIR; git -C "$T" ...`, `export`) are read into its words (the
+  program's name too: `G=git; $G add -A`), PWD and
+  OLDPWD follow its `cd`; a writing command whose folder or path is not known
+  before the line runs (a variable the line does not set, `$( )`, a
+  backquote, `cd -`, `popd`, a `cd` after `eval` or `source`, a git dir not
+  named `.git`) is refused; a pattern exclusion (`':!*.md'`) frees nothing;
+  a git dir's own repository (`--git-dir`, `GIT_DIR`) is reached as well;
+  code given to `sh -c` or `eval` is read as a line of its own; shell
+  keywords (`if`, `do`, `{`) and env's `-u`, `-C` and `-S` are read; a
+  newline is the shell's command break, a backslash-newline is joined,
+  comments are taken out and a here-document's body is its command's input
+  (the git rules skip it, the token and ledger rules read it). Not
+  read: git and shell aliases, launchers other than env, command, builtin,
+  exec, nohup, setsid and time (sudo, xargs, find -exec, timeout), the code
+  of a substitution inside double quotes or a backquote (the word itself is
+  unknown), `git init` or `clone` into a library, `commit --amend` over a
+  runs file commit, a push from a folder the guard cannot follow (judged by
+  the remote's name alone) (tests/test_guard_git.py). With this rule
+  `tests/test_method.py`'s guard tests give each call a cwd, the system's
+  temporary folder, in no work tree: without one, its `git commit -am "fix
+  -n"` was read in the folder the test ran from and refused in the top
+  folder (built, not run). Michael can record a run by hand in his own shell.
 - **Reading it:** `ledger.py show <tag>` (every run's latest verdict), `spot`
   and `audit` (below).
 - **Turning it on fully:** with `[ledger] require = true`, every emulator line

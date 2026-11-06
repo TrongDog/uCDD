@@ -856,8 +856,18 @@ class BenchTests(unittest.TestCase):
 
 
 class GuardTests(unittest.TestCase):
+    # Each call names its cwd, as Claude Code's own calls do: the system's temporary folder, in no
+    # work tree. The guard reads a git write against the folder it runs in (Michael's decision of
+    # 6 Nov 2026 on question 67 (7): "the guard treats a git command that stages, restores or
+    # checks out a guard-protected path as a write to it"), so without it test_allowed's
+    # `git commit -am` and `git merge` were read in the folder this test was started from, and
+    # refused there when that folder's work tree holds the ledger or a game library (the top
+    # folder). The folder: the agent's choice, question 68. Built, not run (6 Nov 2026).
+    PLACE = tempfile.gettempdir()
+
     def guard(self, command=None, tool='Bash', **given):
-        call = {'tool_name': tool, 'tool_input': {'command': command} if command else given}
+        call = {'tool_name': tool, 'tool_input': {'command': command} if command else given,
+                'cwd': self.PLACE}
         return subprocess.run([sys.executable, str(PACKAGE / 'guard/guard.py')],
                               input=json.dumps(call), capture_output=True, text=True).returncode
 
