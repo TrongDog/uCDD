@@ -11,6 +11,17 @@ bench repository: one shell glob a line, # comments allowed.
 A moved file is read as a new one (the owner's decision of 6 Nov 2026: "the bench pre-commit lists
 staged files with renames off (--no-renames) so a moved file is read"); tests/test_moves.py.
 
+The size check skips the ledger's runs file, found by its path and by nothing else (the owner's
+decision of 6 Nov 2026 on question 67 (7): "the bench size check excludes the ledger's runs file
+by path, and from A7 the ledger rolls the file per gate"): methodlib's ledger folder and the name
+methodlib.append writes, resolved, as a path inside the repository being committed (the top
+folder, where ledger.py commit-runs commits it; in the bench repository it lies outside, so
+nothing is skipped there). Another file of the same name elsewhere, or any other file over the
+limit, is refused as before; every other check still reads the runs file. Until A7 rolls it, the
+file grows past 20 MB in the top folder only. Built, not run (6 Nov 2026): tests/test_runs_size.py.
+The lessons for this change: lessons_read = "terms: ledger, size, hook, commit; lessons: L38,
+L20, L40, L33, L41, L10, L22, L39, L32; 6 Nov 2026"; the line below is the renames change's.
+
 lessons_read = "terms: rename, hook, commit, check, staged, backup; lessons: L11, L4, L38, L2, L30, L7, L35, L20, L40, L33, L13, L19, L37, L41, L10, L15, L22, L12, L25, L31, L32, L42, L43, L21, L26, L36, L23; 6 Nov 2026"
 """
 
@@ -59,6 +70,17 @@ def recording():
     return line
 
 
+def runs_file_in(top):
+    """The ledger's runs file as a path in the repository at TOP, in git's form, or None when it
+    lies outside it (the bench repository). Its path is methodlib's: the ledger folder
+    (methodlib.ledger_dir, UCDD_LEDGER or method.toml's [ledger] path) and the name methodlib.append
+    and ledger.py commit-runs write, resolved as commit-runs resolves it."""
+    try:
+        return (methodlib.ledger_dir() / 'runs.jsonl').resolve().relative_to(top.resolve()).as_posix()
+    except ValueError:
+        return None
+
+
 def main():
     held = recording()
     if held:
@@ -82,6 +104,7 @@ def main():
     # the home-path check is for what goes to GitHub: a repository with no remote (the top folder,
     # which holds the ledger and the notes with their paths, and never gets one) is not checked for it
     pushed = bool(git('remote').strip())
+    runs_name = runs_file_in(top)
     problems = []
     for name in names:
         if any(fnmatch.fnmatchcase(name, pattern) for pattern in allowed):
@@ -91,7 +114,8 @@ def main():
                             'bench, backed up apart (or rebuild it from its source)')
             continue
         size = int(git('cat-file', '-s', f':{name}').decode().strip())
-        if size > BENCH['max_mb'] * 1024 * 1024:
+        # the ledger's runs file by its path alone (decision 67 (7)): the size check only
+        if size > BENCH['max_mb'] * 1024 * 1024 and name != runs_name:
             problems.append(f'{name}: {size // (1024 * 1024)} MB, over {BENCH["max_mb"]} MB')
             continue
         # no absolute home path in any file (the owner, 2 Nov 2026: 839 records had carried one);
