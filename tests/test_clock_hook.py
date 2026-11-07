@@ -53,11 +53,11 @@ What decides each expected value: a commit refused on what the tool says (cases 
 the owner's decision of 6 Nov 2026 (L40): "the commit check refuses a time line the tool did not
 write"; the check run on the two notes only (cases 3 to 5), a missing tool refused (6), the
 backup's snapshot skipped (7) and only it (8, 9), a crash refused (10): the agent's choice,
-question 69; git running a hook as the hook's parent, and an as-is commit's hook given its index
-as GIT_INDEX_FILE, silent: githooks(5), git-commit(1), asserted by cases 8 and 9 on the installed
-git.
+confirmed by the owner 7 Nov 2026 (69.2); git running a hook as the hook's parent, and an as-is
+commit's hook given its index as GIT_INDEX_FILE, silent: githooks(5), git-commit(1), asserted by
+cases 8 and 9 on the installed git.
 
-decides = "the owner's decision of 6 Nov 2026 (L40): \"every time heading in HANDOFF and STATE is written by a tool from the clock, and the commit check refuses a time line the tool did not write\"; the two notes only, a missing tool refused, the backup's skip and a crash refused: the agent's choice, question 69; git's hook environment silent: githooks(5), asserted here"
+decides = "the owner's decision of 6 Nov 2026 (L40): \"every time heading in HANDOFF and STATE is written by a tool from the clock, and the commit check refuses a time line the tool did not write\"; the two notes only, a missing tool refused, the backup's skip and a crash refused: the agent's choice, confirmed by the owner 7 Nov 2026 (69.2); git's hook environment silent: githooks(5), asserted here"
 searched = "terms: pre-commit, hook, index, parent; hits: 1543 in 124 documents (1487 20, 1523 20, 1533 20, 1543 20, 206 20, 4031 20); 6 Nov 2026"
 lessons_read = "terms: clock, heading, time, hook, commit, backup; lessons: L38, L40, L20, L33, L10, L18, L22, L16, L32, L43; 6 Nov 2026"
 """

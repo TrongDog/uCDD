@@ -140,13 +140,15 @@ names by the first call's date): rerun it.
 decides (the record and "never deleted"): the owner's decision of 6 Nov 2026
 on question 68 (quoted above); decides (the file of its own, its fields, the
 commit alone on main, the rename's form, a PATH missing or recorded already
-refused): the agent's choice, question 69 (the main agent's ruling R5);
+refused): the agent's choice, confirmed by the owner 7 Nov 2026 (69.5) (the
+main agent's ruling R5);
 decides (off main, another file staged, it only grows): as commit-plan and
 commit-runs (the owner's decision of 6 Nov 2026; bench/README.md: "it only
 grows"); decides (the recording flag): the owner, 4 Nov 2026, L6 ("a commit
 that must wait, waits"), read by supersede itself before anything changes:
-the agent's choice, question 69; decides (the other refusals, several PATHs
-in one commit, the way back): the agent's choice, question 69.
+the agent's choice, confirmed by the owner 7 Nov 2026 (69.5); decides (the
+other refusals, several PATHs in one commit, the way back): the agent's
+choice, confirmed by the owner 7 Nov 2026 (69.5).
 searched = "terms: superseded, ledger, provenance, rename, archive; hits: 204 in 35 documents (RBIL_G 20, RBIL_J 20, RBIL_L 17, DOC_BIBLIO 14, RBIL_F 11, RBIL_H 10); 6 Nov 2026"
 lessons_read = "terms: supersede, ledger, rename, commit, report, hash, test, plant, recording; lessons: L11, L6, L4, L38, L30, L7, L1, L40, L3, L20, L33, L5, L17, L37, L41, L15, L21, L22, L39, L32, L42, L26, L36; 6 Nov 2026"
 """
@@ -253,7 +255,8 @@ class Supersede(unittest.TestCase):
     def test_records_and_renames(self):
         # decides: the owner's decision of 6 Nov 2026 on question 68 ("recorded as superseded in the
         # ledger, never deleted"); the file of its own, its fields, the commit alone on main, the
-        # rename's form and several PATHs in one commit: the agent's choice, question 69 (R5)
+        # rename's form and several PATHs in one commit: the agent's choice,
+        # confirmed by the owner 7 Nov 2026 (69.5) (R5)
         one, two, three = self.reports
         loose = three.parent / 'report.txt'        # a file as a PATH: a stand-in windowed report
         loose.write_text('VERDICT X pieces 10\n')
@@ -312,7 +315,8 @@ class Supersede(unittest.TestCase):
     def test_refused_while_recording(self):
         # decides: the owner, 4 Nov 2026 (L6): the bench's pre-commit refuses any commit while the
         # recording flag is set ("a commit that must wait, waits"); read by supersede itself before
-        # anything changes, the hook behind it: the agent's choice, question 69
+        # anything changes, the hook behind it: the agent's choice,
+        # confirmed by the owner 7 Nov 2026 (69.5)
         recorder = subprocess.Popen(['sleep', '60'])
         try:
             self.flag.write_text(f'{recorder.pid} calbatch test_sweep.tsv\n')
@@ -343,7 +347,8 @@ class Supersede(unittest.TestCase):
             recorder.wait()
 
     def test_refused_commit_puts_back(self):
-        # decides: the way back on a refused commit: the agent's choice, question 69
+        # decides: the way back on a refused commit: the agent's choice,
+        # confirmed by the owner 7 Nov 2026 (69.5)
         self.stand_in_hook(f'if [ -e {shlex.quote(str(self.mark))} ]; then '
                            'echo "stand-in hook: refused" >&2; exit 1; fi')
         self.mark.write_text('refuse\n')
@@ -367,7 +372,7 @@ class Supersede(unittest.TestCase):
 
     def test_put_back_blocked(self):
         # decides: a PATH's own name taken again in between is never renamed over, and named: the
-        # agent's choice, question 69
+        # agent's choice, confirmed by the owner 7 Nov 2026 (69.5)
         one = self.reports[0]
         self.stand_in_hook(f'mkdir {shlex.quote(str(one))}; echo "stand-in hook: refused" >&2; exit 1')
         head, index = self.head(), self.git('diff', '--cached', '--name-only').stdout
@@ -384,7 +389,8 @@ class Supersede(unittest.TestCase):
         self.assertEqual({path.name: path.read_bytes() for path in aside[0].iterdir()}, data)  # whole
 
     def test_rename_fails_half_way(self):
-        # decides: a rename that fails puts back the ones made before it: the agent's choice, question 69
+        # decides: a rename that fails puts back the ones made before it: the agent's choice,
+        # confirmed by the owner 7 Nov 2026 (69.5)
         locked = self.top / CALPAIRS / 'locked'
         inner = locked / 'ac_levels'
         inner.mkdir(parents=True)
@@ -399,7 +405,8 @@ class Supersede(unittest.TestCase):
         self.assertEqual(self.snapshot(), found)
 
     def test_write_fails_puts_back(self):
-        # decides: a record that cannot be written puts every PATH back: the agent's choice, question 69
+        # decides: a record that cannot be written puts every PATH back: the agent's choice,
+        # confirmed by the owner 7 Nov 2026 (69.5)
         self.ledger.chmod(0o555)                     # no new file in it
         self.addCleanup(self.unlock, self.ledger)
         found = self.snapshot()
@@ -410,8 +417,9 @@ class Supersede(unittest.TestCase):
         self.assertEqual(self.snapshot(), found)
 
     def test_refusals(self):
-        # decides: a PATH missing or recorded already: the agent's choice, question 69 (R5); every other
-        # refusal: the agent's choice, question 69
+        # decides: a PATH missing or recorded already: the agent's choice,
+        # confirmed by the owner 7 Nov 2026 (69.5) (R5); every other refusal: the agent's choice,
+        # confirmed by the owner 7 Nov 2026 (69.5)
         one, two, three = self.reports
         done = self.tool('supersede', str(one), '--why', WHY)
         self.assertEqual(done.returncode, 0, done.stderr)
@@ -498,7 +506,8 @@ class Supersede(unittest.TestCase):
 
     def test_ledger_refusals(self):
         # decides: off main, another file staged, it only grows: as commit-plan and commit-runs
-        # (the owner's decision of 6 Nov 2026; bench/README.md); the rest: the agent's choice, question 69
+        # (the owner's decision of 6 Nov 2026; bench/README.md); the rest: the agent's choice,
+        # confirmed by the owner 7 Nov 2026 (69.5)
         one, two, three = self.reports
         done = self.tool('supersede', str(one), '--why', WHY)
         self.assertEqual(done.returncode, 0, done.stderr)

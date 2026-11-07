@@ -152,16 +152,19 @@ decides (the record, "never deleted"): the owner's decision of 6 Nov 2026 on
 question 68 (quoted above). decides (a file of its own and its name, its
 fields, the commit alone on main as commit-plan, the rename to
 NAME.superseded-YYYYMMDD, the refusals of a PATH already recorded or
-missing): the agent's choice, question 69 (the main agent's ruling R5).
+missing): the agent's choice, confirmed by the owner 7 Nov 2026 (69.5) (the
+main agent's ruling R5).
 decides (the recording flag read before anything changes): the owner, 4 Nov
 2026, L6 ("the bench's pre-commit refuses any commit while the recording
 flag is set ... a commit that must wait, waits"), read here as well: the
-agent's choice, question 69 (the review of 6 Nov 2026). decides (the other
-refusals, several PATHs in one commit, the UTC date, MAX_FILES 200, the
-renames before the commit and put back on a failure, typed by hand
-allowed): the agent's choice, question 69.
+agent's choice, confirmed by the owner 7 Nov 2026 (69.5) (the review of
+6 Nov 2026). decides (the other refusals, several PATHs in one commit, the
+UTC date, MAX_FILES 200, the renames before the commit and put back on a
+failure, typed by hand allowed): the agent's choice,
+confirmed by the owner 7 Nov 2026 (69.5).
 decides (the mechanism as a whole): silent: no document in the library
-decides it (the search below, its hits read), the agent's choice, question 69;
+decides it (the search below, its hits read), the agent's choice,
+confirmed by the owner 7 Nov 2026 (69.5);
 searched = "terms: superseded, ledger, provenance, rename, archive; hits: 204 in 35 documents (RBIL_G 20, RBIL_J 20, RBIL_L 17, DOC_BIBLIO 14, RBIL_F 11, RBIL_H 10); 6 Nov 2026"
 lessons_read = "terms: supersede, ledger, rename, commit, report, hash, recording, git; lessons: L11, L6, L38, L40, L3, L20, L33, L5, L37, L15, L21, L22, L39, L32, L24, L36; 6 Nov 2026"
 Built, not run (6 Nov 2026): tests/test_ledger_supersede.py, its known-bads in
@@ -206,7 +209,7 @@ NEVER_DELETED = ('The "moved aside by hand" whole-file reports are recorded as s
                  'ledger, never deleted')
 SUPERSEDED = 'superseded.jsonl'
 SUPERSEDED_AS = re.compile(r'\.superseded-\d{8}$')
-MAX_FILES = 200          # the agent's choice, question 69
+MAX_FILES = 200          # the agent's choice, confirmed by the owner 7 Nov 2026 (69.5)
 GIT_NAME = '.git'        # a repository's own folder, or a worktree's file naming it: never moved
 
 
