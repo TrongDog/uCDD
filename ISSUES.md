@@ -1346,6 +1346,27 @@ Hypothesis (labelled; mine): headroom for the sum of the disc and the game's sou
 0.9.5-a2: the same 6.0 dB and the same code (above): upstream.
 Evidence: emulator (the captures of plan 28b798e7 and the sweep; MIXREAD one boot each). Hardware: UNCONFIRMED. A7: the same track recorded from the card's line-out through a real CD on the card's CD input (the JEMM boot) and through uCDD (the UCDD boot), the levels compared.
 Accepted as applied (the owner, 5 Nov 2026, on the 13:22Z report: "58 and 59 as applied are accepted, the 6 dB row carrying both comments and the code line"). a2's mixer reset is filed here as a disagreement with the data sheet: after a reset (SBDK:2651-2652, "After a reset, all the registers will be restored to their default values") a2's virtual mixer reads C0h in 36h/37h, CD at 24 (-14 dB), where SBDK:2688 and 2696 give the CD's default as "0 => - 62 dB" (MIXREAD after SBPROBE's reset, results/mixer/mixread_a2.txt); the pin reads 00h, SBDK's. For the line-out measurement at A7 (the PC's CT2291 read after the same reset). 86Box's own card's reset is 86MIXRESET (the emulator disagreements).
+- Measured (the owner's decision of 8 Nov 2026 on question 72: "a2's
+  game-sound level during CD playback against outside it, on the CD-audio
+  games with both, for the PC's line-out at A7"; the bench's
+  runs/rec/cdgame.py, results/sweep/cdgame_ac.txt, 8 Nov 2026; emulator):
+  the disc's track taken out of each 0.5 s window by least squares, the
+  game's own sound left, against C0's. 23 CD-audio readings; 4 with game
+  sound under the music over the fit's floor (C0's residual over -15 dB of
+  the window), 2 readable on a2: ADARK1 a06419fc, a2 -5.93 dB during CD
+  playback against -1.14 outside it (the pin -5.04 and -5.85); LOOM
+  a06419fc, a2 -5.98 during, outside not read (its a2 music fit -8.90 dB,
+  not -6.0: weaker). On these two, a2's game sound comes out about 6 dB
+  under C0's while the CD plays and near C0's outside it. The music-only
+  games read the fit's floor (-20 to -23 dB) and say nothing of game sound.
+- decides = "SBDK:2528-2532 ('The output mixing path takes signals from the
+  PC Speaker, Voice, MIDI, Mic, CD or Line-In sources'): each source at its
+  own volume, the closest line; none says in words that one source's level
+  does not move with another's"
+- searched = "terms: CD, voice, mix; hits: 10 in 4 documents (SBDK 3, SBG 3,
+  ES1868 2, notes/sound-cards.md 2); 8 Nov 2026"
+- Evidence: emulator (two games, one firm). For A7: the PC's line-out with a
+  game's sound under its CD music, the bare card against the UCDD boot.
 
 ### CAND-28 A6 sweep, a class: DOS's "Packed file is corrupt" under uCDD where the bare card runs the same game, CANDIDATE_UCDD_LOWMEM (the class from 5 Nov 2026; no member yet; both builds)
 
@@ -1413,6 +1434,19 @@ Code (reading only; B is frozen). The line that halves is the same on both build
   Recorded as ruled (the owner, 8 Nov 2026, question 72): "CAND-32's row records the code lines read (pin mix_run.asm:406-408 and 469-470; a2 mix.asm:18-21, 227, 364, 489) and upstream's a5f3f18 as the commit the pin's history lacks; the label waits for A7 as ruled." a5f3f18 is the author's, in a2's history and not in the pin's.
 Confirmation (the owner: "three of the 82 re-run, one per major sound engine"; the picks cand32.picks(), the agent's choice, question 72): ABZERO (Miles MSS 3, c87998b0, b06), XCOMAP (HMI SOS, c87998b0, b06), DOOM (DMX, 310ed652, b13), each "C2, two more takes", the 2-of-3 rule. Confirmed, all three (8 Nov 2026; plan 613746b1, bench 7a42043, 21:21:30Z to 21:34:19Z by its log; 6 of 6 RECORDED, ledger bf7cfe7; judged by the bench's rerunjudge.py, each take against its A6 plan's C0, results/rerun/613746b1/judged.txt): "DOS_ACT/ABZERO c87998b0 C2: confirmed (3 takes: the shape, the shape, the shape; gaps -6.01, -6.01, -6.01 dB, the sweep's first)", "DOS_ACT/DOOM 310ed652 C2: confirmed (3 takes: the shape, the shape, the shape; gaps -5.73, -5.78, -5.74 dB, the sweep's first)", "DOS_THNK/XCOMAP c87998b0 C2: confirmed (3 takes: the shape, the shape, the shape; gaps -6.01, -6.01, -6.02 dB, the sweep's first)". The judge's known-bad (no recording): ABZERO's b06 A2 take read the same way, "wave -0.01 dB, not the shape". ABZERO's watchdog state HANG at about 19 s on every take, as on C0 and a2 in b06: no state change. Old text (rule 7 form): "Not run yet: the re-run plan and the judge that reads a take against its own plan's C0 are still to be built."
 Evidence: emulator (the A6 captures, one take each; the matched measure, levelcmp.py sweep); the code by reading. Hardware: UNCONFIRMED (A7: a sample game's level from the card's line-out on the JEMM boot and the UCDD boot).
+- Membership by the voice-source offset (the owner's decision of 8 Nov 2026 on
+  question 72, 72.1, with 73.3's pick; the bench's runs/rec/voicepick.py,
+  cand32.py, results/sweep/voicepick_games_ac.csv and cand32_ac.txt): the
+  pin's gap over the pieces where it falls more than 0.5 dB under a2. The
+  level offset now by the matched sound's source (levelcmp.level_family):
+  the disc's track -6.0 dB on both builds, game sound 0 dB. So the eight
+  CD-audio games whose a2-only level rows read a2 6 dB over the CD offset
+  (ARCHIMED, BIGREDRA, CEO, DEDERBY2, DESCNT2V, REDRAMRA, SUPERKAR,
+  TOMBRAIG) are read on game sound, a2 within, and are CAND-32's. Members 76
+  of the pin-only family's 100 level rows (75 whole, CYBERIA2 by its level
+  part); 24 stay their own rows, voice-source offsets -6.76 to -3.3 dB
+  (73.3's limit: FM and samples in one piece dilute).
+- Evidence: emulator.
 
 ### CTRL-ONLY A6 sweep: games that run under uCDD and not under the control (a list, no verdict; from 5 Nov 2026)
 
