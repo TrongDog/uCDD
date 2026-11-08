@@ -1649,6 +1649,47 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   question 49). Evidence: emulator (development runs) and the emulator's
   source; data sheet. Hardware: not run.
 
+### DBXCTRL: the DOSBox-X referee's game control against 86Box's (a bench setting; 8 Nov 2026)
+
+- What it is: the second emulator's game control (Project A's T6; the owner's
+  decision of 7 Nov 2026, 69.9: "Every control failure that a uCDD build
+  passes is run on the DOSBox-X referee at the re-run step"). DOSBox-X
+  2026.10.01, core normal, the Tier 3 CPU in its own cycle figure, the
+  sweep's v2 disk and boot lines, its own SB16 at 220/5/1/5 (game_live.py
+  GL_EMU=dbx); the runner calbatch.py's REF- tests (results/referee/), the
+  verdicts runs/rec/referee.py.
+- Set to 86Box's where DOSBox-X's own options allow (the bench.DBX_CONF; each
+  option's name read from the binary's own help text; development runs
+  dbxset-a to -d, HOC's C0 boot under v2, 8 Nov 2026): vmemsize = 4 (S3VBE20
+  "4 MB video memory", 2 MB before), biosps2 = false (CTMOUSE "Installed at
+  COM1 (03F8h/IRQ4)" as on 86Box, the PS/2 port before), aux = false (no
+  PS/2 port, 86Box's machine shows none; nothing then raises IRQ 12 into
+  its zero vector). ems = false tried and not adopted: JemmEx still found no
+  page frame.
+- The differences left (the bench's results/env-v2/dbxset.txt): no
+  expanded memory page frame on DOSBox-X (JemmEx: "Warning: no suitable
+  page frame found, EMS functions limited"; INT 67h 41h status 80h; the
+  32M of expanded memory is there) and no upper memory (MEM: Upper 0K,
+  86Box 95K); no CD drive for a game without a disc (OAKCDROM "No drives
+  found, aborting installation", MSCDEX not loaded: 605K conventional
+  against 596K); the PIC masks the boot leaves (21h=E8 A1h=2C against
+  A8 0D); IRQ 2 to 6, 10 and 11 on DOS's STACKS handlers (the BIOS's default
+  handler on 86Box); IRQ 12 and 13 vectors 0000:0000. The mixer's 80h to
+  82h read alike (02 22 20).
+- Proven on the referee (8 Nov 2026): v2's drives (dbxdp-v2 and
+  dbxdp-past8g right, the known-bad dbxdp-v1bad wrong; dbx_disk.txt); the
+  screen reader (the FONT plant and the 40-column plants; test_screen.py);
+  the watchdog plants through sweep.py (dbx_plants.txt); the runner (plan
+  3a84e1aa: HOC's control on DOSBox-X EXITED, silent, as on 86Box,
+  REFEREE_REPRODUCED).
+- What the differences mean for a verdict: a referee run that fails with a
+  memory message on its screen while the page frame differs is not judged
+  (referee.py; question 74.4). A game with no disc meets no CD driver on
+  DOSBox-X, where 86Box's C0 has OAKCDROM and MSCDEX on an empty drive.
+- decides = "silent: the bench's measure of the two emulators' set-ups (development runs dbxset-a to -d and hocprobe-c0); the owner's decision of 7 Nov 2026 69.9"
+- searched = "terms: DOSBox-X, page frame, second emulator, game control; hits: 142 in 34 documents (EMS 20, I386 17, VSB 17, JR 15, RBIL_P 12, RBIL_G 8); 8 Nov 2026"
+- Evidence: emulator. Questions: 74.2, 74.4, 74.5.
+
 ### 86THRE: 86Box's 16550 raises the transmit-empty interrupt a second time when the shift register empties (an emulator difference; found 26 Oct 2026)
 
 - Seen [86Box] in Project A's T2X-PICHOLD and T2C0-PICHOLD (gate A3; plans
