@@ -45795,7 +45795,7 @@ groups = ["rerun", "rerun-rr"]
 repeat = 1
 fixed = { mode = "base", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
-note = "A6 re-run rr of db8eed0f (b04), DOS_ACT/ALIENTRI: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2)"
+note = "A6 re-run rr of db8eed0f (b04), DOS_ACT/ALIENTRI: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2); also: LOAD pair over the cd limit on v1 (A2)"
 
 [[test]]
 name = "RRN-RR-P133-C2-ALIENTRI"
@@ -45808,7 +45808,7 @@ groups = ["rerun", "rerun-rr"]
 repeat = 1
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
-note = "A6 re-run rr of db8eed0f (b04), DOS_ACT/ALIENTRI: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2)"
+note = "A6 re-run rr of db8eed0f (b04), DOS_ACT/ALIENTRI: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2); also: LOAD pair over the cd limit on v1 (A2)"
 
 [[test]]
 name = "RRN-RR-P133-A2-ALIENTRI"
@@ -45821,46 +45821,7 @@ groups = ["rerun", "rerun-rr"]
 repeat = 1
 fixed = { build = "a2", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
-note = "A6 re-run rr of db8eed0f (b04), DOS_ACT/ALIENTRI: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2)"
-
-[[test]]
-name = "RRN-RR-P133-C0-ALIENTRI"
-decides = "silent: the 2-of-3 rule (the owner 5 Nov 2026: \"confirmed by the 2-of-3 rule\") with each take judged by rerunjudge.py on its row's measure (results/sweep/rerun_set_ac.csv and its decides) and the tools by the owner's decision of 8 Nov 2026 on question 72"
-searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 8 Nov 2026"
-runner = "sweep"
-game = "ALIENTRI"
-library = "DOS_ACT"
-groups = ["rerun", "rerun-rr"]
-repeat = 1
-fixed = { mode = "base", vmodel = "sb16" }
-env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
-note = "A6 re-run rr of db8eed0f (b04), DOS_ACT/ALIENTRI: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (A2)"
-
-[[test]]
-name = "RRN-RR-P133-C2-ALIENTRI"
-decides = "silent: the 2-of-3 rule (the owner 5 Nov 2026: \"confirmed by the 2-of-3 rule\") with each take judged by rerunjudge.py on its row's measure (results/sweep/rerun_set_ac.csv and its decides) and the tools by the owner's decision of 8 Nov 2026 on question 72"
-searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 8 Nov 2026"
-runner = "sweep"
-game = "ALIENTRI"
-library = "DOS_ACT"
-groups = ["rerun", "rerun-rr"]
-repeat = 1
-fixed = { build = "pinC2", vmodel = "sb16" }
-env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
-note = "A6 re-run rr of db8eed0f (b04), DOS_ACT/ALIENTRI: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (A2)"
-
-[[test]]
-name = "RRN-RR-P133-A2-ALIENTRI"
-decides = "silent: the 2-of-3 rule (the owner 5 Nov 2026: \"confirmed by the 2-of-3 rule\") with each take judged by rerunjudge.py on its row's measure (results/sweep/rerun_set_ac.csv and its decides) and the tools by the owner's decision of 8 Nov 2026 on question 72"
-searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 8 Nov 2026"
-runner = "sweep"
-game = "ALIENTRI"
-library = "DOS_ACT"
-groups = ["rerun", "rerun-rr"]
-repeat = 1
-fixed = { build = "a2", vmodel = "sb16" }
-env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
-note = "A6 re-run rr of db8eed0f (b04), DOS_ACT/ALIENTRI: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (A2)"
+note = "A6 re-run rr of db8eed0f (b04), DOS_ACT/ALIENTRI: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2); also: LOAD pair over the cd limit on v1 (A2)"
 
 [[test]]
 name = "RRN-RR-P133-C0-CAPTLSM"
@@ -46029,7 +45990,7 @@ groups = ["rerun", "rerun-rr"]
 repeat = 1
 fixed = { mode = "base", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
-note = "A6 re-run rr of fce952ae (b01), DOS_ACT/SCREAMER: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2)"
+note = "A6 re-run rr of fce952ae (b01), DOS_ACT/SCREAMER: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2); also: LOAD pair over the cd limit on v1 (A2)"
 
 [[test]]
 name = "RRN-RR-P133-C2-SCREAMER"
@@ -46042,7 +46003,7 @@ groups = ["rerun", "rerun-rr"]
 repeat = 1
 fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
-note = "A6 re-run rr of fce952ae (b01), DOS_ACT/SCREAMER: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2)"
+note = "A6 re-run rr of fce952ae (b01), DOS_ACT/SCREAMER: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2); also: LOAD pair over the cd limit on v1 (A2)"
 
 [[test]]
 name = "RRN-RR-P133-A2-SCREAMER"
@@ -46055,46 +46016,7 @@ groups = ["rerun", "rerun-rr"]
 repeat = 1
 fixed = { build = "a2", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
-note = "A6 re-run rr of fce952ae (b01), DOS_ACT/SCREAMER: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2)"
-
-[[test]]
-name = "RRN-RR-P133-C0-SCREAMER"
-decides = "silent: the 2-of-3 rule (the owner 5 Nov 2026: \"confirmed by the 2-of-3 rule\") with each take judged by rerunjudge.py on its row's measure (results/sweep/rerun_set_ac.csv and its decides) and the tools by the owner's decision of 8 Nov 2026 on question 72"
-searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 8 Nov 2026"
-runner = "sweep"
-game = "SCREAMER"
-library = "DOS_ACT"
-groups = ["rerun", "rerun-rr"]
-repeat = 1
-fixed = { mode = "base", vmodel = "sb16" }
-env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
-note = "A6 re-run rr of fce952ae (b01), DOS_ACT/SCREAMER: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (A2)"
-
-[[test]]
-name = "RRN-RR-P133-C2-SCREAMER"
-decides = "silent: the 2-of-3 rule (the owner 5 Nov 2026: \"confirmed by the 2-of-3 rule\") with each take judged by rerunjudge.py on its row's measure (results/sweep/rerun_set_ac.csv and its decides) and the tools by the owner's decision of 8 Nov 2026 on question 72"
-searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 8 Nov 2026"
-runner = "sweep"
-game = "SCREAMER"
-library = "DOS_ACT"
-groups = ["rerun", "rerun-rr"]
-repeat = 1
-fixed = { build = "pinC2", vmodel = "sb16" }
-env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
-note = "A6 re-run rr of fce952ae (b01), DOS_ACT/SCREAMER: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (A2)"
-
-[[test]]
-name = "RRN-RR-P133-A2-SCREAMER"
-decides = "silent: the 2-of-3 rule (the owner 5 Nov 2026: \"confirmed by the 2-of-3 rule\") with each take judged by rerunjudge.py on its row's measure (results/sweep/rerun_set_ac.csv and its decides) and the tools by the owner's decision of 8 Nov 2026 on question 72"
-searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 8 Nov 2026"
-runner = "sweep"
-game = "SCREAMER"
-library = "DOS_ACT"
-groups = ["rerun", "rerun-rr"]
-repeat = 1
-fixed = { build = "a2", vmodel = "sb16" }
-env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
-note = "A6 re-run rr of fce952ae (b01), DOS_ACT/SCREAMER: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (A2)"
+note = "A6 re-run rr of fce952ae (b01), DOS_ACT/SCREAMER: C0, C2 and A2 on v2 at 32 KB; LOAD pair over the cd limit on v1 (C2); also: LOAD pair over the cd limit on v1 (A2)"
 
 [[test]]
 name = "RRN-RR-P133-C0-SHADOWWA"
