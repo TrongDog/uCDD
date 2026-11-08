@@ -1723,6 +1723,12 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 - decides = "silent: the bench's measure of the two emulators' set-ups (development runs dbxset-a to -d and hocprobe-c0); the owner's decision of 7 Nov 2026 69.9"
 - searched = "terms: DOSBox-X, page frame, second emulator, game control; hits: 142 in 34 documents (EMS 20, I386 17, VSB 17, JR 15, RBIL_P 12, RBIL_G 8); 8 Nov 2026"
 - Evidence: emulator. Questions: 74.2, 74.4, 74.5 (answered, the owner, 8 Nov 2026: the placeholder disc made if under an hour; 74.4 confirmed; 74.5 DOSBox-X's interpreter counts as recompiler off, its runs evidence).
+- The placeholder disc (the owner, 8 Nov 2026, 74.2; the bench's
+  bench.placeholder_iso, results/env-v2/dbx_nodisc.txt; development run
+  dbxnd-hoc): with it OAKCDROM and MSCDEX load on the referee, but with no
+  upper memory OAKCDROM loads low: 542K free against 86Box's 595K (605K
+  without it), and HOC stops at its own memory check. Off by default
+  (game_live.py GL_DBX_NODISC=1; question 76.1). Evidence: emulator.
 
 ### HOCCARD: Heart of China's card test waits 512 loop passes for the interrupt of a one-byte DMA block (a game's test, read; 8 Nov 2026; open: the PC decides)
 
