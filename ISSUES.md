@@ -1688,7 +1688,48 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   DOSBox-X, where 86Box's C0 has OAKCDROM and MSCDEX on an empty drive.
 - decides = "silent: the bench's measure of the two emulators' set-ups (development runs dbxset-a to -d and hocprobe-c0); the owner's decision of 7 Nov 2026 69.9"
 - searched = "terms: DOSBox-X, page frame, second emulator, game control; hits: 142 in 34 documents (EMS 20, I386 17, VSB 17, JR 15, RBIL_P 12, RBIL_G 8); 8 Nov 2026"
-- Evidence: emulator. Questions: 74.2, 74.4, 74.5.
+- Evidence: emulator. Questions: 74.2, 74.4, 74.5 (answered, the owner, 8 Nov 2026: the placeholder disc made if under an hour; 74.4 confirmed; 74.5 DOSBox-X's interpreter counts as recompiler off, its runs evidence).
+
+### HOCCARD: Heart of China's card test waits 512 loop passes for the interrupt of a one-byte DMA block (a game's test, read; 8 Nov 2026; open: the PC decides)
+
+- What it tests (the owner's decision of 8 Nov 2026, 74.1; read with Ghidra
+  and an unpacker on this machine, the game's code kept there; the bench's
+  results/env-v2/hoc_cardtest.txt): HOC.EXE holds no card code; its Sound
+  Blaster music driver is an LZW-packed piece of the overlay SXCODE1.OVL in
+  VOLUME.002. Its start-up: DSP reset (AAh), E0h with AAh (55h), E1h (1.01
+  or later), then IRQ 2, 3, 5 and 7 hooked, DMA channel 1 (fixed in the
+  driver) set for one byte, 40h with time constant 64h and 14h for one byte,
+  and 512 passes of a loop with no port access waiting for the interrupt.
+  Any check failing: "Unable to initialize the sound driver!" and "Sound
+  card interrupt is already in use by another card.". The driver touches no
+  mixer register (no base+4 or base+5, no absolute mixer port), so 82h is
+  not the cause.
+- Seen [86Box, DOSBox-X] at the Pentium 133 (the sweep's b15 and the IRQ 5
+  read, hocprobe-c0, -c2, -a2; the referee's plan 3a84e1aa): 86Box's SB16
+  (C0), DOSBox-X's SB16 and the pin fail; a2 passes. IRQ 5 is alike in all
+  three boots. What separates them is how soon the interrupt follows the
+  block's start against a loop the CPU's speed alone sets: a2's comes inside
+  it, the others' after it or never.
+- The mixer (74.1): the pin answers the CT2291's own 80h to 82h (F2 22 80);
+  a2 (02 22 00) and both emulators (02 22 20) do not (EMUMIX8X, A2MIX8X).
+  HOC's test reads none of them.
+- Predicted for the PC (A7's kit line: HOC in the JEMM boot, then the UCDD
+  boot; written 8 Nov 2026 before it runs): the bare CT2291 fails as C0 and
+  the referee do, at a loop of about 20 us at 233 MHz (an estimate from
+  recalled clock counts) against 156 us for one sample at 6410 Hz;
+  confidence low, both emulators modelling the DSP's timing from the same
+  silent documents. The UCDD boot: as the kit's build does on 86Box. If the
+  bare card fails: the pin answers as the card, the failure is the game's
+  own on a fast CPU, and a2's early interrupt is a fidelity note on a2. If
+  it passes: both emulators and the pin are late against the card, a
+  candidate row for the pin.
+- Rule 10: the Dynamix survey (the re-run step) reads the same driver piece
+  in the family's other games before any row calls this HOC's own.
+- decides = "SBDK:1004-1008 (the DSP interrupts for each DMA-mode DAC block), 1249 (the time constant: 64h is 6410 Hz); silent: how soon the real DSP's interrupt follows the start of a one-byte single-cycle block, and the loop's length on a given CPU; emulation first (C0 and the referee fail), then the PC (A7)"
+- searched = "terms: single-cycle, interrupt; hits: 1 in 1 documents (notes/sound-cards.md 1); 8 Nov 2026"
+- searched = "terms: LOOP, Clocks; hits: 1 in 1 documents (PBOOK 1); 8 Nov 2026" (a PLL line: the library holds no CPU timing manual)
+- Evidence: emulator (the outcomes), reading (the test). Hardware:
+  UNCONFIRMED.
 
 ### 86THRE: 86Box's 16550 raises the transmit-empty interrupt a second time when the shift register empties (an emulator difference; found 26 Oct 2026)
 
@@ -1875,6 +1916,31 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 - Filed (the owner, 5 Nov 2026, on the 13:22Z report): "the mixer reset values of 86Box's card and of a2's virtual mixer are filed as disagreements with the data sheet, 86Box's on the emulator-dispute list, a2's on CAND-27, both for the line-out measurement at A7". The PC's CT2291 after the same reset, read at A7, says which the real card does; the DOSBox-X twin (T6) the second emulator's.
 - Effect on the sweep: none seen; no game in the sweep is known to reset the mixer and rely on the default levels (not searched).
 - Evidence: emulator (one boot). Hardware: UNCONFIRMED.
+
+### EMUMIX8X: 86Box's and DOSBox-X's SB16 read mixer 80h and 82h unlike the CT2291 (an emulator disagreement; 8 Nov 2026)
+
+- decides = "SBDK:1027-1045 (82h: D2 to D0 defined, the rest reserved), 1106-1112 (80h: D3 to D0 defined, the rest reserved); silent on the reserved bits' values: the CT2291 decides (rule 1, the real hardware's response)"
+- searched = "terms: Interrupt Status; hits: 164 in 36 documents (1543 6, 5595 6, 630 6, 686A 6, 686B 6, 756 6); 8 Nov 2026" (the chipsets' own status registers; SBDK the only SB16 one)
+- Seen [86Box, DOSBox-X] with the bench's MIXREAD 1.0 in the sweep's boot
+  without uCDD (results/env-v2/mixread_C0.txt and mixread_X0.txt, 8 Nov
+  2026): 80h 02, 81h 22, 82h 20 on both. The CT2291 [hardware, 17 Oct 2026;
+  vsb/hw/ct2290_20261017/J/PROBE.TXT]: F2 22 80. Both emulators clear 80h's
+  D7 to D4 where the card sets them, and set 82h's D5 where the card sets
+  D7.
+- On the emulator-dispute list with 86MIXRESET (the owner, 8 Nov 2026, 74.1).
+- Effect: none seen. HOC's card test, the case that raised it, reads no
+  mixer register (HOCCARD).
+- Evidence: emulator; hardware (one card, one reading).
+
+### A2MIX8X: a2's virtual mixer reads 80h 02 and 82h 00 where the CT2291 reads F2 and 80 (a fidelity note on the author's 0.9.5-a2; 8 Nov 2026)
+
+- decides = "SBDK:1027-1045 (82h: D2 to D0 defined, the rest reserved), 1106-1112 (80h: D3 to D0 defined, the rest reserved); silent on the reserved bits' values: the CT2291 decides (rule 1, the real hardware's response)"
+- Seen [86Box] with MIXREAD 1.0 under a2 before any game
+  (results/env-v2/mixread_A2.txt, 8 Nov 2026): 02 22 00. The pin: F2 22 80,
+  the card's own.
+- A fidelity note (the owner, 8 Nov 2026, 74.1): a2 does not answer the card's
+  reserved bits. No game is known to read them; HOC does not (HOCCARD).
+- Evidence: emulator. Hardware: the CT2291's reading (EMUMIX8X).
 
 ### PARALLEL: how many 86Box recordings at once (A5's measured setting: one; measured 29 Oct 2026; a bench limit)
 
