@@ -1508,6 +1508,23 @@ Evidence: emulator (the A6 captures, one take each; the matched measure, levelcm
   hits: 860 in 84 documents (1543 20, 630 20, 686A 20, 686B 20, 8231 20,
   CS4232 20); 9 Nov 2026" (the chips' own mixers and OPL registers: none
   says how a bench reads a recorder's sources).
+- Measured on C1 (the owner, 10 Nov 2026, question 80, 80.1: "The 17 are
+  read once by the matched gap against C0 under the voice offset (0 dB),
+  one worker, and the result goes on CAND-32's row as a measurement of
+  whether the CD-only build also halves the voice path; it decides nothing
+  for C1"): it does not. The 17 rows read by source (the pin's level
+  between CAND-32 and their own), their C1 takes (plan 8439670a, three
+  each; the bench's results/rerun/8439670a/judged.txt, rerunjudge
+  dab24b5d): gaps -0.50 to 0.56 dB against C0, 50 of 51 takes within
+  level_spread_db of 0 dB, EXTREMER's third take (0.56 dB) the one
+  outside; the pin's full build (C2) read -0.62 to -5.13 dB on the same
+  17 by the whole matched gap (the list above). So what lowers the pin's
+  level on these games shows only where the build carries the game's
+  sound (C2), not on its CD path alone (an inference from the two builds'
+  readings). It
+  decides nothing for C1 (80.1); C1's level takes are not applicable for
+  bin 7.
+  decides: none (a measurement; it states no expected result).
 - Evidence: emulator.
 
 ### CTRL-ONLY A6 sweep: games that run under uCDD and not under the control (a list, no verdict; from 5 Nov 2026)
