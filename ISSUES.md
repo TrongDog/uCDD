@@ -1785,6 +1785,18 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   is one Dynamix driver version's timing loop, not the family's. NOVA9RET
   joins the A7 kit line as its second game. Evidence: reading (the drivers),
   emulator (the outcomes).
+- A7's kit lines (the owner's decision of 9 Nov 2026, 77.5: "NOVA9RET joins
+  HOC's kit line with the same prediction, and the driver version is named
+  on both rows"). Neither driver piece carries a version string; each is
+  named by its sha256 and size. HOC: the Sound Blaster piece 75efed58da61
+  (9674 bytes; SXCODE1.OVL and SXCODE2.OVL in VOLUME.002, both the same
+  piece), in the JEMM boot then the UCDD boot. NOVA9RET: the piece
+  623eeaece12e (9768 bytes; SX.OVL in VOLUME.001), the same two boots. The
+  same prediction for each: the bare CT2291 fails as C0 and the referee do
+  (HOC exits with its card message; NOVA9RET hangs silent, as on C0 and the
+  pin), confidence low; the UCDD boot as the kit's build does on 86Box; the
+  outcomes read as above. The referee reproduced both (REFEREE_REPRODUCED, 9
+  Nov 2026).
 
 ### 86THRE: 86Box's 16550 raises the transmit-empty interrupt a second time when the shift register empties (an emulator difference; found 26 Oct 2026)
 
