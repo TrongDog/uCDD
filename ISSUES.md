@@ -1782,6 +1782,11 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   memory message on its screen while the page frame differs is not judged
   (referee.py; question 74.4). A game with no disc meets no CD driver on
   DOSBox-X, where 86Box's C0 has OAKCDROM and MSCDEX on an empty drive.
+- Not judged for the page frame (the owner's decision of 9 Nov 2026: "The
+  referee's page-frame search is dropped; the four games stay not judged, in
+  DBXCTRL"): LEMM3, TIMEWARR, DEUS and SF2; their control failures stand
+  unrefereed. No search was made (77.3's bounded search, ruled the same
+  day, was withdrawn before it ran).
 - decides = "silent: the bench's measure of the two emulators' set-ups (development runs dbxset-a to -d and hocprobe-c0); the owner's decision of 7 Nov 2026 69.9"
 - searched = "terms: DOSBox-X, page frame, second emulator, game control; hits: 142 in 34 documents (EMS 20, I386 17, VSB 17, JR 15, RBIL_P 12, RBIL_G 8); 8 Nov 2026"
 - Evidence: emulator. Questions: 74.2, 74.4, 74.5 (answered, the owner, 8 Nov 2026: the placeholder disc made if under an hour; 74.4 confirmed; 74.5 DOSBox-X's interpreter counts as recompiler off, its runs evidence).
