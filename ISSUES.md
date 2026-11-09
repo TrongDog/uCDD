@@ -1729,6 +1729,13 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
   upper memory OAKCDROM loads low: 542K free against 86Box's 595K (605K
   without it), and HOC stops at its own memory check. Off by default
   (game_live.py GL_DBX_NODISC=1; question 76.1). Evidence: emulator.
+- The referee's twelve judged (9 Nov 2026; the bench's
+  results/referee/referee_ac.txt): REFEREE_REPRODUCED 5 (DUNGKEEP, SUPERC,
+  NOVA9RET, HOC, LSL5), REFEREE_DISPUTE 0, REFEREE_NOT_JUDGED 7: the page
+  frame on DOSBox-X's screen 4 (LEMM3, TIMEWARR, DEUS, SF2: the difference
+  this row records costs a third of the set), the referee's run not standing
+  3 (REDGUARD and MCKIDS EMULATOR_ENDED; PIRATES WALL_LIMIT: its writes to
+  ROM logged without end, the disk-full of 8 Nov 2026). Evidence: emulator.
 
 ### HOCCARD: Heart of China's card test waits 512 loop passes for the interrupt of a one-byte DMA block (a game's test, read; 8 Nov 2026; open: the PC decides)
 
@@ -1770,6 +1777,14 @@ Closed (the owner, 27 Oct 2026): a missed refill cannot move the closing beep; o
 - searched = "terms: LOOP, Clocks; hits: 1 in 1 documents (PBOOK 1); 8 Nov 2026" (a PLL line: the library holds no CPU timing manual)
 - Evidence: emulator (the outcomes), reading (the test). Hardware:
   UNCONFIRMED.
+- The family (rule 10; the owner's decision of 8 Nov 2026, 75.7; the bench's
+  results/sweep/dynamix_survey.txt, 9 Nov 2026): the 512-pass wait is in
+  HOC's and NOVA9RET's driver pieces, the two games where C0 and the pin
+  fail and a2 alone gets past; BEAMISH, TINCM1 and TINCM2, on other drivers,
+  sound alike on all three, RDRAGON is silent alike on all three. The shape
+  is one Dynamix driver version's timing loop, not the family's. NOVA9RET
+  joins the A7 kit line as its second game. Evidence: reading (the drivers),
+  emulator (the outcomes).
 
 ### 86THRE: 86Box's 16550 raises the transmit-empty interrupt a second time when the shift register empties (an emulator difference; found 26 Oct 2026)
 
