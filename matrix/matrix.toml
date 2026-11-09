@@ -183,7 +183,7 @@ optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", 
                    # A6 re-runs (rerunplan.py)
                    "rerun-rs",
                    # A6 re-runs (rerunplan.py)
-                   "rerun-cand"]
+                   "rerun-cand", "rerun-xr"]
 
 # How each runner is started, from the bench directory. $UCDD_FIXTEST is the
 # bench's fixtest.py and $UCDD_KIT its kit folder (the caller sets both, as it
@@ -47461,3 +47461,20 @@ fixed = { build = "pinC2", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0 C0_REF=706b82c9-005"
 note = "A6 re-run cand of c87998b0 (b06), DOS_THNK/SIMCITY2: C2, a third take (the straddlers); split: C2 level by source: one take each side of the edge; C0 706b82c9-005 at 32 KB"
 # END A6 re-run tests cand
+
+# BEGIN A6 re-run tests xr (written by the agent in the RS block's form; the owner's decision of 9 Nov 2026 on question 79, 79.3)
+
+[[test]]
+name = "RRN-XR-P133-C0-XCOMAP"
+decides = "silent: a reference take with no expected result of its own: XCOMAP's C0 on v2 at 32 KB (the owner's decision of 9 Nov 2026 on question 79 (79.3): taken again as one take and its reference for the candidate step in place of c87998b0-001 at 4 KB)"
+searched = "terms: reference take, C0 reference, cluster size; hits: 3 in 2 documents (RBIL_L 2, RBIL_F 1); 9 Nov 2026"
+runner = "sweep"
+game = "XCOMAP"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-xr"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A6 re-run xr, DOS_THNK/XCOMAP: C0 once on v2 at 32 KB, the reference for its C1 takes (plan 8439670a) in place of c87998b0-001 (b06's first seven takes, at 4 KB)"
+
+# END A6 re-run tests xr
