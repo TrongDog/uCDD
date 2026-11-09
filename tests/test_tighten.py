@@ -237,15 +237,30 @@ def main():
         check(other == [], 'refcheck: other grades are not its business')
 
         # --- session-recall.sh ---
-        (top / 'context' / 'STATE.md').write_text('# State\n\n## Open faults\n- F2 the count steps back\n\n## Questions for the owner\n1. the gauntlet\n\n## Where things live\n- x\n')
+        # one line per check (the owner's decision of 9 Nov 2026, efficiency); its known-bad: a gate
+        # IN_PROGRESS without its lessons_read line must print the check's FAIL, not its pass
+        slim = ('# State\n\n## Project A\n| Gate | State | First unmet acceptance line | Pointer |\n|---|---|---|---|\n'
+                '%s\n\n## Open faults\n- F2 the count steps back\n\n## Questions for the owner\nOpen, by number (as '
+                'written): 1,\n4. Their text: elsewhere.\n\n## Where things live\n- x\n')
+        good = '| A6 sweep | IN_PROGRESS; lessons_read = "terms: a; lessons: L1; 9 Nov 2026" | line 377 | p |'
         shutil.copy(out_md, top / 'context' / 'FIXED.md')
-        done = subprocess.run(['bash', str(pkg / 'hooks' / 'session-recall.sh')], capture_output=True, text=True,
-                              env={**os.environ, 'CLAUDE_PROJECT_DIR': str(wt)})
+        recall = lambda: subprocess.run(['bash', str(pkg / 'hooks' / 'session-recall.sh')], capture_output=True,
+                                        text=True, env={**os.environ, 'CLAUDE_PROJECT_DIR': str(wt)})
+        (top / 'context' / 'STATE.md').write_text(slim % good)
+        done = recall()
+        said = {l.split(':')[0]: l for l in done.stdout.splitlines() if ': ' in l}
         check(done.returncode == 0, 'session-recall: exits 0')
-        check('Ledger: EMPTY' in done.stdout, 'session-recall: says the ledger is empty when it is')
-        check('F2 the count steps back' in done.stdout and 'the gauntlet' in done.stdout,
-              'session-recall: prints the open faults and the questions')
-        check('| F13 |' in done.stdout, 'session-recall: prints the fixes index rows')
+        check(said.get('ledger', '').startswith('ledger: FAIL: EMPTY'), 'session-recall: says the ledger is empty when it is')
+        check('F2 the count steps back' in said.get('open faults', '') and
+              said.get('questions open', '').startswith('questions open: 1, 4 ('),
+              'session-recall: prints the open faults and the questions, one line each')
+        check(said.get('fixes index', '').startswith('fixes index: pass'), 'session-recall: the fixes index, one line')
+        check(said.get('gate', '').startswith('gate: A6 sweep; first unmet: line 377'), 'session-recall: the gate, one line')
+        check(said.get('lessons pre-read', '').startswith('lessons pre-read: pass'), 'session-recall: the pre-read passes')
+        (top / 'context' / 'STATE.md').write_text(slim % '| A6 sweep | IN_PROGRESS | line 377 | p |')
+        bad = {l.split(':')[0]: l for l in recall().stdout.splitlines() if ': ' in l}
+        check(bad.get('lessons pre-read', '').startswith('lessons pre-read: FAIL'),
+              'session-recall: a gate without its pre-read line prints FAIL (the known-bad)')
     finally:
         shutil.rmtree(root, ignore_errors=True)
     print(f'\n{len(FAILS)} failures' if FAILS else '\nall passed')
