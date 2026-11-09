@@ -1339,6 +1339,12 @@ Evidence: emulator (dynarec off), one take per configuration. Hardware: UNCONFIR
   games as a third build column, with any shift in CAND-25's memory figures
   and the host-load costs measured; nothing is written as fixed until that
   run.
+- Public and independence (the owner's decision of 9 Nov 2026 on the 05:19Z
+  report): the row was public from 4 Nov 12:52Z; independence unknown.
+  Withdrawn in rule 7 form, for ISSUES.md: the ground "the notes repository
+  has no remote" (his a3 decision of 9 Nov 2026, from rules-bot); this file
+  lives on the fork's public notes branch. Nothing is sent to the author.
+  The check as written before, kept:
 - Independence (the owner's grounds, 9 Nov 2026: IHNMAIMS was not in the 2 Nov
   docs, and the notes repository has no remote), checked 9 Nov 2026. The
   first holds: on 2 Nov the fork named IHNMAIMS only as a library entry (the
@@ -1490,7 +1496,13 @@ Evidence: emulator (the A6 captures, one take each; the matched measure, levelcm
   their samples too few (under 50 pieces: FM carries them); BLAKESTP and
   WACKYWHE, their C0 takes' sources not rebuilding the mix (the measure's
   limit: a repeated sample placed 1.9 s late; a leftover that grows
-  through the take). The member count waits for the re-run judge.
+  through the take). the owner's decision of 9 Nov 2026 on the 05:19Z report:
+  the 12 memberships stand; EXTREMER, XCOMUF and BLUBROJA stay their own
+  rows by the rule, flagged "near CAND-32" with their readings above, for
+  the line-out at A7; SIMCITY2 and QG4CD take a third take (the candidate
+  step); REALMSOF, XANTH, BLAKESTP and WACKYWHE are not read, the measure's
+  limit as named above, and a level row not read is not a candidate. Was:
+  "The member count waits for the re-run judge."
   decides: silent: the bench's own measure under the owner's decision above;
   searched = "terms: FM, OPL, voice level, mixer source, sample level;
   hits: 860 in 84 documents (1543 20, 630 20, 686A 20, 686B 20, 8231 20,
