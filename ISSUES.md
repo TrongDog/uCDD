@@ -1469,6 +1469,33 @@ Evidence: emulator (the A6 captures, one take each; the matched measure, levelcm
   of the pin-only family's 100 level rows (75 whole, CYBERIA2 by its level
   part); 24 stay their own rows, voice-source offsets -6.76 to -3.3 dB
   (73.3's limit: FM and samples in one piece dilute).
+- Membership by source (the owner's decision of 8 Nov 2026 on question 76,
+  76.4: "which source carries FM is established per build on a game with
+  FM-only music, recorded; if on the pin FM lands in source 1 with the
+  samples, the voice-source gap is read only over pieces where C0's FM
+  source is silent; the known-bad covers both cases. CAND-32's within the
+  matched tolerance of -6.0 dB on that gap, its own row otherwise"; his
+  order of 9 Nov 2026: the per-source measure first). FM is in source 2
+  (the OPL's) on C0, the pin and a2 (REALMSOF's takes), so the 21 between
+  rows of the re-run set (plan 824f772f) are read on source 1 alone (the
+  card's digital output: the samples), the pin against C0 (C0 taken again
+  for 17 of them, plan 706b82c9), two takes alike (three for the v1 rows).
+  The bench's runs/rec/srcgap.py, results/sweep/srcgap_ac.txt (9 Nov 2026):
+  CAND-32's, 12: ROTTDW, DESSTR, JUNGLEST, SWDFORC, ALIENLEG, HOCUSPOC,
+  CELTTALE, FREDDY, POPULS2, SQ4, SQ6, GODTHUND (-5.56 to -6.42 dB on
+  source 1, where the mix read -3.15 to -6.10). Their own rows, 3: EXTREMER
+  (-5.32, -5.39, -5.10), XCOMUF (-5.40, -5.41, -5.63), BLUBROJA (-5.22,
+  -5.19). Not settled, 6: SIMCITY2 (-6.12 and -6.52) and QG4CD (-6.81 and
+  -5.76), their two takes either side of the edge; REALMSOF and XANTH,
+  their samples too few (under 50 pieces: FM carries them); BLAKESTP and
+  WACKYWHE, their C0 takes' sources not rebuilding the mix (the measure's
+  limit: a repeated sample placed 1.9 s late; a leftover that grows
+  through the take). The member count waits for the re-run judge.
+  decides: silent: the bench's own measure under the owner's decision above;
+  searched = "terms: FM, OPL, voice level, mixer source, sample level;
+  hits: 860 in 84 documents (1543 20, 630 20, 686A 20, 686B 20, 8231 20,
+  CS4232 20); 9 Nov 2026" (the chips' own mixers and OPL registers: none
+  says how a bench reads a recorder's sources).
 - Evidence: emulator.
 
 ### CTRL-ONLY A6 sweep: games that run under uCDD and not under the control (a list, no verdict; from 5 Nov 2026)
