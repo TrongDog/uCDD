@@ -1327,6 +1327,29 @@ Trace: none (B is frozen).
 Hypothesis (labelled, not tested; mine): under uCDD the game gets its memory from the DPMI host, whose answer it reads as too little for its caches, where without uCDD its extender takes JemmEx's VCPI and XMS (CAND-25); the opposite direction to Zork Nemesis, so the size alone does not explain it.
 0.9.5-a2: c87998b0-096, "Unable to initialize temp image memory pool.", then the prompt, no sound: a different message, an earlier stop.
 Evidence: emulator (dynarec off), one take per configuration. Hardware: UNCONFIRMED (A7).
+- Upstream (the owner's decision of 9 Nov 2026): addressed in upstream a3 by
+  its release notes; unverified until A7. a3: v0.9.5-a3, commit 6c2f3e3,
+  published 7 Nov 2026 23:38:22Z (the bench's VERSIONS); its note, verbatim:
+  "DPMI host: report less free memory than before, so that a program that
+  takes the largest free block can still allocate more. The host now keeps
+  1/8 of the free memory, up to 4 MB. This fixes the stop at "Unable to
+  initialize temp image memory pool." in I Have No Mouth and I Must Scream."
+  It names a2's message; the pin's ("Can't allocate enough memory for scene
+  cache.") is another stop and is not named. At A7 a3 runs on the candidate
+  games as a third build column, with any shift in CAND-25's memory figures
+  and the host-load costs measured; nothing is written as fixed until that
+  run.
+- Independence (the owner's grounds, 9 Nov 2026: IHNMAIMS was not in the 2 Nov
+  docs, and the notes repository has no remote), checked 9 Nov 2026. The
+  first holds: on 2 Nov the fork named IHNMAIMS only as a library entry (the
+  census's and the inventory's driver tables on sound-engine-library
+  4187dfb, its sweep test in the method's matrix), with no fault and neither
+  message. The second holds for the top folder's repository, not for this
+  row: ISSUES.md is on the fork's notes branch, TrongDog/uCDD is public (a
+  fork of vorvek/uCDD), and this row with both messages was pushed there in
+  33bf8e3 at 2026-11-04T12:52:49Z (the push's own record, the clone's
+  origin/notes reflog), three days before a3. So a3's note is not shown
+  independent of this row; it may still be the author's own finding.
 
 ### CAND-27 CD audio: the disc's music comes out 6.0 dB under the card's own CD path on both builds, with every mixer level at 0 dB (found 3 Nov 2026 as "MI1 30 dB quieter", corrected 4 Nov; a row 4 Nov 2026; open; upstream: the author's build the same)
 
