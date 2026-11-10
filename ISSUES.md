@@ -297,7 +297,7 @@ mixer for MMX (a few percent of the mixer's share, in a full segment).
 
 Found by the review of UCDD.EXE and the specification pass, fixed in
 `fixes`, checked in 86Box against the build before the review
-(0f81195) unless the note says otherwise. Ctrl+Break with BREAK=ON needs
+(02dedf6) unless the note says otherwise. Ctrl+Break with BREAK=ON needs
 MS-DOS (FreeDOS does not run the break check in those calls) and was checked
 in 86Box.
 

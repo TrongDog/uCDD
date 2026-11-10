@@ -1,8 +1,8 @@
 # Specification first: a design proposal
 
 Status: adopted (the owner), updated 15 Oct with the ES1868F measurements.
-Was: proposal. Written on `fixes` at 77979b2, with `spec-fixes`,
-`setup-layout`, the three 86Box-tested branches (`combined-test` 772941d),
+Was: proposal. Written on `fixes` at 6047f64, with `spec-fixes`,
+`setup-layout`, the three 86Box-tested branches (`combined-test` 66aeb11),
 `fast-resample` and `event-timer` in view. Sources: the reference library
 (branch `reference-library`, notes in `notes/`) and S95Sedan's disassembly
 of the CT1741 SB16 DSP firmware.
@@ -36,7 +36,7 @@ the game's audio is a deviation, not an implementation detail.
 ## 2. What is already known to deviate
 
 From the library review (`notes/README.md` on `reference-library`) and the
-86Box testing. Fixed on `spec-fixes` (634ca66): the virtual ESS mixer twins
+86Box testing. Fixed on `spec-fixes` (41884bc): the virtual ESS mixer twins
 writing the internal gains, ESS 41h/42h argument counts, non-specific EOI
 forms 21h to 27h, F2h dropping a 16-bit request. Fixed on the 86Box-tested
 branches: the polled DMA count follows the played position, B1h/B2h carry
@@ -412,7 +412,7 @@ observable behaviour identical with it on and off.
    in 62 games, ADRV688.DIG in 52, ESFM.MDI in 21, AUDIODRV.DIG's two in
    16) set the order in which layer C's registers and behaviours are
    proven, each against the data sheet.
-3. `fast-dma` and `setup-layout` are merged into `fixes` (fcf67f2, with
+3. `fast-dma` and `setup-layout` are merged into `fixes` (e1fab69, with
    `spec-fixes` and the three 86Box-tested branches).
 4. Fast mode as a physical output mode is retired: it keeps the ESS out of
    spec (every game rate resampled to 22050 Hz and pair-averaged). Layer D
