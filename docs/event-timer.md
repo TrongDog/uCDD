@@ -2,7 +2,7 @@
 
 Status: design, nothing built. Branch `event-timer` carries this document
 only. Section 0 revises the plan after the reference library: a short
-period and the physical card's own one-shots first, the RTC as fallback. Written against `fixes` d6148e8 and the bench's local branches
+period and the physical card's own one-shots first, the RTC as fallback. Written against `fixes` c7c1f57 and the bench's local branches
 ess-position 76c90de, miles-irq 4c4448a, virtual-timing 5c90d13.
 
 ## 0. Revision after the reference library (read this first)
