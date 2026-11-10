@@ -37,21 +37,27 @@ commit dates only, no code.
 
 ## In hand
 
-1. **Three things run before the sorting**, because each can move a whole
-   group of games. None has run yet (10 November 2026). The bench first
-   gains a way to install the driver with `-vcpi` (done 10 November), the
-   author's 0.9.5-a3 built unchanged beside a1 and a2 (done 10 November),
-   and the wiki read at its current commit; then the three run as one plan:
+1. **Three things before the sorting**, because each can move a whole
+   group of games. The bench gained a way to install the driver with
+   `-vcpi` and the author's 0.9.5-a3 built unchanged beside a1 and a2
+   (both 10 November). The author's compatibility wiki was read again at
+   its current state (10 November): its tables are unchanged, so no game's
+   entry moved, and a new page lists one game without CD audio, BioForge,
+   installed with `-vcpi`. The other two are one plan of 72 takes, saved
+   on 10 November and recorded next:
    - the games on the Phar Lap and PMODE/W extenders, taken again with the
      driver installed with `-vcpi`, the author's documented remedy for
-     programs that need VCPI. All of them stop under 0.9.5-a2 in the
+     programs that need VCPI: the twelve on 0.9.5-a2, the seven Phar Lap
+     games on the pinned build too. All twelve stop under 0.9.5-a2 in the
      sweep; if `-vcpi` runs them, that is the driver's stated limit and
      not a fault.
    - the author's 0.9.5-a3 (7 November), which changes one thing, the
-     DPMI host's free-memory answer, run on the protected-mode games that
-     are not passing and on a passing game from each protected-mode
-     group.
-   - the author's compatibility wiki read again at its current state.
+     DPMI host's free-memory answer, on 40 games: the protected-mode games
+     whose state under 0.9.5-a2 is not the control's, the memory finding's
+     four games, and a passing game from each protected-mode group that
+     has one (ten groups of 26).
+   - a new control take for the 13 of those games first swept on the
+     bench's earlier setup.
 2. **The sorting.** Every game gets one bin per build, in a fixed order of
    questions, and is then read against the other games that share its
    sound engine and extender.
