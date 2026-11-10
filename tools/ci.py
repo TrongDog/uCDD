@@ -14,6 +14,15 @@ Each result is posted as a commit status (method/build on the head,
 method/commits on each commit), and one that has a status already is not
 checked again. --dry-run posts nothing and checks everything. A summary goes
 to $GITHUB_STEP_SUMMARY when it is set, and to the output.
+
+A method/commits status is a verdict on the commit (the owner's decision of
+10 Nov 2026 on question 82). When the checker cannot check, because a worktree
+or a ref the checks read is missing (missing_inputs()), it posts nothing for
+any commit: the run fails and names what is missing, and the commits are read
+when it is mended. A failure already posted whose text is the checker's own
+fault (CHECKER_FAULTS) is no verdict: the commit is read again and the new
+status posted over it (GitHub shows the newest); a failure of any other text
+stands. tests/test_ci.py is its test, with its two known-bads.
 """
 
 from pathlib import Path
@@ -32,6 +41,8 @@ import checks  # noqa: E402
 
 CONFIG = checks.CONFIG
 SIZE = re.compile(r'^(\S+): (\d+) bytes$', re.M)
+# what the checker posted when it could not check (before 10 Nov 2026): no verdict, read again
+CHECKER_FAULTS = ('the reference library worktree is missing',)
 
 
 class Statuses:
@@ -46,6 +57,16 @@ class Statuses:
         out = subprocess.run(['gh', 'api', f'repos/{self.repo}/commits/{sha}/statuses',
                               '--jq', '.[].context'], capture_output=True, text=True)
         return context in out.stdout.split()
+
+    def latest(self, sha, context):
+        """CONTEXT's newest status on SHA, {'state', 'description'}, or None (GitHub lists the newest first)."""
+        if self.dry:
+            return None
+        out = subprocess.run(['gh', 'api', f'repos/{self.repo}/commits/{sha}/statuses', '--jq',
+                              f'[.[] | select(.context == "{context}")][0] | {{state, description}}'],
+                             capture_output=True, text=True)
+        text = out.stdout.strip()
+        return json.loads(text) if text and text != 'null' else None
 
     def post(self, sha, context, ok, description):
         if self.dry:
@@ -134,6 +155,55 @@ def commits_after(sha, cutoff):
     return list(reversed(found))
 
 
+def missing_inputs():
+    """What the commit checks read and this run cannot find: the reference library worktree (when keys are
+    set), a row ref of which neither the local nor the origin/ form exists. Empty when everything is there."""
+    import refcheck
+    out = []
+    if refcheck.KEYS:
+        tree = refcheck.worktree()
+        if tree is None or not tree.is_dir():
+            out.append(f'the reference library worktree ({refcheck.WORKTREE or "[references].worktree unset"})')
+    names = {ref.removeprefix('origin/') for ref in CONFIG['rows']['refs'] if ref != 'HEAD'}
+    for name in sorted(names):
+        if not (checks.ref_exists(name) or checks.ref_exists(f'origin/{name}')):
+            out.append(f'the row ref {name}')
+    return out
+
+
+def unread(status, plant=None):
+    """True when a commit with this newest method/commits STATUS is to be checked: none yet, or a failure whose
+    text is the checker's own fault. PLANT 'skip_faults' (test_ci.py's): any status counts as read, the form
+    before."""
+    if status is None:
+        return True
+    if plant == 'skip_faults':
+        return False
+    return status.get('state') == 'failure' and (status.get('description') or '').startswith(CHECKER_FAULTS)
+
+
+def check_commits(sha, cutoff, statuses, missing, line, plant=None):
+    """Check and post each commit after CUTOFF on SHA that unread() admits; none when MISSING names an input the
+    checks cannot find (PLANT 'post_unchecked', test_ci.py's: they are checked anyway, the form before).
+    Returns how many had problems."""
+    if missing and plant != 'post_unchecked':
+        return 0
+    checked = bad_commits = 0
+    for commit in commits_after(sha, cutoff):
+        if not unread(statuses.latest(commit, 'method/commits'), plant):
+            continue
+        message = checks.git('log', '-1', '--format=%B', commit).stdout
+        problems, _ = checks.check(message, checks.Target(commit), ledger=False)
+        checked += 1
+        bad_commits += bool(problems)
+        line['problems'] += [f'{commit[:7]}: {problem}' for problem in problems]
+        statuses.post(commit, 'method/commits', not problems,
+                      problems[0] if problems else 'the method\'s checks pass (the ledger is not on GitHub)')
+    if checked:
+        line['commits'] = f'{checked} checked, {bad_commits} with problems'
+    return bad_commits
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     parser.add_argument('--branch', action='append', default=[])
@@ -144,13 +214,16 @@ def main():
     statuses = Statuses(args.repo, args.dry_run or not args.repo)
     cutoff = args.check_after if args.check_after is not None else CONFIG['ci'].get('check_after', '')
     report, failed = [], False
+    missing = missing_inputs() if cutoff else []
+    failed |= bool(missing)
     for branch in branches(args.branch):
         sha = resolve(branch)
         if (not sha or any(fnmatch.fnmatchcase(branch, pattern) for pattern in CONFIG['ci']['skip_branches'])
                 or checks.git('cat-file', '-e', f'{sha}:scripts/build.py', check=False).returncode):
             continue
         line = {'branch': branch, 'head': sha[:7], 'build': 'checked before', 'headroom': '',
-                'commits': 'off' if not cutoff else 'none new', 'problems': []}
+                'commits': 'off' if not cutoff else 'not checked: an input is missing' if missing else 'none new',
+                'problems': []}
         if not statuses.has(sha, 'method/build'):
             results, headroom = build_head(sha)
             bad = [f'{options}: {why}' for options, state, why in results if state == 'failed']
@@ -162,24 +235,14 @@ def main():
             line['problems'] += bad
             statuses.post(sha, 'method/build', not bad, (bad[0] if bad else f'{built} builds; {free}'))
             failed |= bool(bad)
-        checked = bad_commits = 0
-        for commit in commits_after(sha, cutoff):
-            if statuses.has(commit, 'method/commits'):
-                continue
-            message = checks.git('log', '-1', '--format=%B', commit).stdout
-            problems, _ = checks.check(message, checks.Target(commit), ledger=False)
-            checked += 1
-            bad_commits += bool(problems)
-            line['problems'] += [f'{commit[:7]}: {problem}' for problem in problems]
-            statuses.post(commit, 'method/commits', not problems,
-                          problems[0] if problems else 'the method\'s checks pass (the ledger is not on GitHub)')
-        if checked:
-            line['commits'] = f'{checked} checked, {bad_commits} with problems'
-        failed |= bool(bad_commits)
+        failed |= bool(check_commits(sha, cutoff, statuses, missing, line))
         report.append(line)
     summary = ['| Branch | Head | Builds | Headroom | Commits |', '|---|---|---|---|---|']
     summary += [f'| {line["branch"]} | {line["head"]} | {line["build"]} | {line["headroom"]} | '
                 f'{line["commits"]} |' for line in report]
+    if missing:
+        summary += ['', '**No commit was checked and no status posted: the checks cannot find '
+                    + '; '.join(missing) + '.**']
     for line in report:
         if line['problems']:
             summary += ['', f'**{line["branch"]}**', ''] + [f'- {problem}' for problem in line['problems']]
