@@ -152,7 +152,7 @@ driver is in ISSUES.md.
   intro silent (fault 1), then frozen on its first frame (fault 1 fixed,
   fault 2 not).
 - Theme Hospital, the same at 128 frames: sound in 129 of 160 seconds.
-- Regression against the previous build (7daee02):
+- Regression against the previous build (c36738c):
   - SBT16 on seven card pairings: identical output.
   - SADUMP: the same apart from the driver's own addresses (the code grew).
   - verify-mix: 0 bad samples and 0 bad state in nine cases.
