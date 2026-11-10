@@ -106,10 +106,15 @@ the nineteen late starts. [SWEEP.md](SWEEP.md) has the counts.
 ## Stated limits of the driver, seen in the sweep
 
 Not faults. The author's README says a program that supports only VCPI
-needs `UCDD -install -vcpi` and loses its sound through the driver. None
-of the library's seven Phar Lap games and none of its five PMODE/W games
-runs under upstream's a2 as normally installed. Whether `-vcpi` runs
-them is being measured now.
+needs `UCDD -install -vcpi` and loses its sound through the driver. Two
+of the library's games are identified as such programs and run with
+`-vcpi`: 386 Spys (its own message refuses virtual 8086 mode under
+another program) and BioForge (named on the author's wiki). The other
+Phar Lap and PMODE/W games that stop under upstream's a2 are not in this
+list: eight run with `-vcpi` without being identified as needing only
+VCPI, and two still stop with it. They are host candidates, the five
+PMODE/W games one candidate for their group, since the README says
+PMODE/W takes the driver's DPMI host when VCPI is hidden.
 
 ## Held for hardware
 

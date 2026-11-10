@@ -264,8 +264,9 @@ at "Can't allocate enough memory for scene cache.", on a2 at "Unable to
 initialize temp image memory pool." **Both builds.** The author's
 0.9.5-a3 release note (7 November) names this game and a2's message and
 says the DPMI host now reports less free memory so that a program which
-takes the largest block can still allocate more. a3 has not been run on
-the bench yet; it is one of the next three runs.
+takes the largest block can still allocate more. a3 was taken once on 10
+November: the game runs with sound to the end of the window, as on the
+control. One take; the pin and a2 are being taken twice more each.
 *Hypothesis (ours, before a3):* the game sizes its caches from the DPMI
 host's answer and then cannot allocate the rest. The author's fix is
 consistent with that.
@@ -353,10 +354,21 @@ of its sound bypassing the driver, and on 7 November his wiki named
 BioForge as such a game. Taken again with `-vcpi` on 10 November, one
 take each: six of the seven Phar Lap games run with it under a2 and
 under the pin, and four of the five PMODE/W games under a2 (the pin's
-`-vcpi` takes were of the Phar Lap games only). For those ten the stop
-without it is the driver's stated limit, not a fault. Two still stop
-with it, Ultima VIII (Phar Lap) and Blaster! (PMODE/W), and are sorted
-as host candidates of their own. The pin differs (two of the PMODE/W games run on it, and
+`-vcpi` takes were of the Phar Lap games only). Running with `-vcpi`
+does not by itself make the stop the driver's stated limit: that needs
+the program identified as supporting only VCPI. Two are: 386 Spys, by
+its own message (below), and BioForge, by the author's wiki. The other
+eight that run with `-vcpi` are host candidates, each row saying "runs
+with -vcpi", and so are Ultima VIII (Phar Lap) and Blaster! (PMODE/W),
+which still stop with it. The author's README says PMODE/W takes the
+driver's DPMI host when VCPI is hidden, so the PMODE/W games' stop under
+a2 is not the stated limit: Rayman is on his compatibility list as
+working since 0.9.4-a2 or earlier, passes on the pin, stops under a2 in
+three takes of three and runs under a2 with `-vcpi`. All five PMODE/W
+games stop under a2: one candidate for the whole group on the author's
+current build. Transport Tycoon and its Deluxe edition stop under a2 at
+"Fatal Error TNT.10093: Unable to allocate hardwired LDT descriptors
+from DPMI host", a message about the DPMI host, not about VCPI. The pin differs (two of the PMODE/W games run on it, and
 four of the Phar Lap games stop at a memory manager exception where a2
 exits cleanly), which is a second question behind the first.
 [SWEEP.md](SWEEP.md) lists the games.

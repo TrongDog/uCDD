@@ -46,8 +46,13 @@ commit dates only, no code.
      driver installed with `-vcpi`, the author's documented remedy for
      programs that need VCPI. Six of the seven Phar Lap games run with it
      on both the pinned build and 0.9.5-a2, and four of the five PMODE/W
-     games on 0.9.5-a2: for those, the stop without it is the driver's
-     stated limit, not a fault. `ULTIMA8` and `BLASTER!` still stop.
+     games on 0.9.5-a2. Only two of them are identified as supporting
+     only VCPI, which is what makes a stop the driver's stated limit: 386
+     Spys, by its own message, and BioForge, by the author's wiki. The
+     other eight, and `ULTIMA8` and `BLASTER!`, which still stop with it,
+     are host candidates; the five PMODE/W games are one candidate for
+     their group, since the author's README says PMODE/W takes the
+     driver's DPMI host when VCPI is hidden.
    - the author's 0.9.5-a3 (7 November), which changes one thing, the
      DPMI host's free-memory answer, on 40 games: the protected-mode games
      whose state under 0.9.5-a2 is not the control's, the memory finding's
@@ -64,7 +69,14 @@ commit dates only, no code.
    "runs with sound", neither a pass nor a fault. On the pinned build 205
    games pass and 32 run with sound; on 0.9.5-a2, 291 and 60. 317 and 314
    are silent in the control's first 90 seconds, a game waiting for a key,
-   which a run without interaction cannot judge.
+   which a run without interaction cannot judge. Recording on the night
+   of 10 November, one plan of 126 takes: every fault bin on the pinned
+   build or 0.9.5-a2 that rests on one take, by the game's state or its
+   sound, taken twice more (the bin stands on two takes of three, else it
+   is marked flaky); 0.9.5-a3 with `-vcpi` on the twelve Phar Lap and
+   PMODE/W games; the author's 0.9.5-a1 on the five PMODE/W games; the
+   pinned build with `-vcpi` on the two PMODE/W games that stop on it;
+   and the one control take whose recording failed, taken again.
 3. **The reports.** One per fault, or one per group of games where the
    whole group fails the same way, largest first.
 4. **The label on the fork-only faults.** A fault the pinned build has and
@@ -90,6 +102,6 @@ reaches. [PLANS.md](PLANS.md) has the list.
 - No game has been played. The sweep launches a game and leaves it alone
   for 90 seconds; a game that waits for a key is judged on whether it
   waited rather than crashed.
-- The author's 0.9.5-a3 has not been run.
+- The author's 0.9.5-a3 has been run on 40 games only, one take each.
 - A second emulator has re-run a dozen disputed games and nothing more;
   everything else rests on one emulator.

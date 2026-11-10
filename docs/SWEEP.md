@@ -132,10 +132,18 @@ The author's README says that some extenders choose VCPI when it is
 there, that the driver hides VCPI while it provides DPMI, and that a
 program which supports only VCPI needs the driver installed with `-vcpi`,
 at the cost of its sound bypassing the driver. On 7 November his wiki
-added BioForge as such a game. So the working reading is that these
-twelve are the driver's stated limit rather than twelve faults. That is a
-reading, not a result: each game is being taken again with `-vcpi`, and
-the answer goes here.
+added BioForge as such a game. Each game was taken again with `-vcpi` on
+10 November, one take each: six of the Phar Lap games run with it under
+a2 and under the pin, and four of the PMODE/W games under a2. That alone
+does not make the stop the driver's stated limit; the program has to be
+identified as supporting only VCPI. Two are: 386 Spys, whose own message
+refuses to run in virtual 8086 mode under another program, and BioForge,
+named by the author's wiki. The other ten are host candidates: eight
+that run with `-vcpi` and say so on their rows, and Ultima VIII and
+Blaster!, which still stop with it. For PMODE/W the author's README says
+the extender takes the driver's DPMI host when VCPI is hidden, and
+Rayman is on his compatibility list as working; all five stopping under
+a2 is one candidate for the group on his current build.
 
 ## What the sweep cannot say
 

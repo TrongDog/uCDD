@@ -104,8 +104,11 @@ sound, memory that a game sees differently under the driver, a game that
 stops for want of memory, CD music and game sound each 6 dB low, a disc
 read that fails, and games silent on the fork's build alone. Two whole
 groups of games, those built on the Phar Lap and PMODE/W extenders, do not
-run under the author's 0.9.5-a2 in the sweep; whether that is the driver's
-documented VCPI limit is the next thing measured.
+run under the author's 0.9.5-a2 in the sweep. Installed with `-vcpi`, ten
+of the twelve run; two of those are identified as supporting only VCPI,
+the driver's documented limit, and the rest are host candidates, the five
+PMODE/W games among them, since that extender takes the driver's DPMI host
+when VCPI is hidden.
 
 ## Branches
 
