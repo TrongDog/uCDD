@@ -1533,6 +1533,1802 @@ Evidence: emulator (the A6 captures, one take each; the matched measure, levelcm
   decides: none (a measurement; it states no expected result).
 - Evidence: emulator.
 
+<!-- A7 triage's candidate rows, CAND-33 to CAND-169 (project_a.md:406; the owner's decision of 10 Nov 2026 on the 11:15Z report, item 8): every pin or a2 row of the bench's results/sweep/triage.csv binned CANDIDATE_UCDD_* or FLAKY_ goes to one row; 284 candidates (a game on a build), 83 to the existing rows (CAND-32 63, CAND-23 8, CAND-24 5, CAND-25 2, CAND-26 2, CAND-29 2, CAND-31 1), 201 to these 137; the map and the cell scope of each: the bench's reports/candidates.md. The label of the pin-only rows (item 6) is added when the base plan is read. -->
+
+### CAND-33 A7 triage, the PMODE/W extender: stops under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3, 4 of 4.
+Cell: the PMODE/W extender across its cells (the owner, 10 Nov 2026, item 8: "PMODE/W on a2 is one report for its cell"), 5 games, 5 share this outcome on a2.
+Affected: DOS_ACT/BLASTER! (Blaster! (1997)), DOS_ACT/DEATHRAL (Death Rally (1996)), DOS_ACT/RAYMAN (Rayman (1996)), DOS_ACT/RAYMANF (Rayman Forever (1996)), DOS_ACT/STORM96 (S.T.O.R.M. (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: BLASTER! (plan 012e9f79): C0 012e9f79-142 RUNNING, sound from 15.02 s; a2 012e9f79-144 EXITED, silent; its last screen "PMODE/W DOS Extender v1.33 / Copyright (C) 1994-1997, Charles Scheffold and Thomas Pytel"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Observed: DEATHRAL (plan acca1005): C0 acca1005-061 RUNNING, sound from 2.68 s; a2 acca1005-063 EXITED, silent; its last screen "JemmEx v5.86 [01/25/26] / JemmEx loaded"; runs with -vcpi (-install -vcpi take 0b2299c9-029 RUNNING where the take without is EXITED); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Observed: RAYMAN (plan a06419fc): C0 a06419fc-022 RUNNING, sound from 7.44 s; a2 a06419fc-024 EXITED, silent; its last screen "JemmEx v5.86 [01/25/26] / JemmEx loaded"; runs with -vcpi (-install -vcpi take 0b2299c9-031 RUNNING where the take without is EXITED); not identified as VCPI-only; 824f772f: reproduced (3 takes: differs, differs, differs); a2 takes 4 of 4.
+Observed: RAYMANF (plan 012e9f79): C0 012e9f79-022 RUNNING, sound from 8.23 s; a2 012e9f79-024 EXITED, silent; its last screen "JemmEx loaded / Bad command or file name"; runs with -vcpi (-install -vcpi take 0b2299c9-033 RUNNING where the take without is EXITED); not identified as VCPI-only; 824f772f: reproduced (3 takes: differs, differs, differs); a2 takes 4 of 4.
+Observed: STORM96 (plan 012e9f79): C0 012e9f79-025 HANG, silent; a2 012e9f79-027 EXITED, silent; its last screen "This game is comprised of 3 CDs. / Press Ctrl+Alt+PgDn to switch discs when prompted."; runs with -vcpi (-install -vcpi take 0b2299c9-035 HANG where the take without is EXITED); not identified as VCPI-only; 824f772f: reproduced (3 takes: differs, differs, differs); a2 takes 4 of 4.
+Observed, a3 plain (0.9.5-a3; plan 0b2299c9): BLASTER! 0b2299c9-028 EXITED, silent; DEATHRAL 0b2299c9-030 EXITED, silent; RAYMAN 0b2299c9-032 EXITED, silent; RAYMANF 0b2299c9-034 EXITED, silent; STORM96 0b2299c9-036 EXITED, silent.
+Observed, a1 (0.9.5-a1, plain install; plan 531c872d, item 4 (c)): BLASTER! 531c872d-004 EXITED, silent; DEATHRAL 531c872d-007 EXITED, silent; RAYMAN 531c872d-008 EXITED, silent; RAYMANF 531c872d-005 EXITED, silent; STORM96 531c872d-006 EXITED, silent.
+Observed, a3 with -install -vcpi (plan 531c872d, item 4 (b)): BLASTER! 531c872d-011 HANG, silent; DEATHRAL 531c872d-014 RUNNING, sound; RAYMAN 531c872d-015 RUNNING, sound; RAYMANF 531c872d-016 RUNNING, sound; STORM96 531c872d-017 HANG, silent.
+Observed, the pin with -install -vcpi (plan 531c872d, item 4 (b)): BLASTER! 531c872d-021 RUNNING, sound; DEATHRAL 531c872d-022 RUNNING, sound.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-BLASTER! (plan 012e9f79), SWP-P133-A2-DEATHRAL (plan acca1005), SWP-P133-A2-RAYMAN (plan a06419fc); two more takes each in plan 531c872d (the charter's 11.3): BLASTER!, DEATHRAL.
+Hypothesis: none. Evidence: emulator (plans 012e9f79, a06419fc, acca1005, 0b2299c9, 531c872d), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-34 A7 triage, sierra-sci x DOS/4GW: its sound is -5.00 to -2.52 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1, 3 of 3.
+Cell: sierra-sci x DOS/4GW, 7 games, 5 share this outcome, scope MAJORITY.
+Affected: DOS_THNK/LSL6CD (Leisure Suit Larry 6 - Shape Up or Slip Out (1993)), DOS_THNK/QG4CD (Quest for Glory IV - Shadows of Darkness (Enhanced) (1993)), DOS_THNK/SQ6 (Space Quest VI - Roger Wilco in the Spinal Frontier (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not read, not run.
+Observed: LSL6CD (plan eecd58bf): C0 eecd58bf-019 RUNNING, sound from 8.06 s; pin eecd58bf-020 RUNNING, sound from 10.77 s, level -5.00 dB; pin takes 1 of 1.
+Observed: QG4CD (plan eecd58bf): C0 eecd58bf-028 RUNNING, sound from 2.29 s; pin eecd58bf-029 RUNNING, sound from 4.61 s, level -2.65 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Observed: SQ6 (plan 9068b37f): C0 9068b37f-004 RUNNING, sound from 6.46 s; pin 9068b37f-005 RUNNING, sound from 9.20 s, level -2.52 dB; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-LSL6CD (plan eecd58bf), SWP-P133-C2-QG4CD (plan eecd58bf), SWP-P133-C2-SQ6 (plan 9068b37f).
+Hypothesis: none. Evidence: emulator (plans 9068b37f, eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-35 A7 triage, digpak x Phar Lap: stops under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
+Cell: digpak x Phar Lap, 2 games, 2 share this outcome, scope CELL.
+Affected: DOS_THNK/TRANSPOR (Transport Tycoon (1994)), DOS_THNK/TRANTDLX (Transport Tycoon Deluxe (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: TRANSPOR (plan db8eed0f): C0 db8eed0f-187 RUNNING, sound from 6.07 s; pin db8eed0f-188 HANG, silent; runs with -vcpi (-install -vcpi take 0b2299c9-016 RUNNING where the take without is HANG); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-189 EXITED, silent; its last screen "Fatal Error TNT.10093: Unable to allocate hardwired LDT descriptors from DPMI ho / st"; runs with -vcpi (-install -vcpi take 0b2299c9-015 RUNNING where the take without is EXITED); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Observed: TRANTDLX (plan db8eed0f): C0 db8eed0f-190 RUNNING, sound from 9.84 s; pin db8eed0f-191 HANG, silent; runs with -vcpi (-install -vcpi take 0b2299c9-020 RUNNING where the take without is HANG); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-192 EXITED, silent; its last screen "Fatal Error TNT.10093: Unable to allocate hardwired LDT descriptors from DPMI ho / st"; runs with -vcpi (-install -vcpi take 0b2299c9-019 RUNNING where the take without is EXITED); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TRANSPOR (plan db8eed0f), SWP-P133-A2-TRANSPOR (plan db8eed0f), SWP-P133-C2-TRANTDLX (plan db8eed0f), SWP-P133-A2-TRANTDLX (plan db8eed0f); two more takes each in plan 531c872d (the charter's 11.3): TRANSPOR, TRANTDLX.
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-36 A7 triage, hmi-sos x Borland RTM: stops under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 4 of 4.
+Cell: hmi-sos x Borland RTM, 2 games, 2 share this outcome, scope CELL.
+Affected: DOS_ACT/SSF2T (Super Street Fighter II Turbo (1995)), DOS_THNK/FRONTIER (Frontier - First Encounters (1995)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: SSF2T (plan db8eed0f): C0 db8eed0f-004 RUNNING, sound from 22.94 s; pin db8eed0f-005 CRASH, silent; its last screen "DS=045C ES=045C FS=CC9D GS=052C [CS:IP]=FF FF F7 45 08 FF 0F 00 / Press ESC to abort program ?"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Observed: FRONTIER (plan cd5dead2): C0 cd5dead2-043 RUNNING, sound from 5.59 s; pin cd5dead2-044 CRASH, silent; its last screen "DS=043F ES=00C9 FS=CC9D GS=052C [CS:IP]=FF FF 00 00 00 00 FF 00 / Press ESC to abort program ?"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SSF2T (plan db8eed0f), SWP-P133-C2-FRONTIER (plan cd5dead2).
+Hypothesis: none. Evidence: emulator (plans cd5dead2, db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-37 A7 triage, own-code x Phar Lap: stops under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
+Cell: own-code x Phar Lap, 2 games, 2 share this outcome, scope CELL.
+Affected: DOS_ACT/CRUSREGR (Crusader - No Regret (1996)), DOS_ACT/CRUSREMO (Crusader - No Remorse (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: CRUSREGR (plan acca1005): C0 acca1005-064 RUNNING, sound from 7.32 s; pin acca1005-065 CRASH, silent; its last screen "DS=8F91 ES=0000 FS=CC9C GS=052C [CS:IP]=FF FF 91 8F 59 20 91 8F / Press ESC to abort program ?"; runs with -vcpi (-install -vcpi take 0b2299c9-009 RUNNING where the take without is CRASH); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 acca1005-066 EXITED, silent; its last screen "Halted file DOSFIX32\DESCRIPT.C, line 244. / ════════════════════════════════════"; runs with -vcpi (-install -vcpi take 0b2299c9-008 RUNNING where the take without is EXITED); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Observed: CRUSREMO (plan acca1005): C0 acca1005-067 RUNNING, silent; pin acca1005-068 CRASH, silent; its last screen "DS=8F91 ES=0000 FS=CC9C GS=052C [CS:IP]=FF FF 91 8F 59 20 91 8F / Press ESC to abort program ?"; runs with -vcpi (-install -vcpi take 0b2299c9-012 RUNNING where the take without is CRASH); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 acca1005-069 EXITED, silent; its last screen "Halted file DOSFIX32\DESCRIPT.C, line 244. / ════════════════════════════════════"; runs with -vcpi (-install -vcpi take 0b2299c9-011 RUNNING where the take without is EXITED); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-CRUSREGR (plan acca1005), SWP-P133-A2-CRUSREGR (plan acca1005), SWP-P133-C2-CRUSREMO (plan acca1005), SWP-P133-A2-CRUSREMO (plan acca1005); two more takes each in plan 531c872d (the charter's 11.3): CRUSREGR, CRUSREMO.
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-38 A7 triage, ADARK2 (Alone in the Dark 2 (1993)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 5 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/ADARK2 (Alone in the Dark 2 (1993)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: ADARK2 (plan c7cfcb37): C0 c7cfcb37-070 RUNNING, sound from 2.45 s; pin c7cfcb37-071 RUNNING, sound from 3.25 s, level -5.52 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 10 over 4 | READ_DIFFERS gaps 9 over 4 | READ_DIFFERS gaps 11 over 4; the calibration, 3 of 3: READ_DIFFERS gaps 10 over 4 | READ_DIFFERS gaps 9 over 4 | READ_DIFFERS gaps 11 over 4; pin takes 1 of 1; a2 c7cfcb37-072 RUNNING, sound from 3.31 s; wave gaps 5 over 4; gaps 5 over 4; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ADARK2 (plan c7cfcb37), SWP-P133-A2-ADARK2 (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-39 A7 triage, ADARK394 (Alone in the Dark 3 (1995)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 5 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/ADARK394 (Alone in the Dark 3 (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: ADARK394 (plan c7cfcb37): C0 c7cfcb37-073 RUNNING, sound from 9.48 s; pin c7cfcb37-074 RUNNING, sound from 12.20 s, level -5.85 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 4 over 2 | READ_DIFFERS gaps 4 over 2 | READ_DIFFERS gaps 4 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 4 over 2 | READ_DIFFERS gaps 4 over 2 | READ_DIFFERS gaps 4 over 2; pin takes 1 of 1; a2 c7cfcb37-075 RUNNING, sound from 12.33 s; wave gaps 4 over 2; gaps 4 over 2; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ADARK394 (plan c7cfcb37), SWP-P133-A2-ADARK394 (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-40 A7 triage, GTRACING (GT Racing 97 (1997)): exits to DOS under uCDD where the bare card sits still (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by state, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/GTRACING (GT Racing 97 (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: GTRACING (plan c7cfcb37): C0 c7cfcb37-079 HANG, silent; a2 c7cfcb37-081 EXITED, silent; its last screen "TREVOAN Cyril / System DPMI"; crash noted: the build EXITED where C0 HANG (extender REALMODE); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-GTRACING (plan c7cfcb37); two more takes each in plan 531c872d (the charter's 11.3): GTRACING.
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-41 A7 triage, STARGUNN (Stargunner (1996)): exits to DOS under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by state, 4 of 4.
+Cell: own-code x REALMODE, 152 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/STARGUNN (Stargunner (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: STARGUNN (plan c7cfcb37): C0 c7cfcb37-088 RUNNING, sound from 6.18 s; a2 c7cfcb37-090 EXITED, sound from 7.53 s; its last screen "RAM DAC:       S3 Trio/Virge Internal 24 bit DAC / Clock Chip:    S3 Trio/Virge Internal Clock"; crash noted: the build EXITED where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs); a2 takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-STARGUNN (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-42 A7 triage, ETERNAM (Eternam (1992)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 4 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/ETERNAM (Eternam (1992)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: ETERNAM (plan c7cfcb37): C0 c7cfcb37-097 RUNNING, sound from 5.51 s; a2 c7cfcb37-099 RUNNING, sound from 6.63 s; wave gaps 8 over 7; gaps 8 over 7; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-ETERNAM (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-43 A7 triage, SPIREXC (Spirit of Excalibur (1990)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 5 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/SPIREXC (Spirit of Excalibur (1990)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: SPIREXC (plan a06419fc): C0 a06419fc-040 RUNNING, sound from 13.38 s; pin a06419fc-041 RUNNING, sound from 14.06 s, level +0.00 dB; wave reproduced, 3 of 3 (the sweep's pair first, then 531c872d-123, 531c872d-124): READ_DIFFERS back 148 over 92; jumps 177 over 114 | READ_DIFFERS back 99 over 92; ; reproduced, 3 of 3 (the sweep's pair first, then 531c872d-123, 531c872d-124): READ_DIFFERS back 148 over 92; jumps 177 over 114 | READ_DIFFERS back 99 over 92; jumps 134 over 114 | READ_DIFFERS back 108 over 92; jumps 13; pin takes 3 of 3; a2 a06419fc-042 RUNNING, sound from 14.14 s, level -0.03 dB; wave reproduced, 3 of 3 (the sweep's pair first, then 531c872d-121, 531c872d-122): READ_DIFFERS back 163 over 92; jumps 216 over 114 | READ_DIFFERS back 164 over 92;; reproduced, 3 of 3 (the sweep's pair first, then 531c872d-121, 531c872d-122): READ_DIFFERS back 163 over 92; jumps 216 over 114 | READ_DIFFERS back 164 over 92; jumps 230 over 114 | READ_DIFFERS back 167 over 92; jumps 2; a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SPIREXC (plan a06419fc), SWP-P133-A2-SPIREXC (plan a06419fc); two more takes each in plan 531c872d (the charter's 11.3): SPIREXC.
+Hypothesis: none. Evidence: emulator (plans a06419fc), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-44 A7 triage, ST25 (Star Trek - 25th Anniversary (1992)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 4 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/ST25 (Star Trek - 25th Anniversary (1992)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: ST25 (plan c7cfcb37): C0 c7cfcb37-124 RUNNING, sound from 2.39 s; pin c7cfcb37-125 RUNNING, sound from 3.55 s; wave match 0.94; match 0.94; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ST25 (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-45 A7 triage, ADARK1 (Alone in the Dark (1992)): its sound is -5.95 to -1.66 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/ADARK1 (Alone in the Dark (1992)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: ADARK1 (plan a06419fc): C0 a06419fc-028 RUNNING, sound from 5.40 s; pin a06419fc-029 RUNNING, sound from 5.95 s, level -5.95 dB; pin takes 1 of 1; a2 a06419fc-030 RUNNING, sound from 5.98 s, level -1.66 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ADARK1 (plan a06419fc), SWP-P133-A2-ADARK1 (plan a06419fc).
+Hypothesis: none. Evidence: emulator (plans a06419fc), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-46 A7 triage, BLAKESTP (Blake Stone - Planet Strike (1994)): its sound is -3.62 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/BLAKESTP (Blake Stone - Planet Strike (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: BLAKESTP (plan acca1005): C0 acca1005-070 RUNNING, sound from 1.57 s; pin acca1005-071 RUNNING, sound from 1.76 s, level -3.62 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BLAKESTP (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-47 A7 triage, HOCUSPOC (Hocus Pocus (1994)): its sound is -1.19 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/HOCUSPOC (Hocus Pocus (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: HOCUSPOC (plan acca1005): C0 acca1005-076 RUNNING, sound from 35.92 s; pin acca1005-077 RUNNING, sound from 36.14 s, level -1.19 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-HOCUSPOC (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-48 A7 triage, INNERWOR (Inner Worlds (1996)): its sound is -5.95 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/INNERWOR (Inner Worlds (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not a disc game.
+Observed: INNERWOR (plan 6d5d7c39): C0 6d5d7c39-136 RUNNING, sound from 1.78 s; pin 6d5d7c39-137 RUNNING, sound from 19.98 s, level -5.95 dB; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-INNERWOR (plan 6d5d7c39); two more takes each in plan 531c872d (the charter's 11.3): INNERWOR.
+Hypothesis: none. Evidence: emulator (plans 6d5d7c39), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-49 A7 triage, DUNE2 (Dune 2 - The Building of a Dynasty (1992)): its sound is -3.71 to +9.16 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/DUNE2 (Dune 2 - The Building of a Dynasty (1992)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: DUNE2 (plan acca1005): C0 acca1005-106 RUNNING, sound from 2.98 s; pin acca1005-107 RUNNING, sound from 3.19 s, level -3.71 dB; pin takes 1 of 1; a2 acca1005-108 RUNNING, sound from 3.27 s, level +9.16 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DUNE2 (plan acca1005), SWP-P133-A2-DUNE2 (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-50 A7 triage, ETERNAM (Eternam (1992)): its sound is -8.31 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/ETERNAM (Eternam (1992)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: ETERNAM (plan c7cfcb37): C0 c7cfcb37-097 RUNNING, sound from 5.51 s; pin c7cfcb37-098 RUNNING, sound from 6.52 s, level -8.31 dB; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ETERNAM (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-51 A7 triage, FWARS (Future Wars (1990)): its sound is -6.02 to -6.02 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/FWARS (Future Wars (1990)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: FWARS (plan a06419fc): C0 a06419fc-034 RUNNING, sound from 5.96 s; pin a06419fc-035 RUNNING, sound from 6.49 s, level -6.02 dB; pin takes 1 of 1; a2 a06419fc-036 RUNNING, sound from 6.59 s, level -6.02 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-FWARS (plan a06419fc), SWP-P133-A2-FWARS (plan a06419fc).
+Hypothesis: none. Evidence: emulator (plans a06419fc), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-52 A7 triage, GODTHUND (God of Thunder (1993)): its sound is -1.42 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/GODTHUND (God of Thunder (1993)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: GODTHUND (plan ebdee792): C0 ebdee792-118 RUNNING, sound from 12.44 s; pin ebdee792-119 RUNNING, sound from 14.27 s, level -1.42 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-GODTHUND (plan ebdee792).
+Hypothesis: none. Evidence: emulator (plans ebdee792), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-53 A7 triage, KYRA1 (Legend of Kyrandia Book 1 (1992)): its sound is +1.83 to +13.87 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/KYRA1 (Legend of Kyrandia Book 1 (1992)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: KYRA1 (plan acca1005): C0 acca1005-124 RUNNING, sound from 15.27 s; pin acca1005-125 RUNNING, sound from 15.42 s, level +1.83 dB; pin takes 1 of 1; a2 acca1005-126 RUNNING, sound from 2.02 s, level +13.87 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-KYRA1 (plan acca1005), SWP-P133-A2-KYRA1 (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-54 A7 triage, KYRA2 (Legend of Kyrandia Book 2 - The Hand of Fate (1994)): its sound is -2.70 to +11.85 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/KYRA2 (Legend of Kyrandia Book 2 - The Hand of Fate (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: KYRA2 (plan acca1005): C0 acca1005-127 RUNNING, sound from 23.09 s; pin acca1005-128 RUNNING, sound from 23.34 s, level -2.70 dB; pin takes 1 of 1; a2 acca1005-129 RUNNING, sound from 8.46 s, level +11.85 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-KYRA2 (plan acca1005), SWP-P133-A2-KYRA2 (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-55 A7 triage, LLTOC (Lands of Lore - The Throne of Chaos (1993)): its sound is -3.34 to +12.29 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/LLTOC (Lands of Lore - The Throne of Chaos (1993)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: LLTOC (plan acca1005): C0 acca1005-130 RUNNING, sound from 2.88 s; pin acca1005-131 RUNNING, sound from 24.00 s, level -3.34 dB; pin takes 1 of 1; a2 acca1005-132 RUNNING, sound from 3.50 s, level +12.29 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-LLTOC (plan acca1005), SWP-P133-A2-LLTOC (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-56 A7 triage, ULTIDOMA (Ultimate Domain (1994)): its sound is +7.88 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x REALMODE, 152 games, 7 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/ULTIDOMA (Ultimate Domain (1994)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: ULTIDOMA (plan acca1005): C0 acca1005-142 RUNNING, sound from 12.86 s; a2 acca1005-144 RUNNING, sound from 13.11 s, level +7.88 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-ULTIDOMA (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-57 A7 triage, XANTH (Companions of Xanth (1993)): its sound is -0.79 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/XANTH (Companions of Xanth (1993)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: XANTH (plan acca1005): C0 acca1005-145 RUNNING, sound from 3.53 s; pin acca1005-146 RUNNING, sound from 3.80 s, level -0.79 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-XANTH (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-58 A7 triage, INNERWOR (Inner Worlds (1996)): exits to DOS under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/INNERWOR (Inner Worlds (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not a disc game.
+Observed: INNERWOR (plan 6d5d7c39): C0 6d5d7c39-136 RUNNING, sound from 1.78 s; a2 6d5d7c39-138 EXITED, silent; crash noted: the build EXITED where C0 RUNNING (extender REALMODE); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-INNERWOR (plan 6d5d7c39); two more takes each in plan 531c872d (the charter's 11.3): INNERWOR.
+Hypothesis: none. Evidence: emulator (plans 6d5d7c39), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-59 A7 triage, ISHAR1 (Ishar - Legend of the Fortress (1992)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/ISHAR1 (Ishar - Legend of the Fortress (1992)).
+Controls: C0 as below, each game's own A6 take; C1 not a disc game.
+Observed: ISHAR1 (plan ebdee792): C0 ebdee792-130 RUNNING, sound from 4.15 s; a2 ebdee792-132 RUNNING, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-ISHAR1 (plan ebdee792).
+Hypothesis: none. Evidence: emulator (plans ebdee792), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-60 A7 triage, MI2 (Monkey Island 2 - LeChuck's Revenge (1991)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/MI2 (Monkey Island 2 - LeChuck's Revenge (1991)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: MI2 (plan ebdee792): C0 ebdee792-145 RUNNING, silent; pin ebdee792-146 HANG, silent; crash noted: the build HANG where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-MI2 (plan ebdee792).
+Hypothesis: none. Evidence: emulator (plans ebdee792), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-61 A7 triage, PLANEDGE (Planet's Edge - The Point of No Return (1991)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/PLANEDGE (Planet's Edge - The Point of No Return (1991)).
+Controls: C0 as below, each game's own A6 take; C1 not a disc game.
+Observed: PLANEDGE (plan 0978ab15): C0 0978ab15-007 RUNNING, sound from 0.94 s; pin 0978ab15-008 RUNNING, silent, level -28.11 dB; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 0978ab15-009 RUNNING, silent, level -13.94 dB; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-PLANEDGE (plan 0978ab15), SWP-P133-A2-PLANEDGE (plan 0978ab15); two more takes each in plan 531c872d (the charter's 11.3): PLANEDGE.
+Hypothesis: none. Evidence: emulator (plans 0978ab15), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-62 A7 triage, ULTIDOMA (Ultimate Domain (1994)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
+Cell: own-code x REALMODE, 152 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/ULTIDOMA (Ultimate Domain (1994)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: ULTIDOMA (plan acca1005): C0 acca1005-142 RUNNING, sound from 12.86 s; pin acca1005-143 RUNNING, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ULTIDOMA (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-63 A7 triage, LOLLYPOP (Lollypop (1994)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: NONE x REALMODE, 137 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/LOLLYPOP (Lollypop (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: LOLLYPOP (plan fce952ae): C0 fce952ae-001 RUNNING, sound from 12.98 s; pin fce952ae-002 RUNNING, sound from 4.80 s, level -6.26 dB; wave the calibration, 3 of 3: READ_DIFFERS match 0.93 | READ_DIFFERS match 0.93; speed 0.97 | READ_DIFFERS match 0.93; the calibration, 3 of 3: READ_DIFFERS match 0.93 | READ_DIFFERS match 0.93; speed 0.97 | READ_DIFFERS match 0.93; pin takes 1 of 1; a2 fce952ae-003 RUNNING, sound from 4.83 s; wave match 0.88; match 0.88; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-LOLLYPOP (plan fce952ae), SWP-P133-A2-LOLLYPOP (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-64 A7 triage, BLUBROJA (Blues Brothers, The - Jukebox Adventure (1993)): its sound is -4.88 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: NONE x REALMODE, 137 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/BLUBROJA (Blues Brothers, The - Jukebox Adventure (1993)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: BLUBROJA (plan eecd58bf): C0 eecd58bf-094 RUNNING, sound from 3.87 s; pin eecd58bf-095 RUNNING, sound from 6.20 s, level -4.88 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BLUBROJA (plan eecd58bf).
+Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-65 A7 triage, CARMAGED (Carmageddon Max Pack (1998)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED; miles x DOS/4GW, 75 games, 9 share this outcome, scope ISOLATED; others x DOS/4GW, 10 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/CARMAGED (Carmageddon Max Pack (1998)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: CARMAGED (plan fce952ae): C0 fce952ae-112 RUNNING, sound from 10.13 s; a2 fce952ae-114 RUNNING, sound from 17.25 s; wave match 0.82; match 0.82; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-CARMAGED (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-66 A7 triage, DARKLIGH (Darklight Conflict (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 10 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/DARKLIGH (Darklight Conflict (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: DARKLIGH (plan 012e9f79): C0 012e9f79-067 RUNNING, sound from 7.43 s; pin 012e9f79-068 RUNNING, sound from 13.69 s, level -5.94 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 7 over 2 | READ_DIFFERS gaps 8 over 2 | READ_DIFFERS gaps 7 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 7 over 2 | READ_DIFFERS gaps 8 over 2 | READ_DIFFERS gaps 7 over 2; pin takes 1 of 1; a2 012e9f79-069 RUNNING, sound from 10.49 s; wave gaps 3 over 2; gaps 3 over 2; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DARKLIGH (plan 012e9f79), SWP-P133-A2-DARKLIGH (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-67 A7 triage, EXTREMEA (Extreme Assault (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED; miles x DOS/4GW, 75 games, 9 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/EXTREMEA (Extreme Assault (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: EXTREMEA (plan fce952ae): C0 fce952ae-124 RUNNING, sound from 11.05 s; a2 fce952ae-126 RUNNING, sound from 15.77 s; wave back 184 over 31; jumps 242 over 44; back 184 over 31; jumps 242 over 44; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-EXTREMEA (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-68 A7 triage, LBA (Little Big Adventure (1994)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 10 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/LBA (Little Big Adventure (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: LBA (plan 012e9f79): C0 012e9f79-082 RUNNING, sound from 1.85 s; pin 012e9f79-083 RUNNING, sound from 2.99 s, level -6.00 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 19 over 2; back 18 over 17 | READ_DIFFERS gaps 19 over 2; back 19 over 17 | READ_DIFFERS gaps 21 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 19 over 2; back 18 over 17 | READ_DIFFERS gaps 19 over 2; back 19 over 17 | READ_DIFFERS gaps 21 over 2; pin takes 1 of 1; a2 012e9f79-084 RUNNING, sound from 3.07 s; wave gaps 18 over 2; gaps 18 over 2; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-LBA (plan 012e9f79), SWP-P133-A2-LBA (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-69 A7 triage, MASSDEST (Mass Destruction (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 9 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/MASSDEST (Mass Destruction (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: MASSDEST (plan 012e9f79): C0 012e9f79-085 RUNNING, sound from 6.16 s; a2 012e9f79-087 RUNNING, sound from 14.51 s; wave cover 0.80; gaps 7 over 2; cover 0.80; gaps 7 over 2; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-MASSDEST (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-70 A7 triage, XMENCHI (X-Men - Children of the Atom (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 9 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/XMENCHI (X-Men - Children of the Atom (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: XMENCHI (plan 012e9f79): C0 012e9f79-103 RUNNING, sound from 3.37 s; a2 012e9f79-105 RUNNING, sound from 5.74 s; wave gaps 4 over 2; gaps 4 over 2; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-XMENCHI (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-71 A7 triage, BUSTMOV2 (Bust-A-Move 2 (1996)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 10 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/BUSTMOV2 (Bust-A-Move 2 (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: BUSTMOV2 (plan 012e9f79): C0 012e9f79-106 RUNNING, sound from 14.07 s; pin 012e9f79-107 RUNNING, sound from 17.34 s; wave cover 0.72; cover 0.72; pin takes 1 of 1; a2 012e9f79-108 RUNNING, sound from 17.33 s; wave cover 0.64; cover 0.64; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BUSTMOV2 (plan 012e9f79), SWP-P133-A2-BUSTMOV2 (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-72 A7 triage, STARCOMM (Star Command - Revolution (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 10 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/STARCOMM (Star Command - Revolution (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: STARCOMM (plan 012e9f79): C0 012e9f79-127 RUNNING, sound from 3.90 s; pin 012e9f79-128 RUNNING, sound from 5.70 s, level -5.99 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 8 over 2 | READ_DIFFERS gaps 9 over 2 | READ_DIFFERS gaps 8 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 8 over 2 | READ_DIFFERS gaps 9 over 2 | READ_DIFFERS gaps 8 over 2; pin takes 1 of 1; a2 012e9f79-129 RUNNING, sound from 5.66 s; wave gaps 8 over 2; gaps 8 over 2; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-STARCOMM (plan 012e9f79), SWP-P133-A2-STARCOMM (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-73 A7 triage, WARCRAFD (Warcraft II - Tides of Darkness (1995)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 5 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/WARCRAFD (Warcraft II - Tides of Darkness (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: WARCRAFD (plan 012e9f79): C0 012e9f79-136 RUNNING, sound from 4.89 s; pin 012e9f79-137 RUNNING, sound from 6.27 s; wave speed 1.10; speed 1.10; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-WARCRAFD (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-74 A7 triage, WARCRAFT (WarCraft - Orcs and Humans (1994)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 9 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/WARCRAFT (WarCraft - Orcs and Humans (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: WARCRAFT (plan db8eed0f): C0 db8eed0f-031 RUNNING, sound from 3.58 s; a2 db8eed0f-033 RUNNING, sound from 4.81 s; wave match 0.13; match 0.13; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-WARCRAFT (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-75 A7 triage, AMOK (Amok (1996)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_CDROM by state, 4 of 4.
+Cell: miles x DOS/4GW, 75 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/AMOK (Amok (1996)).
+Controls: C0 as below, each game's own A6 take; C1 fail.
+Observed: AMOK (plan 012e9f79): C0 012e9f79-061 RUNNING, sound from 35.94 s; pin 012e9f79-062 HANG, silent; its last screen "CD command error! / ESCAPE to exit !"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-AMOK (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-76 A7 triage, RENBFJS (Renegade - Battle for Jacob's Star (1995)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
+Cell: miles x DOS/4GW, 75 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/RENBFJS (Renegade - Battle for Jacob's Star (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: RENBFJS (plan 012e9f79): C0 012e9f79-091 RUNNING, silent; pin 012e9f79-092 HANG, silent; its last screen "Mel Protected Mode Version 2.2.7, 10/14/94 / Error Message:"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 012e9f79-093 HANG, silent; its last screen "Mel Protected Mode Version 2.2.7, 10/14/94 / Error Message: ?"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-RENBFJS (plan 012e9f79), SWP-P133-A2-RENBFJS (plan 012e9f79); two more takes each in plan 531c872d (the charter's 11.3): RENBFJS.
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-77 A7 triage, BSWORD1 (Circle of Blood (1996)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
+Cell: miles x DOS/4GW, 75 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/BSWORD1 (Circle of Blood (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: BSWORD1 (plan c87998b0): C0 c87998b0-073 RUNNING, silent; pin c87998b0-074 HANG, silent; its last screen "?????? ????????? ? ?????"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 c87998b0-075 HANG, silent; its last screen "?????? ????????? ? ?????"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BSWORD1 (plan c87998b0), SWP-P133-A2-BSWORD1 (plan c87998b0); two more takes each in plan 531c872d (the charter's 11.3): BSWORD1.
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-78 A7 triage, MEGAMANX (Mega Man X (1995)): its first sound comes later than the bare card's, over its limit (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOSTLOAD by time, 3 of 3.
+Cell: miles x DOS/4GW, 75 games, 5 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/MEGAMANX (Mega Man X (1995)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: MEGAMANX (plan c87998b0): C0 c87998b0-037 RUNNING, sound from 11.73 s; pin c87998b0-038 RUNNING, sound from 77.66 s, level +0.13 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-MEGAMANX (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-79 A7 triage, CAPTLSM (Capitalism (1995)): its first sound comes later than the bare card's, over its limit (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOSTLOAD by time, 3 of 4.
+Cell: digpak x DOS/4GW, 8 games, 1 share this outcome, scope SINGLETON; miles x DOS/4GW, 75 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/CAPTLSM (Capitalism (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: CAPTLSM (plan db8eed0f): C0 db8eed0f-172 RUNNING, sound from 4.03 s; a2 db8eed0f-174 RUNNING, sound from 22.95 s, level -0.29 dB; 8439670a: reproduced (3 takes: differs, agrees, differs; 1 first in 824f772f); a2 takes 3 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-CAPTLSM (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-80 A7 triage, DEDERBY (Destruction Derby (1996)): its sound is -6.24 to -6.01 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 32 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/DEDERBY (Destruction Derby (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: DEDERBY (plan 0605fc71): C0 0605fc71-013 RUNNING, sound from 3.15 s; pin 0605fc71-014 RUNNING, sound from 4.86 s, level -6.01 dB; pin takes 1 of 1; a2 0605fc71-015 RUNNING, sound from 4.73 s, level -6.24 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DEDERBY (plan 0605fc71), SWP-P133-A2-DEDERBY (plan 0605fc71).
+Hypothesis: none. Evidence: emulator (plans 0605fc71), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-81 A7 triage, EXTREMEA (Extreme Assault (1997)): its sound is +0.08 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: hmi-sos x DOS/4GW, 50 games, 17 share this outcome, scope ISOLATED; miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/EXTREMEA (Extreme Assault (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: EXTREMEA (plan fce952ae): C0 fce952ae-124 RUNNING, sound from 11.05 s; pin fce952ae-125 RUNNING, sound from 21.94 s, level +0.08 dB; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-EXTREMEA (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-82 A7 triage, FADETOBL (Fade to Black (1995)): its sound is -12.73 to -12.32 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 32 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/FADETOBL (Fade to Black (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: FADETOBL (plan c87998b0): C0 c87998b0-034 RUNNING, sound from 8.72 s; pin c87998b0-035 RUNNING, sound from 31.38 s, level -12.32 dB; pin takes 1 of 1; a2 c87998b0-036 RUNNING, sound from 41.27 s, level -12.73 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-FADETOBL (plan c87998b0), SWP-P133-A2-FADETOBL (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-83 A7 triage, GTA (Grand Theft Auto (1997)): its sound is -2.96 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 4 of 4.
+Cell: miles x DOS/4GW, 75 games, 7 share this outcome, scope ISOLATED; others x DOS/4GW, 10 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/GTA (Grand Theft Auto (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: GTA (plan 0605fc71): C0 0605fc71-019 RUNNING, sound from 3.50 s; a2 0605fc71-021 RUNNING, sound from 6.31 s, level -2.96 dB; 824f772f: reproduced (3 takes: differs, differs, differs); a2 takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-GTA (plan 0605fc71).
+Hypothesis: none. Evidence: emulator (plans 0605fc71), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-84 A7 triage, MEGAMANX (Mega Man X (1995)): its sound is -1.31 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: miles x DOS/4GW, 75 games, 7 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/MEGAMANX (Mega Man X (1995)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: MEGAMANX (plan c87998b0): C0 c87998b0-037 RUNNING, sound from 11.73 s; a2 c87998b0-039 RUNNING, sound from 13.12 s, level -1.31 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-MEGAMANX (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-85 A7 triage, MKTRIL (Mortal Kombat Trilogy (1997)): its sound is -4.63 to -4.54 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: hmi-sos x DOS/4GW, 50 games, 17 share this outcome, scope ISOLATED; miles x DOS/4GW, 75 games, 32 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/MKTRIL (Mortal Kombat Trilogy (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: MKTRIL (plan 0605fc71): C0 0605fc71-007 RUNNING, sound from 2.48 s; pin 0605fc71-008 RUNNING, sound from 4.14 s, level -4.54 dB; pin takes 1 of 1; a2 0605fc71-009 RUNNING, sound from 4.04 s, level -4.63 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-MKTRIL (plan 0605fc71), SWP-P133-A2-MKTRIL (plan 0605fc71).
+Hypothesis: none. Evidence: emulator (plans 0605fc71), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-86 A7 triage, PRIMALRA (Primal Rage (1995)): its sound is -3.43 to -0.66 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 32 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/PRIMALRA (Primal Rage (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: PRIMALRA (plan c87998b0): C0 c87998b0-046 RUNNING, sound from 17.26 s; pin c87998b0-047 RUNNING, sound from 33.18 s, level -3.43 dB; pin takes 1 of 1; a2 c87998b0-048 RUNNING, sound from 19.03 s, level -0.66 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-PRIMALRA (plan c87998b0), SWP-P133-A2-PRIMALRA (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-87 A7 triage, SYSTEMSH (System Shock (1994)): its sound is -5.93 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/SYSTEMSH (System Shock (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: SYSTEMSH (plan c87998b0): C0 c87998b0-052 RUNNING, sound from 14.07 s; pin c87998b0-053 RUNNING, sound from 16.89 s, level -5.93 dB; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SYSTEMSH (plan c87998b0); two more takes each in plan 531c872d (the charter's 11.3): SYSTEMSH.
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-88 A7 triage, XMENCHI (X-Men - Children of the Atom (1997)): its sound is -5.30 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/XMENCHI (X-Men - Children of the Atom (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: XMENCHI (plan 012e9f79): C0 012e9f79-103 RUNNING, sound from 3.37 s; pin 012e9f79-104 RUNNING, sound from 5.76 s, level -5.30 dB; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-XMENCHI (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-89 A7 triage, ALIENLEG (Alien Legacy (1994)): its sound is -2.30 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/ALIENLEG (Alien Legacy (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: ALIENLEG (plan c87998b0): C0 c87998b0-064 RUNNING, sound from 11.75 s; pin c87998b0-065 RUNNING, sound from 12.71 s, level -2.30 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ALIENLEG (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-90 A7 triage, BUBBBRI (Bubble Bobble also featuring Rainbow Islands (1996)): its sound is -5.76 to -1.13 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 32 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/BUBBBRI (Bubble Bobble also featuring Rainbow Islands (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: BUBBBRI (plan c87998b0): C0 c87998b0-076 RUNNING, sound from 60.03 s; pin c87998b0-077 RUNNING, sound from 67.22 s, level -5.76 dB; pin takes 1 of 1; a2 c87998b0-078 RUNNING, sound from 72.58 s, level -1.13 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BUBBBRI (plan c87998b0), SWP-P133-A2-BUBBBRI (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-91 A7 triage, CAESAR2 (Caesar 2 (1995)): its sound is -5.11 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/CAESAR2 (Caesar 2 (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: CAESAR2 (plan c87998b0): C0 c87998b0-079 RUNNING, sound from 17.79 s; pin c87998b0-080 RUNNING, sound from 19.04 s, level -5.11 dB; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-CAESAR2 (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-92 A7 triage, DW1 (Discworld (1995)): its sound is -5.14 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/DW1 (Discworld (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: DW1 (plan c87998b0): C0 c87998b0-085 RUNNING, sound from 5.82 s; pin c87998b0-086 RUNNING, sound from 7.82 s, level -5.14 dB; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DW1 (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-93 A7 triage, JAGGALL (Jagged Alliance (1995)): its sound is -1.94 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/JAGGALL (Jagged Alliance (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: JAGGALL (plan c87998b0): C0 c87998b0-097 HANG, sound from 6.88 s; pin c87998b0-098 HANG, sound from 8.53 s, level -1.94 dB; its last screen "████████████████████████████████████████ / ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-JAGGALL (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-94 A7 triage, SIMCITY2 (SimCity 2000 - CD Collection (1995)): its sound is -1.47 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/SIMCITY2 (SimCity 2000 - CD Collection (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: SIMCITY2 (plan c87998b0): C0 c87998b0-124 RUNNING, sound from 3.90 s; pin c87998b0-125 RUNNING, sound from 4.84 s, level -1.47 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SIMCITY2 (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-95 A7 triage, SYSTEMSH (System Shock (1994)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: FLAKY_CANDIDATE_UCDD_SFX by wave, 1 of 3.
+Cell: miles x DOS/4GW, 75 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/SYSTEMSH (System Shock (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: SYSTEMSH (plan c87998b0): C0 c87998b0-052 RUNNING, sound from 14.07 s; a2 c87998b0-054 RUNNING, sound from 4.28 s; wave not reproduced, 1 of 3 (the sweep's pair first, then 531c872d-099, 531c872d-100): READ_DIFFERS match 0.00 | READ_SAME | READ_SAME; not reproduced, 1 of 3 (the sweep's pair first, then 531c872d-099, 531c872d-100): READ_DIFFERS match 0.00 | READ_SAME | READ_SAME; a2 takes 1 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-SYSTEMSH (plan c87998b0); two more takes each in plan 531c872d (the charter's 11.3): SYSTEMSH.
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-96 A7 triage, BCRACERS (BC Racers (1995)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/BCRACERS (BC Racers (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: BCRACERS (plan db8eed0f): C0 db8eed0f-010 RUNNING, sound from 58.99 s; pin db8eed0f-011 RUNNING, sound from 64.94 s, level -6.03 dB; wave the calibration, 3 of 3: READ_DIFFERS cover 0.80 | READ_DIFFERS cover 0.80 | READ_DIFFERS cover 0.80; the calibration, 3 of 3: READ_DIFFERS cover 0.80 | READ_DIFFERS cover 0.80 | READ_DIFFERS cover 0.80; pin takes 1 of 1; a2 db8eed0f-012 RUNNING, sound from 67.59 s; wave cover 0.70; cover 0.70; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BCRACERS (plan db8eed0f), SWP-P133-A2-BCRACERS (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-97 A7 triage, SCREAMR2 (Screamer 2 (1996)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED; others x DOS/4GW, 10 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/SCREAMR2 (Screamer 2 (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: SCREAMR2 (plan fce952ae): C0 fce952ae-136 RUNNING, silent; pin fce952ae-137 RUNNING, sound from 35.07 s; wave cover 0.73; cover 0.73; pin takes 1 of 1; a2 fce952ae-138 RUNNING, sound from 30.98 s; wave cover 0.78; speed 1.02; cover 0.78; speed 1.02; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SCREAMR2 (plan fce952ae), SWP-P133-A2-SCREAMR2 (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-98 A7 triage, SCRMRAL (Screamer Rally (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED; others x DOS/4GW, 10 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/SCRMRAL (Screamer Rally (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: SCRMRAL (plan fce952ae): C0 fce952ae-139 RUNNING, silent; pin fce952ae-140 RUNNING, sound from 50.49 s; wave cover 0.59; speed 0.98; cover 0.59; speed 0.98; pin takes 1 of 1; a2 fce952ae-141 RUNNING, sound from 48.77 s; wave cover 0.62; cover 0.62; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SCRMRAL (plan fce952ae), SWP-P133-A2-SCRMRAL (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-99 A7 triage, TRACKATT (Track Attack (1996)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by sound, 3 of 3.
+Cell: hmi-sos x DOS/4GW, 50 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/TRACKATT (Track Attack (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: TRACKATT (plan 012e9f79): C0 012e9f79-001 RUNNING, sound from 3.10 s; pin 012e9f79-002 HANG, silent; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TRACKATT (plan 012e9f79); two more takes each in plan 531c872d (the charter's 11.3): TRACKATT.
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-100 A7 triage, XCAREXPE (XCar Experimental Racing (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/XCAREXPE (XCar Experimental Racing (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: XCAREXPE (plan 012e9f79): C0 012e9f79-010 RUNNING, sound from 13.98 s; pin 012e9f79-011 RUNNING, sound from 18.33 s; wave cover 0.84; cover 0.84; pin takes 1 of 1; a2 012e9f79-012 RUNNING, sound from 17.86 s; wave cover 0.64; cover 0.64; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-XCAREXPE (plan 012e9f79), SWP-P133-A2-XCAREXPE (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-101 A7 triage, RARKANI3 (Realms of Arkania 3 - Shadows over Riva (1996)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/RARKANI3 (Realms of Arkania 3 - Shadows over Riva (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: RARKANI3 (plan 012e9f79): C0 012e9f79-016 RUNNING, sound from 69.90 s; pin 012e9f79-017 RUNNING, sound from 78.82 s, level -6.01 dB; wave the calibration, 3 of 3: READ_DIFFERS cover 0.59 | READ_DIFFERS cover 0.54 | READ_DIFFERS cover 0.60; the calibration, 3 of 3: READ_DIFFERS cover 0.59 | READ_DIFFERS cover 0.54 | READ_DIFFERS cover 0.60; pin takes 1 of 1; a2 012e9f79-018 RUNNING, sound from 81.97 s; wave cover 0.38; cover 0.38; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-RARKANI3 (plan 012e9f79), SWP-P133-A2-RARKANI3 (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-102 A7 triage, MAX (MAX - Mechanized Assault and Exploration (1996)): exits to DOS under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 4 of 4.
+Cell: hmi-sos x DOS/4GW, 50 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/MAX (MAX - Mechanized Assault and Exploration (1996)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: MAX (plan cd5dead2): C0 cd5dead2-106 RUNNING, sound from 7.23 s; pin cd5dead2-107 EXITED, silent; its last screen "Not enough Extended Memory available to run M.A.X. / Amount Needed: 6000000, Amount found: -4096"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-MAX (plan cd5dead2).
+Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-103 A7 triage, TOONSTRK (Toonstruck (1996)): its sound is -5.44 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: hmi-sos x DOS/4GW, 50 games, 17 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/TOONSTRK (Toonstruck (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: TOONSTRK (plan cd5dead2): C0 cd5dead2-124 RUNNING, sound from 2.30 s; pin cd5dead2-125 RUNNING, sound from 3.35 s, level -5.44 dB; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TOONSTRK (plan cd5dead2).
+Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-104 A7 triage, DESCENT (Descent (1995)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by wave, 3 of 3.
+Cell: hmi-sos x DOS/4GW, 50 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/DESCENT (Descent (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: DESCENT (plan c8b067d9): C0 c8b067d9-007 RUNNING, sound from 6.34 s; pin c8b067d9-008 RUNNING, sound from 6.56 s, level -0.02 dB; wave reproduced, 3 of 3 (the sweep's pair first, then 531c872d-093, 531c872d-094): READ_DIFFERS back 48 over 30; jumps 61 over 40 | READ_DIFFERS back 62 over 30; jum; reproduced, 3 of 3 (the sweep's pair first, then 531c872d-093, 531c872d-094): READ_DIFFERS back 48 over 30; jumps 61 over 40 | READ_DIFFERS back 62 over 30; jumps 72 over 40 | READ_DIFFERS back 52 over 30; jumps 65 over ; pin takes 3 of 3; a2 c8b067d9-009 RUNNING, sound from 6.39 s, level -0.20 dB; wave reproduced, 3 of 3 (the sweep's pair first, then 531c872d-091, 531c872d-092): READ_DIFFERS speed 1.03; back 120 over 30; jumps 143 over 40 | READ_DIFFERS speed ; reproduced, 3 of 3 (the sweep's pair first, then 531c872d-091, 531c872d-092): READ_DIFFERS speed 1.03; back 120 over 30; jumps 143 over 40 | READ_DIFFERS speed 1.02; back 107 over 30; jumps 133 over 40 | READ_DIFFERS spe; a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DESCENT (plan c8b067d9), SWP-P133-A2-DESCENT (plan c8b067d9); two more takes each in plan 531c872d (the charter's 11.3): DESCENT.
+Hypothesis: none. Evidence: emulator (plans c8b067d9), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-105 A7 triage, STELLAR7 (Stellar 7 (1990)): its sound is +0.87 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 4 of 4.
+Cell: UNKNOWN x REALMODE, 43 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/STELLAR7 (Stellar 7 (1990)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: STELLAR7 (plan 0605fc71): C0 0605fc71-001 RUNNING, sound from 1.72 s; a2 0605fc71-003 RUNNING, sound from 2.30 s, level +0.87 dB; 824f772f: reproduced (3 takes: differs, differs, differs); a2 takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-STELLAR7 (plan 0605fc71).
+Hypothesis: none. Evidence: emulator (plans 0605fc71), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-106 A7 triage, TINCM2 (Incredible Machine 2, The (1994)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: sierra-sci x REALMODE, 36 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/TINCM2 (Incredible Machine 2, The (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: TINCM2 (plan db8eed0f): C0 db8eed0f-046 RUNNING, sound from 17.11 s; pin db8eed0f-047 RUNNING, sound from 21.38 s, level -6.44 dB; wave the calibration, 3 of 3: READ_DIFFERS back 72 over 43; jumps 77 over 54 | READ_DIFFERS back 67 over 43; jumps 76 over 54 | READ_DIFFERS back 88 over 43; jumps 1; the calibration, 3 of 3: READ_DIFFERS back 72 over 43; jumps 77 over 54 | READ_DIFFERS back 67 over 43; jumps 76 over 54 | READ_DIFFERS back 88 over 43; jumps 101 over 54; pin takes 1 of 1; a2 db8eed0f-048 RUNNING, sound from 18.13 s; wave back 57 over 43; jumps 70 over 54; back 57 over 43; jumps 70 over 54; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TINCM2 (plan db8eed0f), SWP-P133-A2-TINCM2 (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-107 A7 triage, FREDDY (Freddy Pharkas Frontier Pharmacist (1993)): its sound is -3.92 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: sierra-sci x REALMODE, 36 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/FREDDY (Freddy Pharkas Frontier Pharmacist (1993)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: FREDDY (plan eecd58bf): C0 eecd58bf-040 RUNNING, sound from 1.93 s; pin eecd58bf-041 RUNNING, sound from 2.19 s, level -3.92 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-FREDDY (plan eecd58bf).
+Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-108 A7 triage, SQ4 (Space Quest IV - Roger Wilco and the Time Rippers (CD) (1991)): its sound is -1.53 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: sierra-sci x REALMODE, 36 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/SQ4 (Space Quest IV - Roger Wilco and the Time Rippers (CD) (1991)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: SQ4 (plan eecd58bf): C0 eecd58bf-049 RUNNING, sound from 4.52 s; pin eecd58bf-050 RUNNING, sound from 4.75 s, level -1.53 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SQ4 (plan eecd58bf).
+Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-109 A7 triage, METLTECB (Metaltech Battledrome (1994)): exits to DOS under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
+Cell: hmi-sos x REALMODE, 14 games, 3 share this outcome, scope ISOLATED; sierra-sci x REALMODE, 36 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/METLTECB (Metaltech Battledrome (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: METLTECB (plan cd5dead2): C0 cd5dead2-127 RUNNING, sound from 5.30 s; pin cd5dead2-128 EXITED, silent; its last screen "Assert::err: Line 472 in 'code\memory.cpp': Memory::expand: Hole found in memory / expansion"; crash noted: the build EXITED where C0 RUNNING (extender REALMODE); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 cd5dead2-129 EXITED, silent; its last screen "Assert::err: Line 472 in 'code\memory.cpp': Memory::expand: Hole found in memory / expansion"; crash noted: the build EXITED where C0 RUNNING (extender REALMODE); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-METLTECB (plan cd5dead2), SWP-P133-A2-METLTECB (plan cd5dead2); two more takes each in plan 531c872d (the charter's 11.3): METLTECB.
+Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-110 A7 triage, LONGBOW (Conquests of the Longbow - The Legend of Robin Hood (1991)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
+Cell: sierra-sci x REALMODE, 36 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/LONGBOW (Conquests of the Longbow - The Legend of Robin Hood (1991)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: LONGBOW (plan 5f654686): C0 5f654686-028 HANG, sound from 2.58 s; pin 5f654686-029 HANG, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-LONGBOW (plan 5f654686).
+Hypothesis: none. Evidence: emulator (plans 5f654686), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-111 A7 triage, QG3E (Quest for Glory III - Wages of War (1992)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
+Cell: sierra-sci x REALMODE, 36 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/QG3E (Quest for Glory III - Wages of War (1992)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: QG3E (plan 5f654686): C0 5f654686-064 RUNNING, sound from 1.58 s; pin 5f654686-065 HANG, silent; crash noted: the build HANG where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-QG3E (plan 5f654686).
+Hypothesis: none. Evidence: emulator (plans 5f654686), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-112 A7 triage, INCA2 (Inca II - Nations of Immortality (1994)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by sound, 3 of 3.
+Cell: own-code x UNKNOWN, 35 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/INCA2 (Inca II - Nations of Immortality (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: INCA2 (plan c7cfcb37): C0 c7cfcb37-127 RUNNING, sound from 16.97 s; pin c7cfcb37-128 RUNNING, silent; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 c7cfcb37-129 RUNNING, silent; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-INCA2 (plan c7cfcb37), SWP-P133-A2-INCA2 (plan c7cfcb37); two more takes each in plan 531c872d (the charter's 11.3): INCA2.
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-113 A7 triage, BLAKESTA (Blake Stone - Aliens of Gold (1993)): its sound is -3.26 to +0.85 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x UNKNOWN, 35 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/BLAKESTA (Blake Stone - Aliens of Gold (1993)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: BLAKESTA (plan eecd58bf): C0 eecd58bf-001 RUNNING, sound from 22.75 s; pin eecd58bf-002 RUNNING, sound from 22.99 s, level -3.26 dB; pin takes 1 of 1; a2 eecd58bf-003 RUNNING, sound from 23.04 s, level +0.85 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BLAKESTA (plan eecd58bf), SWP-P133-A2-BLAKESTA (plan eecd58bf).
+Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-114 A7 triage, JAZZJACK (Jazz Jackrabbit (1994)): its sound is -10.92 to -4.89 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: own-code x UNKNOWN, 35 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/JAZZJACK (Jazz Jackrabbit (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not a disc game.
+Observed: JAZZJACK (plan 0978ab15): C0 0978ab15-103 RUNNING, sound from 1.42 s; pin 0978ab15-104 RUNNING, sound from 2.67 s, level -10.92 dB; pin takes 1 of 1; a2 0978ab15-105 RUNNING, sound from 2.27 s, level -4.89 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-JAZZJACK (plan 0978ab15), SWP-P133-A2-JAZZJACK (plan 0978ab15).
+Hypothesis: none. Evidence: emulator (plans 0978ab15), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-115 A7 triage, POPULS2 (Populous II - Trials of the Olympian Gods (1991)): its sound is -3.06 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: own-code x UNKNOWN, 35 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/POPULS2 (Populous II - Trials of the Olympian Gods (1991)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: POPULS2 (plan eecd58bf): C0 eecd58bf-010 RUNNING, sound from 4.61 s; pin eecd58bf-011 RUNNING, sound from 4.79 s, level -3.06 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-POPULS2 (plan eecd58bf).
+Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-116 A7 triage, DESERT (It Came from the Desert (1990)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
+Cell: own-code x UNKNOWN, 35 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/DESERT (It Came from the Desert (1990)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: DESERT (plan 0978ab15): C0 0978ab15-097 HANG, sound from 12.36 s; pin 0978ab15-098 HANG, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DESERT (plan 0978ab15).
+Hypothesis: none. Evidence: emulator (plans 0978ab15), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-117 A7 triage, BALAOPOW (Balance of Power (1985)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
+Cell: own-code x UNKNOWN, 35 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/BALAOPOW (Balance of Power (1985)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: BALAOPOW (plan 0978ab15): C0 0978ab15-127 RUNNING, sound from 1.38 s; pin 0978ab15-128 HANG, sound from 1.38 s; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BALAOPOW (plan 0978ab15).
+Hypothesis: none. Evidence: emulator (plans 0978ab15), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-118 A7 triage, SEALTEAM (Seal Team (1993)): exits to DOS under uCDD where the bare card sits still (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_CDROM by state, 4 of 4.
+Cell: digpak x REALMODE, 17 games, 1 share this outcome, scope SINGLETON; miles x REALMODE, 34 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/SEALTEAM (Seal Team (1993)).
+Controls: C0 as below, each game's own A6 take; C1 fail.
+Observed: SEALTEAM (plan cd5dead2): C0 cd5dead2-001 HANG, silent; a2 cd5dead2-003 EXITED, silent; its last screen "Bad command or file name / ╫└C:\>?"; 824f772f: reproduced (3 takes: differs, differs, differs); a2 takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-SEALTEAM (plan cd5dead2).
+Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-119 A7 triage, TERMRAMP (Terminator, The - Rampage (1993)): its sound is +0.52 to +2.99 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x REALMODE, 34 games, 5 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/TERMRAMP (Terminator, The - Rampage (1993)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: TERMRAMP (plan acca1005): C0 acca1005-001 RUNNING, sound from 2.66 s; pin acca1005-002 RUNNING, sound from 2.84 s, level +0.52 dB; pin takes 1 of 1; a2 acca1005-003 RUNNING, sound from 3.01 s, level +2.99 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TERMRAMP (plan acca1005), SWP-P133-A2-TERMRAMP (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-120 A7 triage, CONTZACK (Contraption Zack (1992)): its sound is -1.33 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: digpak x REALMODE, 17 games, 1 share this outcome, scope SINGLETON; miles x REALMODE, 34 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/CONTZACK (Contraption Zack (1992)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: CONTZACK (plan b3894b8a): C0 b3894b8a-133 RUNNING, sound from 1.76 s; a2 b3894b8a-135 RUNNING, sound from 22.24 s, level -1.33 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-CONTZACK (plan b3894b8a).
+Hypothesis: none. Evidence: emulator (plans b3894b8a), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-121 A7 triage, CONTZACK (Contraption Zack (1992)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
+Cell: digpak x REALMODE, 17 games, 1 share this outcome, scope SINGLETON; miles x REALMODE, 34 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/CONTZACK (Contraption Zack (1992)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: CONTZACK (plan b3894b8a): C0 b3894b8a-133 RUNNING, sound from 1.76 s; pin b3894b8a-134 HANG, sound from 1.91 s; crash noted: the build HANG where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first) (its cut read by hand); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-CONTZACK (plan b3894b8a).
+Hypothesis: none. Evidence: emulator (plans b3894b8a), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-122 A7 triage, WC4POF (Wing Commander IV The Price of Freedom (1996)): its first sound comes later than the bare card's, over its limit (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: FLAKY_CANDIDATE_UCDD_HOSTLOAD by time, 1 of 2.
+Cell: hmi-sos x REALMODE, 14 games, 1 share this outcome, scope SINGLETON; miles x REALMODE, 34 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/WC4POF (Wing Commander IV The Price of Freedom (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: WC4POF (plan cd5dead2): C0 cd5dead2-136 RUNNING, sound from 12.74 s; a2 cd5dead2-138 RUNNING, sound from 27.78 s, level -0.01 dB; 824f772f: a reading: agrees (1 takes: agrees); a2 takes 1 of 2.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-WC4POF (plan cd5dead2).
+Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-123 A7 triage, ALIENBRT (Alien Breed - Tower Assault (1994)): crashes under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
+Cell: UNKNOWN x UNKNOWN, 31 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/ALIENBRT (Alien Breed - Tower Assault (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: ALIENBRT (plan db8eed0f): C0 db8eed0f-106 RUNNING, sound from 29.52 s; pin db8eed0f-107 CRASH, silent; its last screen "DS=044D ES=044D FS=CC9D GS=052C [CS:IP]=0F 06 9B DB E4 C3 C7 06 / Press ESC to abort program ?"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ALIENBRT (plan db8eed0f); two more takes each in plan 531c872d (the charter's 11.3): ALIENBRT.
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-124 A7 triage, WIPEOUT (WipEout (1995)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 4 of 4.
+Cell: UNKNOWN x UNKNOWN, 31 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/WIPEOUT (WipEout (1995)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: WIPEOUT (plan fce952ae): C0 fce952ae-043 RUNNING, sound from 2.69 s; pin fce952ae-044 HANG, silent; 8439670a: reproduced (3 takes: differs, differs, differs; 1 first in 824f772f); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-WIPEOUT (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-125 A7 triage, ZOOL2 (Zool 2 (1994)): its sound is -5.83 to -0.57 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: UNKNOWN x UNKNOWN, 31 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/ZOOL2 (Zool 2 (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: ZOOL2 (plan db8eed0f): C0 db8eed0f-121 RUNNING, sound from 1.91 s; pin db8eed0f-122 RUNNING, sound from 2.10 s, level -5.83 dB; pin takes 1 of 1; a2 db8eed0f-123 RUNNING, sound from 2.19 s, level -0.57 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ZOOL2 (plan db8eed0f), SWP-P133-A2-ZOOL2 (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-126 A7 triage, ALIENBRT (Alien Breed - Tower Assault (1994)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
+Cell: UNKNOWN x UNKNOWN, 31 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/ALIENBRT (Alien Breed - Tower Assault (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: ALIENBRT (plan db8eed0f): C0 db8eed0f-106 RUNNING, sound from 29.52 s; a2 db8eed0f-108 RUNNING, silent; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-ALIENBRT (plan db8eed0f); two more takes each in plan 531c872d (the charter's 11.3): ALIENBRT.
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-127 A7 triage, STARCRUS (Star Crusader (1994)): exits to DOS under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
+Cell: UNKNOWN x UNKNOWN, 31 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/STARCRUS (Star Crusader (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: STARCRUS (plan db8eed0f): C0 db8eed0f-115 RUNNING, sound from 4.81 s; pin db8eed0f-116 EXITED, silent; its last screen "Unable to locate CD-ROM with the Star Crusader on it.  Make sure that / the disc has been inserted into your CD-ROM drive."; crash noted: the build EXITED where C0 RUNNING (extender UNKNOWN); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-117 EXITED, silent; its last screen "Unable to locate CD-ROM with the Star Crusader on it.  Make sure that / the disc has been inserted into your CD-ROM drive."; crash noted: the build EXITED where C0 RUNNING (extender UNKNOWN); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-STARCRUS (plan db8eed0f), SWP-P133-A2-STARCRUS (plan db8eed0f); two more takes each in plan 531c872d (the charter's 11.3): STARCRUS.
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-128 A7 triage, CREATURE (Creature Shock (1994)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by sound, 4 of 4.
+Cell: own-code x DOS/4GW, 28 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/CREATURE (Creature Shock (1994)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: CREATURE (plan db8eed0f): C0 db8eed0f-034 RUNNING, sound from 25.01 s; pin db8eed0f-035 RUNNING, silent; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-CREATURE (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-129 A7 triage, FXFIGHTE (FX Fighter (1995)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: own-code x DOS/4GW, 28 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/FXFIGHTE (FX Fighter (1995)).
+Controls: C0 as below, each game's own A6 take; C1 fail.
+Observed: FXFIGHTE (plan c7cfcb37): C0 c7cfcb37-046 RUNNING, sound from 73.60 s; a2 c7cfcb37-048 RUNNING, sound from 79.14 s; wave cover 0.24; cover 0.24; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-FXFIGHTE (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-130 A7 triage, FXFIGHTE (FX Fighter (1995)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_CDROM by sound, 4 of 4.
+Cell: own-code x DOS/4GW, 28 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/FXFIGHTE (FX Fighter (1995)).
+Controls: C0 as below, each game's own A6 take; C1 fail.
+Observed: FXFIGHTE (plan c7cfcb37): C0 c7cfcb37-046 RUNNING, sound from 73.60 s; pin c7cfcb37-047 RUNNING, silent, level -6.12 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-FXFIGHTE (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-131 A7 triage, PROJECTP (Project Paradise (1997)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 4 of 4.
+Cell: own-code x DOS/4GW, 28 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/PROJECTP (Project Paradise (1997)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: PROJECTP (plan c7cfcb37): C0 c7cfcb37-055 RUNNING, sound from 29.59 s; pin c7cfcb37-056 HANG, silent; its last screen "▀▀ / ▀▀▀     ·?,???? ?? ?? ???? ???????????"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-PROJECTP (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-132 A7 triage, SUPERFRO (Superfrog (1994)): crashes under uCDD where the bare card sits still (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
+Cell: own-code x DOS/4GW, 28 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/SUPERFRO (Superfrog (1994)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: SUPERFRO (plan 6d5d7c39): C0 6d5d7c39-055 HANG, silent; pin 6d5d7c39-056 CRASH, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 6d5d7c39-057 CRASH, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SUPERFRO (plan 6d5d7c39), SWP-P133-A2-SUPERFRO (plan 6d5d7c39).
+Hypothesis: none. Evidence: emulator (plans 6d5d7c39), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-133 A7 triage, THEHORDE (Horde, The (1994)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
+Cell: own-code x DOS/4GW, 28 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/THEHORDE (Horde, The (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: THEHORDE (plan c7cfcb37): C0 c7cfcb37-061 RUNNING, sound from 7.46 s; pin c7cfcb37-062 HANG, silent; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 c7cfcb37-063 HANG, silent; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-THEHORDE (plan c7cfcb37), SWP-P133-A2-THEHORDE (plan c7cfcb37); two more takes each in plan 531c872d (the charter's 11.3): THEHORDE.
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-134 A7 triage, WACKYWHE (Wacky Wheels (1994)): its sound is -2.11 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: own-code x DOS/4GW, 28 games, 5 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/WACKYWHE (Wacky Wheels (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: WACKYWHE (plan acca1005): C0 acca1005-046 RUNNING, sound from 16.79 s; pin acca1005-047 RUNNING, sound from 25.48 s, level -2.11 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-WACKYWHE (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-135 A7 triage, FUTUREDI (Future Dimension (1995)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: NONE x UNKNOWN, 25 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/FUTUREDI (Future Dimension (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: FUTUREDI (plan fce952ae): C0 fce952ae-013 RUNNING, sound from 4.52 s; pin fce952ae-014 RUNNING, sound from 7.23 s, level -5.88 dB; wave the calibration, 3 of 3: READ_DIFFERS cover 0.09; gaps 4 over 2 | READ_DIFFERS cover 0.08; gaps 4 over 2 | READ_DIFFERS cover 0.08; gaps 3 over 2; the calibration, 3 of 3: READ_DIFFERS cover 0.09; gaps 4 over 2 | READ_DIFFERS cover 0.08; gaps 4 over 2 | READ_DIFFERS cover 0.08; gaps 3 over 2; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-FUTUREDI (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-136 A7 triage, DARKLAND (Darklands (1992)): its sound is -2.33 to -0.69 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: others x REALMODE, 23 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/DARKLAND (Darklands (1992)).
+Controls: C0 as below, each game's own A6 take; C1 not a disc game.
+Observed: DARKLAND (plan 310ed652): C0 310ed652-076 RUNNING, sound from 8.74 s; pin 310ed652-077 RUNNING, sound from 9.95 s, level -2.33 dB; pin takes 1 of 1; a2 310ed652-078 RUNNING, sound from 4.72 s, level -0.69 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DARKLAND (plan 310ed652), SWP-P133-A2-DARKLAND (plan 310ed652).
+Hypothesis: none. Evidence: emulator (plans 310ed652), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-137 A7 triage, LOSTEDEN (Lost Eden (1995)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
+Cell: dmx x REALMODE, 3 games, 1 share this outcome, scope SINGLETON; hmi-sos x REALMODE, 14 games, 3 share this outcome, scope ISOLATED; others x REALMODE, 23 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/LOSTEDEN (Lost Eden (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: LOSTEDEN (plan cd5dead2): C0 cd5dead2-040 RUNNING, sound from 5.56 s; pin cd5dead2-041 HANG, silent; its last screen "(graphics)"; crash noted: the build HANG where C0 RUNNING (extender REALMODE); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 cd5dead2-042 HANG, silent; its last screen "(graphics)"; crash noted: the build HANG where C0 RUNNING (extender REALMODE); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-LOSTEDEN (plan cd5dead2), SWP-P133-A2-LOSTEDEN (plan cd5dead2); two more takes each in plan 531c872d (the charter's 11.3): LOSTEDEN.
+Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-138 A7 triage, QUAKE (Quake (1996)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: own-code x DJGPP, 19 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/QUAKE (Quake (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: QUAKE (plan c7cfcb37): C0 c7cfcb37-025 RUNNING, sound from 10.36 s; pin c7cfcb37-026 RUNNING, sound from 12.61 s, level -5.76 dB; wave the calibration, 3 of 3: READ_DIFFERS match 0.82; speed 1.05 | READ_DIFFERS match 0.81; speed 1.05 | READ_DIFFERS match 0.82; speed 1.05; the calibration, 3 of 3: READ_DIFFERS match 0.82; speed 1.05 | READ_DIFFERS match 0.81; speed 1.05 | READ_DIFFERS match 0.82; speed 1.05; pin takes 1 of 1; a2 c7cfcb37-027 RUNNING, sound from 13.63 s; wave match 0.87; speed 1.02; match 0.87; speed 1.02; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-QUAKE (plan c7cfcb37), SWP-P133-A2-QUAKE (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-139 A7 triage, QUAKEM1 (Quake Mission Pack No 1 Scourge of Armagon (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: own-code x DJGPP, 19 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/QUAKEM1 (Quake Mission Pack No 1 Scourge of Armagon (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: QUAKEM1 (plan c7cfcb37): C0 c7cfcb37-028 RUNNING, sound from 10.85 s; pin c7cfcb37-029 RUNNING, sound from 12.53 s; wave speed 1.03; speed 1.03; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-QUAKEM1 (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-140 A7 triage, TWINSEN (Twinsen's Odyssey (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: miles x UNKNOWN, 11 games, 1 share this outcome, scope SINGLETON; others x UNKNOWN, 16 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/TWINSEN (Twinsen's Odyssey (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: TWINSEN (plan c7cfcb37): C0 c7cfcb37-013 RUNNING, sound from 12.26 s; pin c7cfcb37-014 RUNNING, sound from 14.56 s, level -6.01 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 9 over 2 | READ_DIFFERS gaps 11 over 2 | READ_DIFFERS gaps 11 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 9 over 2 | READ_DIFFERS gaps 11 over 2 | READ_DIFFERS gaps 11 over 2; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TWINSEN (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-141 A7 triage, CELTTALE (Celtic Tales - Balor of the Evil Eye (1995)): its sound is -4.68 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: others x UNKNOWN, 16 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/CELTTALE (Celtic Tales - Balor of the Evil Eye (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: CELTTALE (plan acca1005): C0 acca1005-034 RUNNING, sound from 7.06 s; pin acca1005-035 RUNNING, sound from 7.47 s, level -4.68 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-CELTTALE (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-142 A7 triage, TYRIAN (Tyrian (1995)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
+Cell: others x UNKNOWN, 16 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/TYRIAN (Tyrian (1995)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: TYRIAN (plan 310ed652): C0 310ed652-121 RUNNING, sound from 20.81 s; pin 310ed652-122 RUNNING, silent, level -21.40 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TYRIAN (plan 310ed652).
+Hypothesis: none. Evidence: emulator (plans 310ed652), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-143 A7 triage, TYRIAN20 (Tyrian 2000 (1999)): silent under uCDD where the bare card sounds (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
+Cell: others x UNKNOWN, 16 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/TYRIAN20 (Tyrian 2000 (1999)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: TYRIAN20 (plan 310ed652): C0 310ed652-124 RUNNING, sound from 26.63 s; pin 310ed652-125 RUNNING, silent, level -26.68 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TYRIAN20 (plan 310ed652).
+Hypothesis: none. Evidence: emulator (plans 310ed652), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-144 A7 triage, METLTECE (Metaltech Earthsiege (1994)): its sound is +7.82 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: hmi-sos x REALMODE, 14 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/METLTECE (Metaltech Earthsiege (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: METLTECE (plan cd5dead2): C0 cd5dead2-130 RUNNING, sound from 5.10 s; a2 cd5dead2-132 RUNNING, sound from 2.95 s, level +7.82 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-METLTECE (plan cd5dead2).
+Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-145 A7 triage, SKYNET (SkyNET (1996)): crashes under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 4 of 4.
+Cell: hmi-sos x REALMODE, 14 games, 3 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/SKYNET (SkyNET (1996)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: SKYNET (plan cd5dead2): C0 cd5dead2-133 RUNNING, sound from 8.98 s; pin cd5dead2-134 CRASH, silent; its last screen "CR0: unavailable / Crash address (unrelocated) = 2:0010526E"; crash noted: the build CRASH where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SKYNET (plan cd5dead2).
+Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-146 A7 triage, STREETRA (Street Racer (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: hmi-sos x UNKNOWN, 12 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/STREETRA (Street Racer (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: STREETRA (plan 012e9f79): C0 012e9f79-031 RUNNING, sound from 3.03 s; pin 012e9f79-032 RUNNING, sound from 5.09 s; wave the calibration, 3 of 3: READ_DIFFERS cover 0.03 | READ_DIFFERS cover 0.03 | READ_DIFFERS cover 0.03; the calibration, 3 of 3: READ_DIFFERS cover 0.03 | READ_DIFFERS cover 0.03 | READ_DIFFERS cover 0.03; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-STREETRA (plan 012e9f79).
+Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-147 A7 triage, WITCHAVE (Witchaven (1995)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: hmi-sos x UNKNOWN, 12 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/WITCHAVE (Witchaven (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: WITCHAVE (plan db8eed0f): C0 db8eed0f-016 RUNNING, sound from 2.07 s; pin db8eed0f-017 RUNNING, sound from 3.23 s, level -6.02 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 10 over 2 | READ_DIFFERS gaps 10 over 2 | READ_DIFFERS gaps 9 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 10 over 2 | READ_DIFFERS gaps 10 over 2 | READ_DIFFERS gaps 9 over 2; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-WITCHAVE (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-148 A7 triage, STONKEEP (Stonekeep (1995)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by state, 3 of 3.
+Cell: hmi-sos x UNKNOWN, 12 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/STONKEEP (Stonekeep (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: STONKEEP (plan db8eed0f): C0 db8eed0f-022 RUNNING, sound from 5.31 s; pin db8eed0f-023 HANG, silent; its last screen "╚═════════════════════════════════════════════════════════╝ / _"; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-024 HANG, silent; its last screen "╚═════════════════════════════════════════════════════════╝ / _"; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-STONKEEP (plan db8eed0f), SWP-P133-A2-STONKEEP (plan db8eed0f); two more takes each in plan 531c872d (the charter's 11.3): STONKEEP.
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-149 A7 triage, DESSTR (Desert Strike - Return to the Gulf (1994)): its sound is -1.70 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: hmi-sos x UNKNOWN, 12 games, 4 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/DESSTR (Desert Strike - Return to the Gulf (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: DESSTR (plan c87998b0): C0 c87998b0-004 RUNNING, sound from 1.50 s; pin c87998b0-005 RUNNING, sound from 1.69 s, level -1.70 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DESSTR (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-150 A7 triage, JUNGLEST (Jungle Strike (1995)): its sound is -0.62 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: hmi-sos x UNKNOWN, 12 games, 4 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/JUNGLEST (Jungle Strike (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: JUNGLEST (plan c87998b0): C0 c87998b0-007 RUNNING, sound from 2.92 s; pin c87998b0-008 RUNNING, sound from 3.14 s, level -0.62 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-JUNGLEST (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-151 A7 triage, DUMAST2 (Dungeon Master II - The Legend of Skullkeep (1995)): its sound is -1.86 to +4.70 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: hmi-sos x UNKNOWN, 12 games, 4 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/DUMAST2 (Dungeon Master II - The Legend of Skullkeep (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: DUMAST2 (plan c87998b0): C0 c87998b0-013 HANG, sound from 3.65 s; pin c87998b0-014 HANG, sound from 3.98 s, level -1.86 dB; its last screen "(graphics)"; pin takes 1 of 1; a2 c87998b0-015 HANG, sound from 3.96 s, level +4.70 dB; its last screen "(graphics)"; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DUMAST2 (plan c87998b0), SWP-P133-A2-DUMAST2 (plan c87998b0).
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-152 A7 triage, REDRAM (Redneck Rampage (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: apogee x DOS/4GW, 11 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/REDRAM (Redneck Rampage (1997)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: REDRAM (plan fce952ae): C0 fce952ae-049 RUNNING, sound from 9.45 s; a2 fce952ae-051 RUNNING, sound from 13.91 s; wave gaps 12 over 4; gaps 12 over 4; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-REDRAM (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-153 A7 triage, TIMECOMM (Time Commando (1996)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by state, 4 of 4.
+Cell: miles x UNKNOWN, 11 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/TIMECOMM (Time Commando (1996)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: TIMECOMM (plan c7cfcb37): C0 c7cfcb37-019 RUNNING, sound from 3.77 s; pin c7cfcb37-020 HANG, silent; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 8439670a: reproduced (3 takes: differs, differs, differs; 1 first in 824f772f); pin takes 4 of 4; a2 c7cfcb37-021 HANG, silent; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 8439670a: reproduced (3 takes: differs, differs, differs; 1 first in 824f772f); a2 takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TIMECOMM (plan c7cfcb37), SWP-P133-A2-TIMECOMM (plan c7cfcb37).
+Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-154 A7 triage, EXTREMER (Extreme Rise of the Triad (1995)): its sound is -5.13 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 4 of 4.
+Cell: apogee x DOS/4GW, 11 games, 5 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/EXTREMER (Extreme Rise of the Triad (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: EXTREMER (plan db8eed0f): C0 db8eed0f-139 RUNNING, sound from 8.30 s; pin db8eed0f-140 RUNNING, sound from 11.69 s, level -5.13 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-EXTREMER (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-155 A7 triage, PRIV2SE (Privateer 2 The Darkening (Special Edition) (1996)): its sound is -5.11 to -0.63 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: miles x UNKNOWN, 11 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/PRIV2SE (Privateer 2 The Darkening (Special Edition) (1996)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: PRIV2SE (plan acca1005): C0 acca1005-019 RUNNING, sound from 9.64 s; pin acca1005-020 RUNNING, sound from 26.01 s, level -5.11 dB; pin takes 1 of 1; a2 acca1005-021 RUNNING, sound from 10.07 s, level -0.63 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-PRIV2SE (plan acca1005), SWP-P133-A2-PRIV2SE (plan acca1005).
+Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-156 A7 triage, ROTTDW (Rise of the Triad - Dark War (1995)): its sound is -4.74 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 4 of 4.
+Cell: apogee x DOS/4GW, 11 games, 5 share this outcome, scope ISOLATED.
+Affected: DOS_ACT/ROTTDW (Rise of the Triad - Dark War (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: ROTTDW (plan db8eed0f): C0 db8eed0f-145 RUNNING, sound from 6.65 s; pin db8eed0f-146 RUNNING, sound from 9.98 s, level -4.74 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ROTTDW (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-157 A7 triage, HEXENBEY (Hexen - Beyond Heretic (1995)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: dmx x DOS/4GW, 8 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/HEXENBEY (Hexen - Beyond Heretic (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: HEXENBEY (plan fce952ae): C0 fce952ae-094 RUNNING, sound from 7.86 s; pin fce952ae-095 RUNNING, sound from 12.97 s, level -6.00 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 3 over 2; back 92 over 57; jumps 108 over 98 | READ_DIFFERS back 102 over 57; jumps 109 over 98 | READ_DIFFERS back 9; the calibration, 3 of 3: READ_DIFFERS gaps 3 over 2; back 92 over 57; jumps 108 over 98 | READ_DIFFERS back 102 over 57; jumps 109 over 98 | READ_DIFFERS back 95 over 57; jumps 110 over 98; pin takes 1 of 1; a2 fce952ae-096 RUNNING, sound from 16.75 s; wave back 95 over 57; jumps 105 over 98; back 95 over 57; jumps 105 over 98; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-HEXENBEY (plan fce952ae), SWP-P133-A2-HEXENBEY (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-158 A7 triage, THEPATRI (Patrician, The (1993)): its sound is -6.03 to -6.03 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
+Cell: creative x UNKNOWN, 8 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/THEPATRI (Patrician, The (1993)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: THEPATRI (plan a06419fc): C0 a06419fc-013 RUNNING, sound from 1.40 s; pin a06419fc-014 RUNNING, sound from 1.68 s, level -6.03 dB; pin takes 1 of 1; a2 a06419fc-015 RUNNING, sound from 1.69 s, level -6.03 dB; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-THEPATRI (plan a06419fc), SWP-P133-A2-THEPATRI (plan a06419fc).
+Hypothesis: none. Evidence: emulator (plans a06419fc), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-159 A7 triage, XCOMUF (X-COM - UFO Defense (1994)): its sound is -4.97 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 4 of 4.
+Cell: digpak x DOS/4GW, 8 games, 2 share this outcome, scope ISOLATED.
+Affected: DOS_THNK/XCOMUF (X-COM - UFO Defense (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: XCOMUF (plan c8b067d9): C0 c8b067d9-004 RUNNING, sound from 3.25 s; pin c8b067d9-005 RUNNING, sound from 7.05 s, level -4.97 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-XCOMUF (plan c8b067d9); two more takes each in plan 531c872d (the charter's 11.3): XCOMUF.
+Hypothesis: none. Evidence: emulator (plans c8b067d9), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-160 A7 triage, PIZZATYC (Pizza Tycoon (1994)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by wave, 1 of 1.
+Cell: creative x DOS/4GW, 1 games, 1 share this outcome, scope SINGLETON; digpak x DOS/4GW, 8 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/PIZZATYC (Pizza Tycoon (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not a disc game.
+Observed: PIZZATYC (plan b3894b8a): C0 b3894b8a-067 RUNNING, sound from 7.42 s; pin b3894b8a-068 RUNNING, sound from 13.04 s, level +0.01 dB; wave the calibration, 3 of 3: READ_DIFFERS back 23 over 20; jumps 55 over 31 | READ_DIFFERS back 26 over 20; jumps 49 over 31 | READ_DIFFERS jumps 42 over 31; the calibration, 3 of 3: READ_DIFFERS back 23 over 20; jumps 55 over 31 | READ_DIFFERS back 26 over 20; jumps 49 over 31 | READ_DIFFERS jumps 42 over 31; pin takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-PIZZATYC (plan b3894b8a).
+Hypothesis: none. Evidence: emulator (plans b3894b8a), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-161 A7 triage, XCOMUF (X-COM - UFO Defense (1994)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by wave, 3 of 3.
+Cell: digpak x DOS/4GW, 8 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/XCOMUF (X-COM - UFO Defense (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: XCOMUF (plan c8b067d9): C0 c8b067d9-004 RUNNING, sound from 3.25 s; a2 c8b067d9-006 RUNNING, sound from 11.24 s, level +0.04 dB; wave reproduced, 3 of 3 (the sweep's pair first, then 531c872d-125, 531c872d-126): READ_DIFFERS back 37 over 36; jumps 49 over 43 | READ_DIFFERS back 42 over 36; jum; reproduced, 3 of 3 (the sweep's pair first, then 531c872d-125, 531c872d-126): READ_DIFFERS back 37 over 36; jumps 49 over 43 | READ_DIFFERS back 42 over 36; jumps 54 over 43 | READ_DIFFERS back 38 over 36; jumps 48 over ; a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-XCOMUF (plan c8b067d9); two more takes each in plan 531c872d (the charter's 11.3): XCOMUF.
+Hypothesis: none. Evidence: emulator (plans c8b067d9), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-162 A7 triage, PQ4 (Police Quest 4 - Open Season (1993)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: FLAKY_CANDIDATE_UCDD_SFX by wave, 1 of 3.
+Cell: sierra-sci x DOS/4GW, 7 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/PQ4 (Police Quest 4 - Open Season (1993)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: PQ4 (plan eecd58bf): C0 eecd58bf-025 RUNNING, sound from 4.31 s; a2 eecd58bf-027 RUNNING, sound from 7.29 s, level +0.10 dB; wave not reproduced, 1 of 3 (the sweep's pair first, then 531c872d-119, 531c872d-120): READ_DIFFERS speed 0.98 | NOT_READ over a zero base, no control pair: back 37 ; not reproduced, 1 of 3 (the sweep's pair first, then 531c872d-119, 531c872d-120): READ_DIFFERS speed 0.98 | NOT_READ over a zero base, no control pair: back 37 over 15; jumps 33 over 25 | NOT_READ over a zero base, no co; a2 takes 1 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-PQ4 (plan eecd58bf); two more takes each in plan 531c872d (the charter's 11.3): PQ4.
+Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-163 A7 triage, QUARANT (Quarantine (1994)): sits still under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
+Cell: hmi-sos x DOS/32A, 2 games, 1 share this outcome, scope SINGLETON; miles x DOS/32A, 5 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/QUARANT (Quarantine (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: QUARANT (plan db8eed0f): C0 db8eed0f-007 RUNNING, sound from 4.03 s; pin db8eed0f-008 HANG, silent; its last screen "(graphics)"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-009 HANG, silent; its last screen "(graphics)"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-QUARANT (plan db8eed0f), SWP-P133-A2-QUARANT (plan db8eed0f); two more takes each in plan 531c872d (the charter's 11.3): QUARANT.
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-164 A7 triage, ULTIMA8 (Ultima VIII - Pagan (1994)): crashes or exits to DOS under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; both builds)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
+Cell: UNKNOWN x Phar Lap, 3 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_THNK/ULTIMA8 (Ultima VIII - Pagan (1994)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: ULTIMA8 (plan db8eed0f): C0 db8eed0f-070 RUNNING, sound from 25.00 s; pin db8eed0f-071 CRASH, silent; its last screen "DS=8F91 ES=0000 FS=CC9D GS=052C [CS:IP]=FF FF 91 8F 59 20 91 8F / Press ESC to abort program ?"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-072 EXITED, silent; its last screen "Program halted by code. / Rest, Avatar...you will need it!"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ULTIMA8 (plan db8eed0f), SWP-P133-A2-ULTIMA8 (plan db8eed0f); two more takes each in plan 531c872d (the charter's 11.3): ULTIMA8.
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-165 A7 triage, BLOOD (Blood (1997)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: apogee x REALMODE, 2 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/BLOOD (Blood (1997)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: BLOOD (plan fce952ae): C0 fce952ae-058 RUNNING, sound from 7.49 s; a2 fce952ae-060 RUNNING, sound from 11.26 s; wave gaps 3 over 2; gaps 3 over 2; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-BLOOD (plan fce952ae).
+Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-166 A7 triage, SSF2T (Super Street Fighter II Turbo (1995)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
+Cell: hmi-sos x Borland RTM, 2 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/SSF2T (Super Street Fighter II Turbo (1995)).
+Controls: C0 as below, each game's own A6 take; C1 pass.
+Observed: SSF2T (plan db8eed0f): C0 db8eed0f-004 RUNNING, sound from 22.94 s; a2 db8eed0f-006 RUNNING, sound from 26.78 s; wave match 0.93; gaps 22 over 16; match 0.93; gaps 22 over 16; a2 takes 1 of 1.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-SSF2T (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-167 A7 triage, REALMSOF (Realms of Chaos (1995)): its sound is -1.11 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 4.
+Cell: apogee x REALMODE, 2 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/REALMSOF (Realms of Chaos (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not run.
+Observed: REALMSOF (plan db8eed0f): C0 db8eed0f-151 RUNNING, sound from 10.64 s; pin db8eed0f-152 RUNNING, sound from 11.17 s, level -1.11 dB; 824f772f: reproduced (3 takes: differs, differs, agrees); pin takes 3 of 4.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-REALMSOF (plan db8eed0f).
+Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-168 A7 triage, SWDFORC (Star Wars - Dark Forces (1995)): its sound is -2.74 dB from the bare card's (from the sweep's takes; a row 10 Nov 2026; open; the pin only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
+Cell: lucasarts x DOS/4GW, 2 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/SWDFORC (Star Wars - Dark Forces (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: SWDFORC (plan c87998b0): C0 c87998b0-019 RUNNING, sound from 4.54 s; pin c87998b0-020 RUNNING, sound from 8.96 s, level -2.74 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); the calibration's ruling on its own takes: GAME_FAULT; pin takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SWDFORC (plan c87998b0); two more takes each in plan 531c872d (the charter's 11.3): SWDFORC.
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+### CAND-169 A7 triage, SWDFORC (Star Wars - Dark Forces (1995)): its sound under uCDD is not the bare card's, matched piece by piece (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
+
+- decides = "silent: the control take decides (rule 1: the PC's UCDD boot has the same JemmEx and the bare card is the control; project_a.md's Classification: bin 7 by the first measure that differs); no document says what the game does; the closest, CT2290:15: a difference between it and the bare card is a fault under rule 1 unless noted"
+- searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
+Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by wave, 3 of 3.
+Cell: lucasarts x DOS/4GW, 2 games, 1 share this outcome, scope SINGLETON.
+Affected: DOS_ACT/SWDFORC (Star Wars - Dark Forces (1995)).
+Controls: C0 as below, each game's own A6 take; C1 not read.
+Observed: SWDFORC (plan c87998b0): C0 c87998b0-019 RUNNING, sound from 4.54 s; a2 c87998b0-021 RUNNING, sound from 9.35 s, level -0.29 dB; wave reproduced, 3 of 3 (the sweep's pair first, then 531c872d-097, 531c872d-098): READ_DIFFERS speed 1.05 | READ_DIFFERS speed 1.03 | READ_DIFFERS speed 1.02; reproduced, 3 of 3 (the sweep's pair first, then 531c872d-097, 531c872d-098): READ_DIFFERS speed 1.05 | READ_DIFFERS speed 1.03 | READ_DIFFERS speed 1.02; a2 takes 3 of 3.
+Expected: as on C0 (rule 1).
+Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-SWDFORC (plan c87998b0); two more takes each in plan 531c872d (the charter's 11.3): SWDFORC.
+Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
 ### CTRL-ONLY A6 sweep: games that run under uCDD and not under the control (a list, no verdict; from 5 Nov 2026)
 
 the owner, 5 Nov 2026: "Control failures where only the bare card fails (Pirates! Gold, Bruce Lee) are listed for A7 and for the docs as "runs under uCDD, not under the control", cause unread, no verdict."
