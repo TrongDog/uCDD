@@ -98,7 +98,7 @@ rate, command (SBG:2115-2140); the stop order (SBG:2191-2193).
 ## 5. Speed
 
 Nothing the player shows or plays changes. Every change was checked
-against the unchanged build (f585c30) in an emulator harness (below).
+against the unchanged build (891a769) in an emulator harness (below).
 
 | Change | What it was | What it is |
 | --- | --- | --- |
@@ -133,7 +133,7 @@ On average over a frame the screen changes in 389 of its 16000 dwords
 11546.
 
 Second round (the scroller, three-IMUL butterflies, lines), each display
-held with nothing over it, 10 frames, f585c30 to now:
+held with nothing over it, 10 frames, 891a769 to now:
 
 | On the screen | 386 clocks | Pentium clocks |
 | --- | --- | --- |

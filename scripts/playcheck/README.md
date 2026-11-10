@@ -13,9 +13,9 @@ Needs Python 3, NASM, and the Python packages `unicorn` (all commands),
 
 Run from anywhere in the repository; builds go to `build/playcheck`.
 
-    python scripts/playcheck/playcheck.py compare f585c30
-    python scripts/playcheck/playcheck.py fuzz f585c30
-    python scripts/playcheck/playcheck.py hardware f585c30 work
+    python scripts/playcheck/playcheck.py compare 891a769
+    python scripts/playcheck/playcheck.py fuzz 891a769
+    python scripts/playcheck/playcheck.py hardware 891a769 work
     python scripts/playcheck/playcheck.py profile work --state fire,1
     python scripts/playcheck/playcheck.py shot work 140,660 shot.png
 
