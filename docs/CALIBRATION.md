@@ -79,9 +79,13 @@ Of the 54 wiki-confirmed games with sound: 15 match the bare card under
 the pinned build; 38 differ (32 on the CD-audio side, 4 in the
 protected-mode host, 2 in game sound); 1 has no working control on this
 bench (Johnny Bazookatone: the emulated CD-ROM refuses a data read while a
-CD track plays). Of the 84: 17 pass, 51 differ in a way that points at μCDD, and the rest
-are the games' own faults, games that stay silent until a key is pressed,
-or a handful with a written reason.
+CD track plays). Of the 84, on the AC signal (the re-judge of 5 and 6 November 2026): 19
+pass, 47 differ in a way that points at μCDD, 10 are silent on both sides
+(games that wait for a key), and 8 have no passing control (the games' own
+faults, or a handful with a written reason).
+
+HISTORY (10 November 2026): until then the line above read "17 pass, 51
+differ", the classes on the raw signal; the AC re-judge moved them.
 
 Quake: boots, launches, plays its demo and records sound on every run. On
 the bare card it repeats itself (match 0.96, speed 1.00). Under μCDD's

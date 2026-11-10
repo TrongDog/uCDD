@@ -3,7 +3,14 @@
 A plain list of every fault the test harness has found in the driver, and
 whether each is in this fork, in the upstream project, or both. Written by
 Claude from the rows in [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md), which hold the
-evidence. Status as of 2 November 2026.
+evidence. Status as of 10 November 2026.
+
+Since 2 November the sweep of the 838-game library has opened CAND-22 to
+CAND-32; [FINDINGS.md](FINDINGS.md) lists them by family. Their rows are open on
+`notes`, judged in an emulator only. The author's 0.9.5-a3 was released on
+7 November 2026 (two commits past a2: a margin in the DPMI free-memory
+answer, and the version number); nothing has been run on it here yet: its
+takes on the candidate games come next.
 
 **How to read it.** Each row is one fault, reproduced ten runs out of ten
 in an emulator. None has yet been confirmed on real hardware; that is what

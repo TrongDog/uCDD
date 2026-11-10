@@ -1,4 +1,4 @@
-# Findings: the candidate faults, as of 2 November 2026
+# Findings: the candidate faults, as of 10 November 2026
 
 Written by Claude from the rows in [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md),
 which are the record; this page is a readable view of them and says
@@ -10,6 +10,31 @@ driver interface on a synthetic disc; "Tier 2" the virtual Sound Blaster
 driven by a test program; the tiers are described in
 [METHOD.md](METHOD.md).
 Hypotheses are labelled as such in the rows and are not repeated here.
+
+## The sweep's candidates, CAND-22 to CAND-32 (10 November 2026)
+
+Found by the zero-interaction sweep of the 838-game library, each from its
+row's own heading; every one is open and judged in an emulator only.
+
+- The protected-mode host: **CAND-22**, SETMUL.EXE (the library's SLOW
+  helpers) faults under the pinned build's DPMI host.
+- First sound: **CAND-23**, a CD-audio game's first sound comes 1.22 s later
+  on the pinned build than without uCDD (median of 15); **CAND-24**, the same
+  on 0.9.5-a2, 1.27 s (median of 14).
+- Memory: **CAND-25**, a DOS extender's program sees about 31 MB without uCDD
+  and about 62 MB under it on the same machine; **CAND-26**, I Have No Mouth
+  and I Must Scream stops with a memory message; **CAND-28**, a class for
+  DOS's "Packed file is corrupt" under uCDD, no member yet.
+- The CD-audio level: **CAND-27**, the disc's music comes out 6.0 dB under
+  the card's own CD path, on both builds.
+- The CD-ROM: **CAND-29**, Gabriel Knight 2 stops at "General failure
+  reading drive G" under uCDD and runs without it.
+- The pin-only family (the pinned build has it, the author's a2 does not):
+  **CAND-30**, Ultimate Domain plays no sound; **CAND-31**, Gabriel Knight 1's
+  menu is silent; **CAND-32**, game sound on the voice path comes out 6.0 dB
+  under the bare card. Measured on the pin's CD-only build (10 November 2026),
+  the voice path matches the bare card: by inference the halving lies where
+  the build carries the game's sound.
 
 The one-page table of these, with the version each is open in, is [KNOWN-ISSUES.md](KNOWN-ISSUES.md). Three lists, kept apart because the action on each differs. "Pin" is the
 fork's line at the pinned commit (an older base than the author's

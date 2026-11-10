@@ -71,8 +71,11 @@ pinned build: unit tests of the parsers and converters, driver conformance
 on synthetic discs, virtual Sound Blaster conformance against Creative's
 guide and the 8237 and 8259 data sheets, a calibration against games known
 to work, and a zero-interaction sweep of an 838-game library. It has found
-twenty-one candidate faults so far, each with the line of the
-specification it departs from and the recorded run that shows it.
+candidate faults CAND-1 to CAND-32 so far (10 November 2026), each with the
+line of the specification it departs from and the recorded run that shows
+it: the conformance tiers' twenty-one, and from the sweep the protected-mode
+host, first sound, memory, the CD-audio level, the CD-ROM, and a pin-only
+family (faults in the fork's pinned build that the author's release lacks).
 
 - [docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md): the table of every
   candidate fault, and which version of the driver has it.
@@ -103,6 +106,9 @@ thing under test stays still. When it resumes:
   an ESS ES1868F, so every candidate can be confirmed by a human ear.
 
 The history of how it got here is in [docs/HISTORY.md](docs/HISTORY.md).
+The fork's own history was rewritten on 10 November 2026: commit messages,
+file wording and commit dates only, no code; commit ids from before that date
+differ, and the upstream releases on `main` keep theirs.
 
 ## Branches
 
