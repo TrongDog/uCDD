@@ -1331,6 +1331,7 @@ L4: none (the game's own message).
 Trace: none (B is frozen).
 Hypothesis (labelled, not tested; mine): under uCDD the game gets its memory from the DPMI host, whose answer it reads as too little for its caches, where without uCDD its extender takes JemmEx's VCPI and XMS (CAND-25); the opposite direction to Zork Nemesis, so the size alone does not explain it.
 0.9.5-a2: c87998b0-096, "Unable to initialize temp image memory pool.", then the prompt, no sound: a different message, an earlier stop.
+Observed, 0.9.5-a3 (A7, plan 0b2299c9; the owner's decision of 10 Nov 2026 on the 11:15Z report, item 2: "CAND-26 says what a3's take showed"): 0b2299c9-061 against C0 c87998b0-094, RECORDED, RUNNING with sound at the window's end, as C0. On one take a3 runs what a2 stopped. The pin and a2 are taken twice more each in plan 531c872d (the charter's 11.3); a3 keeps its one take.
 Evidence: emulator (dynarec off), one take per configuration. Hardware: UNCONFIRMED (A7).
 - Upstream (the owner's decision of 9 Nov 2026): addressed in upstream a3 by
   its release notes; unverified until A7. a3: v0.9.5-a3, commit 6c2f3e3,
