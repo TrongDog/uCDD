@@ -2180,7 +2180,7 @@ port_callback:
     ; follows too (game_elapsed, vsb-spec 7.8). It moves sample by sample,
     ; not in the mix's whole periods, and never passes the mix: HMI's drivers
     ; rewrite the buffer right up to the count, and a count past what had
-    ; been taken made Descent 2 click on the virtual ESS (5e3f364).
+    ; been taken made Descent 2 click on the virtual ESS (a9d9cb0).
     call game_elapsed
     movzx ecx, word [game_rate]
     mul ecx
