@@ -25,7 +25,7 @@ midi = ["off", "gm"]
 # Which kind of program the test runs. A property of the test, not set by
 # the bench; the planner reports which clients a plan covers.
 client = ["real", "dos4gw", "dpmi16", "pmodew"]   # pmodew: T2W bound with PMODE/W (the owner, 28 Oct 2026)
-build = ["p32", "p128", "p256", "verify32", "verify128", "ess32", "ess128", "pinC1", "pinC2", "l4boot", "a1", "a2"]
+build = ["p32", "p128", "p256", "verify32", "verify128", "ess32", "ess128", "pinC1", "pinC2", "l4boot", "a1", "a2", "a3"]
 
 # Kept here, left out of every plan until taken off this list: the ESS work
 # is parked (20 Oct).
@@ -149,6 +149,10 @@ a1 = "--resident-audio --audio-period-frames 32"
 # candidate row's a1 line joined by an a2 line from a 10-run plan; step-aside left off, his
 # default; its own UCDD.CFG layout, version 5). The same options as a1.
 a2 = "--resident-audio --audio-period-frames 32"
+# a3: the author's 0.9.5-a3 (fork main 6c2f3e3, exported, scripts/build.py untouched; the bench's
+# fixtures/a3/MANIFEST.txt), A7's runs only (the owner's decision of 10 Nov 2026, item 6 (b); the owner,
+# 9 Nov 2026: "A3 does not join the sweep"). The same options as a2.
+a3 = "--resident-audio --audio-period-frames 32"
 
 [build_dirs]
 p32 = "$UCDD_TREE/build_32$UCDD_SUFFIX"
@@ -163,6 +167,7 @@ pinC1 = "$UCDD_TREE/C1_32$UCDD_SUFFIX"
 l4boot = "$UCDD_TREE/l4_boot_32$UCDD_SUFFIX"
 a1 = "$UCDD_TREE/../a1/C2_32$UCDD_SUFFIX"
 a2 = "$UCDD_TREE/../a2/C2_32$UCDD_SUFFIX"
+a3 = "$UCDD_TREE/../a3/C2_32$UCDD_SUFFIX"
 
 [run]
 # Probes may share the machine; a recording never does (lesson L6).
@@ -185,7 +190,9 @@ optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", 
                    # A6 re-runs (rerunplan.py)
                    "rerun-cand", "rerun-xr",
                    # A6 re-runs (rerunplan.py)
-                   "rerun-candc1"]
+                   "rerun-candc1",
+                   # A7's runs (the owner's decision of 10 Nov 2026, item 6 (a) and (b))
+                   "rerun-a7"]
 
 # How each runner is started, from the bench directory. $UCDD_FIXTEST is the
 # bench's fixtest.py and $UCDD_KIT its kit folder (the caller sets both, as it
@@ -47613,3 +47620,943 @@ fixed = { build = "pinC1", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37 C0_REF=824f772f-228"
 note = "A6 re-run candc1 of c7cfcb37 (b03), DOS_THNK/TIMECOMM: C1, three takes (bin 7); bin 7: pin sound, state; C0 824f772f-228 at 32 KB; 79.2, confirmed by plan 8439670a's further takes"
 # END A6 re-run tests candc1
+
+# BEGIN A7 runs a7 (written by the agent in the XR block's form; the owner's decision of 10 Nov 2026, item 6 (a) and (b))
+
+[[test]]
+name = "RRN-A7-P133-A2-386SPYS"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "386SPYS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=e6399b69"
+note = "A7 run a7 (a), DOS_ACT/386SPYS: a2 with -install -vcpi once; (a) Phar Lap; A6 e6399b69 (b11), C0 HANG, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C2-386SPYS"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "386SPYS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=e6399b69"
+note = "A7 run a7 (a), DOS_ACT/386SPYS: the pin with -install -vcpi once; (a) Phar Lap, the pin; A6 e6399b69 (b11), C0 HANG, C2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A3-386SPYS"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "386SPYS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=e6399b69"
+note = "A7 run a7 (b), DOS_ACT/386SPYS: a3 once; not PASS by state under a2 (C0 HANG, A2 EXITED); A6 e6399b69 (b11), C0 HANG, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C0-BIOFORGE"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "BIOFORGE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_ACT/BIOFORGE: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take db8eed0f (b04) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A2-BIOFORGE"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "BIOFORGE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f"
+note = "A7 run a7 (a), DOS_ACT/BIOFORGE: a2 with -install -vcpi once; (a) Phar Lap; A6 db8eed0f (b04), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C2-BIOFORGE"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "BIOFORGE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f"
+note = "A7 run a7 (a), DOS_ACT/BIOFORGE: the pin with -install -vcpi once; (a) Phar Lap, the pin; A6 db8eed0f (b04), C0 RUNNING, C2 CRASH"
+
+[[test]]
+name = "RRN-A7-P133-A3-BIOFORGE"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "BIOFORGE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7 run a7 (b), DOS_ACT/BIOFORGE: a3 once; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 db8eed0f (b04), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A2-CRUSREGR"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREGR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=acca1005"
+note = "A7 run a7 (a), DOS_ACT/CRUSREGR: a2 with -install -vcpi once; (a) Phar Lap; A6 acca1005 (b07), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C2-CRUSREGR"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREGR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=acca1005"
+note = "A7 run a7 (a), DOS_ACT/CRUSREGR: the pin with -install -vcpi once; (a) Phar Lap, the pin; A6 acca1005 (b07), C0 RUNNING, C2 CRASH"
+
+[[test]]
+name = "RRN-A7-P133-A3-CRUSREGR"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREGR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7 run a7 (b), DOS_ACT/CRUSREGR: a3 once; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 acca1005 (b07), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A2-CRUSREMO"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREMO"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=acca1005"
+note = "A7 run a7 (a), DOS_ACT/CRUSREMO: a2 with -install -vcpi once; (a) Phar Lap; A6 acca1005 (b07), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C2-CRUSREMO"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREMO"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=acca1005"
+note = "A7 run a7 (a), DOS_ACT/CRUSREMO: the pin with -install -vcpi once; (a) Phar Lap, the pin; A6 acca1005 (b07), C0 RUNNING, C2 CRASH"
+
+[[test]]
+name = "RRN-A7-P133-A3-CRUSREMO"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREMO"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7 run a7 (b), DOS_ACT/CRUSREMO: a3 once; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 acca1005 (b07), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C0-TRANSPOR"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "TRANSPOR"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_THNK/TRANSPOR: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take db8eed0f (b04) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A2-TRANSPOR"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "TRANSPOR"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f"
+note = "A7 run a7 (a), DOS_THNK/TRANSPOR: a2 with -install -vcpi once; (a) Phar Lap; A6 db8eed0f (b04), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C2-TRANSPOR"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "TRANSPOR"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f"
+note = "A7 run a7 (a), DOS_THNK/TRANSPOR: the pin with -install -vcpi once; (a) Phar Lap, the pin; A6 db8eed0f (b04), C0 RUNNING, C2 HANG"
+
+[[test]]
+name = "RRN-A7-P133-A3-TRANSPOR"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "TRANSPOR"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7 run a7 (b), DOS_THNK/TRANSPOR: a3 once; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 db8eed0f (b04), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C0-TRANTDLX"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "TRANTDLX"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_THNK/TRANTDLX: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take db8eed0f (b04) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A2-TRANTDLX"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "TRANTDLX"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f"
+note = "A7 run a7 (a), DOS_THNK/TRANTDLX: a2 with -install -vcpi once; (a) Phar Lap; A6 db8eed0f (b04), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C2-TRANTDLX"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "TRANTDLX"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f"
+note = "A7 run a7 (a), DOS_THNK/TRANTDLX: the pin with -install -vcpi once; (a) Phar Lap, the pin; A6 db8eed0f (b04), C0 RUNNING, C2 HANG"
+
+[[test]]
+name = "RRN-A7-P133-A3-TRANTDLX"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "TRANTDLX"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7 run a7 (b), DOS_THNK/TRANTDLX: a3 once; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 db8eed0f (b04), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C0-ULTIMA8"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "ULTIMA8"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_THNK/ULTIMA8: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take db8eed0f (b04) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A2-ULTIMA8"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "ULTIMA8"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f"
+note = "A7 run a7 (a), DOS_THNK/ULTIMA8: a2 with -install -vcpi once; (a) Phar Lap; A6 db8eed0f (b04), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C2-ULTIMA8"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "ULTIMA8"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f"
+note = "A7 run a7 (a), DOS_THNK/ULTIMA8: the pin with -install -vcpi once; (a) Phar Lap, the pin; A6 db8eed0f (b04), C0 RUNNING, C2 CRASH"
+
+[[test]]
+name = "RRN-A7-P133-A3-ULTIMA8"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ULTIMA8"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7 run a7 (b), DOS_THNK/ULTIMA8: a3 once; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 db8eed0f (b04), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C0-BLASTER!"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "BLASTER!"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_ACT/BLASTER!: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take 012e9f79 (b02) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A2-BLASTER!"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "BLASTER!"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=012e9f79"
+note = "A7 run a7 (a), DOS_ACT/BLASTER!: a2 with -install -vcpi once; (a) PMODE/W; A6 012e9f79 (b02), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A3-BLASTER!"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "BLASTER!"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7 run a7 (b), DOS_ACT/BLASTER!: a3 once; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 012e9f79 (b02), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A2-DEATHRAL"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "DEATHRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=acca1005"
+note = "A7 run a7 (a), DOS_ACT/DEATHRAL: a2 with -install -vcpi once; (a) PMODE/W; A6 acca1005 (b07), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A3-DEATHRAL"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "DEATHRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7 run a7 (b), DOS_ACT/DEATHRAL: a3 once; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 acca1005 (b07), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A2-RAYMAN"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "RAYMAN"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=a06419fc"
+note = "A7 run a7 (a), DOS_ACT/RAYMAN: a2 with -install -vcpi once; (a) PMODE/W; A6 a06419fc (CD baseline), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A3-RAYMAN"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "RAYMAN"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7 run a7 (b), DOS_ACT/RAYMAN: a3 once; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 a06419fc (CD baseline), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A2-RAYMANF"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "RAYMANF"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=012e9f79 C0_REF=824f772f-138"
+note = "A7 run a7 (a), DOS_ACT/RAYMANF: a2 with -install -vcpi once; (a) PMODE/W; A6 012e9f79 (b02), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A3-RAYMANF"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "RAYMANF"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79 C0_REF=824f772f-138"
+note = "A7 run a7 (b), DOS_ACT/RAYMANF: a3 once; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 012e9f79 (b02), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A2-STORM96"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (a) (\"-install -vcpi\" one take each); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`); the author's wiki at 4340d0a (Compatibility without CD audio: BioForge \"Install with `UCDD -install -vcpi`\"); judged against its control by project_a.md's bins (EXPECTED_VCPI where it runs and the take without did not)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 178 in 26 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "STORM96"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=012e9f79 C0_REF=824f772f-143"
+note = "A7 run a7 (a), DOS_ACT/STORM96: a2 with -install -vcpi once; (a) PMODE/W; A6 012e9f79 (b02), C0 HANG, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A3-STORM96"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "STORM96"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79 C0_REF=824f772f-143"
+note = "A7 run a7 (b), DOS_ACT/STORM96: a3 once; not PASS by state under a2 (C0 HANG, A2 EXITED); A6 012e9f79 (b02), C0 HANG, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-C0-ABUSE"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "ABUSE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_ACT/ABUSE: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take cd5dead2 (b05) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A3-ABUSE"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ABUSE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7 run a7 (b), DOS_ACT/ABUSE: a3 once; not PASS by state under a2 (C0 HANG, A2 RUNNING); A6 cd5dead2 (b05), C0 HANG, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-C0-ADVTIN"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "ADVTIN"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_ACT/ADVTIN: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take cd5dead2 (b05) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A3-ADVTIN"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ADVTIN"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7 run a7 (b), DOS_ACT/ADVTIN: a3 once; PASS, cell hmi-sos x DOS/4GW (wave NOT_READ); A6 cd5dead2 (b05), C0 RUNNING, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-ARCHIMED"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ARCHIMED"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7 run a7 (b), DOS_ACT/ARCHIMED: a3 once; PASS, cell miles x CauseWay (wave READ_SAME); A6 a06419fc (CD baseline), C0 RUNNING, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-BIGREDRA"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "BIGREDRA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7 run a7 (b), DOS_ACT/BIGREDRA: a3 once; PASS, cell miles x DOS/4GW (wave READ_SAME); A6 0605fc71 ((b)), C0 RUNNING, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-DOOM"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "DOOM"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=310ed652"
+note = "A7 run a7 (b), DOS_ACT/DOOM: a3 once; PASS, cell dmx x DOS/4GW (wave NOT_READ); A6 310ed652 (b13), C0 RUNNING, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-DUKE3D"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "DUKE3D"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=b3894b8a"
+note = "A7 run a7 (b), DOS_ACT/DUKE3D: a3 once; PASS, cell apogee x DOS/4GW (wave NOT_READ); A6 b3894b8a (b12), C0 RUNNING, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-FLYINGT2"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "FLYINGT2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=6d5d7c39"
+note = "A7 run a7 (b), DOS_ACT/FLYINGT2: a3 once; PASS, cell own-code x DOS/4GW (wave NOT_READ); A6 6d5d7c39 (b14), C0 RUNNING, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-FLYINGTI"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "FLYINGTI"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=6d5d7c39"
+note = "A7 run a7 (b), DOS_ACT/FLYINGTI: a3 once; not PASS by state under a2 (C0 CRASH, A2 HANG); A6 6d5d7c39 (b14), C0 CRASH, A2 HANG"
+
+[[test]]
+name = "RRN-A7-P133-C0-QUARANT"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "QUARANT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_ACT/QUARANT: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take db8eed0f (b04) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A3-QUARANT"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "QUARANT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7 run a7 (b), DOS_ACT/QUARANT: a3 once; not PASS by state under a2 (C0 RUNNING, A2 HANG); A6 db8eed0f (b04), C0 RUNNING, A2 HANG"
+
+[[test]]
+name = "RRN-A7-P133-C0-RENBFJS"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "RENBFJS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_ACT/RENBFJS: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take 012e9f79 (b02) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A3-RENBFJS"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "RENBFJS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7 run a7 (b), DOS_ACT/RENBFJS: a3 once; not PASS by state under a2 (C0 RUNNING, A2 HANG); A6 012e9f79 (b02), C0 RUNNING, A2 HANG"
+
+[[test]]
+name = "RRN-A7-P133-C0-SLIPSTRE"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "SLIPSTRE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_ACT/SLIPSTRE: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take cd5dead2 (b05) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A3-SLIPSTRE"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SLIPSTRE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7 run a7 (b), DOS_ACT/SLIPSTRE: a3 once; not PASS by state under a2 (C0 CRASH, A2 HANG); A6 cd5dead2 (b05), C0 CRASH, A2 HANG"
+
+[[test]]
+name = "RRN-A7-P133-A3-SUPERFRO"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SUPERFRO"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=6d5d7c39"
+note = "A7 run a7 (b), DOS_ACT/SUPERFRO: a3 once; not PASS by state under a2 (C0 HANG, A2 CRASH); A6 6d5d7c39 (b14), C0 HANG, A2 CRASH"
+
+[[test]]
+name = "RRN-A7-P133-A3-SUPERKAR"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SUPERKAR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7 run a7 (b), DOS_ACT/SUPERKAR: a3 once; PASS, cell UNKNOWN x DOS/4GW (wave READ_SAME); A6 a06419fc (CD baseline), C0 RUNNING, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-WINGCOMM"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "WINGCOMM"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7 run a7 (b), DOS_ACT/WINGCOMM: a3 once; CAND-25; A6 acca1005 (b07), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A3-WINGNUTS"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "WINGNUTS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7 run a7 (b), DOS_ACT/WINGNUTS: a3 once; not PASS by state under a2 (C0 HANG, A2 RUNNING); A6 c87998b0 (b06), C0 HANG, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-BSWORD1"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "BSWORD1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7 run a7 (b), DOS_THNK/BSWORD1: a3 once; not PASS by state under a2 (C0 RUNNING, A2 HANG); A6 c87998b0 (b06), C0 RUNNING, A2 HANG"
+
+[[test]]
+name = "RRN-A7-P133-C0-DUNGKEEP"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "DUNGKEEP"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_THNK/DUNGKEEP: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take 012e9f79 (b02) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A3-DUNGKEEP"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "DUNGKEEP"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7 run a7 (b), DOS_THNK/DUNGKEEP: a3 once; not PASS by state under a2 (C0 HANG, A2 RUNNING); A6 012e9f79 (b02), C0 HANG, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-GK2"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "GK2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7 run a7 (b), DOS_THNK/GK2: a3 once; not PASS by state under a2 (C0 RUNNING, A2 CRASH); A6 acca1005 (b07), C0 RUNNING, A2 CRASH"
+
+[[test]]
+name = "RRN-A7-P133-A3-IHNMAIMS"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "IHNMAIMS"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7 run a7 (b), DOS_THNK/IHNMAIMS: a3 once; IHNMAIMS; CAND-25; not PASS by state under a2 (C0 RUNNING, A2 EXITED); A6 c87998b0 (b06), C0 RUNNING, A2 EXITED"
+
+[[test]]
+name = "RRN-A7-P133-A3-JAGGALL"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "JAGGALL"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7 run a7 (b), DOS_THNK/JAGGALL: a3 once; not PASS by state under a2 (C0 HANG, A2 RUNNING); A6 c87998b0 (b06), C0 HANG, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-ODDWORLD"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ODDWORLD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7 run a7 (b), DOS_THNK/ODDWORLD: a3 once; PASS, cell miles x DOS/32A (wave READ_SAME); A6 c87998b0 (b06), C0 RUNNING, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-PIRATES"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "PIRATES"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7 run a7 (b), DOS_THNK/PIRATES: a3 once; CAND-25; A6 acca1005 (b07), C0 CRASH, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-PIZZATYC"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "PIZZATYC"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=b3894b8a"
+note = "A7 run a7 (b), DOS_THNK/PIZZATYC: a3 once; PASS, cell creative x DOS/4GW (wave NOT_READ); PASS, cell digpak x DOS/4GW (wave NOT_READ); A6 b3894b8a (b12), C0 RUNNING, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-C0-REDGUARD"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "REDGUARD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_THNK/REDGUARD: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take 012e9f79 (b02) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A3-REDGUARD"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "REDGUARD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7 run a7 (b), DOS_THNK/REDGUARD: a3 once; not PASS by state under a2 (C0 HANG, A2 RUNNING); A6 012e9f79 (b02), C0 HANG, A2 RUNNING"
+
+[[test]]
+name = "RRN-A7-P133-A3-SERFCITY"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SERFCITY"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7 run a7 (b), DOS_THNK/SERFCITY: a3 once; not PASS by state under a2 (C0 EXITED, A2 CRASH); A6 c87998b0 (b06), C0 EXITED, A2 CRASH"
+
+[[test]]
+name = "RRN-A7-P133-A3-SHCRT"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SHCRT"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7 run a7 (b), DOS_THNK/SHCRT: a3 once; not PASS by state under a2 (C0 EXITED, A2 HANG); A6 c87998b0 (b06), C0 EXITED, A2 HANG"
+
+[[test]]
+name = "RRN-A7-P133-C0-THEHORDE"
+decides = "silent: a reference take with no expected result of its own: the game's control on v2 at 32 KB (its A6 take on v1; the re-run set-ups' rule for a v1 row: C0 on v2 at 32 KB)"
+searched = "terms: reference take, C0 reference, control take; hits: 1 in 1 documents (HOSTCD 1); 10 Nov 2026"
+runner = "sweep"
+game = "THEHORDE"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1"
+note = "A7 run a7, DOS_THNK/THEHORDE: C0 once on v2 at 32 KB, the control for its A7 takes; its A6 take c7cfcb37 (b03) on v1"
+
+[[test]]
+name = "RRN-A7-P133-A3-THEHORDE"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "THEHORDE"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7 run a7 (b), DOS_THNK/THEHORDE: a3 once; not PASS by state under a2 (C0 RUNNING, A2 HANG); A6 c7cfcb37 (b03), C0 RUNNING, A2 HANG"
+
+[[test]]
+name = "RRN-A7-P133-A3-ZNEMESIS"
+decides = "silent: the owner's decision of 10 Nov 2026 item 6 (b) (\"a3 (v0.9.5-a3)\" one take each); judged against its control by project_a.md's bins and the owner's wave rule of 10 Nov 2026 (item 3); a3's change is the DPMI free-memory answer: DPMI10's function 0500h describes the call and no document says what a game does with the answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ZNEMESIS"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7 run a7 (b), DOS_THNK/ZNEMESIS: a3 once; CAND-25; A6 c87998b0 (b06), C0 HANG, A2 HANG"
+
+# END A7 runs a7
