@@ -426,7 +426,7 @@ the block size and start with 90h or 91h. [doc]
     toggle persists from one transfer to the next (no document says what a
     reset does to it); on the ESS every transfer starts right (ES1868
     decides for an ESS).
-  - The pinned build (count-position 7994cd1) puts the data's first byte
+  - The pinned build (count-position 546b389) puts the data's first byte
     left: ISSUES.md CAND-15 (no fix under Project A's freeze).
   - The DSP firmware, re-read (the owner, 28 Oct 2026: PROST's expected
     result against the CT1341's 3.02, grade [fw]; the mantra's rule 7:
@@ -505,7 +505,7 @@ rate, never passes what uCDD has taken, never moves back within a lap, and
 the block interrupt comes when that same position crosses a block's end,
 so the count sits on the boundary there as the CT2291's does. [doc, hw]
 
-Today (count-position, 30c82ca, 23 Oct 2026): auto-init follows the
+Today (count-position, 09ddd5c, 23 Oct 2026): auto-init follows the
 rule. One position, the frame being heard plus one period, never past what
 the mix has taken, never back within the transfer, held while paused
 (trap.asm game_elapsed_at): the count reads it, the block interrupt comes
@@ -528,12 +528,12 @@ one to two periods behind what had been taken, and the block interrupt the
 mix (irq.asm, virtual_irq_tick), so the count was short of the boundary at
 the interrupt (F8: about 7Dh on the PC at 128 frames) and DMX lost one to
 two periods of its margin (F18). The output clock had been chosen on 15 Oct
-(5e3f364) for HMI's clicks on the virtual ESS, whose mixer reads a delayed
+(a9d9cb0) for HMI's clicks on the virtual ESS, whose mixer reads a delayed
 ring; on the Sound Blaster models the mix is what uCDD has taken
 [reading]. The virtual ESS keeps its own rule (vess-spec.md,
 ess_fifo_count; rule 6).
 
-The clock (7994cd1, 24 Oct 2026): the output ring is 512 frames (16 periods
+The clock (546b389, 24 Oct 2026): the output ring is 512 frames (16 periods
 at 32 frames), so a period interrupt late by up to 15 periods is read right;
 on the two-period ring a late interrupt aliased the clock two periods back
 (F2) [emu, 86Box: the period count against the BIOS ticks exact on the
@@ -689,7 +689,7 @@ No mixer at the card's base (section 2). [doc]
     - Why: the caveat was read as if it applied to the CT2291, twice
       (question 15's record and the CAND-14 hold of 27 Oct 2026, both
       withdrawn by the owner the same evening).
-  - The pinned build (count-position 7994cd1) still reads both as its own
+  - The pinned build (count-position 546b389) still reads both as its own
     settings and cannot move 16-bit data on an 8-bit channel: ISSUES.md
     CAND-14 (no fix under Project A's freeze).
 - Reset values in the emulators are louder than the guide's: 86Box sets
