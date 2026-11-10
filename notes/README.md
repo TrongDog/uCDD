@@ -1,7 +1,7 @@
 # Notes on the reference library
 
 Written from the text copies in this branch, read against the uCDD source
-on `fixes` at f5a4104 and the event timer design on `event-timer`. Every
+on `fixes` at 97473f5 and the event timer design on `event-timer`. Every
 claim in the topic files cites the document and line it came from, and
 separates what a document says from what is inferred.
 

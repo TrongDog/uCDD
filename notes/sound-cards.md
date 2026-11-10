@@ -1,6 +1,6 @@
 # Sound card reference notes for uCDD
 
-Written against `fixes` 77979b2. Read only; nothing in the repository was changed.
+Written against `fixes` 6047f64. Read only; nothing in the repository was changed.
 
 Conventions. "Doc:" marks what a document says, with file:line. "Inference:" marks
 my reasoning. Code references are `trap.asm:N` (src/audio/trap.asm) unless another

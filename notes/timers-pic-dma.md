@@ -1,6 +1,6 @@
 # Timers, PIC and DMA: reference notes for uCDD
 
-Status: review notes, read-only. Written against `fixes` 77979b2 and the
+Status: review notes, read-only. Written against `fixes` 6047f64 and the
 event timer design in notes/event-timer.md. Every claim carries a citation.
 "Doc:" marks what a document says; "Inference:" marks my reasoning from it.
 
