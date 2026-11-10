@@ -7,7 +7,12 @@
 #   sh install.sh --claude DIR            the skill linked into DIR/.claude,
 #                                         and the settings lines to add there
 #   sh install.sh --bench REPO            the bench's check linked into a
-#                                         bench repository's .git/hooks
+#                                         bench repository's .git/hooks, with
+#                                         its commit-msg and pre-push (r3.10)
+#   sh install.sh --shared REPO           commit-msg and pre-push linked into a
+#                                         uCDD clone's own .git/hooks, for the
+#                                         worktrees with no hooks path of their
+#                                         own (the notes, the references): r3.10
 #
 # All worktrees share one hooks directory, so the hook is set per worktree
 # (git config --worktree core.hooksPath) and the others never see it.
@@ -62,6 +67,30 @@ bench() {
     fi
     ln -sfn "$here/bench/hooks/pre-commit" "$hooks/pre-commit"
     echo "bench check: $hooks/pre-commit -> $here/bench/hooks/pre-commit"
+    # nothing personal goes to GitHub (the owner, 10 Nov 2026; tightening r3.10)
+    link_hooks "$hooks" "$here/bench/hooks" commit-msg pre-push
+}
+
+# link_hooks DIR FROM NAME ...: each hook linked into DIR; one that is there and not a link is left
+link_hooks() {
+    dir=$1; from=$2; shift 2
+    for name in "$@"; do
+        if [ -e "$dir/$name" ] && [ ! -L "$dir/$name" ]; then
+            echo "$dir/$name exists and is not a link; left alone" >&2
+            exit 1
+        fi
+        ln -sfn "$from/$name" "$dir/$name"
+        echo "hook: $dir/$name -> $from/$name"
+    done
+}
+
+# A uCDD clone's own .git/hooks, read by every worktree that has no hooks path of its own (the
+# notes, the references, the clone's main worktree): the [[banned]] list on their commits and
+# pushes. The worktrees with a hooks path (the code worktrees, the method) have theirs there.
+shared() {
+    hooks=$(cd "$1" && cd "$(git rev-parse --git-common-dir)" && pwd)/hooks
+    mkdir -p "$hooks"
+    link_hooks "$hooks" "$here/hooks/shared" commit-msg pre-push
 }
 
 worktree() {
@@ -82,12 +111,13 @@ worktree() {
     fi
 }
 
-[ $# -gt 0 ] || { sed -n '2,14p' "$0" | sed 's/^# \{0,1\}//'; exit 1; }
+[ $# -gt 0 ] || { sed -n '2,19p' "$0" | sed 's/^# \{0,1\}//'; exit 1; }
 while [ $# -gt 0 ]; do
     case "$1" in
         --remove) remove=1 ;;
         --claude) shift; claude "$1" ;;
         --bench) shift; bench "$1" ;;
+        --shared) shift; shared "$1" ;;
         *) worktree "$1" ;;
     esac
     shift

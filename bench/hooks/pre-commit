@@ -58,6 +58,7 @@ import tomllib
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / 'lib'))
 import methodlib  # noqa: E402
+import privacy  # noqa: E402
 
 BENCH = tomllib.loads((Path(__file__).resolve().parent.parent / 'bench.toml').read_text())
 REFUSED = set(methodlib.CONFIG['games']['suffixes']) | set(BENCH['refuse'])
@@ -204,7 +205,12 @@ def main():
                 if LOCAL_PATH.search(line):
                     problems.append(f'{name}:{number}: a local path; write it as ~/ or relative to the bench')
                     break
-    if not problems and not clock:
+    # nothing personal goes to GitHub (the owner, 10 Nov 2026; tightening r3.10): the personal
+    # entries of [[banned]] (method.local.toml's) against the identity and the lines this commit,
+    # or the hourly snapshot, adds over HEAD, with renames on (lib/privacy.py says why); only
+    # for a repository with a remote, and whatever .bench-allow says
+    personal = privacy.staged_problems('bench') if pushed else []
+    if not problems and not clock and not personal:
         return 0
     if problems:
         print('pre-commit: refused (bench/bench.toml in the method package)', file=sys.stderr)
@@ -218,6 +224,8 @@ def main():
             print(f'  - {problem}', file=sys.stderr)
         print(f'Write each with python3 {CLOCK_TOOL} (handoff for a HANDOFF heading, range for '
               'STATE), never by hand; .bench-allow does not except them.', file=sys.stderr)
+    if personal:
+        privacy.report('pre-commit', personal)
     return 1
 
 

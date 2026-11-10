@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+"""pre-push: nothing personal goes to GitHub (lib/privacy.py; the owner, 10 Nov 2026; tightening
+r3.10). Reads every commit about to be pushed: its message, its identity and the lines it adds,
+against the [[banned]] list (method.toml and method.local.toml)."""
+
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / 'lib'))
+import privacy  # noqa: E402
+
+sys.exit(privacy.main(['pre-push', '--scope', 'bench', *sys.argv[1:]]))

@@ -167,16 +167,25 @@ def added_lines(target):
 
 
 def banned_problems(message, target, files_too):
+    import privacy                  # r3.10: the owner's approvals; privacy imports nothing of ours
     problems = []
     for rule in CONFIG.get('banned', []):
         pattern = re.compile(rule['pattern'])
-        if pattern.search(message):
-            problems.append(f'the message has "{pattern.search(message).group(0)}": {rule["why"]}')
+        personal = bool(rule.get('personal'))
+        # a personal entry (lib/privacy.py): a phrase or a path the owner approved is not read, and
+        # the refusal names the rule, never the text it matched
+        found = pattern.search(privacy.mask(message) if personal else message)
+        if found:
+            problems.append(f'the message: {rule["why"]}' if personal
+                            else f'the message has "{found.group(0)}": {rule["why"]}')
         if files_too:
             for name, number, text in added_lines(target):
-                match = pattern.search(text)
+                if personal and privacy.path_allowed(name):
+                    continue
+                match = pattern.search(privacy.mask(text) if personal else text)
                 if match:
-                    problems.append(f'{name}:{number} adds "{match.group(0)}": {rule["why"]}')
+                    problems.append(f'{name}:{number}: {rule["why"]}' if personal
+                                    else f'{name}:{number} adds "{match.group(0)}": {rule["why"]}')
     return problems
 
 

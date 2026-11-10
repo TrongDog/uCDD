@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+"""commit-msg: nothing personal goes to GitHub (lib/privacy.py; the owner, 10 Nov 2026; tightening
+r3.10). Reads the message, the identity and the lines the commit adds,
+against the [[banned]] list (method.toml and method.local.toml)."""
+
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / 'lib'))
+import privacy  # noqa: E402
+
+sys.exit(privacy.main(['commit-msg', '--scope', 'fork', *sys.argv[1:]]))

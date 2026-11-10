@@ -456,6 +456,36 @@ repository, gh and GitHub-tool writes there, and a `gh pr create` that does
 not name `--repo TrongDog/uCDD` (in a fork, gh and GitHub's own page offer
 the original repository as the target).
 
+## Nothing personal goes to GitHub
+
+The owner's rule of 10 Nov 2026 (tightening r3.10, gate T12): "If it doesn't need to be on
+github as part of the project, then it doesn't go to github." Never, in a file, a commit
+message or a commit's identity, on any repository that has a remote: his first name, his city,
+the host's name, a login of his, a LAN address, a mount name, a Claude session link. In
+everything written for GitHub he is "the owner". The words themselves are `[[banned]]` entries
+with `personal = true` in `method.local.toml`, never in a pushed file; `method.toml` carries only
+the session link and the list of third-party trees. `lib/privacy.py` has the whole of it in its
+first lines.
+
+- Three gates, each reading the same list: the commit-msg hook (the message, the identity, the
+  clock, the added lines), the bench's pre-commit (the lines its hourly snapshot adds too), and
+  the pre-push hook, the last one: every commit about to leave, whatever made it (a rebase, a
+  cherry-pick and `git am` run no commit-msg hook). The guard refuses `git push --no-verify`.
+- Every worktree has them: the code worktrees and this one through their hooks path, the rest
+  of a uCDD clone (the notes, the references) through `sh install.sh --shared CLONE`, a bench
+  repository through `sh install.sh --bench REPO`. `python3 lib/privacy.py doctor` says which
+  worktree lacks one, and whether this shell's identity and clock are clean.
+- A refusal names the rule and never prints the word. A word that is someone or something else
+  (a document's author with the same first name) stops the commit until the owner approves it,
+  once: `[privacy] allow_phrases` or `allow_paths` in `method.local.toml`.
+- The upstream author's commits are read against the personal entries only. Dates are written
+  in UTC (`[privacy] utc_dates`): a clock offset places the machine that made the commit.
+- The bench's older records are not rewritten (the ledger holds their hashes): there a file
+  that already held a word may be edited and keep it, and a file that did not may not begin to.
+- `tools/privscan.py` reads a whole history against the list (the gate's reading);
+  `tools/privrewrite.py` rewrites the fork's own history once, checks its own work and pushes
+  nothing; its `reword` does a work tree whose history stays.
+
 ## On GitHub
 
 The workflow lives on `fixes` as `.github/workflows/method.yml` (a copy of

@@ -105,6 +105,9 @@ DECISION_67 = "the owner's decision of 6 Nov 2026 on question 67 (7)"
 RUNNER_TOKEN = 'UCDD_LEDGER_RUNNER'
 
 WHY = 'Refused by the method guard: {what}. {advice}'
+PUSH_HOOK = ('Pushes go through the pre-push hook, which reads every commit about to leave against '
+             'the [[banned]] list. If the hook is wrong, say so and fix the hook; a word that is someone '
+             'or something else is the owner\'s to approve in method.local.toml.')
 HOOKS = ('Commits go through the commit-msg hook. If the hook is wrong, say so and fix '
          'the hook, or ask the owner to make the commit in his own shell.')
 LEDGER = ('Only the runners write the ledger, after a run is judged. Read it with '
@@ -407,6 +410,10 @@ def git_refusal(args, cwd, names=None):
                     if char in COMMIT_VALUE_OPTIONS:
                         break
     if command == 'push':
+        # a push that skips the pre-push hook skips the [[banned]] list (the owner, 10 Nov 2026;
+        # tightening r3.10: nothing personal goes to GitHub); push has no -n for it (-n is --dry-run)
+        if '--no-verify' in rest:
+            return 'git push --no-verify', PUSH_HOOK
         targets = [word for word in rest if not word.startswith('-')]
         if targets and upstream_remote(targets[0], cwd):
             return f'a push to {targets[0]}, the upstream repository', UPSTREAM

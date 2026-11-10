@@ -7,6 +7,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'lib'))
 import checks  # noqa: E402
+import privacy  # noqa: E402
 
 EXAMPLE = """\
 Example: the last paragraph of the message, one trailer a line:
@@ -33,12 +34,28 @@ def message_text(path):
     return '\n'.join(lines).strip() + '\n'
 
 
+def personal_problems(path, skipped):
+    """Nothing personal goes to GitHub (lib/privacy.py, r3.10), on every branch of a repository
+    with a remote: the identity and the clock always (checks.py reads neither); on a branch the
+    change loop leaves alone, the personal entries in the message and the added lines too."""
+    if not privacy.has_remote():
+        return []
+    found = [rule for rule in privacy.rules('fork') if rule.personal]
+    problems = privacy.identity_problems(found) + privacy.clock_problems('fork')
+    if skipped:
+        problems += privacy.message_problems(privacy.message_text(path), found)
+        if not privacy.merging():
+            diff = privacy.git('diff', '--cached', *privacy.diff_options('fork')).stdout
+            problems += privacy.line_problems(diff, found)
+    return problems
+
+
 def main(path):
     branch = checks.git('symbolic-ref', '-q', '--short', 'HEAD', check=False).stdout.strip()
-    if any(fnmatch.fnmatchcase(branch, pattern)
-           for pattern in checks.CONFIG['commit']['skip_branches']):
-        return 0
-    problems, code = checks.check(message_text(path), checks.Target())
+    skipped = any(fnmatch.fnmatchcase(branch, pattern)
+                  for pattern in checks.CONFIG['commit']['skip_branches'])
+    problems, code = ([], []) if skipped else checks.check(message_text(path), checks.Target())
+    problems += personal_problems(path, skipped)
     if not problems:
         return 0
     shown = ', '.join(code[:4]) + (', ...' if len(code) > 4 else '')

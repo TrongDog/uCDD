@@ -29,6 +29,32 @@ reading = ["reading"]
 # building the parent and the staged tree and comparing the binaries.
 none = ["none"]
 
+# Nothing personal goes to GitHub (the owner, 10 Nov 2026; tightening r3.10; lib/privacy.py).
+# An entry with personal = true is refused on every repository that has a remote, the bench
+# included, in messages, identities and added lines; `replace` is what tools/privrewrite.py
+# writes in its place. The owner's own words (a name, a place, the host, a login, an address, a
+# mount) are entries of this form in method.local.toml and nowhere else: this file is pushed.
+[[banned]]
+pattern = '(?m)^Claude-Session:.*\n?|https?://claude\.ai/code/session_\w+'
+why = "personal: a Claude session link"
+personal = true
+replace = ""
+
+# Whose text a history rewrite never alters, and where a personal word may be another person's:
+# the reference library's documents, as shell globs (* also matches a /). A hit in one of them
+# still stops a commit or a push until the owner approves the path in method.local.toml
+# ([privacy] allow_paths) or the phrase ([privacy] allow_phrases).
+[privacy]
+third_party = [
+    "CD-ROM/*", "Chipsets/*", "Memory managers and DOS extenders/*",
+    "Ralf Brown's Interrupt List/*", "Reference parts and specs/*", "Sound Cards/*",
+    "docs/references/*",
+]
+# A commit made here carries its dates in UTC (+0000): a clock offset places the machine that
+# made it. The fork's rule (the bench's hourly backup is cron's, on the host's clock); read at the
+# commit and at the push for commits whose committer is this shell's own. TZ=UTC is the cure.
+utc_dates = true
+
 # Words that never go into a message or an added line (mantra rule 7: no
 # test-bench nicknames). Python regular expressions.
 [[banned]]
