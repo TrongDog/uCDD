@@ -102,7 +102,7 @@ against the time. Proved first on a planted delay (a program holding
 interrupts off for set times, lesson L10), then on the PC at 32 frames
 with Hexen and Doom.
 
-23 Oct 2026, the PC [hardware: PLKIT, period-late a1ec3ec at 32 frames,
+23 Oct 2026, the PC [hardware: PLKIT, period-late e1470b8 at 32 frames,
 the CT2291 on IRQ 5]: idle, no period refilled late in 20 s (periods
 equal to the timer's ticks within 0.1%); held off by CLIGAP 0.5 ms, 9
 late and none a whole period; 1 ms, 21 and 38; 4 ms, 80 a whole period
@@ -115,7 +115,7 @@ price: the timedemo took 415 realtics against D7's 369 at 128 frames
 (12.5% slower; the builds differ in more than the period, so the share
 that is the period is not yet measured).
 
-24 Oct 2026, fixed for the clock on branch `count-position` (7994cd1,
+24 Oct 2026, fixed for the clock on branch `count-position` (546b389,
 ISSUES.md F2, the ring): the output ring is 512 frames, so a period
 interrupt late by up to 15 periods at 32 frames is read right. [86Box:
 idle, the period count matches the BIOS ticks (75.8 and 75.4 a tick,
@@ -124,7 +124,7 @@ counts once as a whole-period late; SBT16's rates through uCDD within
 about 1.5% of the bare card, where they were about 5% short.] So the
 aliasing was common in 86Box, and the "86Box plays slow" note of 22 Oct
 was mostly this. The count also cannot step back within a transfer since
-F8's fix (30c82ca). Dark Forces' sound check is unchanged (speed 1.04,
+F8's fix (09ddd5c). Dark Forces' sound check is unchanged (speed 1.04,
 about 70 steps back): its fault is not this. Hardware: not yet; the kit
 repeats PLKIT's 4 ms holds (the alias predicts no periods lost, M3 the
 same loss).
@@ -211,7 +211,7 @@ both [hw]; the numbers are in [ct2291.md](ct2291.md).
   FIFO (16 samples) brings the first interrupt 0.7 ms forward; the virtual
   card shows no such difference. In stereo (B6h mode 30h) the virtual
   count is FCh words short [trace].
-  23 Oct 2026, fixed for auto-init on branch `count-position` (30c82ca,
+  23 Oct 2026, fixed for auto-init on branch `count-position` (09ddd5c,
   ISSUES.md F8): the count and the block interrupt come from one position,
   the frame heard plus one period, never past what uCDD has taken (vsb-spec
   7.8). [86Box, 32 frames: every auto-init SBT16 case now reads the count
@@ -342,7 +342,7 @@ boundary at the interrupt, so DMX always writes a block at least 4.5 ms
 before the card takes it. Under uCDD the block interrupt comes when the
 mix (what uCDD has taken from the buffer) crosses the boundary, but the
 count follows the output clock (the frame being heard; trap.asm, since
-5e3f364 on 15 Oct), one to two output periods behind the mix: 2.9-5.8 ms
+a9d9cb0 on 15 Oct), one to two output periods behind the mix: 2.9-5.8 ms
 with 128-frame periods, the period of D7 and D9. On the PC that shows as
 F8: the count about 7Dh short of the boundary at the interrupt. DMX's
 lead over what uCDD takes shrinks by that much:
@@ -379,13 +379,13 @@ the card has taken data. A count that trails that breaks engines writing
 just ahead of the count (DMX); one that runs ahead of it breaks engines
 writing just behind (HMI). On the Sound Blaster models uCDD's mix position
 is what it has taken: mix.asm sets it inside the period handler, with
-interrupts off. The HMI clicks that 5e3f364 fixed were on the virtual
+interrupts off. The HMI clicks that a9d9cb0 fixed were on the virtual
 ESS, whose mixer reads a delayed ring (ess_fifo.asm), so there the mix
 position ran ahead of what was taken [reading]. A fix needs the survey
 of every engine that reads the count, by which side of it each writes
 (rule 10), and keeps the ESS separate (rule 6).
 
-22 Oct 2026, the known-bad case (lesson L4) [86Box, D9 c24d232 at 256
+22 Oct 2026, the known-bad case (lesson L4) [86Box, D9 fc665bd at 256
 frames, SB16 on IRQ 5, Hexen's 50 s moment with its CD music]: the
 stale-block check (stale.py) shows no DMX block played a lap late. Hits
 per block phase are flat (best 56, next 53; the reference 37 and 37), no
@@ -398,7 +398,7 @@ sounds (on time 0.92, the control's 1.00). So at 86Box's timing even 256
 frames does not make DMX mix a block uCDD has taken, or the check cannot
 see it: not decided until a planted fault (a count trailing by several
 more periods) shows stale blocks to the check. The count rule is in
-vsb-spec 7.8 (irq-counters 3cecfc5); no fix until a check fails on the
+vsb-spec 7.8 (irq-counters 16cb56a); no fix until a check fails on the
 build it fixes.
 
 F5's confirmation is above. The card also settles three things the
