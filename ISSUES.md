@@ -32,6 +32,11 @@ Branch names below that are no longer on the fork (they were folded into
 `fixes` or into `vcpi-children`, the current line) live on as tags:
 `archive/<name>` points at the commit the branch had (19 Oct 2026).
 
+The fork's own history was rewritten on 10 Nov 2026 (the owner's decision): commit messages,
+file wording and commit dates only (personal details out, dates in UTC), no code; at every
+rewritten commit src/ and scripts/build.py are identical to the old commit's. Commit ids from
+before that date differ; the upstream author's branch, main, keeps its ids.
+
 ## How things were tested
 
 **Real hardware:** Pentium MMX 233, ECS P5HX-A (430HX), 64 MB, ESS ES1868
