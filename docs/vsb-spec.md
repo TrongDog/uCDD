@@ -432,7 +432,7 @@ periods behind what has been taken, and the block interrupt follows the
 mix (irq.asm, virtual_irq_tick): the count is short of the boundary at
 the interrupt (F8: about 7Dh), DMX loses one to two periods of its margin
 (F18), and the clock can alias two periods back when a period interrupt
-is late (F2). The output clock was chosen on 15 Oct (5e3f364) for HMI's
+is late (F2). The output clock was chosen on 15 Oct (a9d9cb0) for HMI's
 clicks on the virtual ESS, whose mixer reads a delayed ring; on the Sound
 Blaster models the mix is what uCDD has taken [reading]. The virtual ESS
 keeps its own rule (vess-spec.md, ess_fifo_count; rule 6).
