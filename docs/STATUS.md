@@ -66,8 +66,9 @@ commit dates only, no code.
    passes only where its sound was matched piece by piece against the
    control and found the same; one that runs with sound at the control's
    level and time, but whose sound was not matched, is counted apart as
-   "runs with sound", neither a pass nor a fault. On the pinned build 205
-   games pass and 32 run with sound; on 0.9.5-a2, 291 and 60. 317 and 314
+   "runs with sound", neither a pass nor a fault. After the matching below,
+   on the pinned build 222 games pass and 9 run with sound; on 0.9.5-a2,
+   318 and 9. 317 and 314
    are silent in the control's first 90 seconds, a game waiting for a key,
    which a run without interaction cannot judge. On the night of 10
    November one plan of 126 takes, all recorded:
@@ -88,16 +89,28 @@ commit dates only, no code.
      recorded, so that game is read now: it passes on the pinned build
      and runs with sound on 0.9.5-a2.
 
-   The sound of the 93 rows that run with sound is now being matched
-   against their controls from the stored recordings.
+   The sound of the 93 rows that ran with sound, and the further takes
+   of the eight games whose sound differed, was then matched against
+   their controls from the stored recordings (109 pairs): on the pinned
+   build 16 of those games pass and 7 differ from their control; on
+   0.9.5-a2, 27 pass and 25 differ. 9 on each build still run with sound
+   unmatched, for want of a matched pair of control takes to measure
+   against; the owner decides on them. Two 0.9.5-a2 sound faults read
+   different on one take of three and are marked flaky.
 3. **The reports.** One per fault, or one per group of games where the
-   whole group fails the same way, largest first.
+   whole group fails the same way, largest first. The candidate rows are
+   written in the notes (ISSUES.md, CAND-33 to CAND-169): 137 new rows
+   for 201 faults (a game on a build), the PMODE/W games on 0.9.5-a2 one
+   row; 83 more joined rows that existed.
 4. **The label on the fork-only faults.** A fault the pinned build has and
    the author's release does not is one of two things: a fix the author
    made after the fork's base (0.9.3b; his line is 47 commits past it at
    0.9.5-a3),
    or something the fork's 238 commits introduced. The label is placed by
-   measurement where a run on the base is cheap.
+   measurement where a run on the base is cheap. The base is built (twice,
+   the same), its settings file proven byte for byte against its own
+   setup program's save, and one take of it per fork-only game is
+   recording.
 5. **The kit for the real PC**: the conformance cases a real card must
    judge, and a short list of games, one passing and one failing from each
    group, ranked by how many games the group holds.
