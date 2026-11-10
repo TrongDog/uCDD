@@ -34,6 +34,16 @@ jobs:
           path: .method
       - name: Install NASM
         run: sudo apt-get update -q && sudo apt-get install -y -q nasm
+      # Nothing personal goes to GitHub (lib/privacy.py, r3.10): the hooks read the owner's own
+      # entries from method.local.toml on the bench; a commit made anywhere else (the web editor, a
+      # clone without the hooks) is read here, an hour later at most, when the repository holds
+      # the same entries as the secret METHOD_LOCAL_TOML. Without the secret only method.toml's
+      # entries are read. A refusal names the rule, never the word, in the log and the status alike.
+      - name: The owner's own entries, when the repository holds them as a secret
+        env:
+          METHOD_LOCAL_TOML: ${{ secrets.METHOD_LOCAL_TOML }}
+        run: |
+          if [ -n "$METHOD_LOCAL_TOML" ]; then printf '%s\n' "$METHOD_LOCAL_TOML" > .method/method.local.toml; fi
       - name: Build every branch and check new commits
         env:
           GH_TOKEN: ${{ github.token }}
