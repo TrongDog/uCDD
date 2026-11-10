@@ -25,7 +25,7 @@ midi = ["off", "gm"]
 # Which kind of program the test runs. A property of the test, not set by
 # the bench; the planner reports which clients a plan covers.
 client = ["real", "dos4gw", "dpmi16", "pmodew"]   # pmodew: T2W bound with PMODE/W (the owner, 28 Oct 2026)
-build = ["p32", "p128", "p256", "verify32", "verify128", "ess32", "ess128", "pinC1", "pinC2", "l4boot", "a1", "a2", "a3"]
+build = ["p32", "p128", "p256", "verify32", "verify128", "ess32", "ess128", "pinC1", "pinC2", "l4boot", "a1", "a2", "a3", "base093"]
 
 # Kept here, left out of every plan until taken off this list: the ESS work
 # is parked (20 Oct).
@@ -38,7 +38,7 @@ build = ["ess32", "ess128"]
 [opt_in]
 mode = ["base", "free"]
 # pinC1, pinC2: Project A's pinned build (A0); l4boot: its planted fault.
-build = ["verify32", "verify128", "pinC1", "pinC2", "l4boot", "a1", "a2"]
+build = ["verify32", "verify128", "pinC1", "pinC2", "l4boot", "a1", "a2", "base093"]
 
 # A run takes these unless its test or a varied axis sets them. The PC's
 # card: an SB16 (CT2291) at 220h, IRQ 5, DMA 1 and 5.
@@ -153,6 +153,10 @@ a2 = "--resident-audio --audio-period-frames 32"
 # fixtures/a3/MANIFEST.txt), A7's runs only (the owner's decision of 10 Nov 2026, item 6 (b); the owner,
 # 9 Nov 2026: "A3 does not join the sweep"). The same options as a2.
 a3 = "--resident-audio --audio-period-frames 32"
+# base093: upstream's 0.9.3b (90ad361, the pin's merge base; exported, scripts/build.py untouched; the bench's
+# fixtures/base/MANIFEST.txt), the label of the PIN_ONLY rows by measurement only (the owner's decision of 10 Nov
+# 2026 on the 11:15Z report, item 6: "built as it is, twice, with a2's options"; its own UCDD.CFG layout, version 2).
+base093 = "--resident-audio --audio-period-frames 32"
 
 [build_dirs]
 p32 = "$UCDD_TREE/build_32$UCDD_SUFFIX"
@@ -168,6 +172,7 @@ l4boot = "$UCDD_TREE/l4_boot_32$UCDD_SUFFIX"
 a1 = "$UCDD_TREE/../a1/C2_32$UCDD_SUFFIX"
 a2 = "$UCDD_TREE/../a2/C2_32$UCDD_SUFFIX"
 a3 = "$UCDD_TREE/../a3/C2_32$UCDD_SUFFIX"
+base093 = "$UCDD_TREE/../base/C2_32$UCDD_SUFFIX"
 
 [run]
 # Probes may share the machine; a recording never does (lesson L6).
