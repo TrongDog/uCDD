@@ -37,30 +37,34 @@ commit dates only, no code.
 
 ## In hand
 
-1. **Three things before the sorting**, because each can move a whole
-   group of games. The bench gained a way to install the driver with
-   `-vcpi` and the author's 0.9.5-a3 built unchanged beside a1 and a2
-   (both 10 November). The author's compatibility wiki was read again at
-   its current state (10 November): its tables are unchanged, so no game's
-   entry moved, and a new page lists one game without CD audio, BioForge,
-   installed with `-vcpi`. The other two are one plan of 72 takes, saved
-   on 10 November and recorded next:
+1. **Three things before the sorting**, done on 10 November, because
+   each could move a whole group of games. The author's compatibility
+   wiki was read again at its current state: its tables are unchanged, so
+   no game's entry moved, and a new page lists one game without CD audio,
+   BioForge, installed with `-vcpi`. One plan of 72 takes, all recorded:
    - the games on the Phar Lap and PMODE/W extenders, taken again with the
      driver installed with `-vcpi`, the author's documented remedy for
-     programs that need VCPI: the twelve on 0.9.5-a2, the seven Phar Lap
-     games on the pinned build too. All twelve stop under 0.9.5-a2 in the
-     sweep; if `-vcpi` runs them, that is the driver's stated limit and
-     not a fault.
+     programs that need VCPI. Six of the seven Phar Lap games run with it
+     on both the pinned build and 0.9.5-a2, and four of the five PMODE/W
+     games on 0.9.5-a2: for those, the stop without it is the driver's
+     stated limit, not a fault. `ULTIMA8` and `BLASTER!` still stop.
    - the author's 0.9.5-a3 (7 November), which changes one thing, the
      DPMI host's free-memory answer, on 40 games: the protected-mode games
      whose state under 0.9.5-a2 is not the control's, the memory finding's
      four games, and a passing game from each protected-mode group that
-     has one (ten groups of 26).
+     has one (ten groups of 26). These takes were made without `-vcpi`.
    - a new control take for the 13 of those games first swept on the
      bench's earlier setup.
-2. **The sorting.** Every game gets one bin per build, in a fixed order of
-   questions, and is then read against the other games that share its
-   sound engine and extender.
+2. **The sorting**, first table on 10 November. Every game has one bin
+   per build, in a fixed order of questions, read against the other games
+   that share its sound engine and extender. A title with CD-audio tracks
+   passes only where its sound was matched piece by piece against the
+   control and found the same; one that runs with sound at the control's
+   level and time, but whose sound was not matched, is counted apart as
+   "runs with sound", neither a pass nor a fault. On the pinned build 205
+   games pass and 32 run with sound; on 0.9.5-a2, 291 and 60. 317 and 314
+   are silent in the control's first 90 seconds, a game waiting for a key,
+   which a run without interaction cannot judge.
 3. **The reports.** One per fault, or one per group of games where the
    whole group fails the same way, largest first.
 4. **The label on the fork-only faults.** A fault the pinned build has and

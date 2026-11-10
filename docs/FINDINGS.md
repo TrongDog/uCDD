@@ -350,9 +350,13 @@ games and none of the five PMODE/W games runs under a2; all twelve are
 back at the DOS prompt. The author's README says that a program which
 supports only VCPI needs the driver installed with `-vcpi`, at the cost
 of its sound bypassing the driver, and on 7 November his wiki named
-BioForge as such a game. *Working reading, being tested now:* these are
-the driver's stated limit, not twelve faults. Each is being taken again
-with `-vcpi`. The pin differs (two of the PMODE/W games run on it, and
+BioForge as such a game. Taken again with `-vcpi` on 10 November, one
+take each: six of the seven Phar Lap games run with it under a2 and
+under the pin, and four of the five PMODE/W games under a2 (the pin's
+`-vcpi` takes were of the Phar Lap games only). For those ten the stop
+without it is the driver's stated limit, not a fault. Two still stop
+with it, Ultima VIII (Phar Lap) and Blaster! (PMODE/W), and are sorted
+as host candidates of their own. The pin differs (two of the PMODE/W games run on it, and
 four of the Phar Lap games stop at a memory manager exception where a2
 exits cleanly), which is a second question behind the first.
 [SWEEP.md](SWEEP.md) lists the games.
