@@ -32,6 +32,14 @@ jobs:
         with:
           ref: ${{ vars.METHOD_REF || 'claude/brave-franklin-6h9xzo' }}
           path: .method
+      # The reference library beside the method checkout, where [references].worktree ("../refs" from
+      # .method) finds it: a commit that cites a data sheet is checked against it (lib/refcheck.py).
+      # Missing until 10 Nov 2026: the rewrite gave old commits new ids, the checks read them again,
+      # and five feature-branch commits failed on "the reference library worktree is missing".
+      - uses: actions/checkout@v4
+        with:
+          ref: reference-library
+          path: refs
       - name: Install NASM
         run: sudo apt-get update -q && sudo apt-get install -y -q nasm
       # Nothing personal goes to GitHub (lib/privacy.py, r3.10): the hooks read the owner's own
