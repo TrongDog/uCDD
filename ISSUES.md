@@ -1446,6 +1446,7 @@ Observed (b08, v2 at 32 KB; sound spans over -60 dBFS from the launch): C0 eecd5
 Corrected (rule 7 form, 5 Nov 2026): old text (question 62, 4 Nov 2026): "GK1's C2, its Sierra logo held silent over 20 s before the menu"; new text: the logo has sound on the pin (6.4 to 19.1 s); the still, silent screen is the menu, to the end of the run. The first-sound delta (+3.65 s on the pin) stands as measured and goes to the LOAD check as ruled.
 Re-runs: two more takes of a2 (the 2-of-3 rule for the control), in the re-run set.
 Evidence: emulator; the pin 4 takes of 4, a2 1 take.
+Label (item 6): GK1: LACKS-FIX: dcf071c4-027 the base differs first by state (state differs, sound agrees, level agrees)
 
 ### CAND-32 A6 sweep, the level part: game sound on the voice path comes out 6.0 dB under the bare card on the pinned build alone, a2 matching it (found 7 Nov 2026 when the level part read the matched measure; a row 8 Nov 2026 by the owner's decision on question 71; open; the pin only)
 
@@ -1534,6 +1535,10 @@ Evidence: emulator (the A6 captures, one take each; the matched measure, levelcm
 - Evidence: emulator.
 
 <!-- A7 triage's candidate rows, CAND-33 to CAND-169 (project_a.md:406; the owner's decision of 10 Nov 2026 on the 11:15Z report, item 8): every pin or a2 row of the bench's results/sweep/triage.csv binned CANDIDATE_UCDD_* or FLAKY_ goes to one row; 284 candidates (a game on a build), 83 to the existing rows (CAND-32 63, CAND-23 8, CAND-24 5, CAND-25 2, CAND-26 2, CAND-29 2, CAND-31 1), 201 to these 137; the map and the cell scope of each: the bench's reports/candidates.md. The label of the pin-only rows (item 6) is added when the base plan is read. -->
+Label (item 6), the family: UNKNOWN (CAND-32's three confirmation picks stand for the family: ABZERO LACKS-FIX, DOOM UNKNOWN, XCOMAP LACKS-FIX; item 6); 62 members in this row
+Label (item 6): ABZERO, a pick: LACKS-FIX: dcf071c4-041 the base differs first by level (state agrees, sound agrees, level differs; gap -6.01 dB against the pin's -6.01); a confirmation pick of CAND-32, standing for the family
+Label (item 6): DOOM, a pick: UNKNOWN: dcf071c4-042 the base differs first by state (state differs, sound differs, level not read; gap - dB against the pin's -5.73); a confirmation pick of CAND-32, standing for the family
+Label (item 6): XCOMAP, a pick: LACKS-FIX: dcf071c4-043 the base differs first by level (state agrees, sound agrees, level differs; gap -6.02 dB against the pin's -6.01); a confirmation pick of CAND-32, standing for the family
 
 ### CAND-33 A7 triage, the PMODE/W extender: stops under uCDD where the bare card runs (from the sweep's takes; a row 10 Nov 2026; open; 0.9.5-a2 only)
 
@@ -1568,6 +1573,9 @@ Observed: LSL6CD (plan eecd58bf): C0 eecd58bf-019 RUNNING, sound from 8.06 s; pi
 Observed: QG4CD (plan eecd58bf): C0 eecd58bf-028 RUNNING, sound from 2.29 s; pin eecd58bf-029 RUNNING, sound from 4.61 s, level -2.65 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Observed: SQ6 (plan 9068b37f): C0 9068b37f-004 RUNNING, sound from 6.46 s; pin 9068b37f-005 RUNNING, sound from 9.20 s, level -2.52 dB; pin takes 1 of 1.
 Expected: as on C0 (rule 1).
+Label (item 6): LSL6CD: UNKNOWN (CAND-32's three confirmation picks stand for the family: ABZERO LACKS-FIX, DOOM UNKNOWN, XCOMAP LACKS-FIX; item 6)
+Label (item 6): QG4CD: LACKS-FIX: dcf071c4-035 the base differs first by level (state agrees, sound agrees, level differs; gap -2.66 dB against the pin's -2.65)
+Label (item 6): SQ6: UNKNOWN: dcf071c4-038 the base differs first by level (state agrees, sound agrees, level differs; gap -3.16 dB against the pin's -2.52)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-LSL6CD (plan eecd58bf), SWP-P133-C2-QG4CD (plan eecd58bf), SWP-P133-C2-SQ6 (plan 9068b37f).
 Hypothesis: none. Evidence: emulator (plans 9068b37f, eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -1596,6 +1604,8 @@ Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: SSF2T (plan db8eed0f): C0 db8eed0f-004 RUNNING, sound from 22.94 s; pin db8eed0f-005 CRASH, silent; its last screen "DS=045C ES=045C FS=CC9D GS=052C [CS:IP]=FF FF F7 45 08 FF 0F 00 / Press ESC to abort program ?"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Observed: FRONTIER (plan cd5dead2): C0 cd5dead2-043 RUNNING, sound from 5.59 s; pin cd5dead2-044 CRASH, silent; its last screen "DS=043F ES=00C9 FS=CC9D GS=052C [CS:IP]=FF FF 00 00 00 00 FF 00 / Press ESC to abort program ?"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): SSF2T: LACKS-FIX: dcf071c4-009 the base differs first by state (state differs, sound differs, level not read)
+Label (item 6): FRONTIER: LACKS-FIX: dcf071c4-011 the base differs first by state (state differs, sound differs, level differs)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SSF2T (plan db8eed0f), SWP-P133-C2-FRONTIER (plan cd5dead2).
 Hypothesis: none. Evidence: emulator (plans cd5dead2, db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -1727,6 +1737,7 @@ Affected: DOS_ACT/BLAKESTP (Blake Stone - Planet Strike (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: BLAKESTP (plan acca1005): C0 acca1005-070 RUNNING, sound from 1.57 s; pin acca1005-071 RUNNING, sound from 1.76 s, level -3.62 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): BLAKESTP: LACKS-FIX: dcf071c4-013 the base differs first by level (state agrees, sound agrees, level differs; gap -3.43 dB against the pin's -3.62)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BLAKESTP (plan acca1005).
 Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -1740,6 +1751,7 @@ Affected: DOS_ACT/HOCUSPOC (Hocus Pocus (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: HOCUSPOC (plan acca1005): C0 acca1005-076 RUNNING, sound from 35.92 s; pin acca1005-077 RUNNING, sound from 36.14 s, level -1.19 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): HOCUSPOC: UNKNOWN: dcf071c4-017 the base differs first by level (state agrees, sound agrees, level differs; gap 12.40 dB against the pin's -1.19)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-HOCUSPOC (plan acca1005).
 Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -1805,6 +1817,7 @@ Affected: DOS_THNK/GODTHUND (God of Thunder (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: GODTHUND (plan ebdee792): C0 ebdee792-118 RUNNING, sound from 12.44 s; pin ebdee792-119 RUNNING, sound from 14.27 s, level -1.42 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): GODTHUND: LACKS-FIX: dcf071c4-028 the base differs first by level (state agrees, sound agrees, level differs; gap -1.37 dB against the pin's -1.42)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-GODTHUND (plan ebdee792).
 Hypothesis: none. Evidence: emulator (plans ebdee792), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -1870,6 +1883,7 @@ Affected: DOS_THNK/XANTH (Companions of Xanth (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: XANTH (plan acca1005): C0 acca1005-145 RUNNING, sound from 3.53 s; pin acca1005-146 RUNNING, sound from 3.80 s, level -0.79 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): XANTH: LACKS-FIX: dcf071c4-039 the base differs first by level (state agrees, sound agrees, level differs; gap -0.95 dB against the pin's -0.79)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-XANTH (plan acca1005).
 Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -1909,6 +1923,7 @@ Affected: DOS_THNK/MI2 (Monkey Island 2 - LeChuck's Revenge (1991)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: MI2 (plan ebdee792): C0 ebdee792-145 RUNNING, silent; pin ebdee792-146 HANG, silent; crash noted: the build HANG where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): MI2: UNKNOWN: dcf071c4-031 the base differs first by level (state agrees, sound agrees, level differs; gap -14.10 dB against the pin's -)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-MI2 (plan ebdee792).
 Hypothesis: none. Evidence: emulator (plans ebdee792), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -1961,6 +1976,7 @@ Affected: DOS_ACT/BLUBROJA (Blues Brothers, The - Jukebox Adventure (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: BLUBROJA (plan eecd58bf): C0 eecd58bf-094 RUNNING, sound from 3.87 s; pin eecd58bf-095 RUNNING, sound from 6.20 s, level -4.88 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): BLUBROJA: LACKS-FIX: dcf071c4-014 the base differs first by level (state agrees, sound agrees, level differs; gap -4.72 dB against the pin's -4.88)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BLUBROJA (plan eecd58bf).
 Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2104,6 +2120,7 @@ Affected: DOS_ACT/AMOK (Amok (1996)).
 Controls: C0 as below, each game's own A6 take; C1 fail.
 Observed: AMOK (plan 012e9f79): C0 012e9f79-061 RUNNING, sound from 35.94 s; pin 012e9f79-062 HANG, silent; its last screen "CD command error! / ESCAPE to exit !"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): AMOK: LACKS-FIX: dcf071c4-001 the base differs first by state (state differs, sound differs, level not read)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-AMOK (plan 012e9f79).
 Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2286,6 +2303,7 @@ Affected: DOS_THNK/ALIENLEG (Alien Legacy (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: ALIENLEG (plan c87998b0): C0 c87998b0-064 RUNNING, sound from 11.75 s; pin c87998b0-065 RUNNING, sound from 12.71 s, level -2.30 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): ALIENLEG: LACKS-FIX: dcf071c4-023 the base differs first by level (state agrees, sound agrees, level differs; gap -2.32 dB against the pin's -2.30)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ALIENLEG (plan c87998b0).
 Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2312,6 +2330,7 @@ Affected: DOS_THNK/CAESAR2 (Caesar 2 (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: CAESAR2 (plan c87998b0): C0 c87998b0-079 RUNNING, sound from 17.79 s; pin c87998b0-080 RUNNING, sound from 19.04 s, level -5.11 dB; pin takes 1 of 1.
 Expected: as on C0 (rule 1).
+Label (item 6): CAESAR2: UNKNOWN (CAND-32's three confirmation picks stand for the family: ABZERO LACKS-FIX, DOOM UNKNOWN, XCOMAP LACKS-FIX; item 6)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-CAESAR2 (plan c87998b0).
 Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2325,6 +2344,7 @@ Affected: DOS_THNK/DW1 (Discworld (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: DW1 (plan c87998b0): C0 c87998b0-085 RUNNING, sound from 5.82 s; pin c87998b0-086 RUNNING, sound from 7.82 s, level -5.14 dB; pin takes 1 of 1.
 Expected: as on C0 (rule 1).
+Label (item 6): DW1: UNKNOWN (CAND-32's three confirmation picks stand for the family: ABZERO LACKS-FIX, DOOM UNKNOWN, XCOMAP LACKS-FIX; item 6)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DW1 (plan c87998b0).
 Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2351,6 +2371,7 @@ Affected: DOS_THNK/SIMCITY2 (SimCity 2000 - CD Collection (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: SIMCITY2 (plan c87998b0): C0 c87998b0-124 RUNNING, sound from 3.90 s; pin c87998b0-125 RUNNING, sound from 4.84 s, level -1.47 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): SIMCITY2: UNKNOWN: dcf071c4-036 the base differs first by level (state agrees, sound agrees, level differs; gap -6.21 dB against the pin's -1.47)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SIMCITY2 (plan c87998b0).
 Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2455,6 +2476,7 @@ Affected: DOS_THNK/MAX (MAX - Mechanized Assault and Exploration (1996)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: MAX (plan cd5dead2): C0 cd5dead2-106 RUNNING, sound from 7.23 s; pin cd5dead2-107 EXITED, silent; its last screen "Not enough Extended Memory available to run M.A.X. / Amount Needed: 6000000, Amount found: -4096"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): MAX: LACKS-FIX: dcf071c4-012 the base differs first by state (state differs, sound differs, level not read)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-MAX (plan cd5dead2).
 Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2468,6 +2490,7 @@ Affected: DOS_THNK/TOONSTRK (Toonstruck (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: TOONSTRK (plan cd5dead2): C0 cd5dead2-124 RUNNING, sound from 2.30 s; pin cd5dead2-125 RUNNING, sound from 3.35 s, level -5.44 dB; pin takes 1 of 1.
 Expected: as on C0 (rule 1).
+Label (item 6): TOONSTRK: UNKNOWN (CAND-32's three confirmation picks stand for the family: ABZERO LACKS-FIX, DOOM UNKNOWN, XCOMAP LACKS-FIX; item 6)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TOONSTRK (plan cd5dead2).
 Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2520,6 +2543,7 @@ Affected: DOS_THNK/FREDDY (Freddy Pharkas Frontier Pharmacist (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: FREDDY (plan eecd58bf): C0 eecd58bf-040 RUNNING, sound from 1.93 s; pin eecd58bf-041 RUNNING, sound from 2.19 s, level -3.92 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): FREDDY: LACKS-FIX: dcf071c4-026 the base differs first by level (state agrees, sound agrees, level differs; gap -3.94 dB against the pin's -3.92)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-FREDDY (plan eecd58bf).
 Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2533,6 +2557,7 @@ Affected: DOS_THNK/SQ4 (Space Quest IV - Roger Wilco and the Time Rippers (CD) (
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: SQ4 (plan eecd58bf): C0 eecd58bf-049 RUNNING, sound from 4.52 s; pin eecd58bf-050 RUNNING, sound from 4.75 s, level -1.53 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): SQ4: LACKS-FIX: dcf071c4-037 the base differs first by level (state agrees, sound agrees, level differs; gap -1.55 dB against the pin's -1.53)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SQ4 (plan eecd58bf).
 Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2559,6 +2584,7 @@ Affected: DOS_THNK/LONGBOW (Conquests of the Longbow - The Legend of Robin Hood 
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: LONGBOW (plan 5f654686): C0 5f654686-028 HANG, sound from 2.58 s; pin 5f654686-029 HANG, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): LONGBOW: LACKS-FIX: dcf071c4-030 the base differs first by sound (state agrees, sound differs, level not read)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-LONGBOW (plan 5f654686).
 Hypothesis: none. Evidence: emulator (plans 5f654686), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2572,6 +2598,7 @@ Affected: DOS_THNK/QG3E (Quest for Glory III - Wages of War (1992)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: QG3E (plan 5f654686): C0 5f654686-064 RUNNING, sound from 1.58 s; pin 5f654686-065 HANG, silent; crash noted: the build HANG where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): QG3E: LACKS-FIX: dcf071c4-034 the base differs first by state (state differs, sound differs, level not read)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-QG3E (plan 5f654686).
 Hypothesis: none. Evidence: emulator (plans 5f654686), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2624,6 +2651,7 @@ Affected: DOS_THNK/POPULS2 (Populous II - Trials of the Olympian Gods (1991)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: POPULS2 (plan eecd58bf): C0 eecd58bf-010 RUNNING, sound from 4.61 s; pin eecd58bf-011 RUNNING, sound from 4.79 s, level -3.06 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): POPULS2: UNKNOWN: dcf071c4-033 the base differs first by level (state agrees, sound agrees, level differs; gap -5.47 dB against the pin's -3.06)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-POPULS2 (plan eecd58bf).
 Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2637,6 +2665,7 @@ Affected: DOS_ACT/DESERT (It Came from the Desert (1990)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: DESERT (plan 0978ab15): C0 0978ab15-097 HANG, sound from 12.36 s; pin 0978ab15-098 HANG, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): DESERT: LACKS-FIX: dcf071c4-015 the base differs first by sound (state agrees, sound differs, level not read)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DESERT (plan 0978ab15).
 Hypothesis: none. Evidence: emulator (plans 0978ab15), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2650,6 +2679,7 @@ Affected: DOS_THNK/BALAOPOW (Balance of Power (1985)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: BALAOPOW (plan 0978ab15): C0 0978ab15-127 RUNNING, sound from 1.38 s; pin 0978ab15-128 HANG, sound from 1.38 s; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): BALAOPOW: LACKS-FIX: dcf071c4-024 the base differs first by state (state differs, sound agrees, level agrees)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-BALAOPOW (plan 0978ab15).
 Hypothesis: none. Evidence: emulator (plans 0978ab15), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2741,6 +2771,7 @@ Affected: DOS_ACT/WIPEOUT (WipEout (1995)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: WIPEOUT (plan fce952ae): C0 fce952ae-043 RUNNING, sound from 2.69 s; pin fce952ae-044 HANG, silent; 8439670a: reproduced (3 takes: differs, differs, differs; 1 first in 824f772f); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): WIPEOUT: LACKS-FIX: dcf071c4-010 the base differs first by state (state differs, sound differs, level not read)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-WIPEOUT (plan fce952ae).
 Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2793,6 +2824,7 @@ Affected: DOS_ACT/CREATURE (Creature Shock (1994)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: CREATURE (plan db8eed0f): C0 db8eed0f-034 RUNNING, sound from 25.01 s; pin db8eed0f-035 RUNNING, silent; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): CREATURE: UNKNOWN: dcf071c4-002 the base differs first by state (state differs, sound differs, level not read)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-CREATURE (plan db8eed0f).
 Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2819,6 +2851,7 @@ Affected: DOS_ACT/FXFIGHTE (FX Fighter (1995)).
 Controls: C0 as below, each game's own A6 take; C1 fail.
 Observed: FXFIGHTE (plan c7cfcb37): C0 c7cfcb37-046 RUNNING, sound from 73.60 s; pin c7cfcb37-047 RUNNING, silent, level -6.12 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): FXFIGHTE: UNKNOWN: dcf071c4-004 the base differs first by state (state differs, sound differs, level not read)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-FXFIGHTE (plan c7cfcb37).
 Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2832,6 +2865,7 @@ Affected: DOS_ACT/PROJECTP (Project Paradise (1997)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: PROJECTP (plan c7cfcb37): C0 c7cfcb37-055 RUNNING, sound from 29.59 s; pin c7cfcb37-056 HANG, silent; its last screen "▀▀ / ▀▀▀     ·?,???? ?? ?? ???? ???????????"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): PROJECTP: UNKNOWN: dcf071c4-005 the base differs first by sound (state agrees, sound differs, level agrees)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-PROJECTP (plan c7cfcb37).
 Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2871,6 +2905,7 @@ Affected: DOS_ACT/WACKYWHE (Wacky Wheels (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: WACKYWHE (plan acca1005): C0 acca1005-046 RUNNING, sound from 16.79 s; pin acca1005-047 RUNNING, sound from 25.48 s, level -2.11 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): WACKYWHE: UNKNOWN: dcf071c4-022 the base differs first by level (state agrees, sound agrees, level differs; gap -1.06 dB against the pin's -2.11)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-WACKYWHE (plan acca1005).
 Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2962,6 +2997,7 @@ Affected: DOS_THNK/CELTTALE (Celtic Tales - Balor of the Evil Eye (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: CELTTALE (plan acca1005): C0 acca1005-034 RUNNING, sound from 7.06 s; pin acca1005-035 RUNNING, sound from 7.47 s, level -4.68 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): CELTTALE: LACKS-FIX: dcf071c4-025 the base differs first by level (state agrees, sound agrees, level differs; gap -5.15 dB against the pin's -4.68)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-CELTTALE (plan acca1005).
 Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2975,6 +3011,7 @@ Affected: DOS_ACT/TYRIAN (Tyrian (1995)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: TYRIAN (plan 310ed652): C0 310ed652-121 RUNNING, sound from 20.81 s; pin 310ed652-122 RUNNING, silent, level -21.40 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): TYRIAN: LACKS-FIX: dcf071c4-020 the base differs first by sound (state agrees, sound differs, level differs)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TYRIAN (plan 310ed652).
 Hypothesis: none. Evidence: emulator (plans 310ed652), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -2988,6 +3025,7 @@ Affected: DOS_ACT/TYRIAN20 (Tyrian 2000 (1999)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: TYRIAN20 (plan 310ed652): C0 310ed652-124 RUNNING, sound from 26.63 s; pin 310ed652-125 RUNNING, silent, level -26.68 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): TYRIAN20: LACKS-FIX: dcf071c4-021 the base differs first by sound (state agrees, sound differs, level agrees)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-TYRIAN20 (plan 310ed652).
 Hypothesis: none. Evidence: emulator (plans 310ed652), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -3014,6 +3052,7 @@ Affected: DOS_ACT/SKYNET (SkyNET (1996)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: SKYNET (plan cd5dead2): C0 cd5dead2-133 RUNNING, sound from 8.98 s; pin cd5dead2-134 CRASH, silent; its last screen "CR0: unavailable / Crash address (unrelocated) = 2:0010526E"; crash noted: the build CRASH where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): SKYNET: LACKS-FIX: dcf071c4-008 the base differs first by state (state differs, sound differs, level not read)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SKYNET (plan cd5dead2).
 Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -3066,6 +3105,7 @@ Affected: DOS_ACT/DESSTR (Desert Strike - Return to the Gulf (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: DESSTR (plan c87998b0): C0 c87998b0-004 RUNNING, sound from 1.50 s; pin c87998b0-005 RUNNING, sound from 1.69 s, level -1.70 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): DESSTR: UNKNOWN: dcf071c4-016 the base differs first by level (state agrees, sound agrees, level differs; gap -1.18 dB against the pin's -1.70)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-DESSTR (plan c87998b0).
 Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -3079,6 +3119,7 @@ Affected: DOS_ACT/JUNGLEST (Jungle Strike (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: JUNGLEST (plan c87998b0): C0 c87998b0-007 RUNNING, sound from 2.92 s; pin c87998b0-008 RUNNING, sound from 3.14 s, level -0.62 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): JUNGLEST: LACKS-FIX: dcf071c4-018 the base differs first by level (state agrees, sound agrees, level differs; gap -0.66 dB against the pin's -0.62)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-JUNGLEST (plan c87998b0).
 Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -3131,6 +3172,7 @@ Affected: DOS_ACT/EXTREMER (Extreme Rise of the Triad (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: EXTREMER (plan db8eed0f): C0 db8eed0f-139 RUNNING, sound from 8.30 s; pin db8eed0f-140 RUNNING, sound from 11.69 s, level -5.13 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): EXTREMER: UNKNOWN: dcf071c4-003 the base differs first by level (state agrees, sound agrees, level differs; gap -1.24 dB against the pin's -5.13)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-EXTREMER (plan db8eed0f).
 Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -3157,6 +3199,7 @@ Affected: DOS_ACT/ROTTDW (Rise of the Triad - Dark War (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: ROTTDW (plan db8eed0f): C0 db8eed0f-145 RUNNING, sound from 6.65 s; pin db8eed0f-146 RUNNING, sound from 9.98 s, level -4.74 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): ROTTDW: UNKNOWN: dcf071c4-007 the base differs first by level (state agrees, sound agrees, level differs; gap 1.32 dB against the pin's -4.74)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-ROTTDW (plan db8eed0f).
 Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -3196,6 +3239,7 @@ Affected: DOS_THNK/XCOMUF (X-COM - UFO Defense (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: XCOMUF (plan c8b067d9): C0 c8b067d9-004 RUNNING, sound from 3.25 s; pin c8b067d9-005 RUNNING, sound from 7.05 s, level -4.97 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): XCOMUF: LACKS-FIX: dcf071c4-040 the base differs first by level (state agrees, sound agrees, level differs; gap -5.38 dB against the pin's -4.97)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-XCOMUF (plan c8b067d9); two more takes each in plan 531c872d (the charter's 11.3): XCOMUF.
 Hypothesis: none. Evidence: emulator (plans c8b067d9), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -3300,6 +3344,7 @@ Affected: DOS_ACT/REALMSOF (Realms of Chaos (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: REALMSOF (plan db8eed0f): C0 db8eed0f-151 RUNNING, sound from 10.64 s; pin db8eed0f-152 RUNNING, sound from 11.17 s, level -1.11 dB; 824f772f: reproduced (3 takes: differs, differs, agrees); pin takes 3 of 4.
 Expected: as on C0 (rule 1).
+Label (item 6): REALMSOF: LACKS-FIX: dcf071c4-006 the base differs first by level (state agrees, sound agrees, level differs; gap -1.15 dB against the pin's -1.11)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-REALMSOF (plan db8eed0f).
 Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
@@ -3313,6 +3358,7 @@ Affected: DOS_ACT/SWDFORC (Star Wars - Dark Forces (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: SWDFORC (plan c87998b0): C0 c87998b0-019 RUNNING, sound from 4.54 s; pin c87998b0-020 RUNNING, sound from 8.96 s, level -2.74 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); the calibration's ruling on its own takes: GAME_FAULT; pin takes 3 of 3.
 Expected: as on C0 (rule 1).
+Label (item 6): SWDFORC: LACKS-FIX: dcf071c4-019 the base differs first by level (state agrees, sound agrees, level differs; gap -2.60 dB against the pin's -2.74)
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-C2-SWDFORC (plan c87998b0); two more takes each in plan 531c872d (the charter's 11.3): SWDFORC.
 Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
 
