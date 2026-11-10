@@ -53,7 +53,7 @@ branches are gone; their names stay as the names of the changes.
 | `ess-position` | The virtual ESS reports a polled DMA count one output period behind the mix (Descent 2 crackle). 86Box: SBT16 and SADUMP on seven pairings unchanged, verify-mix 0 bad on the virtual ESS with and without CD audio |
 | `virtual-timing` | An auto-initialised transfer's polled DMA count follows the output clock, as a real card's counter does, instead of the mix's whole periods; never past the mix. 86Box: SBT16 on seven pairings unchanged, verify-mix 0 bad on eight runs, Doom, Duke, Heretic, Wolf3D, Witchaven, Theme Hospital (SB16.DIG), Warcraft II as before, Descent 2 clean on ESS and SB16. Tomb Raider (whose CD audio support brought in the mix-based count, 9f3b5bd) with its CD mounted (data track and 60 s of track 2) sounds the same second by second, about 30 detector events a second on both builds; whether those are its sound or an older fault needs a bare-card run |
 | `ess-irq-bits` | B1h/B2h report the virtual IRQ and DMA in bits 3:2. 86Box: SBT16 on five pairings unchanged, Descent 2 and Doom on the virtual ESS as before |
-| `fast-dma` | Type F ISA DMA on the output channel through the PIIX's MBDMA0 register, behind a UCDDSET switch, set at every output start and restored at every stop; the bridge (8086h:7000h, 122Eh or 7110h) found at install. Real PC (ECS P5HX-A, PIIX3, ES1868, by the standalone tool before the driver option): tone unchanged by ear at 22.05 and 44.1 kHz; memory copy loss with the stream running 9.0 to 0.7 percent at the half rate, 18.0 to 1.5 at the full rate; Doom timedemo 1788 to 1613 realtics, full Quake 19.8 to 22.0 fps with CD music; the PIIX3 keeps bit 3 of the register, so the write preserves bits 6:3. Cards known to accept the timing: ES1868. The driver option on the real PC (combined-test 772941d, Type F on, virtual ESS into the ES1868): Doom timedemo 1519 to 1522 realtics at 32, 64, 128 and 256 frames, at the half and the full rate. On the original PIIX (122Eh) bit 3 is DMC, which selects the ISA slot's DREQ and DACK# over the motherboard pair; the write sets it there (86Box writes 89h, but does not model DMC, so the failure it prevents is not reproducible in emulation) |
+| `fast-dma` | Type F ISA DMA on the output channel through the PIIX's MBDMA0 register, behind a UCDDSET switch, set at every output start and restored at every stop; the bridge (8086h:7000h, 122Eh or 7110h) found at install. Real PC (ECS P5HX-A, PIIX3, ES1868, by the standalone tool before the driver option): tone unchanged by ear at 22.05 and 44.1 kHz; memory copy loss with the stream running 9.0 to 0.7 percent at the half rate, 18.0 to 1.5 at the full rate; Doom timedemo 1788 to 1613 realtics, full Quake 19.8 to 22.0 fps with CD music; the PIIX3 keeps bit 3 of the register, so the write preserves bits 6:3. Cards known to accept the timing: ES1868. The driver option on the real PC (combined-test 66aeb11, Type F on, virtual ESS into the ES1868): Doom timedemo 1519 to 1522 realtics at 32, 64, 128 and 256 frames, at the half and the full rate. On the original PIIX (122Eh) bit 3 is DMC, which selects the ISA slot's DREQ and DACK# over the motherboard pair; the write sets it there (86Box writes 89h, but does not model DMC, so the failure it prevents is not reproducible in emulation) |
 | UCDDSET layout | The main screen redone to a mockup agreed with the fork's owner: the box one row taller, Options and Detected columns, tick boxes that grey themselves with a help line saying why, the chipset named. Tested in 86Box and accepted by the fork's owner |
 | Program button | Added to UCDDSET for the jumperless Sound Blaster 16 boards, then dropped: UNISOUND sets those boards through the same registers and the README already requires the card set before install |
 
@@ -133,7 +133,7 @@ changed volumes.
   86Box: both F2h interrupts are taken and acknowledged at once and the
   detection passes (6 exit counts of the old skip before, none after).
   The real-mode delivery now sets virtual_pic_delivered: host_io_irq never
-  did since 412fe80 introduced the mark, so a handler's EOI after a
+  did since 02ca084 introduced the mark, so a handler's EOI after a
   delivery from the trap exit was not credited and the virtual line stayed
   in service. A latent bug only this real-mode-call case reached: on the
   old code the path delivered 0 times in 64303 trap exits across Wolf3D
@@ -390,7 +390,7 @@ mixer for MMX (a few percent of the mixer's share, in a full segment).
 
 Found by the review of UCDD.EXE and the specification pass, fixed in
 `fixes`, checked in 86Box against the build before the review
-(0f81195) unless the note says otherwise. Ctrl+Break with BREAK=ON needs
+(02dedf6) unless the note says otherwise. Ctrl+Break with BREAK=ON needs
 MS-DOS (FreeDOS does not run the break check in those calls) and was checked
 in 86Box.
 
