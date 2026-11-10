@@ -69,14 +69,27 @@ commit dates only, no code.
    "runs with sound", neither a pass nor a fault. On the pinned build 205
    games pass and 32 run with sound; on 0.9.5-a2, 291 and 60. 317 and 314
    are silent in the control's first 90 seconds, a game waiting for a key,
-   which a run without interaction cannot judge. Recording on the night
-   of 10 November, one plan of 126 takes: every fault bin on the pinned
-   build or 0.9.5-a2 that rests on one take, by the game's state or its
-   sound, taken twice more (the bin stands on two takes of three, else it
-   is marked flaky); 0.9.5-a3 with `-vcpi` on the twelve Phar Lap and
-   PMODE/W games; the author's 0.9.5-a1 on the five PMODE/W games; the
-   pinned build with `-vcpi` on the two PMODE/W games that stop on it;
-   and the one control take whose recording failed, taken again.
+   which a run without interaction cannot judge. On the night of 10
+   November one plan of 126 takes, all recorded:
+   - every fault bin on the pinned build or 0.9.5-a2 that rested on one
+     take, by the game's state or its sound, taken twice more (the bin
+     stands on two takes of three, else it is marked flaky): all 44 held,
+     on all three takes;
+   - 0.9.5-a3 with `-vcpi` on the twelve Phar Lap and PMODE/W games: on
+     a3 too, 386 Spys and BioForge read as the driver's stated limit; four
+     of the five PMODE/W games reach their control's state with it, three
+     of them with sound (S.T.O.R.M. sits still, as its control does), and
+     Blaster! still stops;
+   - the author's 0.9.5-a1 on the five PMODE/W games: all five exit to
+     DOS, silent, as on 0.9.5-a2 and a3, so the fault is not new in a2;
+   - the pinned build with `-vcpi` on the two PMODE/W games that stop on
+     it: both run with sound;
+   - the one control take whose recording had failed, taken again and
+     recorded, so that game is read now: it passes on the pinned build
+     and runs with sound on 0.9.5-a2.
+
+   The sound of the 93 rows that run with sound is now being matched
+   against their controls from the stored recordings.
 3. **The reports.** One per fault, or one per group of games where the
    whole group fails the same way, largest first.
 4. **The label on the fork-only faults.** A fault the pinned build has and
