@@ -727,7 +727,7 @@ trap-based card's limit.
    with ESSSTAT (a compatibility block, as for extended mode).
 2. Does the ES1868 answer the Creative commands it doesn't list (E0h, E3h,
    E4h, E8h, F3h, F8h, DAh)? To measure.
-3. Fill rate with B9h 1 and 2 (ESSSTAT's B9h blocks, sent with 8c2fe40).
+3. Fill rate with B9h 1 and 2 (ESSSTAT's B9h blocks, sent with 331a0a1).
 4. Mixer reset values per model.
 5. What A8h bits 1:0 do to the output when they disagree with B7h
    (channel mapping): to measure by ear or with a recording.
@@ -759,7 +759,7 @@ trap-based card's limit.
 
 ## 17. Where the current uCDD virtual ESS departs from this document
 
-From the v0.2 pass, against ess-registers 8c2fe40 [sheet unless noted]:
+From the v0.2 pass, against ess-registers 331a0a1 [sheet unless noted]:
 
 1. **Compatibility-mode 8-bit stereo order.** uCDD takes the first byte as
    left (mix.asm .stereo8_normal: the first byte goes to the left sum). The
