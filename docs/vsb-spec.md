@@ -426,7 +426,7 @@ rate, never passes what uCDD has taken, never moves back within a lap, and
 the block interrupt comes when that same position crosses a block's end,
 so the count sits on the boundary there as the CT2291's does. [doc, hw]
 
-Today (count-position, 30c82ca, 23 Oct 2026): auto-init follows the
+Today (count-position, 09ddd5c, 23 Oct 2026): auto-init follows the
 rule. One position, the frame being heard plus one period, never past what
 the mix has taken, never back within the transfer, held while paused
 (trap.asm game_elapsed_at): the count reads it, the block interrupt comes
@@ -449,12 +449,12 @@ one to two periods behind what had been taken, and the block interrupt the
 mix (irq.asm, virtual_irq_tick), so the count was short of the boundary at
 the interrupt (F8: about 7Dh on the PC at 128 frames) and DMX lost one to
 two periods of its margin (F18). The output clock had been chosen on 15 Oct
-(5e3f364) for HMI's clicks on the virtual ESS, whose mixer reads a delayed
+(a9d9cb0) for HMI's clicks on the virtual ESS, whose mixer reads a delayed
 ring; on the Sound Blaster models the mix is what uCDD has taken
 [reading]. The virtual ESS keeps its own rule (vess-spec.md,
 ess_fifo_count; rule 6).
 
-The clock (7994cd1, 24 Oct 2026): the output ring is 512 frames (16 periods
+The clock (546b389, 24 Oct 2026): the output ring is 512 frames (16 periods
 at 32 frames), so a period interrupt late by up to 15 periods is read right;
 on the two-period ring a late interrupt aliased the clock two periods back
 (F2) [emu, 86Box: the period count against the BIOS ticks exact on the
