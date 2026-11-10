@@ -192,7 +192,9 @@ optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", 
                    # A6 re-runs (rerunplan.py)
                    "rerun-candc1",
                    # A7's runs (the owner's decision of 10 Nov 2026, item 6 (a) and (b))
-                   "rerun-a7"]
+                   "rerun-a7",
+                   # A7's night plan (the owner's decision of 10 Nov 2026 on the 11:15Z report, item 4)
+                   "rerun-a7n"]
 
 # How each runner is started, from the bench directory. $UCDD_FIXTEST is the
 # bench's fixtest.py and $UCDD_KIT its kit folder (the caller sets both, as it
@@ -48560,3 +48562,942 @@ env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
 note = "A7 run a7 (b), DOS_THNK/ZNEMESIS: a3 once; CAND-25; A6 c87998b0 (b06), C0 HANG, A2 HANG"
 
 # END A7 runs a7
+
+# BEGIN A7 runs a7n (written by the agent in the A7 block's form; the owner's decision of 10 Nov 2026 on the 11:15Z report, item 4 (a) to (d))
+
+[[test]]
+name = "RRN-A7N-P133-C0-TSTDRIVO"
+decides = "silent: a reference take with no expected result of its own: TSTDRIVO's control taken again in its row's plan environment (v1; the owner's decision of 10 Nov 2026 on the 11:15Z report items 3 and 4 (a): three takes at most; still HARNESS_ERROR after that it is UNCLASSIFIED with its blocker)"
+searched = "terms: reference take, C0 reference, control take; hits: 0 in 0 documents; 10 Nov 2026"
+runner = "sweep"
+game = "TSTDRIVO"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 3
+fixed = { mode = "base", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7N (a), DOS_ACT/TSTDRIVO: C0 again in its row's plan environment, v1 (b02); three takes at most (the plan holds three); its A6 C0 012e9f79-100 HARNESS_ERROR by the re-judge"
+
+[[test]]
+name = "RRN-A7N-P133-A1-BLASTER!"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (c) (a1 plain install one take on each PMODE/W game: whether a1 runs what a2 stops); judged against its control by project_a.md's bins"
+searched = "terms: PMODE/W, DPMI host, VCPI hidden; hits: 73 in 11 documents (DPMI09 20, DPMI10 20, RBIL_N 20, JR 4, RBIL_F 2, notes/processors.md 2); 10 Nov 2026"
+runner = "sweep"
+game = "BLASTER!"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a1", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7N (c), DOS_ACT/BLASTER!: a1 plain install once, v1 (b02); A6 012e9f79, a2 CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7N-P133-A1-RAYMANF"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (c) (a1 plain install one take on each PMODE/W game: whether a1 runs what a2 stops); judged against its control by project_a.md's bins"
+searched = "terms: PMODE/W, DPMI host, VCPI hidden; hits: 73 in 11 documents (DPMI09 20, DPMI10 20, RBIL_N 20, JR 4, RBIL_F 2, notes/processors.md 2); 10 Nov 2026"
+runner = "sweep"
+game = "RAYMANF"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a1", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7N (c), DOS_ACT/RAYMANF: a1 plain install once, v1 (b02); A6 012e9f79, a2 CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7N-P133-A1-STORM96"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (c) (a1 plain install one take on each PMODE/W game: whether a1 runs what a2 stops); judged against its control by project_a.md's bins"
+searched = "terms: PMODE/W, DPMI host, VCPI hidden; hits: 73 in 11 documents (DPMI09 20, DPMI10 20, RBIL_N 20, JR 4, RBIL_F 2, notes/processors.md 2); 10 Nov 2026"
+runner = "sweep"
+game = "STORM96"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a1", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7N (c), DOS_ACT/STORM96: a1 plain install once, v1 (b02); A6 012e9f79, a2 CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7N-P133-A1-DEATHRAL"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (c) (a1 plain install one take on each PMODE/W game: whether a1 runs what a2 stops); judged against its control by project_a.md's bins"
+searched = "terms: PMODE/W, DPMI host, VCPI hidden; hits: 73 in 11 documents (DPMI09 20, DPMI10 20, RBIL_N 20, JR 4, RBIL_F 2, notes/processors.md 2); 10 Nov 2026"
+runner = "sweep"
+game = "DEATHRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a1", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7N (c), DOS_ACT/DEATHRAL: a1 plain install once, v2; A6 acca1005, a2 CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7N-P133-A1-RAYMAN"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (c) (a1 plain install one take on each PMODE/W game: whether a1 runs what a2 stops); judged against its control by project_a.md's bins"
+searched = "terms: PMODE/W, DPMI host, VCPI hidden; hits: 73 in 11 documents (DPMI09 20, DPMI10 20, RBIL_N 20, JR 4, RBIL_F 2, notes/processors.md 2); 10 Nov 2026"
+runner = "sweep"
+game = "RAYMAN"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a1", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7N (c), DOS_ACT/RAYMAN: a1 plain install once, v2; A6 a06419fc, a2 CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-386SPYS"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "386SPYS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=e6399b69 C0_REF=e6399b69-067"
+note = "A7N (b), DOS_ACT/386SPYS: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 e6399b69-067; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-BIOFORGE"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "BIOFORGE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f C0_REF=0b2299c9-004"
+note = "A7N (b), DOS_ACT/BIOFORGE: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 0b2299c9-004; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-BLASTER!"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "BLASTER!"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=012e9f79 C0_REF=0b2299c9-026"
+note = "A7N (b), DOS_ACT/BLASTER!: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 0b2299c9-026; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-CRUSREGR"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREGR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=acca1005 C0_REF=acca1005-064"
+note = "A7N (b), DOS_ACT/CRUSREGR: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 acca1005-064; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-CRUSREMO"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREMO"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=acca1005 C0_REF=acca1005-067"
+note = "A7N (b), DOS_ACT/CRUSREMO: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 acca1005-067; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-DEATHRAL"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "DEATHRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=acca1005 C0_REF=acca1005-061"
+note = "A7N (b), DOS_ACT/DEATHRAL: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 acca1005-061; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-RAYMAN"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "RAYMAN"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=a06419fc C0_REF=a06419fc-022"
+note = "A7N (b), DOS_ACT/RAYMAN: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 a06419fc-022; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-RAYMANF"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "RAYMANF"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=012e9f79 C0_REF=012e9f79-022"
+note = "A7N (b), DOS_ACT/RAYMANF: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 012e9f79-022; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-STORM96"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "STORM96"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=012e9f79 C0_REF=012e9f79-025"
+note = "A7N (b), DOS_ACT/STORM96: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 012e9f79-025; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-TRANSPOR"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "TRANSPOR"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f C0_REF=0b2299c9-014"
+note = "A7N (b), DOS_THNK/TRANSPOR: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 0b2299c9-014; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-TRANTDLX"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "TRANTDLX"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f C0_REF=0b2299c9-018"
+note = "A7N (b), DOS_THNK/TRANTDLX: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 0b2299c9-018; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-A3-ULTIMA8"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "ULTIMA8"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=db8eed0f C0_REF=0b2299c9-022"
+note = "A7N (b), DOS_THNK/ULTIMA8: a3 with -install -vcpi once, v2 as its a3 row (plan 0b2299c9); against C0 0b2299c9-022; a3 plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-C2-BLASTER!"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "BLASTER!"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=012e9f79"
+note = "A7N (b), DOS_ACT/BLASTER!: the pin with -install -vcpi once, v1 (b02); the pin plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7V-P133-C2-DEATHRAL"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (b) and item 2 (EXPECTED_VCPI needs a -vcpi take that runs where the plain take does not and the program identified as VCPI-only; the charter's 11.1); the author's README on a program that supports only VCPI (install with `UCDD -install -vcpi`)"
+searched = "terms: vcpi, install option, Phar Lap, PMODE/W; hits: 162 in 21 documents (DPMI10 20, JR 20, RBIL_F 20, VCPI 20, notes/hosts-and-cdrom.md 20, RBIL_N 12); 10 Nov 2026"
+runner = "sweep"
+game = "DEATHRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 1
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RIG_UCDD_INSTALL=-vcpi RERUN_OF=acca1005"
+note = "A7N (b), DOS_ACT/DEATHRAL: the pin with -install -vcpi once, v2; the pin plain CANDIDATE_UCDD_HOST"
+
+[[test]]
+name = "RRN-A7N-P133-A2-ALIENBRT"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ALIENBRT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_ACT/ALIENBRT: a2 two more takes, v1 (b04); CANDIDATE_UCDD_SFX by sound on one take (A6 db8eed0f db8eed0f-108); against C0 db8eed0f-106"
+
+[[test]]
+name = "RRN-A7N-P133-C2-ALIENBRT"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ALIENBRT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_ACT/ALIENBRT: the pin two more takes, v1 (b04); CANDIDATE_UCDD_HOST by state on one take (A6 db8eed0f db8eed0f-107); against C0 db8eed0f-106"
+
+[[test]]
+name = "RRN-A7N-P133-A2-BLASTER!"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BLASTER!"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7N (d), DOS_ACT/BLASTER!: a2 two more takes, v1 (b02); CANDIDATE_UCDD_HOST by state on one take (A6 012e9f79 012e9f79-144); against C0 012e9f79-142"
+
+[[test]]
+name = "RRN-A7N-P133-C2-BLASTER!"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BLASTER!"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7N (d), DOS_ACT/BLASTER!: the pin two more takes, v1 (b02); CANDIDATE_UCDD_HOST by state on one take (A6 012e9f79 012e9f79-143); against C0 012e9f79-142"
+
+[[test]]
+name = "RRN-A7N-P133-A2-GTRACING"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "GTRACING"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7N (d), DOS_ACT/GTRACING: a2 two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by state on one take (A6 c7cfcb37 c7cfcb37-081); against C0 c7cfcb37-079"
+
+[[test]]
+name = "RRN-A7N-P133-A2-INCA2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "INCA2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7N (d), DOS_ACT/INCA2: a2 two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by sound on one take (A6 c7cfcb37 c7cfcb37-129); against C0 c7cfcb37-127"
+
+[[test]]
+name = "RRN-A7N-P133-C2-INCA2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "INCA2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7N (d), DOS_ACT/INCA2: the pin two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by sound on one take (A6 c7cfcb37 c7cfcb37-128); against C0 c7cfcb37-127"
+
+[[test]]
+name = "RRN-A7N-P133-A2-METLTECB"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "METLTECB"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7N (d), DOS_ACT/METLTECB: a2 two more takes, v1 (b05); CANDIDATE_UCDD_SFX by state on one take (A6 cd5dead2 cd5dead2-129); against C0 cd5dead2-127"
+
+[[test]]
+name = "RRN-A7N-P133-C2-METLTECB"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "METLTECB"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7N (d), DOS_ACT/METLTECB: the pin two more takes, v1 (b05); CANDIDATE_UCDD_SFX by state on one take (A6 cd5dead2 cd5dead2-128); against C0 cd5dead2-127"
+
+[[test]]
+name = "RRN-A7N-P133-A2-QUARANT"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "QUARANT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_ACT/QUARANT: a2 two more takes, v1 (b04); CANDIDATE_UCDD_HOST by state on one take (A6 db8eed0f db8eed0f-009); against C0 db8eed0f-007"
+
+[[test]]
+name = "RRN-A7N-P133-C2-QUARANT"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "QUARANT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_ACT/QUARANT: the pin two more takes, v1 (b04); CANDIDATE_UCDD_HOST by state on one take (A6 db8eed0f db8eed0f-008); against C0 db8eed0f-007"
+
+[[test]]
+name = "RRN-A7N-P133-A2-RENBFJS"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "RENBFJS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7N (d), DOS_ACT/RENBFJS: a2 two more takes, v1 (b02); CANDIDATE_UCDD_HOST by state on one take (A6 012e9f79 012e9f79-093); against C0 012e9f79-091"
+
+[[test]]
+name = "RRN-A7N-P133-C2-RENBFJS"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "RENBFJS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7N (d), DOS_ACT/RENBFJS: the pin two more takes, v1 (b02); CANDIDATE_UCDD_HOST by state on one take (A6 012e9f79 012e9f79-092); against C0 012e9f79-091"
+
+[[test]]
+name = "RRN-A7N-P133-A2-STARCRUS"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "STARCRUS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_ACT/STARCRUS: a2 two more takes, v1 (b04); CANDIDATE_UCDD_SFX by state on one take (A6 db8eed0f db8eed0f-117); against C0 db8eed0f-115"
+
+[[test]]
+name = "RRN-A7N-P133-C2-STARCRUS"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "STARCRUS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_ACT/STARCRUS: the pin two more takes, v1 (b04); CANDIDATE_UCDD_SFX by state on one take (A6 db8eed0f db8eed0f-116); against C0 db8eed0f-115"
+
+[[test]]
+name = "RRN-A7N-P133-C2-TRACKATT"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "TRACKATT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7N (d), DOS_ACT/TRACKATT: the pin two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by sound on one take (A6 012e9f79 012e9f79-002); against C0 012e9f79-001"
+
+[[test]]
+name = "RRN-A7N-P133-A2-LOSTEDEN"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "LOSTEDEN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7N (d), DOS_THNK/LOSTEDEN: a2 two more takes, v1 (b05); CANDIDATE_UCDD_SFX by state on one take (A6 cd5dead2 cd5dead2-042); against C0 cd5dead2-040"
+
+[[test]]
+name = "RRN-A7N-P133-C2-LOSTEDEN"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "LOSTEDEN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7N (d), DOS_THNK/LOSTEDEN: the pin two more takes, v1 (b05); CANDIDATE_UCDD_SFX by state on one take (A6 cd5dead2 cd5dead2-041); against C0 cd5dead2-040"
+
+[[test]]
+name = "RRN-A7N-P133-A2-STONKEEP"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "STONKEEP"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_THNK/STONKEEP: a2 two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by state on one take (A6 db8eed0f db8eed0f-024); against C0 db8eed0f-022"
+
+[[test]]
+name = "RRN-A7N-P133-C2-STONKEEP"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "STONKEEP"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_THNK/STONKEEP: the pin two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by state on one take (A6 db8eed0f db8eed0f-023); against C0 db8eed0f-022"
+
+[[test]]
+name = "RRN-A7N-P133-A2-THEHORDE"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "THEHORDE"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7N (d), DOS_THNK/THEHORDE: a2 two more takes, v1 (b03); CANDIDATE_UCDD_HOST by state on one take (A6 c7cfcb37 c7cfcb37-063); against C0 c7cfcb37-061"
+
+[[test]]
+name = "RRN-A7N-P133-C2-THEHORDE"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "THEHORDE"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7N (d), DOS_THNK/THEHORDE: the pin two more takes, v1 (b03); CANDIDATE_UCDD_HOST by state on one take (A6 c7cfcb37 c7cfcb37-062); against C0 c7cfcb37-061"
+
+[[test]]
+name = "RRN-A7N-P133-A2-TRANSPOR"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "TRANSPOR"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_THNK/TRANSPOR: a2 two more takes, v1 (b04); CANDIDATE_UCDD_HOST by state on one take (A6 db8eed0f db8eed0f-189); against C0 db8eed0f-187"
+
+[[test]]
+name = "RRN-A7N-P133-C2-TRANSPOR"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "TRANSPOR"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_THNK/TRANSPOR: the pin two more takes, v1 (b04); CANDIDATE_UCDD_HOST by state on one take (A6 db8eed0f db8eed0f-188); against C0 db8eed0f-187"
+
+[[test]]
+name = "RRN-A7N-P133-A2-TRANTDLX"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "TRANTDLX"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_THNK/TRANTDLX: a2 two more takes, v1 (b04); CANDIDATE_UCDD_HOST by state on one take (A6 db8eed0f db8eed0f-192); against C0 db8eed0f-190"
+
+[[test]]
+name = "RRN-A7N-P133-C2-TRANTDLX"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "TRANTDLX"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_THNK/TRANTDLX: the pin two more takes, v1 (b04); CANDIDATE_UCDD_HOST by state on one take (A6 db8eed0f db8eed0f-191); against C0 db8eed0f-190"
+
+[[test]]
+name = "RRN-A7N-P133-A2-ULTIMA8"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ULTIMA8"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_THNK/ULTIMA8: a2 two more takes, v1 (b04); CANDIDATE_UCDD_HOST by state on one take (A6 db8eed0f db8eed0f-072); against C0 db8eed0f-070"
+
+[[test]]
+name = "RRN-A7N-P133-C2-ULTIMA8"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ULTIMA8"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7N (d), DOS_THNK/ULTIMA8: the pin two more takes, v1 (b04); CANDIDATE_UCDD_HOST by state on one take (A6 db8eed0f db8eed0f-071); against C0 db8eed0f-070"
+
+[[test]]
+name = "RRN-A7N-P133-A2-CRUSREGR"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREGR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7N (d), DOS_ACT/CRUSREGR: a2 two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 acca1005 acca1005-066); against C0 acca1005-064"
+
+[[test]]
+name = "RRN-A7N-P133-C2-CRUSREGR"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREGR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7N (d), DOS_ACT/CRUSREGR: the pin two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 acca1005 acca1005-065); against C0 acca1005-064"
+
+[[test]]
+name = "RRN-A7N-P133-A2-CRUSREMO"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREMO"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7N (d), DOS_ACT/CRUSREMO: a2 two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 acca1005 acca1005-069); against C0 acca1005-067"
+
+[[test]]
+name = "RRN-A7N-P133-C2-CRUSREMO"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CRUSREMO"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7N (d), DOS_ACT/CRUSREMO: the pin two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 acca1005 acca1005-068); against C0 acca1005-067"
+
+[[test]]
+name = "RRN-A7N-P133-A2-DEATHRAL"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DEATHRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7N (d), DOS_ACT/DEATHRAL: a2 two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 acca1005 acca1005-063); against C0 acca1005-061"
+
+[[test]]
+name = "RRN-A7N-P133-C2-DEATHRAL"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DEATHRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7N (d), DOS_ACT/DEATHRAL: the pin two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 acca1005 acca1005-062); against C0 acca1005-061"
+
+[[test]]
+name = "RRN-A7N-P133-A2-DESCENT"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DESCENT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c8b067d9"
+note = "A7N (d), DOS_ACT/DESCENT: a2 two more takes, v2; CANDIDATE_UCDD_SFX by wave on one take (A6 c8b067d9 c8b067d9-009); against C0 c8b067d9-007"
+
+[[test]]
+name = "RRN-A7N-P133-C2-DESCENT"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DESCENT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c8b067d9"
+note = "A7N (d), DOS_ACT/DESCENT: the pin two more takes, v2; CANDIDATE_UCDD_SFX by wave on one take (A6 c8b067d9 c8b067d9-008); against C0 c8b067d9-007"
+
+[[test]]
+name = "RRN-A7N-P133-A2-INNERWOR"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "INNERWOR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=6d5d7c39"
+note = "A7N (d), DOS_ACT/INNERWOR: a2 two more takes, v2; CANDIDATE_UCDD_SFX by state on one take (A6 6d5d7c39 6d5d7c39-138); against C0 6d5d7c39-136"
+
+[[test]]
+name = "RRN-A7N-P133-A2-SWDFORC"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "SWDFORC"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7N (d), DOS_ACT/SWDFORC: a2 two more takes, v2; CANDIDATE_UCDD_SFX by wave on one take (A6 c87998b0 c87998b0-021); against C0 c87998b0-019"
+
+[[test]]
+name = "RRN-A7N-P133-A2-SYSTEMSH"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "SYSTEMSH"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7N (d), DOS_ACT/SYSTEMSH: a2 two more takes, v2; CANDIDATE_UCDD_SFX by wave on one take (A6 c87998b0 c87998b0-054); against C0 c87998b0-052"
+
+[[test]]
+name = "RRN-A7N-P133-A2-WINGCOMM"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "WINGCOMM"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7N (d), DOS_ACT/WINGCOMM: a2 two more takes, v2; CANDIDATE_UCDD_SFX by state on one take (A6 acca1005 acca1005-006); against C0 acca1005-004"
+
+[[test]]
+name = "RRN-A7N-P133-C2-WINGCOMM"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "WINGCOMM"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7N (d), DOS_ACT/WINGCOMM: the pin two more takes, v2; CANDIDATE_UCDD_SFX by state on one take (A6 acca1005 acca1005-005); against C0 acca1005-004"
+
+[[test]]
+name = "RRN-A7N-P133-A2-BSWORD1"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BSWORD1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7N (d), DOS_THNK/BSWORD1: a2 two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 c87998b0 c87998b0-075); against C0 c87998b0-073"
+
+[[test]]
+name = "RRN-A7N-P133-C2-BSWORD1"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BSWORD1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7N (d), DOS_THNK/BSWORD1: the pin two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 c87998b0 c87998b0-074); against C0 c87998b0-073"
+
+[[test]]
+name = "RRN-A7N-P133-C2-GK1"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "GK1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=eecd58bf"
+note = "A7N (d), DOS_THNK/GK1: the pin two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 eecd58bf eecd58bf-014); against C0 eecd58bf-013"
+
+[[test]]
+name = "RRN-A7N-P133-A2-IHNMAIMS"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "IHNMAIMS"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7N (d), DOS_THNK/IHNMAIMS: a2 two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 c87998b0 c87998b0-096); against C0 c87998b0-094"
+
+[[test]]
+name = "RRN-A7N-P133-C2-IHNMAIMS"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "IHNMAIMS"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7N (d), DOS_THNK/IHNMAIMS: the pin two more takes, v2; CANDIDATE_UCDD_HOST by state on one take (A6 c87998b0 c87998b0-095); against C0 c87998b0-094"
+
+[[test]]
+name = "RRN-A7N-P133-A2-PLANEDGE"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "PLANEDGE"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0978ab15"
+note = "A7N (d), DOS_THNK/PLANEDGE: a2 two more takes, v2; CANDIDATE_UCDD_SFX by sound on one take (A6 0978ab15 0978ab15-009); against C0 0978ab15-007"
+
+[[test]]
+name = "RRN-A7N-P133-C2-PLANEDGE"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "PLANEDGE"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0978ab15"
+note = "A7N (d), DOS_THNK/PLANEDGE: the pin two more takes, v2; CANDIDATE_UCDD_SFX by sound on one take (A6 0978ab15 0978ab15-008); against C0 0978ab15-007"
+
+[[test]]
+name = "RRN-A7N-P133-A2-PQ4"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "PQ4"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=eecd58bf"
+note = "A7N (d), DOS_THNK/PQ4: a2 two more takes, v2; CANDIDATE_UCDD_SFX by wave on one take (A6 eecd58bf eecd58bf-027); against C0 eecd58bf-025"
+
+[[test]]
+name = "RRN-A7N-P133-A2-SPIREXC"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "SPIREXC"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7N (d), DOS_THNK/SPIREXC: a2 two more takes, v2; CANDIDATE_UCDD_AUDIO by wave on one take (A6 a06419fc a06419fc-042); against C0 a06419fc-040"
+
+[[test]]
+name = "RRN-A7N-P133-C2-SPIREXC"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "SPIREXC"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7N (d), DOS_THNK/SPIREXC: the pin two more takes, v2; CANDIDATE_UCDD_AUDIO by wave on one take (A6 a06419fc a06419fc-041); against C0 a06419fc-040"
+
+[[test]]
+name = "RRN-A7N-P133-A2-XCOMUF"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the 2-of-3 rule (the owner 5 Nov 2026); the owner's decision of 10 Nov 2026 on the 11:15Z report item 4 (d); each take judged by rerunjudge.py on its row's measure (results/sweep/a7n_set_ac.csv)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "XCOMUF"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7n"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c8b067d9"
+note = "A7N (d), DOS_THNK/XCOMUF: a2 two more takes, v2; CANDIDATE_UCDD_SFX by wave on one take (A6 c8b067d9 c8b067d9-006); against C0 c8b067d9-004"
+# END A7 runs a7n
