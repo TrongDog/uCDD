@@ -1,4 +1,14 @@
-# State of this fork
+# State of this fork (as of 20 October 2026)
+
+> **This page is kept as it was written on 20 October 2026, before the
+> test harness.** It describes the `fixes` line and the testing of that
+> time. For where the work stands now, read
+> [docs/STATUS.md](docs/STATUS.md). For the faults the harness has found
+> since, read [docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md). The working
+> register of rows is
+> [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md).
+> Where this page and the harness disagree, the harness's row is the
+> better evidence.
 
 What was tested, how, and what is still open. RELEASE-NOTES.md lists the
 changes themselves.

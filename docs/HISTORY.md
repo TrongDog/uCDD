@@ -1,4 +1,4 @@
-# History: what the fork did before the harness, and where it went
+# History: how the fork got here
 
 Written by Claude. The detailed record is the "Changes", "Performance" and
 "Fixed after the reviews" sections of [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md)
@@ -62,7 +62,58 @@ On 24 October the fork's development stopped and the harness began. The
 reason is in [METHOD.md](METHOD.md): a driver that keeps changing cannot
 be measured, and the fork had no way to say, with evidence a stranger
 could re-run, which of its changes worked. The pinned commit is the fork's
-line at that moment. Development resumes when the harness has finished:
-first by bringing the fork's line up to date, then by bisecting the two
-faults the fork introduced, then with whatever the sweep says is worth
-doing.
+line at that moment.
+
+## The harness, 24 October to now
+
+The harness was built and run in stages, each closed only when its
+acceptance lines were met with recorded runs.
+
+**Conformance (25 to 28 October).** Unit tests of the driver's parsers and
+converters, the CD-ROM driver through the MSCDEX interface on synthetic
+discs, and the virtual Sound Blaster driven by test programs from real
+mode and from three kinds of protected-mode client. Twenty-one candidate
+faults, each with the document that decides it. Run again on the author's
+release, they sorted three ways: in both, fixed upstream, and the fork's
+own.
+
+**The lessons of the first week** were mostly about the bench. A week of
+apparent dropouts was MS-DOS's boot-logo timer hook. A set of "stalls"
+was the recorder running dry on the host. An emulator at 233 MHz could
+not keep real time, so the sweep runs at 133. Each became a rule with a
+planted fault that proves the check can fail.
+
+**Calibration (28 October to 2 November).** Eighty-four games the author
+and others had already reported working, to prove the harness can confirm
+a working game before it is trusted on 838. The first attempt measured
+the bench (no PATH, no mouse driver, the library on the wrong drive) and
+was run again on the real PC's boot.
+
+**The sweep (2 to 7 November, closed 9 November).** Every game in the
+library on the control, the pin and the author's 0.9.5-a2. Along the way
+the bench's disks were rebuilt to the real PC's layout, a "30 dB quieter"
+finding turned out to be the emulated card's held DC level and every
+sound measure was moved to the filtered signal, and the recorder learned
+to keep each sound source apart. Eleven more candidates and the families
+in [SWEEP.md](SWEEP.md).
+
+**The method.** Beside the runs, the rules themselves were tightened
+again and again, each time because the work had shown a hole: a result claimed
+without its artefact, a list where a rule was needed, a check that had
+never been seen to fail. The method lives on its own branch with its own
+tests.
+
+## The rewrite of 10 November
+
+The fork's own commits were rewritten once, on 10 November 2026: commit
+messages, file wording and commit dates only. No code changed: the pinned
+build and the feature branches are the same code under new commit ids.
+The upstream author's commits on `main` were not touched. A commit id
+quoted anywhere before that date will not be found; the notes carry the
+old and new id of each pinned build side by side.
+
+## What comes next
+
+The sorting of the sweep, the reports and the kit for the real PC
+([STATUS.md](STATUS.md)); then development resumes, first by bringing the
+fork's line up to the author's current release ([PLANS.md](PLANS.md)).

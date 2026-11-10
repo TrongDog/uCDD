@@ -5,29 +5,27 @@ whether each is in this fork, in the upstream project, or both. Written by
 Claude from the rows in [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md), which hold the
 evidence. Status as of 10 November 2026.
 
-Since 2 November the sweep of the 838-game library has opened CAND-22 to
-CAND-32; [FINDINGS.md](FINDINGS.md) lists them by family. Their rows are open on
-`notes`, judged in an emulator only. The author's 0.9.5-a3 was released on
-7 November 2026 (two commits past a2: a margin in the DPMI free-memory
-answer, and the version number); nothing has been run on it here yet: its
-takes on the candidate games come next.
-
-**How to read it.** Each row is one fault, reproduced ten runs out of ten
-in an emulator. None has yet been confirmed on real hardware; that is what
-the hardware kit is for.
+**How to read it.** Each row is one fault, reproduced in an emulator: ten
+runs out of ten for the conformance tests, two takes of three or better
+for the game sweep. None has yet been confirmed on real hardware; that is
+what the hardware kit is for.
 
 - **Fault**: what the driver does wrong, in one line.
 - **In this fork**: whether the fault is present in this fork's driver at
   the commit the harness tests.
 - **In upstream**: whether the same case shows the fault in the upstream
-  project's most recent release the harness has run (0.9.5-a2 at the
-  moment; the version is stated here once and updated when a newer
-  release has been through the same runs). "Fixed" means the case passes
-  there; "Never present" means upstream never had it.
+  project's most recent release the harness has run. That is 0.9.5-a2.
+  The author released 0.9.5-a3 on 7 November 2026 (two commits past a2: a
+  margin in the DPMI host's free-memory answer, and the version number);
+  nothing has been run on it here yet, and this page changes when it has.
+  "Fixed" means the case passes there; "Never present" means upstream
+  never had it.
 - **More**: a link to the fault's entry in [FINDINGS.md](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md), which says
   which test found it, what the driver should do, which document or data
-  sheet says so, and where in ISSUES.md the recorded runs, the citation
-  and the hypothesis live.
+  sheet says so, and what the working hypothesis is where there is one.
+
+The first four tables are the conformance tests' findings (the driver
+driven by test programs). The fifth is the game sweep's.
 
 ## In this fork and in upstream
 
@@ -80,6 +78,39 @@ fixed by bisecting the fork's commits when development resumes.
 |---|---|---|---|
 | 2.6-bit ADPCM decodes differently from DOSBox-X | Present | Not testable without changing its source; the real card decides | [CAND-3](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#undetermined) |
 
+## Found by the game sweep
+
+Found by running 838 games on the control, this fork and upstream's
+0.9.5-a2. These are measured differences from a machine with no driver,
+not all of them faults: two are the driver working as designed and are
+listed so that nobody is surprised by them.
+
+| What | In this fork | In upstream | More |
+|---|---|---|---|
+| A launcher helper (SETMUL) stops with a protection fault under the DPMI host; 81 launchers call it | Present | Not present | [CAND-22](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-22) |
+| A CD-audio game's first sound comes later than without the driver | Present, a median 1.3 s | Present, a median 0.9 s | [CAND-23, CAND-24](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-23) |
+| A program sees about twice the memory under the driver; a few games fail on one side only | Present | Present | [CAND-25](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-25) |
+| I Have No Mouth and I Must Scream stops with a memory message | Present | Present in a2; the author's a3 note says fixed, not yet run here | [CAND-26](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-26) |
+| The disc's music is 6.0 dB quieter than through the card's own CD input (headroom, by design) | Present | Present | [CAND-27](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-27) |
+| "Packed file is corrupt" under the driver only | A class with no member yet | A class with no member yet | [CAND-28](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-28) |
+| Gabriel Knight 2 (a five-disc set) stops at a disc read error | Present | Present | [CAND-29](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-29) |
+| Ultimate Domain plays no sound | Present | Not present | [CAND-30](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-30) |
+| Gabriel Knight 1 falls silent at its menu | Present | Not present | [CAND-31](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-31) |
+| Game samples are 6.0 dB quieter than on the bare card; 67 games | Present | Fixed (the author doubles them while no disc plays) | [CAND-32](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-32) |
+
+Not in the table because they are not yet sorted: the games that differ
+on this fork only for some other reason (forty, each with a row of
+its own until read), the eleven that differ on upstream's a2 only, and
+the nineteen late starts. [SWEEP.md](SWEEP.md) has the counts.
+
+## Stated limits of the driver, seen in the sweep
+
+Not faults. The author's README says a program that supports only VCPI
+needs `UCDD -install -vcpi` and loses its sound through the driver. None
+of the library's seven Phar Lap games and none of its five PMODE/W games
+runs under upstream's a2 as normally installed. Whether `-vcpi` runs
+them is being measured now.
+
 ## Held for hardware
 
 Cases whose judge is the real card and which the hardware kit carries: the
@@ -95,5 +126,7 @@ Found by the harness and recorded so that they are not mistaken for the
 driver's: MS-DOS 7.1's boot-logo timer hook holding interrupts off for up
 to 8 ms every two ticks (`Logo=0` stops it); MS-DOS 7.1 rewriting the BIOS
 tick count on a date call; an interpreting emulator at 233 MHz unable to
-keep real time for a spinning game on the test host; a Phar Lap extender
-refusing V86 mode, which is the driver's documented VCPI limitation.
+keep real time for a spinning game on the test host; the emulated sound
+card holding a DC level when a game stops, which reads as loud sound until
+it is filtered out; 89 games that do not run on the emulated machine even
+with no driver loaded. [FINDINGS.md](FINDINGS.md) has the full list.

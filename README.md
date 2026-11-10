@@ -9,11 +9,42 @@ becoming a virtual Sound Blaster. All credit for the driver is his. For
 what μCDD is and how to use it, read his README and releases; this page is
 about what the fork did to it and what it found.
 
-This fork began as an attempt to give μCDD a native ESS AudioDrive path,
-and grew into a review of the driver and a test harness as the ESS work
-kept turning up things that needed measuring. The pages linked below are
-written for a reader with no background in the driver; the detail behind
-every claim is one link further in.
+It is a personal project. It began as an attempt to give μCDD a native ESS
+AudioDrive path, and grew into a review of the driver and a test harness as
+the ESS work kept turning up things that needed measuring. Nothing here has
+been submitted upstream. The pages linked below are written for a reader
+with no background in the driver; the detail behind every claim is one link
+further in.
+
+## Where it stands (10 November 2026)
+
+Development of the driver has been paused since 24 October so that the
+thing under test stays still. The harness has since run its unit,
+driver and virtual-card tests, calibrated itself on 84 known games, and
+swept an 838-game library on three builds: the bare card, the fork's
+pinned build, and the author's 0.9.5-a2. It has 32 candidate faults on
+record. The sorting of every game into one bin, the candidate reports and
+the kit for the real PC are the work in hand. The one-page view is
+[docs/STATUS.md](docs/STATUS.md).
+
+## Read next
+
+| Page | What it answers |
+|---|---|
+| [docs/STATUS.md](docs/STATUS.md) | Where the work is, stage by stage, and what comes next. |
+| [docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md) | The table of every candidate fault, and which version of the driver has it. |
+| [docs/FINDINGS.md](docs/FINDINGS.md) | Each fault in a paragraph: what the driver does, what it should do, which document says so, and the working hypothesis. |
+| [docs/SWEEP.md](docs/SWEEP.md) | The 838-game sweep: how a game is judged and what the three builds showed. |
+| [docs/CALIBRATION.md](docs/CALIBRATION.md) | How the harness proved it can tell a working game from a broken one. |
+| [docs/METHOD.md](docs/METHOD.md) | How a result is produced and what it is allowed to mean. |
+| [docs/BENCH.md](docs/BENCH.md) | The machine the numbers come from, and what it cannot say. |
+| [docs/FEATURES.md](docs/FEATURES.md) | What the fork added and fixed in the driver, with how each was tested. |
+| [docs/PLANS.md](docs/PLANS.md) | What happens when development resumes, and the ideas after that. |
+| [docs/HISTORY.md](docs/HISTORY.md) | How the fork got here. |
+
+The working record behind all of them is
+[ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md):
+long, in the order it was written, every row a claim with its evidence.
 
 ## Features
 
@@ -37,9 +68,6 @@ every claim is one link further in.
 - **UCDDSET redone**: a Disk row, Options and Detected columns, switches
   that explain themselves when greyed.
 
-The full list, with what each one was tested on, is in
-[docs/FEATURES.md](docs/FEATURES.md).
-
 ## Fixes
 
 - The virtual Sound Blaster (SB16, SB Pro, SB 2.0) read against Creative's
@@ -60,71 +88,44 @@ The full list, with what each one was tested on, is in
 - Two memory holes closed; CD audio at 2 to 3 % of a Pentium 233 after the
   performance pass.
 
-Every fix has its row, its evidence and its hardware status in
-[ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md),
-and the readable summary is in [docs/FEATURES.md](docs/FEATURES.md).
+The full list of both, with what each was tested on, is
+[docs/FEATURES.md](docs/FEATURES.md).
 
-## What the harness found
+## What the harness found, in one paragraph
 
-Since late October the fork has been running a test harness against a
-pinned build: unit tests of the parsers and converters, driver conformance
-on synthetic discs, virtual Sound Blaster conformance against Creative's
-guide and the 8237 and 8259 data sheets, a calibration against games known
-to work, and a zero-interaction sweep of an 838-game library. It has found
-candidate faults CAND-1 to CAND-32 so far (10 November 2026), each with the
-line of the specification it departs from and the recorded run that shows
-it: the conformance tiers' twenty-one, and from the sweep the protected-mode
-host, first sound, memory, the CD-audio level, the CD-ROM, and a pin-only
-family (faults in the fork's pinned build that the author's release lacks).
-
-- [docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md): the table of every
-  candidate fault, and which version of the driver has it.
-- [docs/FINDINGS.md](docs/FINDINGS.md): each fault in a paragraph, with the
-  document that decides it.
-- [docs/CALIBRATION.md](docs/CALIBRATION.md): how a working game is told
-  from a broken one, and the result on 84 known games.
-- [docs/METHOD.md](docs/METHOD.md): how a result is produced and what it is
-  allowed to mean.
-- [docs/BENCH.md](docs/BENCH.md): the machine the numbers come from.
-
-## Plans
-
-Development of the driver is paused while the harness runs, so that the
-thing under test stays still. When it resumes:
-
-- Fix the faults the harness found, ranked by how many games each one
-  reaches.
-- Bisect and fix the two faults the fork's own work introduced (CD-audio
-  dropouts during disc reads; 256-byte single-cycle blocks playing flat).
-- The virtual ESS's compatibility-mode stereo channel order, per the ES1868
-  data sheet.
-- The virtual SB16's time-constant table measured from a real card.
-- A DPMI host that absorbs a client's HLT instead of faulting it, if the
-  sweep finds a game that needs it.
-- The ESS half-rate mode, which needs a mixer change first.
-- A hardware kit for a real Pentium MMX 233 with a Sound Blaster 16 CT2291 or
-  an ESS ES1868F, so every candidate can be confirmed by a human ear.
-
-The history of how it got here is in [docs/HISTORY.md](docs/HISTORY.md).
-The fork's own history was rewritten on 10 November 2026: commit messages,
-file wording and commit dates only, no code; commit ids from before that date
-differ, and the upstream releases on `main` keep theirs.
+Thirty-two candidate faults, each with the document that decides it and the
+recorded runs that show it, none yet confirmed on real hardware. Twenty-one
+came from the conformance tests: ten are in the fork and in the author's
+release alike, nine the author has since fixed and the fork's older line
+still has, two the fork introduced, and one is undetermined (one candidate
+is split across two of those lists). Eleven came from the game sweep: a
+helper program that faults under the fork's DPMI host, a later first
+sound, memory that a game sees differently under the driver, a game that
+stops for want of memory, CD music and game sound each 6 dB low, a disc
+read that fails, and games silent on the fork's build alone. Two whole
+groups of games, those built on the Phar Lap and PMODE/W extenders, do not
+run under the author's 0.9.5-a2 in the sweep; whether that is the driver's
+documented VCPI limit is the next thing measured.
 
 ## Branches
 
 | Branch | Holds |
 |---|---|
 | `main` | The upstream releases, unchanged. |
-| `fixes` | This page and the fork's combined line to 20 October 2026, kept for its history. |
+| `fixes` | This page and the fork's combined line to 20 October 2026, kept for its history. `ISSUES.md`, `BUILDING.md` and `RELEASE-NOTES.md` here describe that line as it was then. |
 | `count-position` | The fork's line, the build the harness pins. |
 | `merge-a6` | The fork's line with upstream 0.9.4-a6 merged in; built, not run. |
 | `feature/disk-irq`, `feature/step-aside`, `feature/fast-dma`, `feature/ess` | The feature branches, each one change on upstream 0.9.4-a6. Disk-irq, step-aside and fast-dma now exist upstream in 0.9.5-a2, in the author's own form; upstream has also dropped Microsoft EMM386, as the fork had. |
 | `play-harness` | UCDDPLAY, the CD player: a reference pass against its own specification, a faster FFT and scroller, and `scripts/playcheck`, which runs the player against an earlier build of itself and compares the output. |
-| `notes` | The harness's rows: ISSUES.md, the candidate reports, the lessons. |
+| `notes` | The harness's rows: ISSUES.md, the index of fixes, the specifications the fork wrote for itself. |
 | `claude/brave-franklin-6h9xzo` | The method package: the commit checks, the ledger, the test matrix, the GitHub workflow. |
 | `sound-engine-library`, `reference-library`, `spec-first` | The game-engine census, text copies of the data sheets and specifications, and the design notes. |
 
 Earlier working branches live on as `archive/<name>` tags.
+
+The fork's own history was rewritten on 10 November 2026: commit messages,
+file wording and commit dates only, no code. Commit ids from before that
+date differ; the upstream releases on `main` keep theirs.
 
 ## Licence
 

@@ -9,6 +9,14 @@ and the commit messages on `count-position`. "Hardware" means tested on
 the real PC (Pentium MMX 233, 430HX, ESS ES1868 or Sound Blaster 16
 CT2291, MS-DOS 7.1); "emulator" means 86Box, DOSBox-X or QEMU only.
 
+Everything on this page was done before 24 October 2026, when development
+paused for the harness. The harness has since found faults in some of it:
+the fork's line lacks nine fixes the author has made, lacks his doubling
+of game samples while no disc plays, and carries at least two faults of
+its own ([KNOWN-ISSUES.md](KNOWN-ISSUES.md)). "Emulator" on this page is
+the testing of the time, before the harness's rules; where the harness
+has since measured the same thing, its row is the better evidence.
+
 ## ESS AudioDrive
 
 - Native ESS output: 44.1 kHz 16-bit stereo through the chip's extended
@@ -123,23 +131,13 @@ CT2291, MS-DOS 7.1); "emulator" means 86Box, DOSBox-X or QEMU only.
   checked unchanged, and a check harness (`scripts/playcheck`) that runs it
   against an earlier build of itself. Emulator. Branch `play-harness`.
 - The test harness: unit tests, driver conformance, virtual-card
-  conformance, calibration, the library sweep, and a hardware kit; with
-  its ledger, commit checks and GitHub workflow. See
-  [METHOD.md](METHOD.md).
+  conformance, a catalogue of the 838-game library by sound engine and
+  DOS extender, calibration, the library sweep on three builds, and a
+  hardware kit; with its ledger, commit checks and GitHub workflow. See
+  [METHOD.md](METHOD.md) and [STATUS.md](STATUS.md).
 
 ## Planned
 
-Development is paused while the harness runs. When it resumes, in order:
-
-1. Take in the nine fixes the fork's line lacks ([KNOWN-ISSUES.md](KNOWN-ISSUES.md)).
-2. Bisect and fix the two faults the fork introduced: CD-audio dropouts
-   during disc reads under play; 256-byte single-cycle blocks playing flat.
-3. The faults the harness found that are open in every version, ranked by
-   how many games each reaches.
-4. The virtual ESS's compatibility-mode stereo channel order, per the
-   ES1868 data sheet.
-5. The virtual SB16's time-constant table replaced by one measured on the
-   real CT2291.
-6. A host that absorbs a client's HLT instead of faulting it, if the sweep
-   finds a game that idles that way.
-7. The ESS half-rate mode, which needs a mixer change first.
+Development is paused while the harness runs. What happens when it
+resumes, in order, and the ideas for after that, are in
+[PLANS.md](PLANS.md).

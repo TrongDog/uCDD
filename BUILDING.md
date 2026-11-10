@@ -122,6 +122,12 @@ The builds tested on real hardware and in the emulators used this line:
 python scripts/build.py --resident-audio --audio-period-frames 64 --no-refill-hint
 ```
 
+That was the `fixes` line to 20 October 2026. The test harness pins a
+different build: the `count-position` line at 32 frames
+(`--resident-audio --audio-period-frames 32 --no-refill-hint`), with the
+hash of its binaries in every run's record. See
+[docs/BENCH.md](docs/BENCH.md).
+
 The release source archive contains the project source and this build
 script. Install DOS, a memory manager, and a CD redirector separately. No
 third-party programs are included.

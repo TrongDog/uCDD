@@ -1,9 +1,9 @@
 # How the harness tests μCDD
 
 Written by Claude, directed and tested by one person; every claim below is
-checkable in the ledger and the rows it refers to. This page says how a
-result is produced and what it is allowed to mean, so that a reader can
-judge a finding without taking anyone's word for it.
+checkable in the ledger and the rows it refers to. As of 10 November 2026.
+This page says how a result is produced and what it is allowed to mean, so
+that a reader can judge a finding without taking anyone's word for it.
 
 ## The thing under test
 
@@ -20,23 +20,31 @@ documents say a real card, a real DMA controller, a real interrupt
 controller, a real DPMI host does; and does a game that works on the bare
 card work the same under μCDD.
 
-## Three configurations, always
+## The configurations, and why there is always a control
 
-Every case and every game runs in up to three configurations, and the
-comparison between them is what carries meaning:
+No case and no game is judged on one run of one build. Each runs in
+several configurations, and the comparison between them is what carries
+meaning:
 
-- **C0**: the emulator's own sound card and CD-ROM driver, no μCDD. The
-  control. If a test cannot pass here, the test is wrong, not the driver.
-- **C1**: μCDD built as a CD-ROM driver only, no audio, no DPMI host. It
-  separates a CD-ROM data-path fault from an audio-path one. The
-  calibration measured that this build does not play CD audio at all, so
-  a C1 failure on sound alone says nothing about the data path.
-- **C2**: the full μCDD, audio and host. The thing under test.
+- **C0, the control**: the emulator's own sound card and CD-ROM driver, no
+  μCDD. If a test cannot pass here, the test is wrong, not the driver. If
+  a game fails here, nothing is said about the driver from that game.
+- **C2, the pin**: the fork's full driver, audio and DPMI host, at one
+  pinned commit. The thing under test.
+- **The author's release**: his own source, built unchanged with his own
+  build script; 0.9.5-a1 for the conformance tests, then 0.9.5-a2
+  (released 29 October) for those again and for the sweep. It says
+  whether a fault on the pin is the driver's or only the fork's.
+- **C1, the CD-only build**: the fork's driver with no audio and no DPMI
+  host. It separates a CD-ROM data-path fault from the rest. The
+  calibration measured that this build plays no CD audio at all (it
+  refuses the command), so a C1 failure on sound alone says nothing about
+  the data path.
 
-A game that fails the same way in C0 is the game's own fault. A game that
-works in C0 and C1 and fails in C2 is a candidate.
+A game that fails the same way on the control is the game's own fault. A
+game that works on the control and on C1 and fails on C2 is a candidate.
 
-## Four tiers of test
+## The tiers of test
 
 - **Tier 0, unit.** Small programs that assemble the driver's own modules
   unchanged (the CUE and MDM parsers, the resampler, the ADPCM decoders, the
@@ -55,8 +63,11 @@ works in C0 and C1 and fails in C2 is a candidate.
   stopped, interrupts held off, a child program spawned, buffers above
   1 MB. About 170 rows.
 - **Tier 3, the sweep.** Every game in the library, launched and left alone
-  for 90 seconds, screenshots every two seconds, the sound recorded, under
-  C0 and C2. The C2 recording is compared with the C0 one of the same game.
+  for 90 seconds, screenshots every two seconds, the sound recorded, on the
+  control, the pin and the author's release. Each driver recording is
+  compared with the control's of the same game: its run state, how much of
+  its sound matches, at what level, and how much later it starts.
+  [SWEEP.md](SWEEP.md) has the procedure and what it showed.
 - **Tier 4, hardware.** A kit the person carries to a real Pentium MMX 233
   with a Sound Blaster 16 CT2291 or an ESS ES1868F. Only a human running it
   produces a confirmed result; the emulator produces candidates.
@@ -105,13 +116,26 @@ exactly like a driver dropout until bisected to a line in MSDOS.SYS); the
 host recorder inserting a 20 ms buffer under load (looks exactly like a
 dropout until the closing beep is seen to have moved); a 1.5 % pitch
 tolerance that hid a real 1 % error until calibrated from the bare card's
-own spread (0.5 %). Each got a rule, a planted fault that proves the rule,
-and a line in the notes with the data.
+own spread (0.5 %); the emulated card holding its last output value when a
+game stops, which a level meter reads as loud sound and a start detector
+reads as sound that never ended (it produced a "30 dB quieter" finding and
+a 4.7 s "late start", both withdrawn, and every sound measure now reads
+the signal with its DC level removed). Each got a rule, a planted fault
+that proves the rule, and a line in the notes with the data.
 
 **Nothing is "probably fine".** A value is measured or it is UNKNOWN.
 Results are superseded, never deleted. A retake of a failed plan needs a
 written reason. No thresholds are tuned inside a test to make it pass;
 every threshold lives in one file with the calibration run that set it.
+
+**By rule, not by list.** A group of games is defined by a measurement
+that any game can be put to ("the pin differs from the control where the
+author's build does not"), never by naming its members. Games named in
+advance as members of a family have turned out not to be, once measured.
+
+**A correction keeps the old text.** When a row or a rule is found wrong,
+the old wording stays beside the new with the date, so a reader can see
+what was once believed and why it changed.
 
 ## Two builds, three lists
 
@@ -128,17 +152,33 @@ The three lists are kept apart because the action on each is different.
 
 ## Classification of a game
 
-In order, stopping at the first match: a harness error (missing boot
-marker, short capture, the emulator died) is re-run, never binned; an image
-the driver's README says it does not support is expected; a game that
-fails the same way on the bare card is the game's fault; a game silent on
-the bare card within the window is judged on run state only; a documented
-limitation (VCPI-only extenders, auto-init ADPCM, sub-Pentium CPUs) is
-expected; a C2 pass is a pass; a C2 failure the second emulator disagrees
-on is a dispute; a C2 failure with C0 and C1 passing is a candidate,
-sub-typed by what failed. Every non-pass game is then read against the
-other games that share its sound engine and extender: a cell where every
-game fails the same way is one bug and one report, not twenty.
+Each build of the driver gets its own answer for each game. In order,
+stopping at the first match:
+
+1. A harness error (missing boot marker, a recording the recorder itself
+   filled, the emulator died) is taken again, never binned.
+2. An image the driver's README says it does not support is expected.
+3. A game whose control fails has no control: it is the game's fault only
+   when the build stops the same way with the same message; otherwise it
+   is listed and not judged.
+4. A game that is still and silent on the control, and in the same state
+   under the build, cannot be judged without pressing a key. That is the
+   limit of this test, not a fault of the game or the driver.
+5. A documented limitation (extenders that need VCPI, auto-init ADPCM,
+   sub-Pentium CPUs) is expected, with its evidence.
+6. A build whose state, sound, level and timing are the control's, within
+   the limits in force, passes.
+7. Anything else is a candidate, sub-typed by what differs first: the
+   DPMI host, the CD-ROM path, CD audio, game sound, level, start-up time.
+   A result the second emulator disagrees on is a dispute.
+8. A game none of these settles, because something blocks the reading, is
+   unclassified, with the blocker named.
+
+Every game that does not pass is then read against the other games that
+share its sound engine and DOS extender: a group where every game fails
+the same way is one bug and one report, not twenty; a game that fails
+alone in a group that passes points away from the runtime and at the
+game. This sorting is the work in hand; see [STATUS.md](STATUS.md).
 
 ## What the harness does not do
 
@@ -147,4 +187,13 @@ hypothesis in a field of its own, never a patch; the fork's own development
 is frozen while the harness runs, so that the thing under test stays
 still. It does not press keys in games, so a game that waits for one is
 judged on whether it waited rather than crashed. It does not listen: it
-measures.
+measures. It does not send anything to the upstream author: every finding
+stays in this repository.
+
+## What is kept out of the repository
+
+Game files, disc images, boot disks, firmware and recordings never enter
+it; the repository holds hashes, scripts, synthetic test discs the harness
+generates itself, and measurements. The commit checks refuse the rest at
+the commit and again at the push, and the checks are tested against
+planted faults like everything else.
