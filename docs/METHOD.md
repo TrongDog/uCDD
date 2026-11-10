@@ -65,8 +65,10 @@ game that works on the control and on C1 and fails on C2 is a candidate.
 - **Tier 3, the sweep.** Every game in the library, launched and left alone
   for 90 seconds, screenshots every two seconds, the sound recorded, on the
   control, the pin and the author's release. Each driver recording is
-  compared with the control's of the same game: its run state, how much of
-  its sound matches, at what level, and how much later it starts.
+  compared with the control's of the same game: its run state, whether it
+  has sound and when it starts, at what level, and how much later; for part
+  of the library the sound is also matched piece by piece, so far to
+  compare like with like and not as a verdict.
   [SWEEP.md](SWEEP.md) has the procedure and what it showed.
 - **Tier 4, hardware.** A kit the person carries to a real Pentium MMX 233
   with a Sound Blaster 16 CT2291 or an ESS ES1868F. Only a human running it

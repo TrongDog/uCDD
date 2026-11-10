@@ -131,8 +131,9 @@ runs; under the CD-only build it matches the bare card exactly. So the
 difference is on the audio side. Quake is the only known-good game whose
 speed is off by more than 2 %. *Hypothesis:* none recorded; the game has
 ten CD-audio tracks and mixes its own sound, and which of the two is slow
-has not been separated. In the sweep (90 seconds, no keys) Quake runs with
-sound on the bare card, the pin and a2 alike, and no family holds it.
+has not been separated. The sweep never put Quake to the matching
+measure, so it neither confirms nor contradicts the calibration's 0.82 and
+5 % (three takes of three), which stand.
 
 These are calibration bins. The sweep classifies every game again, with
 three builds, and the context of the other games that share its sound

@@ -108,9 +108,7 @@ tests.
 The fork's own commits were rewritten once, on 10 November 2026: commit
 messages, file wording and commit dates only. No code changed: the pinned
 build and the feature branches are the same code under new commit ids.
-The upstream author's commits on `main` were not touched. A commit id
-quoted anywhere before that date will not be found; the notes carry the
-old and new id of each pinned build side by side.
+The upstream author's commits on `main` were not touched. Commit ids from before that date differ.
 
 ## What comes next
 

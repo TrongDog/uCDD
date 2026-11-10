@@ -44,24 +44,25 @@ compared with the same game's recording on the control.
   still and silent to the end of the run. A still, silent screen is
   usually a game waiting for a key; it counts against a build only when
   the control does something else.
-- **Sound, by matching.** The driver's recording is cut into pieces and
-  each piece is looked for in the control's recording. How much of it is
-  found (cover), how well it matches, whether it plays at the same speed,
-  and how often it steps back or jumps are each held to a limit set from
-  the control's own run-to-run spread in the calibration.
-- **Level.** Where the two recordings match, their levels are compared
-  on the matched pieces. The expected difference depends on what the
-  matched sound is: the disc's music is 6.0 dB down under the driver on
-  both builds (CAND-27), so that is allowed for; game samples are expected
-  level with the control.
-- **Time.** How much later the first matched sound comes than on the
-  control. The allowance is set per DOS extender, because the driver's
+- **Sound or silence, and when it starts.** Whether the recording holds
+  sound in the window, and the moment its first sound comes.
+- **Level.** The driver's recording against the control's: on the pieces
+  the two share where they were matched, otherwise over the window. The
+  expected difference depends on what the sound is: the disc's music is
+  6.0 dB down under the driver on both builds (CAND-27), so that is allowed
+  for; game samples are expected level with the control.
+- **Time.** How much later the first sound comes than on the control. The allowance is set per DOS extender, because the driver's
   DPMI host costs a protected-mode game time at start-up that a real-mode
   game never pays.
 - **The signal.** Every measure reads the recording with its DC level
   removed. The emulator's card holds its last output value when a game
   stops playing, which a level meter reads as loud sound; one early
   finding ("30 dB quieter") was that artefact and was withdrawn.
+- **Matched sound, for part of the library.** For 173 games (346 pairs)
+  the driver's recording was cut into pieces and each piece looked for in
+  the control's, to find the same sound for the baselines and the level.
+  It is used so far to compare like with like, not as a verdict: the sweep
+  did not read speed, gaps or the matching limits.
 
 A recording in which the recorder itself ran dry for more than a small
 share of the window is thrown out and the game taken again: the
@@ -142,6 +143,8 @@ the answer goes here.
   timing; a real Pentium with a real Sound Blaster decides.
 - What happens after the first 90 seconds, or after a key is pressed.
 - Anything about a game whose control fails on this bench.
+- In a game that still sounds at the control's level, a dropout, a wrong
+  pitch or the wrong music would not show.
 - Why. The sweep finds that a build differs and by how much; the cause is
   a hypothesis in the fault's row until the driver is read or changed,
   and the driver is not being changed while the harness runs.
