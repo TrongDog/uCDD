@@ -366,10 +366,10 @@ HOSTCD = "docs/host-cdrom-spec.md"
 PDMA = "docs/platform-dma.md"
 # The README is the specification uCDD implements for its images (the owner,
 # 25 Oct 2026, Project A A1); for Project A, as at the pinned build
-# (count-position 7994cd1). No CUE sheet specification exists to fetch.
+# (count-position 546b389). No CUE sheet specification exists to fetch.
 README = "README.md"
-# On notes since 26 Oct 2026 (the owner: copied from the spec-first branch, f25fa0f,
-# notes 953244a), where refcheck finds it through the rows refs.
+# On notes since 26 Oct 2026 (the owner: copied from the spec-first branch, 930f1b2,
+# notes 554be23), where refcheck finds it through the rows refs.
 SPECFIRST = "docs/spec-first.md"
 SNDLIB = "docs/sound-engines/findings.md"
 CT2291 = "docs/sound-engines/ct2291.md"
