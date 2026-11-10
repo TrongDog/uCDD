@@ -40,8 +40,8 @@ commit dates only, no code.
 1. **Three things run before the sorting**, because each can move a whole
    group of games. None has run yet (10 November 2026). The bench first
    gains a way to install the driver with `-vcpi` (done 10 November), the
-   author's 0.9.5-a3 built unchanged beside a1 and a2, and the wiki read at
-   its current commit; then the three run as one plan:
+   author's 0.9.5-a3 built unchanged beside a1 and a2 (done 10 November),
+   and the wiki read at its current commit; then the three run as one plan:
    - the games on the Phar Lap and PMODE/W extenders, taken again with the
      driver installed with `-vcpi`, the author's documented remedy for
      programs that need VCPI. All of them stop under 0.9.5-a2 in the
