@@ -554,6 +554,19 @@ fluff = [
 ]
 # Markers a draft leaves for the second reviewer: none may reach a commit.
 markers = ['\[agent:[^\]]*\]']
+# A working rule stated on a public page (the owner, 11 Nov 2026): what the project has not done toward anyone, what it
+# will or will not send to anyone, who decides what, how its rules are enforced. Those live in the top folder; a page
+# says what the thing is, what it does and what was measured. Python regular expressions, read outside code; they
+# find only what someone listed (README.md, "The pages keep up", rule 9).
+conduct = [
+    '(?i)\bnothing\s+(from\s+this\s+fork\s+|in\s+it\s+)?(has\s+been|is|was)\s+(sent|submitted|offered)\b',
+    '(?i)\b(has|have|had)\s+been\s+sent\s+(to\s+(him|the\s+(upstream\s+)?author)|upstream)\b',
+    '(?i)\bdoes\s+not\s+send\s+anything\b', '(?i)\bis\s+sent\s+to\s+the\s+(upstream\s+)?author\b',
+    '(?i)\bno\s+issue,\s+pull\s+request\b', '(?i)\benforced\s+by\b', '(?i)\bstays?\s+in\s+this\s+repository\b',
+    '(?i)\b(commit\s+checks?|commit\s+hook|the\s+hooks?)\s+refuses?\b', '(?i)\brefused\s+by\s+the\s+(commit\s+)?hook\b',
+    '(?i)\bthe\s+owner\s+decides\b', '(?i)\bdecides\s+on\s+them\b', '(?i)\bis\s+for\s+the\s+person\s+who\s+runs\b',
+    '(?i)\bnever\s+pushed\b', '(?i)\bruns\s+at\s+each\s+commit\b',
+]
 # A gap that is named: counted and listed by doccheck.py --todo, never refused.
 todo = '\[TODO:[^\]]*\]'
 # A file of commit ids from before a history rewrite, one a line, kept off the repository: set

@@ -507,6 +507,7 @@ commit on the pages' branch that stages a page, and on GitHub at every push and 
 | words | No word of `[docs] fluff`: a claim is a number, a constraint or a link. |
 | markers | No marker left for another hand (`[agent: ...]`). `[TODO: ...]` is counted and listed, never refused: a gap that is named is not drift. |
 | register | Every candidate id in the register (`notes:ISSUES.md`) is on the page that tables the candidates, by name or inside a stated range; no page names an id the register lacks. |
+| conduct | No sentence of `[docs] conduct`: a working rule (what was not done or will not be sent to anyone, who decides, how a rule is enforced) stated on a page. |
 | oldids | With `[docs] old_ids` set in method.local.toml: no page cites a commit id from before a rewrite. |
 
 A check that cannot read what it needs (the register's branch not fetched) says so as a problem;
@@ -533,6 +534,11 @@ What a program cannot check, and the second reviewer holds:
    that fact's home moves in the same piece of work, and its "As of" line with it.
 8. The pages say what was measured in an emulator and never that anything is confirmed on
    hardware before a person has run it there. No page says why the history was rewritten.
+9. **A page says what the thing is, what it does and what was measured** (the owner, 11 Nov
+   2026). It does not say what the project has not done toward anyone, what it will or will not
+   send to anyone, who decides what, or how its rules are enforced: those are working rules and
+   live off GitHub. `[docs] conduct` refuses the sentences someone has listed; the rest is the
+   reader's (L54).
 
 ## On GitHub
 

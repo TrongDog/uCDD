@@ -17,6 +17,9 @@ Checks, each by a rule and none by a list of pages:
   stamp     every page says the day its facts were read ("As of 10 November 2026"), and the day is
             not in the future
   words     no word of [docs] fluff: a claim is a number, a constraint or a link, not an adjective
+  conduct   no sentence of [docs] conduct: a page says what the thing is, what it does and what was measured,
+            not what the project has not done toward anyone, what it will or will not send to anyone, who decides
+            what, or how its rules are enforced (the owner, 11 Nov 2026); the patterns find only what was listed
   markers   no marker left for another hand ([docs] markers); [TODO: ...] markers are counted and
             listed, never refused: a gap that is named is not drift
   register  every candidate id of the register ([docs] register, a file on another branch) is on
@@ -42,7 +45,7 @@ import subprocess
 import methodlib
 
 SETTINGS = methodlib.CONFIG.get('docs', {})
-CHECKS = ('links', 'names', 'orphans', 'stamp', 'words', 'markers', 'register', 'oldids')
+CHECKS = ('links', 'names', 'orphans', 'stamp', 'words', 'conduct', 'markers', 'register', 'oldids')
 SHOWN = 12
 
 FENCE = re.compile(r'(?ms)^(```|~~~).*?^\1[^\n]*$')
@@ -301,7 +304,8 @@ def pattern_problems(tree, names, patterns, why):
         body = prose(tree.text(name))
         for pattern in patterns:
             for found in re.finditer(pattern, body):
-                problems.append(f'{name}:{line_of(body, found.start())}: "{found.group(0)[:40]}": {why}')
+                said = ' '.join(found.group(0).split())[:40]          # a phrase across a line break, on one line
+                problems.append(f'{name}:{line_of(body, found.start())}: "{said}": {why}')
     return problems
 
 
@@ -416,6 +420,9 @@ def check(tree, only=None, settings=None, cwd=None, register=None, old_ids=None,
     if 'words' in wanted:
         problems += pattern_problems(tree, own, settings.get('fluff', []),
                                      'an adjective where a number, a constraint or a link belongs ([docs] fluff)')
+    if 'conduct' in wanted:
+        problems += pattern_problems(tree, own, settings.get('conduct', []),
+                                     'a working rule stated on a public page ([docs] conduct): it lives off GitHub')
     if 'markers' in wanted:
         problems += pattern_problems(tree, own, settings.get('markers', []),
                                      'a marker left for another hand ([docs] markers)')

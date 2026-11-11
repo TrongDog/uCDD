@@ -28,7 +28,34 @@ SETTINGS = {
     'pages': ['README.md', 'docs/*.md'], 'foreign': ['BUILDING.md'], 'unstamped': ['docs/README.md'],
     'register': 'notes:ISSUES.md', 'register_page': 'docs/KNOWN-ISSUES.md', 'register_prefix': 'CAND-',
     'fluff': [r'(?i)\bseamless(ly)?\b'], 'markers': [r'\[agent:[^\]]*\]'], 'todo': r'\[TODO:[^\]]*\]',
+    'conduct': [r'(?i)\bnothing\s+from\s+this\s+fork\s+has\s+been\s+sent\b'],
 }
+# The owner's decision of 11 Nov 2026 on the 07:00Z report, item 2: each sentence removed from the pages, as it stood,
+# must be refused by method.toml's [docs] conduct; the credit line, "the author has since fixed" and METHOD.md's
+# sentence on a row must pass.
+CONDUCT_BAD = [
+    'Nothing from this fork\nhas been sent to him.',
+    '- **Decision.** No issue, pull request, comment or mention goes to the\n  upstream author.',
+    '- **Enforced by.** A commit check that refuses a mention or a link to an\n  upstream issue.',
+    '- **Nothing from this fork has been sent upstream**',
+    'Nothing from this fork has been sent to the upstream author. Whether any\nof it is offered to him, and in what form, '
+    'is for the person who runs the\nproject to decide once the findings have been confirmed on real hardware.',
+    'Everything in the register was measured in an emulator unless its row\nsays otherwise, and nothing in it has been '
+    'sent to the upstream author.',
+    "  lives on the fork's public notes branch. Nothing is sent to the author.",
+    '   against; the owner decides on them.',
+    'A\ncommit that cites a run as evidence is refused by the commit hook if the\nledger does not hold it as a pass.',
+    'It does not send anything to the upstream author: every finding\nstays in this repository.',
+    'The commit checks refuse the rest at\nthe commit and again at the push',
+    'firmware or recordings are in this repository, and the commit checks refuse\nthem.',
+    'every "As of" line, every candidate row present in the table. It runs at\neach commit and on GitHub',
+    '| The ledger, the decisions, the lessons | The bench machine | No. Never pushed anywhere. |',
+]
+CONDUCT_GOOD = [
+    "All credit for the driver is the upstream author's.",
+    'ten are in the fork and in the author\'s release alike, nine the author has since fixed',
+    'A fault it finds is a row with evidence and a\nhypothesis in a field of its own, never a patch;',
+]
 TODAY = datetime(2026, 11, 10, tzinfo=timezone.utc)
 
 GOOD = {
@@ -156,6 +183,19 @@ def main():
     def fluff(files):
         files['docs/METHOD.md'] += '\nIt is seamless.\n'
     planted('a word that claims without showing', fluff, 'words', 'seamless')
+
+    def conduct(files):
+        files['docs/METHOD.md'] += '\nNothing from this fork has been sent to him.\n'
+    planted('a working rule stated on a page', conduct, 'conduct', 'working rule')
+
+    import re
+    pats = docs.SETTINGS.get('conduct', [])
+    missed = [x for x in CONDUCT_BAD if not any(re.search(p, docs.prose(x)) for p in pats)]
+    case('conduct: the %d sentences removed on 11 Nov are each refused by method.toml\'s patterns%s' % (
+        len(CONDUCT_BAD), (': missed ' + ' | '.join(m[:40] for m in missed)) if missed else ''), bool(pats) and not missed)
+    hit = [x for x in CONDUCT_GOOD if any(re.search(p, docs.prose(x)) for p in pats)]
+    case('conduct: the credit line, "the author has since fixed" and the row sentence pass%s' % (
+        (': refused ' + ' | '.join(h[:40] for h in hit)) if hit else ''), not hit)
 
     def marker(files):
         files['docs/METHOD.md'] += '\nClosed [agent: date].\n'
