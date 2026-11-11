@@ -211,7 +211,9 @@ optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", 
                    # W2's two more takes of each wave row on one pair (the decision on the 22:11Z report, item 3 (b))
                    "rerun-a7f",
                    # a family's base takes (the decision on the 07:00Z report, item 5)
-                   "rerun-a7g"]
+                   "rerun-a7g",
+                   # the night's plan (the decision on the 12:40Z report, item 2)
+                   "rerun-a7h"]
 
 # How each runner is started, from the bench directory. $UCDD_FIXTEST is the
 # bench's fixtest.py and $UCDD_KIT its kit folder (the caller sets both, as it
@@ -51726,3 +51728,2632 @@ fixed = { build = "base093", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=b3894b8a"
 note = "A7G, DOS_THNK/PIZZATYC: the base (0.9.3b) once, v2; a member of FAM-36 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
 # END A7 runs a7g
+
+# BEGIN A7 runs a7h (written by the agent in the A7 blocks' forms; the owner's decision of 11 Nov 2026 on the 12:40Z report, item 2: one plan for the night)
+
+[[test]]
+name = "RRN-A7H-P133-A3-ADARK1"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ADARK1"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (a), DOS_ACT/ADARK1: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 a06419fc-028"
+
+[[test]]
+name = "RRN-A7H-P133-A3-ADARK2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ADARK2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (a), DOS_ACT/ADARK2: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b03); against C0 c7cfcb37-070"
+
+[[test]]
+name = "RRN-A7H-P133-A3-ADARK394"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ADARK394"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (a), DOS_ACT/ADARK394: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b03); against C0 c7cfcb37-073"
+
+[[test]]
+name = "RRN-A7H-P133-A3-ALIENBRT"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ALIENBRT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_ACT/ALIENBRT: a3 once; a2 CANDIDATE_UCDD_SFX by sound; v1 (b04); against C0 db8eed0f-106"
+
+[[test]]
+name = "RRN-A7H-P133-A3-ALIENTRI"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ALIENTRI"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_ACT/ALIENTRI: a3 once; a2 FLAKY_CANDIDATE_UCDD_HOSTLOAD by time; v1 (b04); against C0 db8eed0f-025"
+
+[[test]]
+name = "RRN-A7H-P133-A3-BCRACERS"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "BCRACERS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_ACT/BCRACERS: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b04); against C0 db8eed0f-010"
+
+[[test]]
+name = "RRN-A7H-P133-A3-BLAKESTA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "BLAKESTA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=eecd58bf"
+note = "A7H (a), DOS_ACT/BLAKESTA: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 eecd58bf-001"
+
+[[test]]
+name = "RRN-A7H-P133-A3-BLOOD"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "BLOOD"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7H (a), DOS_ACT/BLOOD: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b01); against C0 fce952ae-058"
+
+[[test]]
+name = "RRN-A7H-P133-A3-CHASMTHE"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "CHASMTHE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (a), DOS_ACT/CHASMTHE: a3 once; a2 CANDIDATE_UCDD_HOSTLOAD by time; v1 (b03); against C0 c7cfcb37-076"
+
+[[test]]
+name = "RRN-A7H-P133-A3-DARKLIGH"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "DARKLIGH"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_ACT/DARKLIGH: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-067"
+
+[[test]]
+name = "RRN-A7H-P133-A3-DEDERBY"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "DEDERBY"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (a), DOS_ACT/DEDERBY: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 0605fc71-013"
+
+[[test]]
+name = "RRN-A7H-P133-A3-DESCENT"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "DESCENT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c8b067d9"
+note = "A7H (a), DOS_ACT/DESCENT: a3 once; a2 CANDIDATE_UCDD_SFX by wave; v2; against C0 c8b067d9-007"
+
+[[test]]
+name = "RRN-A7H-P133-A3-EXTREMEA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "EXTREMEA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7H (a), DOS_ACT/EXTREMEA: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b01); against C0 fce952ae-124"
+
+[[test]]
+name = "RRN-A7H-P133-A3-FADETOBL"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "FADETOBL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (a), DOS_ACT/FADETOBL: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-034"
+
+[[test]]
+name = "RRN-A7H-P133-A3-FXFIGHTE"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "FXFIGHTE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (a), DOS_ACT/FXFIGHTE: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b03); against C0 c7cfcb37-046"
+
+[[test]]
+name = "RRN-A7H-P133-A3-GTA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "GTA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (a), DOS_ACT/GTA: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 0605fc71-019"
+
+[[test]]
+name = "RRN-A7H-P133-A3-GTRACING"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "GTRACING"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (a), DOS_ACT/GTRACING: a3 once; a2 CANDIDATE_UCDD_AUDIO by state; v1 (b03); against C0 c7cfcb37-079"
+
+[[test]]
+name = "RRN-A7H-P133-A3-HEXENBEY"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "HEXENBEY"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7H (a), DOS_ACT/HEXENBEY: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b01); against C0 fce952ae-094"
+
+[[test]]
+name = "RRN-A7H-P133-A3-INCA2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "INCA2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (a), DOS_ACT/INCA2: a3 once; a2 CANDIDATE_UCDD_AUDIO by sound; v1 (b03); against C0 c7cfcb37-127"
+
+[[test]]
+name = "RRN-A7H-P133-A3-INNERWOR"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "INNERWOR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=6d5d7c39"
+note = "A7H (a), DOS_ACT/INNERWOR: a3 once; a2 CANDIDATE_UCDD_SFX by state; v2; against C0 6d5d7c39-136"
+
+[[test]]
+name = "RRN-A7H-P133-A3-JAZZJACK"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "JAZZJACK"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0978ab15"
+note = "A7H (a), DOS_ACT/JAZZJACK: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 0978ab15-103"
+
+[[test]]
+name = "RRN-A7H-P133-A3-JURASSIC"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "JURASSIC"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_ACT/JURASSIC: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b04); against C0 db8eed0f-040"
+
+[[test]]
+name = "RRN-A7H-P133-A3-LBA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "LBA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_ACT/LBA: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-082"
+
+[[test]]
+name = "RRN-A7H-P133-A3-LOLLYPOP"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "LOLLYPOP"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7H (a), DOS_ACT/LOLLYPOP: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b01); against C0 fce952ae-001"
+
+[[test]]
+name = "RRN-A7H-P133-A3-MASSDEST"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "MASSDEST"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_ACT/MASSDEST: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-085"
+
+[[test]]
+name = "RRN-A7H-P133-A3-MEGAMANX"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "MEGAMANX"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (a), DOS_ACT/MEGAMANX: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-037"
+
+[[test]]
+name = "RRN-A7H-P133-A3-METLTECB"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "METLTECB"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (a), DOS_ACT/METLTECB: a3 once; a2 CANDIDATE_UCDD_SFX by state; v1 (b05); against C0 cd5dead2-127"
+
+[[test]]
+name = "RRN-A7H-P133-A3-METLTECE"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "METLTECE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (a), DOS_ACT/METLTECE: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-130"
+
+[[test]]
+name = "RRN-A7H-P133-A3-MKTRIL"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "MKTRIL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (a), DOS_ACT/MKTRIL: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 0605fc71-007"
+
+[[test]]
+name = "RRN-A7H-P133-A3-PRIMALRA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "PRIMALRA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (a), DOS_ACT/PRIMALRA: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-046"
+
+[[test]]
+name = "RRN-A7H-P133-A3-PRIV2SE"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "PRIV2SE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (a), DOS_ACT/PRIV2SE: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-019"
+
+[[test]]
+name = "RRN-A7H-P133-A3-QUAKE"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "QUAKE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (a), DOS_ACT/QUAKE: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b03); against C0 c7cfcb37-025"
+
+[[test]]
+name = "RRN-A7H-P133-A3-REDRAM"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "REDRAM"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7H (a), DOS_ACT/REDRAM: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b01); against C0 fce952ae-049"
+
+[[test]]
+name = "RRN-A7H-P133-A3-SCREAMER"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SCREAMER"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7H (a), DOS_ACT/SCREAMER: a3 once; a2 CANDIDATE_UCDD_HOSTLOAD by time; v1 (b01); against C0 fce952ae-133"
+
+[[test]]
+name = "RRN-A7H-P133-A3-SCREAMR2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SCREAMR2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7H (a), DOS_ACT/SCREAMR2: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b01); against C0 fce952ae-136"
+
+[[test]]
+name = "RRN-A7H-P133-A3-SCRMRAL"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SCRMRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7H (a), DOS_ACT/SCRMRAL: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b01); against C0 fce952ae-139"
+
+[[test]]
+name = "RRN-A7H-P133-A3-SEALTEAM"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SEALTEAM"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (a), DOS_ACT/SEALTEAM: a3 once; a2 CANDIDATE_UCDD_CDROM by state; v1 (b05); against C0 cd5dead2-001"
+
+[[test]]
+name = "RRN-A7H-P133-A3-SHADOWWA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SHADOWWA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7H (a), DOS_ACT/SHADOWWA: a3 once; a2 CANDIDATE_UCDD_HOSTLOAD by time; v1 (b01); against C0 fce952ae-055"
+
+[[test]]
+name = "RRN-A7H-P133-A3-SSF2T"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SSF2T"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_ACT/SSF2T: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b04); against C0 db8eed0f-004"
+
+[[test]]
+name = "RRN-A7H-P133-A3-STARCRUS"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "STARCRUS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_ACT/STARCRUS: a3 once; a2 CANDIDATE_UCDD_SFX by state; v1 (b04); against C0 db8eed0f-115"
+
+[[test]]
+name = "RRN-A7H-P133-A3-STARGUNN"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "STARGUNN"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (a), DOS_ACT/STARGUNN: a3 once; a2 CANDIDATE_UCDD_AUDIO by state; v1 (b03); against C0 c7cfcb37-088"
+
+[[test]]
+name = "RRN-A7H-P133-A3-STELLAR7"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "STELLAR7"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (a), DOS_ACT/STELLAR7: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 0605fc71-001"
+
+[[test]]
+name = "RRN-A7H-P133-A3-SWDFORC"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SWDFORC"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (a), DOS_ACT/SWDFORC: a3 once; a2 CANDIDATE_UCDD_SFX by wave; v2; against C0 c87998b0-019"
+
+[[test]]
+name = "RRN-A7H-P133-A3-SYSTEMSH"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SYSTEMSH"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (a), DOS_ACT/SYSTEMSH: a3 once; a2 FLAKY_CANDIDATE_UCDD_SFX by wave; v2; against C0 c87998b0-052"
+
+[[test]]
+name = "RRN-A7H-P133-A3-TERMRAMP"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "TERMRAMP"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (a), DOS_ACT/TERMRAMP: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-001"
+
+[[test]]
+name = "RRN-A7H-P133-A3-WC4POF"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "WC4POF"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (a), DOS_ACT/WC4POF: a3 once; a2 FLAKY_CANDIDATE_UCDD_HOSTLOAD by time; v1 (b05); against C0 cd5dead2-136"
+
+[[test]]
+name = "RRN-A7H-P133-A3-XCAREXPE"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "XCAREXPE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_ACT/XCAREXPE: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-010"
+
+[[test]]
+name = "RRN-A7H-P133-A3-XMENCHI"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "XMENCHI"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_ACT/XMENCHI: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-103"
+
+[[test]]
+name = "RRN-A7H-P133-A3-ZOOL2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ZOOL2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_ACT/ZOOL2: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v1 (b04); against C0 db8eed0f-121"
+
+[[test]]
+name = "RRN-A7H-P133-A3-BUBBBRI"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "BUBBBRI"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (a), DOS_THNK/BUBBBRI: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-076"
+
+[[test]]
+name = "RRN-A7H-P133-A3-BUSTMOV2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "BUSTMOV2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_THNK/BUSTMOV2: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-106"
+
+[[test]]
+name = "RRN-A7H-P133-A3-CAPTLSM"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "CAPTLSM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_THNK/CAPTLSM: a3 once; a2 CANDIDATE_UCDD_HOSTLOAD by time; v1 (b04); against C0 db8eed0f-172"
+
+[[test]]
+name = "RRN-A7H-P133-A3-COMCONRA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "COMCONRA"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_THNK/COMCONRA: a3 once; a2 CANDIDATE_UCDD_HOSTLOAD by time; v1 (b02); against C0 012e9f79-013"
+
+[[test]]
+name = "RRN-A7H-P133-A3-CONTZACK"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "CONTZACK"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=b3894b8a"
+note = "A7H (a), DOS_THNK/CONTZACK: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 b3894b8a-133"
+
+[[test]]
+name = "RRN-A7H-P133-A3-DARKLAND"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "DARKLAND"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=310ed652"
+note = "A7H (a), DOS_THNK/DARKLAND: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 310ed652-076"
+
+[[test]]
+name = "RRN-A7H-P133-A3-DUMAST2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "DUMAST2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (a), DOS_THNK/DUMAST2: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-013"
+
+[[test]]
+name = "RRN-A7H-P133-A3-DUNE2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "DUNE2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (a), DOS_THNK/DUNE2: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-106"
+
+[[test]]
+name = "RRN-A7H-P133-A3-ETERNAM"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ETERNAM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (a), DOS_THNK/ETERNAM: a3 once; a2 FLAKY_CANDIDATE_UCDD_AUDIO by wave; v1 (b03); against C0 c7cfcb37-097"
+
+[[test]]
+name = "RRN-A7H-P133-A3-FANTGEN"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "FANTGEN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_THNK/FANTGEN: a3 once; a2 FLAKY_CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-112"
+
+[[test]]
+name = "RRN-A7H-P133-A3-FWARS"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "FWARS"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (a), DOS_THNK/FWARS: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 a06419fc-034"
+
+[[test]]
+name = "RRN-A7H-P133-A3-GOB2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "GOB2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_THNK/GOB2: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b04); against C0 db8eed0f-001"
+
+[[test]]
+name = "RRN-A7H-P133-A3-HEROMM2D"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "HEROMM2D"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_THNK/HEROMM2D: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-115"
+
+[[test]]
+name = "RRN-A7H-P133-A3-ISHAR1"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ISHAR1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=ebdee792"
+note = "A7H (a), DOS_THNK/ISHAR1: a3 once; a2 CANDIDATE_UCDD_SFX by sound; v2; against C0 ebdee792-130"
+
+[[test]]
+name = "RRN-A7H-P133-A3-KYRA1"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "KYRA1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (a), DOS_THNK/KYRA1: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-124"
+
+[[test]]
+name = "RRN-A7H-P133-A3-KYRA2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "KYRA2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (a), DOS_THNK/KYRA2: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-127"
+
+[[test]]
+name = "RRN-A7H-P133-A3-LLTOC"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "LLTOC"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (a), DOS_THNK/LLTOC: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-130"
+
+[[test]]
+name = "RRN-A7H-P133-A3-LOSTEDEN"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "LOSTEDEN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (a), DOS_THNK/LOSTEDEN: a3 once; a2 CANDIDATE_UCDD_SFX by state; v1 (b05); against C0 cd5dead2-040"
+
+[[test]]
+name = "RRN-A7H-P133-A3-MARBMAST"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "MARBMAST"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_THNK/MARBMAST: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-118"
+
+[[test]]
+name = "RRN-A7H-P133-A3-PLANEDGE"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "PLANEDGE"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0978ab15"
+note = "A7H (a), DOS_THNK/PLANEDGE: a3 once; a2 CANDIDATE_UCDD_SFX by sound; v2; against C0 0978ab15-007"
+
+[[test]]
+name = "RRN-A7H-P133-A3-PQ4"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "PQ4"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=eecd58bf"
+note = "A7H (a), DOS_THNK/PQ4: a3 once; a2 CANDIDATE_UCDD_SFX by wave; v2; against C0 eecd58bf-025"
+
+[[test]]
+name = "RRN-A7H-P133-A3-RARKANI3"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "RARKANI3"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_THNK/RARKANI3: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-016"
+
+[[test]]
+name = "RRN-A7H-P133-A3-SPIREXC"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "SPIREXC"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (a), DOS_THNK/SPIREXC: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v2; against C0 a06419fc-040"
+
+[[test]]
+name = "RRN-A7H-P133-A3-STARCOMM"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "STARCOMM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7H (a), DOS_THNK/STARCOMM: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b02); against C0 012e9f79-127"
+
+[[test]]
+name = "RRN-A7H-P133-A3-STONKEEP"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "STONKEEP"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_THNK/STONKEEP: a3 once; a2 CANDIDATE_UCDD_AUDIO by state; v1 (b04); against C0 db8eed0f-022"
+
+[[test]]
+name = "RRN-A7H-P133-A3-THEPATRI"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "THEPATRI"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (a), DOS_THNK/THEPATRI: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 a06419fc-013"
+
+[[test]]
+name = "RRN-A7H-P133-A3-TIMECOMM"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "TIMECOMM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (a), DOS_THNK/TIMECOMM: a3 once; a2 CANDIDATE_UCDD_AUDIO by state; v1 (b03); against C0 c7cfcb37-019"
+
+[[test]]
+name = "RRN-A7H-P133-A3-TINCM2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "TINCM2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_THNK/TINCM2: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b04); against C0 db8eed0f-046"
+
+[[test]]
+name = "RRN-A7H-P133-A3-ULTIDOMA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "ULTIDOMA"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (a), DOS_THNK/ULTIDOMA: a3 once; a2 CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-142"
+
+[[test]]
+name = "RRN-A7H-P133-A3-WARCRAFT"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "WARCRAFT"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (a), DOS_THNK/WARCRAFT: a3 once; a2 CANDIDATE_UCDD_AUDIO by wave; v1 (b04); against C0 db8eed0f-031"
+
+[[test]]
+name = "RRN-A7H-P133-A3-XCOMUF"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (a) (\"a3 on every a2 candidate that has no a3 take of its own\"); judged against its control by project_a.md's bins as A7's a3 takes; a3's change is the DPMI free-memory answer"
+searched = "terms: free memory, DPMI free memory, memory margin, 0500h; hits: 98 in 23 documents (DPMI10 17, RBIL_D 12, RBIL_N 8, RBIL_K 7, EISA 6, DPMI09 5); 10 Nov 2026"
+runner = "sweep"
+game = "XCOMUF"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "a3", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c8b067d9"
+note = "A7H (a), DOS_THNK/XCOMUF: a3 once; a2 CANDIDATE_UCDD_SFX by wave; v2; against C0 c8b067d9-004"
+
+[[test]]
+name = "RRN-A7H-P133-BS-ALIENODY"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ALIENODY"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_ACT/ALIENODY: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-139"
+
+[[test]]
+name = "RRN-A7H-P133-BS-ARCHIMED"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ARCHIMED"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (b), DOS_ACT/ARCHIMED: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 a06419fc-025"
+
+[[test]]
+name = "RRN-A7H-P133-BS-BIGREDRA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "BIGREDRA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (b), DOS_ACT/BIGREDRA: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 0605fc71-010"
+
+[[test]]
+name = "RRN-A7H-P133-BS-CYBERIA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "CYBERIA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (b), DOS_ACT/CYBERIA: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-037"
+
+[[test]]
+name = "RRN-A7H-P133-BS-CYBERIA2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "CYBERIA2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_ACT/CYBERIA2: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-055"
+
+[[test]]
+name = "RRN-A7H-P133-BS-CYBERMAG"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "CYBERMAG"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_ACT/CYBERMAG: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-058"
+
+[[test]]
+name = "RRN-A7H-P133-BS-DEDERBY2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "DEDERBY2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (b), DOS_ACT/DEDERBY2: the base (0.9.3b) once; the pin EXPECTED_IMAGE by level; v2; against C0 0605fc71-016"
+
+[[test]]
+name = "RRN-A7H-P133-BS-DESCNT2V"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "DESCNT2V"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (b), DOS_ACT/DESCNT2V: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 0605fc71-004"
+
+[[test]]
+name = "RRN-A7H-P133-BS-DUKE3D"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "DUKE3D"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=b3894b8a"
+note = "A7H (b), DOS_ACT/DUKE3D: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 b3894b8a-061"
+
+[[test]]
+name = "RRN-A7H-P133-BS-FINALDOO"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "FINALDOO"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=310ed652"
+note = "A7H (b), DOS_ACT/FINALDOO: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 310ed652-013"
+
+[[test]]
+name = "RRN-A7H-P133-BS-FLYINGT2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "FLYINGT2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=6d5d7c39"
+note = "A7H (b), DOS_ACT/FLYINGT2: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 6d5d7c39-043"
+
+[[test]]
+name = "RRN-A7H-P133-BS-FRANKOTH"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "FRANKOTH"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=6d5d7c39"
+note = "A7H (b), DOS_ACT/FRANKOTH: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 6d5d7c39-049"
+
+[[test]]
+name = "RRN-A7H-P133-BS-HERETICS"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "HERETICS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_ACT/HERETICS: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-025"
+
+[[test]]
+name = "RRN-A7H-P133-BS-JAZZCD"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "JAZZCD"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (b), DOS_ACT/JAZZCD: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-082"
+
+[[test]]
+name = "RRN-A7H-P133-BS-MDK"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "MDK"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_ACT/MDK: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-067"
+
+[[test]]
+name = "RRN-A7H-P133-BS-MEGARAC2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "MEGARAC2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_ACT/MEGARAC2: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-040"
+
+[[test]]
+name = "RRN-A7H-P133-BS-MK"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "MK"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_ACT/MK: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-043"
+
+[[test]]
+name = "RRN-A7H-P133-BS-NOVASTOR"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "NOVASTOR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (b), DOS_ACT/NOVASTOR: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b04); against C0 db8eed0f-112"
+
+[[test]]
+name = "RRN-A7H-P133-BS-RAPTORCA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "RAPTORCA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (b), DOS_ACT/RAPTORCA: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b04); against C0 db8eed0f-142"
+
+[[test]]
+name = "RRN-A7H-P133-BS-REDRAMRA"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "REDRAMRA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (b), DOS_ACT/REDRAMRA: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 a06419fc-007"
+
+[[test]]
+name = "RRN-A7H-P133-BS-ROTH"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ROTH"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_ACT/ROTH: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-070"
+
+[[test]]
+name = "RRN-A7H-P133-BS-SUPERKAR"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "SUPERKAR"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (b), DOS_ACT/SUPERKAR: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 a06419fc-004"
+
+[[test]]
+name = "RRN-A7H-P133-BS-SWTIECD"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "SWTIECD"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_ACT/SWTIECD: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-022"
+
+[[test]]
+name = "RRN-A7H-P133-BS-TERMFS"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "TERMFS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_ACT/TERMFS: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-079"
+
+[[test]]
+name = "RRN-A7H-P133-BS-TERMVEL"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "TERMVEL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_ACT/TERMVEL: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-004"
+
+[[test]]
+name = "RRN-A7H-P133-BS-TNFSSE"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "TNFSSE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (b), DOS_ACT/TNFSSE: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-091"
+
+[[test]]
+name = "RRN-A7H-P133-BS-TOMBRAIG"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "TOMBRAIG"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (b), DOS_ACT/TOMBRAIG: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 a06419fc-019"
+
+[[test]]
+name = "RRN-A7H-P133-BS-ULTDOOM"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ULTDOOM"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=310ed652"
+note = "A7H (b), DOS_ACT/ULTDOOM: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 310ed652-016"
+
+[[test]]
+name = "RRN-A7H-P133-BS-WITCHAV2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "WITCHAV2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_ACT/WITCHAV2: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-088"
+
+[[test]]
+name = "RRN-A7H-P133-BS-ALBION"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ALBION"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/ALBION: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-061"
+
+[[test]]
+name = "RRN-A7H-P133-BS-AMULARM"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "AMULARM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=310ed652"
+note = "A7H (b), DOS_THNK/AMULARM: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 310ed652-019"
+
+[[test]]
+name = "RRN-A7H-P133-BS-ANVLDAWN"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ANVLDAWN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_THNK/ANVLDAWN: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-091"
+
+[[test]]
+name = "RRN-A7H-P133-BS-ASCENDY"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ASCENDY"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/ASCENDY: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-070"
+
+[[test]]
+name = "RRN-A7H-P133-BS-CAESAR2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "CAESAR2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/CAESAR2: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-079"
+
+[[test]]
+name = "RRN-A7H-P133-BS-CANNFOD"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "CANNFOD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/CANNFOD: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-010"
+
+[[test]]
+name = "RRN-A7H-P133-BS-CANNFOD2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "CANNFOD2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (b), DOS_THNK/CANNFOD2: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-100"
+
+[[test]]
+name = "RRN-A7H-P133-BS-CEO"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "CEO"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (b), DOS_THNK/CEO: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 a06419fc-031"
+
+[[test]]
+name = "RRN-A7H-P133-BS-CONQESTN"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "CONQESTN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_THNK/CONQESTN: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-094"
+
+[[test]]
+name = "RRN-A7H-P133-BS-DEATH"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "DEATH"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/DEATH: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-082"
+
+[[test]]
+name = "RRN-A7H-P133-BS-DW1"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "DW1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/DW1: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-085"
+
+[[test]]
+name = "RRN-A7H-P133-BS-DW2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "DW2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/DW2: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-088"
+
+[[test]]
+name = "RRN-A7H-P133-BS-ESDAGGER"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ESDAGGER"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_THNK/ESDAGGER: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-046"
+
+[[test]]
+name = "RRN-A7H-P133-BS-HANNIBAL"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "HANNIBAL"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (b), DOS_THNK/HANNIBAL: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-115"
+
+[[test]]
+name = "RRN-A7H-P133-BS-INDY4"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "INDY4"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (b), DOS_THNK/INDY4: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b04); against C0 db8eed0f-157"
+
+[[test]]
+name = "RRN-A7H-P133-BS-JAGGALLD"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "JAGGALLD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/JAGGALLD: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-100"
+
+[[test]]
+name = "RRN-A7H-P133-BS-KQ5"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "KQ5"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=eecd58bf"
+note = "A7H (b), DOS_THNK/KQ5: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 eecd58bf-046"
+
+[[test]]
+name = "RRN-A7H-P133-BS-KQ7"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "KQ7"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=eecd58bf"
+note = "A7H (b), DOS_THNK/KQ7: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 eecd58bf-016"
+
+[[test]]
+name = "RRN-A7H-P133-BS-KYRA3"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "KYRA3"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_THNK/KYRA3: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-145"
+
+[[test]]
+name = "RRN-A7H-P133-BS-LEXPRESS"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "LEXPRESS"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (b), DOS_THNK/LEXPRESS: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 acca1005-058"
+
+[[test]]
+name = "RRN-A7H-P133-BS-LORDORM2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "LORDORM2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/LORDORM2: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-103"
+
+[[test]]
+name = "RRN-A7H-P133-BS-LSL6CD"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "LSL6CD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=eecd58bf"
+note = "A7H (b), DOS_THNK/LSL6CD: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 eecd58bf-019"
+
+[[test]]
+name = "RRN-A7H-P133-BS-LSL7DOS"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "LSL7DOS"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=9068b37f"
+note = "A7H (b), DOS_THNK/LSL7DOS: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 9068b37f-001"
+
+[[test]]
+name = "RRN-A7H-P133-BS-MASTORI2"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "MASTORI2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/MASTORI2: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-106"
+
+[[test]]
+name = "RRN-A7H-P133-BS-MCRITIC"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "MCRITIC"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/MCRITIC: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-109"
+
+[[test]]
+name = "RRN-A7H-P133-BS-NORMAL"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "NORMAL"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_THNK/NORMAL: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-109"
+
+[[test]]
+name = "RRN-A7H-P133-BS-NORSEBYN"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "NORSEBYN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_THNK/NORSEBYN: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-112"
+
+[[test]]
+name = "RRN-A7H-P133-BS-ODDWORLD"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ODDWORLD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/ODDWORLD: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-031"
+
+[[test]]
+name = "RRN-A7H-P133-BS-SIMISLE"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "SIMISLE"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/SIMISLE: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-127"
+
+[[test]]
+name = "RRN-A7H-P133-BS-STARCON3"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "STARCON3"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/STARCON3: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-130"
+
+[[test]]
+name = "RRN-A7H-P133-BS-STRIFE"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "STRIFE"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_THNK/STRIFE: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-031"
+
+[[test]]
+name = "RRN-A7H-P133-BS-TERRANOV"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "TERRANOV"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (b), DOS_THNK/TERRANOV: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v2; against C0 c87998b0-133"
+
+[[test]]
+name = "RRN-A7H-P133-BS-THEMHOSP"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "THEMHOSP"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (b), DOS_THNK/THEMHOSP: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b04); against C0 db8eed0f-178"
+
+[[test]]
+name = "RRN-A7H-P133-BS-TOONSTRK"
+decides = "silent: the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (b) (\"a base take for every PIN_ONLY row that has none of its own\"); which line moved by the decision of 10 Nov 2026 on the 22:11Z report item 4; judged against the row's control take"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "TOONSTRK"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (b), DOS_THNK/TOONSTRK: the base (0.9.3b) once; the pin CANDIDATE_UCDD_LEVEL by level; v1 (b05); against C0 cd5dead2-124"
+
+[[test]]
+name = "RRN-A7H-P133-A2-ADARK1"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ADARK1"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (c), DOS_ACT/ADARK1: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-4); v2; against C0 a06419fc-028"
+
+[[test]]
+name = "RRN-A7H-P133-A2-BLAKESTA"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BLAKESTA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=eecd58bf"
+note = "A7H (c), DOS_ACT/BLAKESTA: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-21); v2; against C0 eecd58bf-001"
+
+[[test]]
+name = "RRN-A7H-P133-C2-DEDERBY"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DEDERBY"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (c), DOS_ACT/DEDERBY: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-13); v2; against C0 0605fc71-013"
+
+[[test]]
+name = "RRN-A7H-P133-A2-DEDERBY"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DEDERBY"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (c), DOS_ACT/DEDERBY: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-13); v2; against C0 0605fc71-013"
+
+[[test]]
+name = "RRN-A7H-P133-C2-EXTREMEA"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "EXTREMEA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7H (c), DOS_ACT/EXTREMEA: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-35); v1 (b01); against C0 fce952ae-124"
+
+[[test]]
+name = "RRN-A7H-P133-C2-FADETOBL"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "FADETOBL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (c), DOS_ACT/FADETOBL: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-57); v2; against C0 c87998b0-034"
+
+[[test]]
+name = "RRN-A7H-P133-A2-FADETOBL"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "FADETOBL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (c), DOS_ACT/FADETOBL: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-57); v2; against C0 c87998b0-034"
+
+[[test]]
+name = "RRN-A7H-P133-C2-JAZZJACK"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "JAZZJACK"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0978ab15"
+note = "A7H (c), DOS_ACT/JAZZJACK: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-75); v2; against C0 0978ab15-103"
+
+[[test]]
+name = "RRN-A7H-P133-A2-JAZZJACK"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "JAZZJACK"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0978ab15"
+note = "A7H (c), DOS_ACT/JAZZJACK: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-44); v2; against C0 0978ab15-103"
+
+[[test]]
+name = "RRN-A7H-P133-A2-METLTECE"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "METLTECE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (c), DOS_ACT/METLTECE: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-11); v1 (b05); against C0 cd5dead2-130"
+
+[[test]]
+name = "RRN-A7H-P133-C2-MKTRIL"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "MKTRIL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (c), DOS_ACT/MKTRIL: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-13); v2; against C0 0605fc71-007"
+
+[[test]]
+name = "RRN-A7H-P133-A2-MKTRIL"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "MKTRIL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (c), DOS_ACT/MKTRIL: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-13); v2; against C0 0605fc71-007"
+
+[[test]]
+name = "RRN-A7H-P133-C2-PRIMALRA"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "PRIMALRA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (c), DOS_ACT/PRIMALRA: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-29); v2; against C0 c87998b0-046"
+
+[[test]]
+name = "RRN-A7H-P133-A2-PRIMALRA"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "PRIMALRA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (c), DOS_ACT/PRIMALRA: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-29); v2; against C0 c87998b0-046"
+
+[[test]]
+name = "RRN-A7H-P133-A2-PRIV2SE"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "PRIV2SE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (c), DOS_ACT/PRIV2SE: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-4); v2; against C0 acca1005-019"
+
+[[test]]
+name = "RRN-A7H-P133-C2-TERMRAMP"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "TERMRAMP"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (c), DOS_ACT/TERMRAMP: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-56); v2; against C0 acca1005-001"
+
+[[test]]
+name = "RRN-A7H-P133-A2-TERMRAMP"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "TERMRAMP"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (c), DOS_ACT/TERMRAMP: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-56); v2; against C0 acca1005-001"
+
+[[test]]
+name = "RRN-A7H-P133-A2-ZOOL2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ZOOL2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7H (c), DOS_ACT/ZOOL2: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-4); v1 (b04); against C0 db8eed0f-121"
+
+[[test]]
+name = "RRN-A7H-P133-A2-BUBBBRI"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BUBBBRI"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (c), DOS_THNK/BUBBBRI: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-4); v2; against C0 c87998b0-076"
+
+[[test]]
+name = "RRN-A7H-P133-A2-CONTZACK"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CONTZACK"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=b3894b8a"
+note = "A7H (c), DOS_THNK/CONTZACK: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-4); v2; against C0 b3894b8a-133"
+
+[[test]]
+name = "RRN-A7H-P133-C2-DARKLAND"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DARKLAND"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=310ed652"
+note = "A7H (c), DOS_THNK/DARKLAND: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-29); v2; against C0 310ed652-076"
+
+[[test]]
+name = "RRN-A7H-P133-A2-DARKLAND"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DARKLAND"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=310ed652"
+note = "A7H (c), DOS_THNK/DARKLAND: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-29); v2; against C0 310ed652-076"
+
+[[test]]
+name = "RRN-A7H-P133-A2-DUMAST2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DUMAST2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (c), DOS_THNK/DUMAST2: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-11); v2; against C0 c87998b0-013"
+
+[[test]]
+name = "RRN-A7H-P133-A2-DUNE2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DUNE2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (c), DOS_THNK/DUNE2: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-11); v2; against C0 acca1005-106"
+
+[[test]]
+name = "RRN-A7H-P133-C2-FWARS"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "FWARS"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (c), DOS_THNK/FWARS: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-13); v2; against C0 a06419fc-034"
+
+[[test]]
+name = "RRN-A7H-P133-A2-FWARS"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "FWARS"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (c), DOS_THNK/FWARS: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-13); v2; against C0 a06419fc-034"
+
+[[test]]
+name = "RRN-A7H-P133-C2-KYRA1"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "KYRA1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (c), DOS_THNK/KYRA1: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-35); v2; against C0 acca1005-124"
+
+[[test]]
+name = "RRN-A7H-P133-A2-KYRA1"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "KYRA1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (c), DOS_THNK/KYRA1: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-18); v2; against C0 acca1005-124"
+
+[[test]]
+name = "RRN-A7H-P133-A2-KYRA2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "KYRA2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (c), DOS_THNK/KYRA2: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-18); v2; against C0 acca1005-127"
+
+[[test]]
+name = "RRN-A7H-P133-A2-LLTOC"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "LLTOC"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (c), DOS_THNK/LLTOC: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-18); v2; against C0 acca1005-130"
+
+[[test]]
+name = "RRN-A7H-P133-C2-THEPATRI"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "THEPATRI"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (c), DOS_THNK/THEPATRI: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-13); v2; against C0 a06419fc-013"
+
+[[test]]
+name = "RRN-A7H-P133-A2-THEPATRI"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "THEPATRI"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (c), DOS_THNK/THEPATRI: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-13); v2; against C0 a06419fc-013"
+
+[[test]]
+name = "RRN-A7H-P133-A2-ULTIDOMA"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (c)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ULTIDOMA"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (c), DOS_THNK/ULTIDOMA: a2 two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-11); v2; against C0 acca1005-142"
+
+[[test]]
+name = "RRN-A7H-P133-C2-ABUSE"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ABUSE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (d), DOS_ACT/ABUSE: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v1 (b05); against C0 cd5dead2-049"
+
+[[test]]
+name = "RRN-A7H-P133-C2-ABZERO"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ABZERO"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (d), DOS_ACT/ABZERO: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 c87998b0-028"
+
+[[test]]
+name = "RRN-A7H-P133-C2-ADARK1"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ADARK1"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (d), DOS_ACT/ADARK1: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 a06419fc-028"
+
+[[test]]
+name = "RRN-A7H-P133-C2-ALBION"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ALBION"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (d), DOS_THNK/ALBION: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 c87998b0-061"
+
+[[test]]
+name = "RRN-A7H-P133-C2-ALIENODY"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ALIENODY"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (d), DOS_ACT/ALIENODY: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 c87998b0-139"
+
+[[test]]
+name = "RRN-A7H-P133-C2-AMULARM"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "AMULARM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=310ed652"
+note = "A7H (d), DOS_THNK/AMULARM: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 310ed652-019"
+
+[[test]]
+name = "RRN-A7H-P133-C2-ANVLDAWN"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ANVLDAWN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (d), DOS_THNK/ANVLDAWN: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v1 (b05); against C0 cd5dead2-091"
+
+[[test]]
+name = "RRN-A7H-P133-C2-ARCHIMED"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ARCHIMED"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (d), DOS_ACT/ARCHIMED: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 a06419fc-025"
+
+[[test]]
+name = "RRN-A7H-P133-C2-ASCENDY"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ASCENDY"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (d), DOS_THNK/ASCENDY: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 c87998b0-070"
+
+[[test]]
+name = "RRN-A7H-P133-C2-BIGREDRA"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BIGREDRA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (d), DOS_ACT/BIGREDRA: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 0605fc71-010"
+
+[[test]]
+name = "RRN-A7H-P133-C2-BUBBBRI"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BUBBBRI"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (d), DOS_THNK/BUBBBRI: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 c87998b0-076"
+
+[[test]]
+name = "RRN-A7H-P133-C2-CAESAR2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CAESAR2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (d), DOS_THNK/CAESAR2: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 c87998b0-079"
+
+[[test]]
+name = "RRN-A7H-P133-C2-CANNFOD"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CANNFOD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (d), DOS_THNK/CANNFOD: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 c87998b0-010"
+
+[[test]]
+name = "RRN-A7H-P133-C2-CANNFOD2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CANNFOD2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (d), DOS_THNK/CANNFOD2: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 acca1005-100"
+
+[[test]]
+name = "RRN-A7H-P133-C2-CEO"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CEO"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=a06419fc"
+note = "A7H (d), DOS_THNK/CEO: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 a06419fc-031"
+
+[[test]]
+name = "RRN-A7H-P133-C2-CONQESTN"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CONQESTN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (d), DOS_THNK/CONQESTN: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v1 (b05); against C0 cd5dead2-094"
+
+[[test]]
+name = "RRN-A7H-P133-C2-CYBERIA"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CYBERIA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7H (d), DOS_ACT/CYBERIA: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 acca1005-037"
+
+[[test]]
+name = "RRN-A7H-P133-C2-CYBERMAG"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "CYBERMAG"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (d), DOS_ACT/CYBERMAG: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v1 (b05); against C0 cd5dead2-058"
+
+[[test]]
+name = "RRN-A7H-P133-C2-DEATH"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DEATH"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (d), DOS_THNK/DEATH: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 c87998b0-082"
+
+[[test]]
+name = "RRN-A7H-P133-C2-DESCNT2V"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DESCNT2V"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=0605fc71"
+note = "A7H (d), DOS_ACT/DESCNT2V: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 0605fc71-004"
+
+[[test]]
+name = "RRN-A7H-P133-C2-DOOM"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DOOM"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=310ed652"
+note = "A7H (d), DOS_ACT/DOOM: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 310ed652-010"
+
+[[test]]
+name = "RRN-A7H-P133-C2-DUKE3D"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DUKE3D"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=b3894b8a"
+note = "A7H (d), DOS_ACT/DUKE3D: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 b3894b8a-061"
+
+[[test]]
+name = "RRN-A7H-P133-C2-DW1"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DW1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (d), DOS_THNK/DW1: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 c87998b0-085"
+
+[[test]]
+name = "RRN-A7H-P133-C2-DW2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DW2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7H (d), DOS_THNK/DW2: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v2; against C0 c87998b0-088"
+
+[[test]]
+name = "RRN-A7H-P133-C2-ESDAGGER"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ESDAGGER"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7H (d), DOS_THNK/ESDAGGER: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v1 (b05); against C0 cd5dead2-046"
+
+[[test]]
+name = "RRN-A7H-P133-C2-ETERNAM"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 11 Nov 2026 on the 12:40Z report item 2 (d)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ETERNAM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7h"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7H (d), DOS_THNK/ETERNAM: the pin two more takes; CANDIDATE_UCDD_LEVEL by level on one take (FAM-1, in its member order); v1 (b03); against C0 c7cfcb37-097"
+# END A7 runs a7h
