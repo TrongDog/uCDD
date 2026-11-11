@@ -209,7 +209,9 @@ optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", 
                    # W1's second controls (the decision on the 22:11Z report, item 3 (b))
                    "rerun-a7e",
                    # W2's two more takes of each wave row on one pair (the decision on the 22:11Z report, item 3 (b))
-                   "rerun-a7f"]
+                   "rerun-a7f",
+                   # a family's base takes (the decision on the 07:00Z report, item 5)
+                   "rerun-a7g"]
 
 # How each runner is started, from the bench directory. $UCDD_FIXTEST is the
 # bench's fixtest.py and $UCDD_KIT its kit folder (the caller sets both, as it
@@ -51344,3 +51346,383 @@ fixed = { build = "a2", vmodel = "sb16" }
 env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
 note = "A7F (W2), DOS_THNK/WARCRAFT: a2 two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by wave on one pair (match 0.13; back 16 over 15); against C0 db8eed0f-031"
 # END A7 runs a7f
+
+# BEGIN A7 runs a7g (written by the agent in the A7 block's form; the owner's decision of 11 Nov 2026 on the 07:00Z report, item 5: a family's base takes)
+
+[[test]]
+name = "RRN-A7G-P133-BS-ALIENBRT"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ALIENBRT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7G, DOS_ACT/ALIENBRT: the base (0.9.3b) once, v1 (b04); a member of FAM-22 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-ALIENTRI"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ALIENTRI"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7G, DOS_ACT/ALIENTRI: the base (0.9.3b) once, v1 (b04); a member of FAM-7, FAM-24 (a2 only, pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-EXTREMEA"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "EXTREMEA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7G, DOS_ACT/EXTREMEA: the base (0.9.3b) once, v1 (b01); a member of FAM-35 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-GTRACING"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "GTRACING"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7G, DOS_ACT/GTRACING: the base (0.9.3b) once, v1 (b03); a member of FAM-20 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-HEXENBEY"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "HEXENBEY"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7G, DOS_ACT/HEXENBEY: the base (0.9.3b) once, v1 (b01); a member of FAM-16, FAM-32 (a2 only, pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-JURASSIC"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "JURASSIC"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7G, DOS_ACT/JURASSIC: the base (0.9.3b) once, v1 (b04); a member of FAM-16 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-LBA"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "LBA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7G, DOS_ACT/LBA: the base (0.9.3b) once, v1 (b02); a member of FAM-8, FAM-32 (a2 only, pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-QUAKEM1"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "QUAKEM1"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7G, DOS_ACT/QUAKEM1: the base (0.9.3b) once, v1 (b03); a member of FAM-33 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-SCREAMR2"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "SCREAMR2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7G, DOS_ACT/SCREAMR2: the base (0.9.3b) once, v1 (b01); a member of FAM-31 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-SCRMRAL"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "SCRMRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7G, DOS_ACT/SCRMRAL: the base (0.9.3b) once, v1 (b01); a member of FAM-15 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-SHADOWWA"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "SHADOWWA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7G, DOS_ACT/SHADOWWA: the base (0.9.3b) once, v1 (b01); a member of FAM-17 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-STREETRA"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "STREETRA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7G, DOS_ACT/STREETRA: the base (0.9.3b) once, v1 (b02); a member of FAM-31 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-TRACKATT"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "TRACKATT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7G, DOS_ACT/TRACKATT: the base (0.9.3b) once, v1 (b02); a member of FAM-30 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-WC4POF"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "WC4POF"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=cd5dead2"
+note = "A7G, DOS_ACT/WC4POF: the base (0.9.3b) once, v1 (b05); a member of FAM-24 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-XMENCHI"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "XMENCHI"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7G, DOS_ACT/XMENCHI: the base (0.9.3b) once, v1 (b02); a member of FAM-8 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-CAPTLSM"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "CAPTLSM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7G, DOS_THNK/CAPTLSM: the base (0.9.3b) once, v1 (b04); a member of FAM-17 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-ETERNAM"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "ETERNAM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7G, DOS_THNK/ETERNAM: the base (0.9.3b) once, v1 (b03); a member of FAM-23 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-FANTGEN"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "FANTGEN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7G, DOS_THNK/FANTGEN: the base (0.9.3b) once, v1 (b02); a member of FAM-23 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-HIST1914"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "HIST1914"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7G, DOS_THNK/HIST1914: the base (0.9.3b) once, v1 (b01); a member of FAM-34 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-MM6"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "MM6"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7G, DOS_THNK/MM6: the base (0.9.3b) once, v1 (b03); a member of FAM-34 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-WARCRAFD"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "WARCRAFD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7G, DOS_THNK/WARCRAFD: the base (0.9.3b) once, v1 (b02); a member of FAM-33 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-BLAKESTA"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "BLAKESTA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=eecd58bf"
+note = "A7G, DOS_ACT/BLAKESTA: the base (0.9.3b) once, v2; a member of FAM-21 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-DESCENT"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "DESCENT"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c8b067d9"
+note = "A7G, DOS_ACT/DESCENT: the base (0.9.3b) once, v2; a member of FAM-36 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-DUMAST2"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "DUMAST2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7G, DOS_THNK/DUMAST2: the base (0.9.3b) once, v2; a member of FAM-11 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-DUNE2"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "DUNE2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7G, DOS_THNK/DUNE2: the base (0.9.3b) once, v2; a member of FAM-11 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-KYRA1"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "KYRA1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7G, DOS_THNK/KYRA1: the base (0.9.3b) once, v2; a member of FAM-35 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-KYRA2"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "KYRA2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7G, DOS_THNK/KYRA2: the base (0.9.3b) once, v2; a member of FAM-18 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-LLTOC"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "LLTOC"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7G, DOS_THNK/LLTOC: the base (0.9.3b) once, v2; a member of FAM-18 (a2 only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+
+[[test]]
+name = "RRN-A7G-P133-BS-PIZZATYC"
+decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 4 (which line moved: the base reads as a2 the fork's line moved; as the pin the author's line moved since 0.9.3b; else UNKNOWN with its reading named); judged against the row's control take as the pin and a2 were"
+searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+runner = "sweep"
+game = "PIZZATYC"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7g"]
+repeat = 1
+fixed = { build = "base093", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=b3894b8a"
+note = "A7G, DOS_THNK/PIZZATYC: the base (0.9.3b) once, v2; a member of FAM-36 (pin only); its two smallest installs; item 5 of the decision on the 07:00Z report"
+# END A7 runs a7g
