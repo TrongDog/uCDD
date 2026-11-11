@@ -1278,6 +1278,7 @@ Evidence: emulator (plan ba483de6), dynarec off. Hardware: UNCONFIRMED (the PC's
 - searched = "terms: start latency, load time, spin-up, spin up time, first sound, seek time; hits: 74 in 18 documents (INTEL94 20, INTEL96 20, INTEL486_1995 10, 1543 3, MSCDEX 3, RBIL_E 3); 4 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33). Bin: a finding, the CD-audio family's baseline for CANDIDATE_UCDD_LOAD (question 57).
 Cell: the CD-audio family (the bench's catalogue: a disc with one or more audio tracks): 152 of the 838 games.
+Family (item 5): FAM-28, FAM-7 (by rule; the bench's reports/families.md).
 Controls: C0 in the same plan, one take each: 86Box's own drive with OAKCDROM and MSCDEX, the same boot, the same JemmEx line.
 Expected: no document sets how soon a game's first sound comes after its launch (the search above; the closest, MSCDEX:128, names CD-ROM drives' "comparatively long seek times" and sets no allowance). By the ruling (the owner, 4 Nov 2026, question 57) the family's median delta is a finding, one row per family per build, and the family's largest delta plus 3.0 s, over C0's median, is a CD-audio title's first-sound limit; a pair past it whose sound still arrives in the window is CANDIDATE_UCDD_LOAD.
 Affected: every CD-audio game's start under the pin; in the sweep so far 30 C2 and A2 pairs over the limit with their sound inside the window, each a CANDIDATE_UCDD_LOAD until the 2-of-3 re-runs (the bench's STATE lists them; the first five batches ran on v1's drives, so their membership waits for v2 re-runs).
@@ -1294,6 +1295,7 @@ Evidence: emulator (plan a06419fc, dynarec off), one take per game and configura
 - searched = "terms: start latency, load time, spin-up, spin up time, first sound, seek time; hits: 74 in 18 documents (INTEL94 20, INTEL96 20, INTEL486_1995 10, 1543 3, MSCDEX 3, RBIL_E 3); 4 Nov 2026"
 Pinned: 0.9.5-a2, fork main 245759c (UCDD.EXE 8421d411; the bench's fixtures/a2/MANIFEST.txt). Bin: a finding, the CD-audio family's baseline for CANDIDATE_UCDD_LOAD on a2 (question 57).
 Cell: the CD-audio family (the bench's catalogue: a disc with one or more audio tracks): 152 of the 838 games.
+Family (item 5): FAM-17, FAM-24, FAM-28 (by rule; the bench's reports/families.md).
 Controls: C0 in the same plan, one take each: 86Box's own drive with OAKCDROM and MSCDEX, the same boot, the same JemmEx line.
 Expected: no document sets how soon a game's first sound comes after its launch (the search above; the closest, MSCDEX:128, names CD-ROM drives' "comparatively long seek times" and sets no allowance). By the ruling (the owner, 4 Nov 2026, question 57) the family's median delta is a finding, one row per family per build, and the family's largest delta plus 3.0 s, over C0's median, is a CD-audio title's first-sound limit; a pair past it whose sound still arrives in the window is CANDIDATE_UCDD_LOAD.
 Affected: every CD-audio game's start under a2.
@@ -1311,6 +1313,7 @@ Evidence: emulator (plan a06419fc, dynarec off), one take per game and configura
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: a finding (the owner, 4 Nov 2026: "If both boots run the same manager, the difference is uCDD's: VCPI memory capped by the manager under C0, uCDD's DPMI host offering all of it under C2 and A2; that is a finding in its own right").
 Controls: the boots' CONFIG.SYS (the sweep's b07, STAR's three runs): C0, C2 and A2 each start with "DEVICE=C:\JEMMEX.EXE", no options, the same file (sha256 407233e2313a4f2f...); C0 adds only "DEVICEHIGH=C:\OAKCDROM.SYS /D:OAKCD001". MEM /C in the same boots: C0 and C2 the same XMS (65,962,672 and 65,962,688 bytes). So the manager is the same; the difference is uCDD's.
 Cell: games whose extender takes VCPI or EMS from JemmEx without uCDD and DPMI from uCDD's host under it (DOS/4GW among them).
+Family (item 5): FAM-19 (by rule; the bench's reports/families.md).
 Affected (the sweep so far): Zork Nemesis (DOS/4GW 1.97) prints "Detected 32276480 bytes of available memory" on C0, 62590976 on the pin and 62574592 on a2 (b06). I Have No Mouth and I Must Scream (DOS/4GW) runs on C0 and stops on both builds with a memory message (CAND-26). Pirates! Gold stops on C0 alone, "A PAGE FAULT HAS OCCURRED DUE TO INSUFFICIENT MEMORY", and runs with sound on both builds (b07). Wing Commander Armada runs with sound on C0 and stops on both builds at "EMS driver is not VCPI compliant." (b07): the other side, VCPI hidden while uCDD provides DPMI. Star Trail prints 33554432 bytes of free EMS (2048 pages) on all three boots and stops at its own check on all three: not this row's.
 Expected: rule 1 (the real hardware's behaviour): the PC's UCDD boot is the same JemmEx; without uCDD a VCPI client gets VCPI memory up to MAX (default 120 MB, JR:134-137) and EMS up to 2048 pages (JR:230-233). Under uCDD the memory a game sees is the DPMI host's, and VCPI is hidden by the driver's design (D-16).
 Observed: as Affected; the screens' text in the sweep's records (b06 plan c87998b0, b07 plan acca1005).
@@ -1445,6 +1448,7 @@ Evidence: emulator, one take each.
 - searched = "terms: Gabriel Knight, GK1, menu music; hits: 0 in 0 documents; 5 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); control 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: fork-regression candidate by question 57, as CAND-30.
 Cell: GK1 (Sierra SCI, DOS/4GW; catalogue/games.csv), a data disc (no audio track): its music is the game's own, through the virtual card.
+Family (item 5): FAM-6 (by rule; the bench's reports/families.md).
 Observed (b08, v2 at 32 KB; sound spans over -60 dBFS from the launch): C0 eecd58bf-013 2.7 to 15.4 s and 16.2 to 96.4 s; a2 eecd58bf-015 5.6 to 18.3 s and 18.4 to 96.5 s; the pin eecd58bf-014 6.4 to 19.1 s only, then the menu (RESTORE, PLAY, INTRO, QUIT) still and silent from 21.4 s to the end, HANG under question 62 (a). The pictures are the same on all three (the Sierra logo, then the menu). The calibration's three takes on the pin (28b798e7-448 to -450): cover 0.16 against C0 (28b798e7-445), HANG; C0's three takes RUNNING with cover 1.00.
 Corrected (rule 7 form, 5 Nov 2026): old text (question 62, 4 Nov 2026): "GK1's C2, its Sierra logo held silent over 20 s before the menu"; new text: the logo has sound on the pin (6.4 to 19.1 s); the still, silent screen is the menu, to the end of the run. The first-sound delta (+3.65 s on the pin) stands as measured and goes to the LOAD check as ruled.
 Re-runs: two more takes of a2 (the 2-of-3 rule for the control), in the re-run set.
@@ -1459,6 +1463,7 @@ Label (item 6): GK1: LACKS-FIX: dcf071c4-027 the base differs first by state (st
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); control 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: the pin-only family, labelled FORK-REGRESSION or LACKS-FIX at A7 with the rest.
 the owner, 8 Nov 2026 (from rules-bot, question 71): "(b), as a new row: CAND-32, game sound on the voice path a median 5.9 dB under C0 on the pin alone, a2 matching C0; pin-only family, labelled FORK-REGRESSION or LACKS-FIX at A7 with the rest; distinct from CAND-27 (CD music, both builds, by the code's own comment). The 82 games are listed under it, surveyed by sound engine under rule 10, and any engine that departs from the shape is named. Confirmation: three of the 82 re-run, one per major sound engine, and the code read for the line that halves the voice path on the pin and not on a2, cited by file and line, reading only. A pin-only level row whose offset is within the matched tolerance of -6.0 dB belongs to CAND-32; any other magnitude (TYRIAN, TYRIAN20) stays its own row."
 Cell: every game whose sound reaches uCDD's virtual card as samples (the DSP's DMA path), on every card uCDD presents; FM and the speaker do not pass through it.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Distinct from CAND-27: CAND-27 is the disc's music, 6.0 dB under on both builds; this is the game's own samples, 6.0 dB under on the pin alone.
 The rule, corrected (rule 7 form; the owner, 8 Nov 2026, question 72, 72.1): old text "any other magnitude (TYRIAN, TYRIAN20) stays its own row"; new text "any other cause stays its own row". "The expected level offset is the matched sound's source: -6.0 dB for the disc's track on both builds (CAND-27), 0 dB for game samples on a2 and the CAND-32 shape on the pin"; "The voice path is measured alone from the recorder's per-source record wherever it exists, else from pieces that carry samples; a row whose voice-source offset is within the matched tolerance of -6.0 dB is CAND-32's, FM dilution notwithstanding." Not installed yet (the order: the confirmations and T6 first, then the re-run set): the members below are the rule before 72.1, read on the whole matched gap; the rows between and the a2-only family's CD rows are read again under it. The recorder's per-source record (alrec.txt) holds each source's buffer times and states, not its samples, so for every capture so far the voice path comes from the pieces that carry samples.
 CYBERIA2 (the owner, 8 Nov 2026, 72.2): "CYBERIA2's level part to CAND-32, its state its own row."
@@ -1549,6 +1554,7 @@ Label (item 6): XCOMAP, a pick: LACKS-FIX: dcf071c4-043 the base differs first b
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3, 4 of 4.
 Cell: the PMODE/W extender across its cells (the owner, 10 Nov 2026, item 8: "PMODE/W on a2 is one report for its cell"), 5 games, 5 share this outcome on a2.
+Family (item 5): FAM-3, FAM-6 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/BLASTER! (Blaster! (1997)), DOS_ACT/DEATHRAL (Death Rally (1996)), DOS_ACT/RAYMAN (Rayman (1996)), DOS_ACT/RAYMANF (Rayman Forever (1996)), DOS_ACT/STORM96 (S.T.O.R.M. (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: BLASTER! (plan 012e9f79): C0 012e9f79-142 RUNNING, sound from 15.02 s; a2 012e9f79-144 EXITED, silent; its last screen "PMODE/W DOS Extender v1.33 / Copyright (C) 1994-1997, Charles Scheffold and Thomas Pytel"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -1570,6 +1576,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79, a06419fc, acca1005, 0b2299
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1, 3 of 3.
 Cell: sierra-sci x DOS/4GW, 7 games, 5 share this outcome, scope MAJORITY.
+Family (item 5): FAM-1, FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/LSL6CD (Leisure Suit Larry 6 - Shape Up or Slip Out (1993)), DOS_THNK/QG4CD (Quest for Glory IV - Shadows of Darkness (Enhanced) (1993)), DOS_THNK/SQ6 (Space Quest VI - Roger Wilco in the Spinal Frontier (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read, not run.
 Observed: LSL6CD (plan eecd58bf): C0 eecd58bf-019 RUNNING, sound from 8.06 s; pin eecd58bf-020 RUNNING, sound from 10.77 s, level -5.00 dB; pin takes 1 of 1.
@@ -1588,6 +1595,7 @@ Hypothesis: none. Evidence: emulator (plans 9068b37f, eecd58bf), dynarec off; on
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
 Cell: digpak x Phar Lap, 2 games, 2 share this outcome, scope CELL.
+Family (item 5): FAM-3, FAM-6 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/TRANSPOR (Transport Tycoon (1994)), DOS_THNK/TRANTDLX (Transport Tycoon Deluxe (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: TRANSPOR (plan db8eed0f): C0 db8eed0f-187 RUNNING, sound from 6.07 s; pin db8eed0f-188 HANG, silent; runs with -vcpi (-install -vcpi take 0b2299c9-016 RUNNING where the take without is HANG); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-189 EXITED, silent; its last screen "Fatal Error TNT.10093: Unable to allocate hardwired LDT descriptors from DPMI ho / st"; runs with -vcpi (-install -vcpi take 0b2299c9-015 RUNNING where the take without is EXITED); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -1618,6 +1626,7 @@ Hypothesis: none. Evidence: emulator (plans cd5dead2, db8eed0f), dynarec off; on
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
 Cell: own-code x Phar Lap, 2 games, 2 share this outcome, scope CELL.
+Family (item 5): FAM-3 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/CRUSREGR (Crusader - No Regret (1996)), DOS_ACT/CRUSREMO (Crusader - No Remorse (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: CRUSREGR (plan acca1005): C0 acca1005-064 RUNNING, sound from 7.32 s; pin acca1005-065 CRASH, silent; its last screen "DS=8F91 ES=0000 FS=CC9C GS=052C [CS:IP]=FF FF 91 8F 59 20 91 8F / Press ESC to abort program ?"; runs with -vcpi (-install -vcpi take 0b2299c9-009 RUNNING where the take without is CRASH); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 acca1005-066 EXITED, silent; its last screen "Halted file DOSFIX32\DESCRIPT.C, line 244. / ════════════════════════════════════"; runs with -vcpi (-install -vcpi take 0b2299c9-008 RUNNING where the take without is EXITED); not identified as VCPI-only; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -1632,6 +1641,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 5 share this outcome, scope ISOLATED.
+Family (item 5): FAM-5 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/ADARK2 (Alone in the Dark 2 (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: ADARK2 (plan c7cfcb37): C0 c7cfcb37-070 RUNNING, sound from 2.45 s; pin c7cfcb37-071 RUNNING, sound from 3.25 s, level -5.52 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 10 over 4 | READ_DIFFERS gaps 9 over 4 | READ_DIFFERS gaps 11 over 4; the calibration, 3 of 3: READ_DIFFERS gaps 10 over 4 | READ_DIFFERS gaps 9 over 4 | READ_DIFFERS gaps 11 over 4; pin takes 1 of 1; a2 c7cfcb37-072 RUNNING, sound from 3.31 s; wave gaps 5 over 4; gaps 5 over 4; a2 takes 1 of 1.
@@ -1645,6 +1655,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 5 share this outcome, scope ISOLATED.
+Family (item 5): FAM-5 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/ADARK394 (Alone in the Dark 3 (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: ADARK394 (plan c7cfcb37): C0 c7cfcb37-073 RUNNING, sound from 9.48 s; pin c7cfcb37-074 RUNNING, sound from 12.20 s, level -5.85 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 4 over 2 | READ_DIFFERS gaps 4 over 2 | READ_DIFFERS gaps 4 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 4 over 2 | READ_DIFFERS gaps 4 over 2 | READ_DIFFERS gaps 4 over 2; pin takes 1 of 1; a2 c7cfcb37-075 RUNNING, sound from 12.33 s; wave gaps 4 over 2; gaps 4 over 2; a2 takes 1 of 1.
@@ -1658,6 +1669,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by state, 3 of 3.
 Cell: own-code x REALMODE, 152 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-20 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/GTRACING (GT Racing 97 (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: GTRACING (plan c7cfcb37): C0 c7cfcb37-079 HANG, silent; a2 c7cfcb37-081 EXITED, silent; its last screen "TREVOAN Cyril / System DPMI"; crash noted: the build EXITED where C0 HANG (extender REALMODE); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -1671,6 +1683,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by state, 4 of 4.
 Cell: own-code x REALMODE, 152 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-20 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/STARGUNN (Stargunner (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: STARGUNN (plan c7cfcb37): C0 c7cfcb37-088 RUNNING, sound from 6.18 s; a2 c7cfcb37-090 EXITED, sound from 7.53 s; its last screen "RAM DAC:       S3 Trio/Virge Internal 24 bit DAC / Clock Chip:    S3 Trio/Virge Internal Clock"; crash noted: the build EXITED where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs); a2 takes 4 of 4.
@@ -1684,6 +1697,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 4 share this outcome, scope ISOLATED.
+Family (item 5): FAM-23 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/ETERNAM (Eternam (1992)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: ETERNAM (plan c7cfcb37): C0 c7cfcb37-097 RUNNING, sound from 5.51 s; a2 c7cfcb37-099 RUNNING, sound from 6.63 s; wave gaps 8 over 7; gaps 8 over 7; a2 takes 1 of 1.
@@ -1697,6 +1711,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 3 of 3.
 Cell: own-code x REALMODE, 152 games, 5 share this outcome, scope ISOLATED.
+Family (item 5): FAM-27 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/SPIREXC (Spirit of Excalibur (1990)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: SPIREXC (plan a06419fc): C0 a06419fc-040 RUNNING, sound from 13.38 s; pin a06419fc-041 RUNNING, sound from 14.06 s, level +0.00 dB; wave reproduced, 3 of 3 (the sweep's pair first, then 531c872d-123, 531c872d-124): READ_DIFFERS back 148 over 92; jumps 177 over 114 | READ_DIFFERS back 99 over 92; ; reproduced, 3 of 3 (the sweep's pair first, then 531c872d-123, 531c872d-124): READ_DIFFERS back 148 over 92; jumps 177 over 114 | READ_DIFFERS back 99 over 92; jumps 134 over 114 | READ_DIFFERS back 108 over 92; jumps 13; pin takes 3 of 3; a2 a06419fc-042 RUNNING, sound from 14.14 s, level -0.03 dB; wave reproduced, 3 of 3 (the sweep's pair first, then 531c872d-121, 531c872d-122): READ_DIFFERS back 163 over 92; jumps 216 over 114 | READ_DIFFERS back 164 over 92;; reproduced, 3 of 3 (the sweep's pair first, then 531c872d-121, 531c872d-122): READ_DIFFERS back 163 over 92; jumps 216 over 114 | READ_DIFFERS back 164 over 92; jumps 230 over 114 | READ_DIFFERS back 167 over 92; jumps 2; a2 takes 3 of 3.
@@ -1723,6 +1738,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1, FAM-4 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/ADARK1 (Alone in the Dark (1992)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: ADARK1 (plan a06419fc): C0 a06419fc-028 RUNNING, sound from 5.40 s; pin a06419fc-029 RUNNING, sound from 5.95 s, level -5.95 dB; pin takes 1 of 1; a2 a06419fc-030 RUNNING, sound from 5.98 s, level -1.66 dB; a2 takes 1 of 1.
@@ -1736,6 +1752,7 @@ Hypothesis: none. Evidence: emulator (plans a06419fc), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/BLAKESTP (Blake Stone - Planet Strike (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: BLAKESTP (plan acca1005): C0 acca1005-070 RUNNING, sound from 1.57 s; pin acca1005-071 RUNNING, sound from 1.76 s, level -3.62 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -1750,6 +1767,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/HOCUSPOC (Hocus Pocus (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: HOCUSPOC (plan acca1005): C0 acca1005-076 RUNNING, sound from 35.92 s; pin acca1005-077 RUNNING, sound from 36.14 s, level -1.19 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -1764,6 +1782,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/INNERWOR (Inner Worlds (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not a disc game.
 Observed: INNERWOR (plan 6d5d7c39): C0 6d5d7c39-136 RUNNING, sound from 1.78 s; pin 6d5d7c39-137 RUNNING, sound from 19.98 s, level -5.95 dB; pin takes 1 of 1.
@@ -1777,6 +1796,7 @@ Hypothesis: none. Evidence: emulator (plans 6d5d7c39), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Family (item 5): FAM-11, FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/DUNE2 (Dune 2 - The Building of a Dynasty (1992)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: DUNE2 (plan acca1005): C0 acca1005-106 RUNNING, sound from 2.98 s; pin acca1005-107 RUNNING, sound from 3.19 s, level -3.71 dB; pin takes 1 of 1; a2 acca1005-108 RUNNING, sound from 3.27 s, level +9.16 dB; a2 takes 1 of 1.
@@ -1790,6 +1810,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/ETERNAM (Eternam (1992)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: ETERNAM (plan c7cfcb37): C0 c7cfcb37-097 RUNNING, sound from 5.51 s; pin c7cfcb37-098 RUNNING, sound from 6.52 s, level -8.31 dB; pin takes 1 of 1.
@@ -1803,6 +1824,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Family (item 5): FAM-13 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/FWARS (Future Wars (1990)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: FWARS (plan a06419fc): C0 a06419fc-034 RUNNING, sound from 5.96 s; pin a06419fc-035 RUNNING, sound from 6.49 s, level -6.02 dB; pin takes 1 of 1; a2 a06419fc-036 RUNNING, sound from 6.59 s, level -6.02 dB; a2 takes 1 of 1.
@@ -1816,6 +1838,7 @@ Hypothesis: none. Evidence: emulator (plans a06419fc), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/GODTHUND (God of Thunder (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: GODTHUND (plan ebdee792): C0 ebdee792-118 RUNNING, sound from 12.44 s; pin ebdee792-119 RUNNING, sound from 14.27 s, level -1.42 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -1830,6 +1853,7 @@ Hypothesis: none. Evidence: emulator (plans ebdee792), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Family (item 5): FAM-18, FAM-35 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/KYRA1 (Legend of Kyrandia Book 1 (1992)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: KYRA1 (plan acca1005): C0 acca1005-124 RUNNING, sound from 15.27 s; pin acca1005-125 RUNNING, sound from 15.42 s, level +1.83 dB; pin takes 1 of 1; a2 acca1005-126 RUNNING, sound from 2.02 s, level +13.87 dB; a2 takes 1 of 1.
@@ -1843,6 +1867,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Family (item 5): FAM-18, FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/KYRA2 (Legend of Kyrandia Book 2 - The Hand of Fate (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: KYRA2 (plan acca1005): C0 acca1005-127 RUNNING, sound from 23.09 s; pin acca1005-128 RUNNING, sound from 23.34 s, level -2.70 dB; pin takes 1 of 1; a2 acca1005-129 RUNNING, sound from 8.46 s, level +11.85 dB; a2 takes 1 of 1.
@@ -1856,6 +1881,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 18 share this outcome, scope ISOLATED.
+Family (item 5): FAM-18, FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/LLTOC (Lands of Lore - The Throne of Chaos (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: LLTOC (plan acca1005): C0 acca1005-130 RUNNING, sound from 2.88 s; pin acca1005-131 RUNNING, sound from 24.00 s, level -3.34 dB; pin takes 1 of 1; a2 acca1005-132 RUNNING, sound from 3.50 s, level +12.29 dB; a2 takes 1 of 1.
@@ -1869,6 +1895,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: own-code x REALMODE, 152 games, 7 share this outcome, scope ISOLATED.
+Family (item 5): FAM-11 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/ULTIDOMA (Ultimate Domain (1994)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: ULTIDOMA (plan acca1005): C0 acca1005-142 RUNNING, sound from 12.86 s; a2 acca1005-144 RUNNING, sound from 13.11 s, level +7.88 dB; a2 takes 1 of 1.
@@ -1882,6 +1909,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: own-code x REALMODE, 152 games, 17 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/XANTH (Companions of Xanth (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: XANTH (plan acca1005): C0 acca1005-145 RUNNING, sound from 3.53 s; pin acca1005-146 RUNNING, sound from 3.80 s, level -0.79 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -1909,6 +1937,7 @@ Hypothesis: none. Evidence: emulator (plans 6d5d7c39), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
 Cell: own-code x REALMODE, 152 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-22 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/ISHAR1 (Ishar - Legend of the Fortress (1992)).
 Controls: C0 as below, each game's own A6 take; C1 not a disc game.
 Observed: ISHAR1 (plan ebdee792): C0 ebdee792-130 RUNNING, sound from 4.15 s; a2 ebdee792-132 RUNNING, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -1922,6 +1951,7 @@ Hypothesis: none. Evidence: emulator (plans ebdee792), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
 Cell: own-code x REALMODE, 152 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-14 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/MI2 (Monkey Island 2 - LeChuck's Revenge (1991)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: MI2 (plan ebdee792): C0 ebdee792-145 RUNNING, silent; pin ebdee792-146 HANG, silent; crash noted: the build HANG where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -1949,6 +1979,7 @@ Hypothesis: none. Evidence: emulator (plans 0978ab15), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
 Cell: own-code x REALMODE, 152 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-10 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/ULTIDOMA (Ultimate Domain (1994)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: ULTIDOMA (plan acca1005): C0 acca1005-142 RUNNING, sound from 12.86 s; pin acca1005-143 RUNNING, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -1975,6 +2006,7 @@ Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: NONE x REALMODE, 137 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/BLUBROJA (Blues Brothers, The - Jukebox Adventure (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: BLUBROJA (plan eecd58bf): C0 eecd58bf-094 RUNNING, sound from 3.87 s; pin eecd58bf-095 RUNNING, sound from 6.20 s, level -4.88 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2002,6 +2034,7 @@ Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 10 share this outcome, scope ISOLATED.
+Family (item 5): FAM-5 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/DARKLIGH (Darklight Conflict (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: DARKLIGH (plan 012e9f79): C0 012e9f79-067 RUNNING, sound from 7.43 s; pin 012e9f79-068 RUNNING, sound from 13.69 s, level -5.94 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 7 over 2 | READ_DIFFERS gaps 8 over 2 | READ_DIFFERS gaps 7 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 7 over 2 | READ_DIFFERS gaps 8 over 2 | READ_DIFFERS gaps 7 over 2; pin takes 1 of 1; a2 012e9f79-069 RUNNING, sound from 10.49 s; wave gaps 3 over 2; gaps 3 over 2; a2 takes 1 of 1.
@@ -2015,6 +2048,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED; miles x DOS/4GW, 75 games, 9 share this outcome, scope ISOLATED.
+Family (item 5): FAM-16 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/EXTREMEA (Extreme Assault (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: EXTREMEA (plan fce952ae): C0 fce952ae-124 RUNNING, sound from 11.05 s; a2 fce952ae-126 RUNNING, sound from 15.77 s; wave back 184 over 31; jumps 242 over 44; back 184 over 31; jumps 242 over 44; a2 takes 1 of 1.
@@ -2028,6 +2062,7 @@ Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 10 share this outcome, scope ISOLATED.
+Family (item 5): FAM-32, FAM-8 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/LBA (Little Big Adventure (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: LBA (plan 012e9f79): C0 012e9f79-082 RUNNING, sound from 1.85 s; pin 012e9f79-083 RUNNING, sound from 2.99 s, level -6.00 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 19 over 2; back 18 over 17 | READ_DIFFERS gaps 19 over 2; back 19 over 17 | READ_DIFFERS gaps 21 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 19 over 2; back 18 over 17 | READ_DIFFERS gaps 19 over 2; back 19 over 17 | READ_DIFFERS gaps 21 over 2; pin takes 1 of 1; a2 012e9f79-084 RUNNING, sound from 3.07 s; wave gaps 18 over 2; gaps 18 over 2; a2 takes 1 of 1.
@@ -2054,6 +2089,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 9 share this outcome, scope ISOLATED.
+Family (item 5): FAM-8 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/XMENCHI (X-Men - Children of the Atom (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: XMENCHI (plan 012e9f79): C0 012e9f79-103 RUNNING, sound from 3.37 s; a2 012e9f79-105 RUNNING, sound from 5.74 s; wave gaps 4 over 2; gaps 4 over 2; a2 takes 1 of 1.
@@ -2080,6 +2116,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 10 share this outcome, scope ISOLATED.
+Family (item 5): FAM-5 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/STARCOMM (Star Command - Revolution (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: STARCOMM (plan 012e9f79): C0 012e9f79-127 RUNNING, sound from 3.90 s; pin 012e9f79-128 RUNNING, sound from 5.70 s, level -5.99 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 8 over 2 | READ_DIFFERS gaps 9 over 2 | READ_DIFFERS gaps 8 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 8 over 2 | READ_DIFFERS gaps 9 over 2 | READ_DIFFERS gaps 8 over 2; pin takes 1 of 1; a2 012e9f79-129 RUNNING, sound from 5.66 s; wave gaps 8 over 2; gaps 8 over 2; a2 takes 1 of 1.
@@ -2093,6 +2130,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 5 share this outcome, scope ISOLATED.
+Family (item 5): FAM-33 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/WARCRAFD (Warcraft II - Tides of Darkness (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: WARCRAFD (plan 012e9f79): C0 012e9f79-136 RUNNING, sound from 4.89 s; pin 012e9f79-137 RUNNING, sound from 6.27 s; wave speed 1.10; speed 1.10; pin takes 1 of 1.
@@ -2133,6 +2171,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
 Cell: miles x DOS/4GW, 75 games, 3 share this outcome, scope ISOLATED.
+Family (item 5): FAM-12 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/RENBFJS (Renegade - Battle for Jacob's Star (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: RENBFJS (plan 012e9f79): C0 012e9f79-091 RUNNING, silent; pin 012e9f79-092 HANG, silent; its last screen "Mel Protected Mode Version 2.2.7, 10/14/94 / Error Message:"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 012e9f79-093 HANG, silent; its last screen "Mel Protected Mode Version 2.2.7, 10/14/94 / Error Message: ?"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -2146,6 +2185,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
 Cell: miles x DOS/4GW, 75 games, 3 share this outcome, scope ISOLATED.
+Family (item 5): FAM-12 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/BSWORD1 (Circle of Blood (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: BSWORD1 (plan c87998b0): C0 c87998b0-073 RUNNING, silent; pin c87998b0-074 HANG, silent; its last screen "?????? ????????? ? ?????"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 c87998b0-075 HANG, silent; its last screen "?????? ????????? ? ?????"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -2159,6 +2199,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOSTLOAD by time, 3 of 3.
 Cell: miles x DOS/4GW, 75 games, 5 share this outcome, scope ISOLATED.
+Family (item 5): FAM-7 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/MEGAMANX (Mega Man X (1995)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: MEGAMANX (plan c87998b0): C0 c87998b0-037 RUNNING, sound from 11.73 s; pin c87998b0-038 RUNNING, sound from 77.66 s, level +0.13 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2172,6 +2213,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOSTLOAD by time, 3 of 4.
 Cell: digpak x DOS/4GW, 8 games, 1 share this outcome, scope SINGLETON; miles x DOS/4GW, 75 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-17 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/CAPTLSM (Capitalism (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: CAPTLSM (plan db8eed0f): C0 db8eed0f-172 RUNNING, sound from 4.03 s; a2 db8eed0f-174 RUNNING, sound from 22.95 s, level -0.29 dB; 8439670a: reproduced (3 takes: differs, agrees, differs; 1 first in 824f772f); a2 takes 3 of 4.
@@ -2185,6 +2227,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 32 share this outcome, scope ISOLATED.
+Family (item 5): FAM-13 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/DEDERBY (Destruction Derby (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: DEDERBY (plan 0605fc71): C0 0605fc71-013 RUNNING, sound from 3.15 s; pin 0605fc71-014 RUNNING, sound from 4.86 s, level -6.01 dB; pin takes 1 of 1; a2 0605fc71-015 RUNNING, sound from 4.73 s, level -6.24 dB; a2 takes 1 of 1.
@@ -2198,6 +2241,7 @@ Hypothesis: none. Evidence: emulator (plans 0605fc71), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: hmi-sos x DOS/4GW, 50 games, 17 share this outcome, scope ISOLATED; miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Family (item 5): FAM-35 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/EXTREMEA (Extreme Assault (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: EXTREMEA (plan fce952ae): C0 fce952ae-124 RUNNING, sound from 11.05 s; pin fce952ae-125 RUNNING, sound from 21.94 s, level +0.08 dB; pin takes 1 of 1.
@@ -2224,6 +2268,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 4 of 4.
 Cell: miles x DOS/4GW, 75 games, 7 share this outcome, scope ISOLATED; others x DOS/4GW, 10 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-4 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/GTA (Grand Theft Auto (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: GTA (plan 0605fc71): C0 0605fc71-019 RUNNING, sound from 3.50 s; a2 0605fc71-021 RUNNING, sound from 6.31 s, level -2.96 dB; 824f772f: reproduced (3 takes: differs, differs, differs); a2 takes 4 of 4.
@@ -2237,6 +2282,7 @@ Hypothesis: none. Evidence: emulator (plans 0605fc71), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: miles x DOS/4GW, 75 games, 7 share this outcome, scope ISOLATED.
+Family (item 5): FAM-4 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/MEGAMANX (Mega Man X (1995)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: MEGAMANX (plan c87998b0): C0 c87998b0-037 RUNNING, sound from 11.73 s; a2 c87998b0-039 RUNNING, sound from 13.12 s, level -1.31 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -2250,6 +2296,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: hmi-sos x DOS/4GW, 50 games, 17 share this outcome, scope ISOLATED; miles x DOS/4GW, 75 games, 32 share this outcome, scope ISOLATED.
+Family (item 5): FAM-13 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/MKTRIL (Mortal Kombat Trilogy (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: MKTRIL (plan 0605fc71): C0 0605fc71-007 RUNNING, sound from 2.48 s; pin 0605fc71-008 RUNNING, sound from 4.14 s, level -4.54 dB; pin takes 1 of 1; a2 0605fc71-009 RUNNING, sound from 4.04 s, level -4.63 dB; a2 takes 1 of 1.
@@ -2263,6 +2310,7 @@ Hypothesis: none. Evidence: emulator (plans 0605fc71), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 32 share this outcome, scope ISOLATED.
+Family (item 5): FAM-29 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/PRIMALRA (Primal Rage (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: PRIMALRA (plan c87998b0): C0 c87998b0-046 RUNNING, sound from 17.26 s; pin c87998b0-047 RUNNING, sound from 33.18 s, level -3.43 dB; pin takes 1 of 1; a2 c87998b0-048 RUNNING, sound from 19.03 s, level -0.66 dB; a2 takes 1 of 1.
@@ -2276,6 +2324,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/SYSTEMSH (System Shock (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: SYSTEMSH (plan c87998b0): C0 c87998b0-052 RUNNING, sound from 14.07 s; pin c87998b0-053 RUNNING, sound from 16.89 s, level -5.93 dB; pin takes 1 of 1.
@@ -2289,6 +2338,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/XMENCHI (X-Men - Children of the Atom (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: XMENCHI (plan 012e9f79): C0 012e9f79-103 RUNNING, sound from 3.37 s; pin 012e9f79-104 RUNNING, sound from 5.76 s, level -5.30 dB; pin takes 1 of 1.
@@ -2302,6 +2352,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/ALIENLEG (Alien Legacy (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: ALIENLEG (plan c87998b0): C0 c87998b0-064 RUNNING, sound from 11.75 s; pin c87998b0-065 RUNNING, sound from 12.71 s, level -2.30 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2316,6 +2367,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 32 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1, FAM-4 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/BUBBBRI (Bubble Bobble also featuring Rainbow Islands (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: BUBBBRI (plan c87998b0): C0 c87998b0-076 RUNNING, sound from 60.03 s; pin c87998b0-077 RUNNING, sound from 67.22 s, level -5.76 dB; pin takes 1 of 1; a2 c87998b0-078 RUNNING, sound from 72.58 s, level -1.13 dB; a2 takes 1 of 1.
@@ -2329,6 +2381,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/CAESAR2 (Caesar 2 (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: CAESAR2 (plan c87998b0): C0 c87998b0-079 RUNNING, sound from 17.79 s; pin c87998b0-080 RUNNING, sound from 19.04 s, level -5.11 dB; pin takes 1 of 1.
@@ -2343,6 +2396,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/DW1 (Discworld (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: DW1 (plan c87998b0): C0 c87998b0-085 RUNNING, sound from 5.82 s; pin c87998b0-086 RUNNING, sound from 7.82 s, level -5.14 dB; pin takes 1 of 1.
@@ -2357,6 +2411,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/JAGGALL (Jagged Alliance (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: JAGGALL (plan c87998b0): C0 c87998b0-097 HANG, sound from 6.88 s; pin c87998b0-098 HANG, sound from 8.53 s, level -1.94 dB; its last screen "████████████████████████████████████████ / ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"; pin takes 1 of 1.
@@ -2370,6 +2425,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: miles x DOS/4GW, 75 games, 30 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/SIMCITY2 (SimCity 2000 - CD Collection (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: SIMCITY2 (plan c87998b0): C0 c87998b0-124 RUNNING, sound from 3.90 s; pin c87998b0-125 RUNNING, sound from 4.84 s, level -1.47 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2397,6 +2453,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED.
+Family (item 5): FAM-26 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/BCRACERS (BC Racers (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: BCRACERS (plan db8eed0f): C0 db8eed0f-010 RUNNING, sound from 58.99 s; pin db8eed0f-011 RUNNING, sound from 64.94 s, level -6.03 dB; wave the calibration, 3 of 3: READ_DIFFERS cover 0.80 | READ_DIFFERS cover 0.80 | READ_DIFFERS cover 0.80; the calibration, 3 of 3: READ_DIFFERS cover 0.80 | READ_DIFFERS cover 0.80 | READ_DIFFERS cover 0.80; pin takes 1 of 1; a2 db8eed0f-012 RUNNING, sound from 67.59 s; wave cover 0.70; cover 0.70; a2 takes 1 of 1.
@@ -2410,6 +2467,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED; others x DOS/4GW, 10 games, 3 share this outcome, scope ISOLATED.
+Family (item 5): FAM-31 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/SCREAMR2 (Screamer 2 (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: SCREAMR2 (plan fce952ae): C0 fce952ae-136 RUNNING, silent; pin fce952ae-137 RUNNING, sound from 35.07 s; wave cover 0.73; cover 0.73; pin takes 1 of 1; a2 fce952ae-138 RUNNING, sound from 30.98 s; wave cover 0.78; speed 1.02; cover 0.78; speed 1.02; a2 takes 1 of 1.
@@ -2423,6 +2481,7 @@ Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED; others x DOS/4GW, 10 games, 3 share this outcome, scope ISOLATED.
+Family (item 5): FAM-15 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/SCRMRAL (Screamer Rally (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: SCRMRAL (plan fce952ae): C0 fce952ae-139 RUNNING, silent; pin fce952ae-140 RUNNING, sound from 50.49 s; wave cover 0.59; speed 0.98; cover 0.59; speed 0.98; pin takes 1 of 1; a2 fce952ae-141 RUNNING, sound from 48.77 s; wave cover 0.62; cover 0.62; a2 takes 1 of 1.
@@ -2436,6 +2495,7 @@ Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by sound, 3 of 3.
 Cell: hmi-sos x DOS/4GW, 50 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-30 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/TRACKATT (Track Attack (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: TRACKATT (plan 012e9f79): C0 012e9f79-001 RUNNING, sound from 3.10 s; pin 012e9f79-002 HANG, silent; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2449,6 +2509,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED.
+Family (item 5): FAM-15 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/XCAREXPE (XCar Experimental Racing (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: XCAREXPE (plan 012e9f79): C0 012e9f79-010 RUNNING, sound from 13.98 s; pin 012e9f79-011 RUNNING, sound from 18.33 s; wave cover 0.84; cover 0.84; pin takes 1 of 1; a2 012e9f79-012 RUNNING, sound from 17.86 s; wave cover 0.64; cover 0.64; a2 takes 1 of 1.
@@ -2462,6 +2523,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: hmi-sos x DOS/4GW, 50 games, 7 share this outcome, scope ISOLATED.
+Family (item 5): FAM-26 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/RARKANI3 (Realms of Arkania 3 - Shadows over Riva (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: RARKANI3 (plan 012e9f79): C0 012e9f79-016 RUNNING, sound from 69.90 s; pin 012e9f79-017 RUNNING, sound from 78.82 s, level -6.01 dB; wave the calibration, 3 of 3: READ_DIFFERS cover 0.59 | READ_DIFFERS cover 0.54 | READ_DIFFERS cover 0.60; the calibration, 3 of 3: READ_DIFFERS cover 0.59 | READ_DIFFERS cover 0.54 | READ_DIFFERS cover 0.60; pin takes 1 of 1; a2 012e9f79-018 RUNNING, sound from 81.97 s; wave cover 0.38; cover 0.38; a2 takes 1 of 1.
@@ -2489,6 +2551,7 @@ Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: hmi-sos x DOS/4GW, 50 games, 17 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/TOONSTRK (Toonstruck (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: TOONSTRK (plan cd5dead2): C0 cd5dead2-124 RUNNING, sound from 2.30 s; pin cd5dead2-125 RUNNING, sound from 3.35 s, level -5.44 dB; pin takes 1 of 1.
@@ -2503,6 +2566,7 @@ Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by wave, 3 of 3.
 Cell: hmi-sos x DOS/4GW, 50 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-36 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/DESCENT (Descent (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: DESCENT (plan c8b067d9): C0 c8b067d9-007 RUNNING, sound from 6.34 s; pin c8b067d9-008 RUNNING, sound from 6.56 s, level -0.02 dB; wave reproduced, 3 of 3 (the sweep's pair first, then 531c872d-093, 531c872d-094): READ_DIFFERS back 48 over 30; jumps 61 over 40 | READ_DIFFERS back 62 over 30; jum; reproduced, 3 of 3 (the sweep's pair first, then 531c872d-093, 531c872d-094): READ_DIFFERS back 48 over 30; jumps 61 over 40 | READ_DIFFERS back 62 over 30; jumps 72 over 40 | READ_DIFFERS back 52 over 30; jumps 65 over ; pin takes 3 of 3; a2 c8b067d9-009 RUNNING, sound from 6.39 s, level -0.20 dB; wave reproduced, 3 of 3 (the sweep's pair first, then 531c872d-091, 531c872d-092): READ_DIFFERS speed 1.03; back 120 over 30; jumps 143 over 40 | READ_DIFFERS speed ; reproduced, 3 of 3 (the sweep's pair first, then 531c872d-091, 531c872d-092): READ_DIFFERS speed 1.03; back 120 over 30; jumps 143 over 40 | READ_DIFFERS speed 1.02; back 107 over 30; jumps 133 over 40 | READ_DIFFERS spe; a2 takes 3 of 3.
@@ -2516,6 +2580,7 @@ Hypothesis: none. Evidence: emulator (plans c8b067d9), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 4 of 4.
 Cell: UNKNOWN x REALMODE, 43 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-21 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/STELLAR7 (Stellar 7 (1990)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: STELLAR7 (plan 0605fc71): C0 0605fc71-001 RUNNING, sound from 1.72 s; a2 0605fc71-003 RUNNING, sound from 2.30 s, level +0.87 dB; 824f772f: reproduced (3 takes: differs, differs, differs); a2 takes 4 of 4.
@@ -2529,6 +2594,7 @@ Hypothesis: none. Evidence: emulator (plans 0605fc71), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: sierra-sci x REALMODE, 36 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-27 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/TINCM2 (Incredible Machine 2, The (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: TINCM2 (plan db8eed0f): C0 db8eed0f-046 RUNNING, sound from 17.11 s; pin db8eed0f-047 RUNNING, sound from 21.38 s, level -6.44 dB; wave the calibration, 3 of 3: READ_DIFFERS back 72 over 43; jumps 77 over 54 | READ_DIFFERS back 67 over 43; jumps 76 over 54 | READ_DIFFERS back 88 over 43; jumps 1; the calibration, 3 of 3: READ_DIFFERS back 72 over 43; jumps 77 over 54 | READ_DIFFERS back 67 over 43; jumps 76 over 54 | READ_DIFFERS back 88 over 43; jumps 101 over 54; pin takes 1 of 1; a2 db8eed0f-048 RUNNING, sound from 18.13 s; wave back 57 over 43; jumps 70 over 54; back 57 over 43; jumps 70 over 54; a2 takes 1 of 1.
@@ -2542,6 +2608,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: sierra-sci x REALMODE, 36 games, 3 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/FREDDY (Freddy Pharkas Frontier Pharmacist (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: FREDDY (plan eecd58bf): C0 eecd58bf-040 RUNNING, sound from 1.93 s; pin eecd58bf-041 RUNNING, sound from 2.19 s, level -3.92 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2556,6 +2623,7 @@ Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: sierra-sci x REALMODE, 36 games, 3 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/SQ4 (Space Quest IV - Roger Wilco and the Time Rippers (CD) (1991)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: SQ4 (plan eecd58bf): C0 eecd58bf-049 RUNNING, sound from 4.52 s; pin eecd58bf-050 RUNNING, sound from 4.75 s, level -1.53 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2570,6 +2638,7 @@ Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
 Cell: hmi-sos x REALMODE, 14 games, 3 share this outcome, scope ISOLATED; sierra-sci x REALMODE, 36 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-19 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/METLTECB (Metaltech Battledrome (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: METLTECB (plan cd5dead2): C0 cd5dead2-127 RUNNING, sound from 5.30 s; pin cd5dead2-128 EXITED, silent; its last screen "Assert::err: Line 472 in 'code\memory.cpp': Memory::expand: Hole found in memory / expansion"; crash noted: the build EXITED where C0 RUNNING (extender REALMODE); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 cd5dead2-129 EXITED, silent; its last screen "Assert::err: Line 472 in 'code\memory.cpp': Memory::expand: Hole found in memory / expansion"; crash noted: the build EXITED where C0 RUNNING (extender REALMODE); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -2583,6 +2652,7 @@ Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
 Cell: sierra-sci x REALMODE, 36 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-10 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/LONGBOW (Conquests of the Longbow - The Legend of Robin Hood (1991)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: LONGBOW (plan 5f654686): C0 5f654686-028 HANG, sound from 2.58 s; pin 5f654686-029 HANG, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2597,6 +2667,7 @@ Hypothesis: none. Evidence: emulator (plans 5f654686), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
 Cell: sierra-sci x REALMODE, 36 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-14 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/QG3E (Quest for Glory III - Wages of War (1992)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: QG3E (plan 5f654686): C0 5f654686-064 RUNNING, sound from 1.58 s; pin 5f654686-065 HANG, silent; crash noted: the build HANG where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2624,6 +2695,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: own-code x UNKNOWN, 35 games, 3 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2, FAM-21 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/BLAKESTA (Blake Stone - Aliens of Gold (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: BLAKESTA (plan eecd58bf): C0 eecd58bf-001 RUNNING, sound from 22.75 s; pin eecd58bf-002 RUNNING, sound from 22.99 s, level -3.26 dB; pin takes 1 of 1; a2 eecd58bf-003 RUNNING, sound from 23.04 s, level +0.85 dB; a2 takes 1 of 1.
@@ -2650,6 +2722,7 @@ Hypothesis: none. Evidence: emulator (plans 0978ab15), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: own-code x UNKNOWN, 35 games, 3 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/POPULS2 (Populous II - Trials of the Olympian Gods (1991)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: POPULS2 (plan eecd58bf): C0 eecd58bf-010 RUNNING, sound from 4.61 s; pin eecd58bf-011 RUNNING, sound from 4.79 s, level -3.06 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2664,6 +2737,7 @@ Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
 Cell: own-code x UNKNOWN, 35 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-10 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/DESERT (It Came from the Desert (1990)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: DESERT (plan 0978ab15): C0 0978ab15-097 HANG, sound from 12.36 s; pin 0978ab15-098 HANG, silent; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2678,6 +2752,7 @@ Hypothesis: none. Evidence: emulator (plans 0978ab15), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
 Cell: own-code x UNKNOWN, 35 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-14 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/BALAOPOW (Balance of Power (1985)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: BALAOPOW (plan 0978ab15): C0 0978ab15-127 RUNNING, sound from 1.38 s; pin 0978ab15-128 HANG, sound from 1.38 s; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2718,6 +2793,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: digpak x REALMODE, 17 games, 1 share this outcome, scope SINGLETON; miles x REALMODE, 34 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-4 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/CONTZACK (Contraption Zack (1992)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: CONTZACK (plan b3894b8a): C0 b3894b8a-133 RUNNING, sound from 1.76 s; a2 b3894b8a-135 RUNNING, sound from 22.24 s, level -1.33 dB; a2 takes 1 of 1.
@@ -2731,6 +2807,7 @@ Hypothesis: none. Evidence: emulator (plans b3894b8a), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
 Cell: digpak x REALMODE, 17 games, 1 share this outcome, scope SINGLETON; miles x REALMODE, 34 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-14 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/CONTZACK (Contraption Zack (1992)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: CONTZACK (plan b3894b8a): C0 b3894b8a-133 RUNNING, sound from 1.76 s; pin b3894b8a-134 HANG, sound from 1.91 s; crash noted: the build HANG where C0 RUNNING (extender REALMODE); 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first) (its cut read by hand); pin takes 3 of 3.
@@ -2744,6 +2821,7 @@ Hypothesis: none. Evidence: emulator (plans b3894b8a), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: FLAKY_CANDIDATE_UCDD_HOSTLOAD by time, 1 of 2.
 Cell: hmi-sos x REALMODE, 14 games, 1 share this outcome, scope SINGLETON; miles x REALMODE, 34 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-24 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/WC4POF (Wing Commander IV The Price of Freedom (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: WC4POF (plan cd5dead2): C0 cd5dead2-136 RUNNING, sound from 12.74 s; a2 cd5dead2-138 RUNNING, sound from 27.78 s, level -0.01 dB; 824f772f: a reading: agrees (1 takes: agrees); a2 takes 1 of 2.
@@ -2770,6 +2848,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 4 of 4.
 Cell: UNKNOWN x UNKNOWN, 31 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-6 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/WIPEOUT (WipEout (1995)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: WIPEOUT (plan fce952ae): C0 fce952ae-043 RUNNING, sound from 2.69 s; pin fce952ae-044 HANG, silent; 8439670a: reproduced (3 takes: differs, differs, differs; 1 first in 824f772f); pin takes 4 of 4.
@@ -2784,6 +2863,7 @@ Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: UNKNOWN x UNKNOWN, 31 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1, FAM-4 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/ZOOL2 (Zool 2 (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: ZOOL2 (plan db8eed0f): C0 db8eed0f-121 RUNNING, sound from 1.91 s; pin db8eed0f-122 RUNNING, sound from 2.10 s, level -5.83 dB; pin takes 1 of 1; a2 db8eed0f-123 RUNNING, sound from 2.19 s, level -0.57 dB; a2 takes 1 of 1.
@@ -2797,6 +2877,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
 Cell: UNKNOWN x UNKNOWN, 31 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-22 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/ALIENBRT (Alien Breed - Tower Assault (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: ALIENBRT (plan db8eed0f): C0 db8eed0f-106 RUNNING, sound from 29.52 s; a2 db8eed0f-108 RUNNING, silent; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -2810,6 +2891,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by state, 3 of 3.
 Cell: UNKNOWN x UNKNOWN, 31 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-19 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/STARCRUS (Star Crusader (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: STARCRUS (plan db8eed0f): C0 db8eed0f-115 RUNNING, sound from 4.81 s; pin db8eed0f-116 EXITED, silent; its last screen "Unable to locate CD-ROM with the Star Crusader on it.  Make sure that / the disc has been inserted into your CD-ROM drive."; crash noted: the build EXITED where C0 RUNNING (extender UNKNOWN); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-117 EXITED, silent; its last screen "Unable to locate CD-ROM with the Star Crusader on it.  Make sure that / the disc has been inserted into your CD-ROM drive."; crash noted: the build EXITED where C0 RUNNING (extender UNKNOWN); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -2823,6 +2905,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by sound, 4 of 4.
 Cell: own-code x DOS/4GW, 28 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-30 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/CREATURE (Creature Shock (1994)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: CREATURE (plan db8eed0f): C0 db8eed0f-034 RUNNING, sound from 25.01 s; pin db8eed0f-035 RUNNING, silent; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
@@ -2837,6 +2920,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: own-code x DOS/4GW, 28 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-15 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/FXFIGHTE (FX Fighter (1995)).
 Controls: C0 as below, each game's own A6 take; C1 fail.
 Observed: FXFIGHTE (plan c7cfcb37): C0 c7cfcb37-046 RUNNING, sound from 73.60 s; a2 c7cfcb37-048 RUNNING, sound from 79.14 s; wave cover 0.24; cover 0.24; a2 takes 1 of 1.
@@ -2864,6 +2948,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 4 of 4.
 Cell: own-code x DOS/4GW, 28 games, 3 share this outcome, scope ISOLATED.
+Family (item 5): FAM-6 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/PROJECTP (Project Paradise (1997)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: PROJECTP (plan c7cfcb37): C0 c7cfcb37-055 RUNNING, sound from 29.59 s; pin c7cfcb37-056 HANG, silent; its last screen "▀▀ / ▀▀▀     ·?,???? ?? ?? ???? ???????????"; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
@@ -2891,6 +2976,7 @@ Hypothesis: none. Evidence: emulator (plans 6d5d7c39), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
 Cell: own-code x DOS/4GW, 28 games, 3 share this outcome, scope ISOLATED.
+Family (item 5): FAM-12 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/THEHORDE (Horde, The (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: THEHORDE (plan c7cfcb37): C0 c7cfcb37-061 RUNNING, sound from 7.46 s; pin c7cfcb37-062 HANG, silent; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 c7cfcb37-063 HANG, silent; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -2904,6 +2990,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: own-code x DOS/4GW, 28 games, 5 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/WACKYWHE (Wacky Wheels (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: WACKYWHE (plan acca1005): C0 acca1005-046 RUNNING, sound from 16.79 s; pin acca1005-047 RUNNING, sound from 25.48 s, level -2.11 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -2931,6 +3018,7 @@ Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: others x REALMODE, 23 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-29 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/DARKLAND (Darklands (1992)).
 Controls: C0 as below, each game's own A6 take; C1 not a disc game.
 Observed: DARKLAND (plan 310ed652): C0 310ed652-076 RUNNING, sound from 8.74 s; pin 310ed652-077 RUNNING, sound from 9.95 s, level -2.33 dB; pin takes 1 of 1; a2 310ed652-078 RUNNING, sound from 4.72 s, level -0.69 dB; a2 takes 1 of 1.
@@ -2970,6 +3058,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: own-code x DJGPP, 19 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-33 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/QUAKEM1 (Quake Mission Pack No 1 Scourge of Armagon (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: QUAKEM1 (plan c7cfcb37): C0 c7cfcb37-028 RUNNING, sound from 10.85 s; pin c7cfcb37-029 RUNNING, sound from 12.53 s; wave speed 1.03; speed 1.03; pin takes 1 of 1.
@@ -2983,6 +3072,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: miles x UNKNOWN, 11 games, 1 share this outcome, scope SINGLETON; others x UNKNOWN, 16 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-9 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/TWINSEN (Twinsen's Odyssey (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: TWINSEN (plan c7cfcb37): C0 c7cfcb37-013 RUNNING, sound from 12.26 s; pin c7cfcb37-014 RUNNING, sound from 14.56 s, level -6.01 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 9 over 2 | READ_DIFFERS gaps 11 over 2 | READ_DIFFERS gaps 11 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 9 over 2 | READ_DIFFERS gaps 11 over 2 | READ_DIFFERS gaps 11 over 2; pin takes 1 of 1.
@@ -2996,6 +3086,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: others x UNKNOWN, 16 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/CELTTALE (Celtic Tales - Balor of the Evil Eye (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: CELTTALE (plan acca1005): C0 acca1005-034 RUNNING, sound from 7.06 s; pin acca1005-035 RUNNING, sound from 7.47 s, level -4.68 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -3010,6 +3101,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
 Cell: others x UNKNOWN, 16 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-10 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/TYRIAN (Tyrian (1995)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: TYRIAN (plan 310ed652): C0 310ed652-121 RUNNING, sound from 20.81 s; pin 310ed652-122 RUNNING, silent, level -21.40 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -3024,6 +3116,7 @@ Hypothesis: none. Evidence: emulator (plans 310ed652), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by sound, 3 of 3.
 Cell: others x UNKNOWN, 16 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-10 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/TYRIAN20 (Tyrian 2000 (1999)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: TYRIAN20 (plan 310ed652): C0 310ed652-124 RUNNING, sound from 26.63 s; pin 310ed652-125 RUNNING, silent, level -26.68 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -3038,6 +3131,7 @@ Hypothesis: none. Evidence: emulator (plans 310ed652), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: hmi-sos x REALMODE, 14 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-11 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/METLTECE (Metaltech Earthsiege (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: METLTECE (plan cd5dead2): C0 cd5dead2-130 RUNNING, sound from 5.10 s; a2 cd5dead2-132 RUNNING, sound from 2.95 s, level +7.82 dB; a2 takes 1 of 1.
@@ -3065,6 +3159,7 @@ Hypothesis: none. Evidence: emulator (plans cd5dead2), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: hmi-sos x UNKNOWN, 12 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-31 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/STREETRA (Street Racer (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: STREETRA (plan 012e9f79): C0 012e9f79-031 RUNNING, sound from 3.03 s; pin 012e9f79-032 RUNNING, sound from 5.09 s; wave the calibration, 3 of 3: READ_DIFFERS cover 0.03 | READ_DIFFERS cover 0.03 | READ_DIFFERS cover 0.03; the calibration, 3 of 3: READ_DIFFERS cover 0.03 | READ_DIFFERS cover 0.03 | READ_DIFFERS cover 0.03; pin takes 1 of 1.
@@ -3078,6 +3173,7 @@ Hypothesis: none. Evidence: emulator (plans 012e9f79), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: hmi-sos x UNKNOWN, 12 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-9 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/WITCHAVE (Witchaven (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: WITCHAVE (plan db8eed0f): C0 db8eed0f-016 RUNNING, sound from 2.07 s; pin db8eed0f-017 RUNNING, sound from 3.23 s, level -6.02 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 10 over 2 | READ_DIFFERS gaps 10 over 2 | READ_DIFFERS gaps 9 over 2; the calibration, 3 of 3: READ_DIFFERS gaps 10 over 2 | READ_DIFFERS gaps 10 over 2 | READ_DIFFERS gaps 9 over 2; pin takes 1 of 1.
@@ -3091,6 +3187,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by state, 3 of 3.
 Cell: hmi-sos x UNKNOWN, 12 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-25 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/STONKEEP (Stonekeep (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: STONKEEP (plan db8eed0f): C0 db8eed0f-022 RUNNING, sound from 5.31 s; pin db8eed0f-023 HANG, silent; its last screen "╚═════════════════════════════════════════════════════════╝ / _"; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-024 HANG, silent; its last screen "╚═════════════════════════════════════════════════════════╝ / _"; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -3104,6 +3201,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: hmi-sos x UNKNOWN, 12 games, 4 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/DESSTR (Desert Strike - Return to the Gulf (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: DESSTR (plan c87998b0): C0 c87998b0-004 RUNNING, sound from 1.50 s; pin c87998b0-005 RUNNING, sound from 1.69 s, level -1.70 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -3118,6 +3216,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: hmi-sos x UNKNOWN, 12 games, 4 share this outcome, scope ISOLATED.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/JUNGLEST (Jungle Strike (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: JUNGLEST (plan c87998b0): C0 c87998b0-007 RUNNING, sound from 2.92 s; pin c87998b0-008 RUNNING, sound from 3.14 s, level -0.62 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3.
@@ -3132,6 +3231,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: hmi-sos x UNKNOWN, 12 games, 4 share this outcome, scope ISOLATED.
+Family (item 5): FAM-11, FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/DUMAST2 (Dungeon Master II - The Legend of Skullkeep (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: DUMAST2 (plan c87998b0): C0 c87998b0-013 HANG, sound from 3.65 s; pin c87998b0-014 HANG, sound from 3.98 s, level -1.86 dB; its last screen "(graphics)"; pin takes 1 of 1; a2 c87998b0-015 HANG, sound from 3.96 s, level +4.70 dB; its last screen "(graphics)"; a2 takes 1 of 1.
@@ -3145,6 +3245,7 @@ Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: apogee x DOS/4GW, 11 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-8 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/REDRAM (Redneck Rampage (1997)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: REDRAM (plan fce952ae): C0 fce952ae-049 RUNNING, sound from 9.45 s; a2 fce952ae-051 RUNNING, sound from 13.91 s; wave gaps 12 over 4; gaps 12 over 4; a2 takes 1 of 1.
@@ -3158,6 +3259,7 @@ Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by state, 4 of 4.
 Cell: miles x UNKNOWN, 11 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-25 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/TIMECOMM (Time Commando (1996)).
 Controls: C0 as below, each game's own A6 take; C1 pass.
 Observed: TIMECOMM (plan c7cfcb37): C0 c7cfcb37-019 RUNNING, sound from 3.77 s; pin c7cfcb37-020 HANG, silent; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 8439670a: reproduced (3 takes: differs, differs, differs; 1 first in 824f772f); pin takes 4 of 4; a2 c7cfcb37-021 HANG, silent; crash noted: the build HANG where C0 RUNNING (extender UNKNOWN); 8439670a: reproduced (3 takes: differs, differs, differs; 1 first in 824f772f); a2 takes 4 of 4.
@@ -3171,6 +3273,7 @@ Hypothesis: none. Evidence: emulator (plans c7cfcb37), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 4 of 4.
 Cell: apogee x DOS/4GW, 11 games, 5 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/EXTREMER (Extreme Rise of the Triad (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: EXTREMER (plan db8eed0f): C0 db8eed0f-139 RUNNING, sound from 8.30 s; pin db8eed0f-140 RUNNING, sound from 11.69 s, level -5.13 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
@@ -3185,6 +3288,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: miles x UNKNOWN, 11 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1, FAM-4 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/PRIV2SE (Privateer 2 The Darkening (Special Edition) (1996)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: PRIV2SE (plan acca1005): C0 acca1005-019 RUNNING, sound from 9.64 s; pin acca1005-020 RUNNING, sound from 26.01 s, level -5.11 dB; pin takes 1 of 1; a2 acca1005-021 RUNNING, sound from 10.07 s, level -0.63 dB; a2 takes 1 of 1.
@@ -3198,6 +3302,7 @@ Hypothesis: none. Evidence: emulator (plans acca1005), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 4 of 4.
 Cell: apogee x DOS/4GW, 11 games, 5 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/ROTTDW (Rise of the Triad - Dark War (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: ROTTDW (plan db8eed0f): C0 db8eed0f-145 RUNNING, sound from 6.65 s; pin db8eed0f-146 RUNNING, sound from 9.98 s, level -4.74 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
@@ -3212,6 +3317,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: dmx x DOS/4GW, 8 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-16, FAM-32 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/HEXENBEY (Hexen - Beyond Heretic (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: HEXENBEY (plan fce952ae): C0 fce952ae-094 RUNNING, sound from 7.86 s; pin fce952ae-095 RUNNING, sound from 12.97 s, level -6.00 dB; wave the calibration, 3 of 3: READ_DIFFERS gaps 3 over 2; back 92 over 57; jumps 108 over 98 | READ_DIFFERS back 102 over 57; jumps 109 over 98 | READ_DIFFERS back 9; the calibration, 3 of 3: READ_DIFFERS gaps 3 over 2; back 92 over 57; jumps 108 over 98 | READ_DIFFERS back 102 over 57; jumps 109 over 98 | READ_DIFFERS back 95 over 57; jumps 110 over 98; pin takes 1 of 1; a2 fce952ae-096 RUNNING, sound from 16.75 s; wave back 95 over 57; jumps 105 over 98; back 95 over 57; jumps 105 over 98; a2 takes 1 of 1.
@@ -3225,6 +3331,7 @@ Hypothesis: none. Evidence: emulator (plans fce952ae), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 1 of 1.
 Cell: creative x UNKNOWN, 8 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-13 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/THEPATRI (Patrician, The (1993)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: THEPATRI (plan a06419fc): C0 a06419fc-013 RUNNING, sound from 1.40 s; pin a06419fc-014 RUNNING, sound from 1.68 s, level -6.03 dB; pin takes 1 of 1; a2 a06419fc-015 RUNNING, sound from 1.69 s, level -6.03 dB; a2 takes 1 of 1.
@@ -3238,6 +3345,7 @@ Hypothesis: none. Evidence: emulator (plans a06419fc), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 4 of 4.
 Cell: digpak x DOS/4GW, 8 games, 2 share this outcome, scope ISOLATED.
+Family (item 5): FAM-1 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/XCOMUF (X-COM - UFO Defense (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: XCOMUF (plan c8b067d9): C0 c8b067d9-004 RUNNING, sound from 3.25 s; pin c8b067d9-005 RUNNING, sound from 7.05 s, level -4.97 dB; 824f772f: reproduced (3 takes: differs, differs, differs); pin takes 4 of 4.
@@ -3252,6 +3360,7 @@ Hypothesis: none. Evidence: emulator (plans c8b067d9), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_SFX by wave, 1 of 1.
 Cell: creative x DOS/4GW, 1 games, 1 share this outcome, scope SINGLETON; digpak x DOS/4GW, 8 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-36 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/PIZZATYC (Pizza Tycoon (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not a disc game.
 Observed: PIZZATYC (plan b3894b8a): C0 b3894b8a-067 RUNNING, sound from 7.42 s; pin b3894b8a-068 RUNNING, sound from 13.04 s, level +0.01 dB; wave the calibration, 3 of 3: READ_DIFFERS back 23 over 20; jumps 55 over 31 | READ_DIFFERS back 26 over 20; jumps 49 over 31 | READ_DIFFERS jumps 42 over 31; the calibration, 3 of 3: READ_DIFFERS back 23 over 20; jumps 55 over 31 | READ_DIFFERS back 26 over 20; jumps 49 over 31 | READ_DIFFERS jumps 42 over 31; pin takes 1 of 1.
@@ -3291,6 +3400,7 @@ Hypothesis: none. Evidence: emulator (plans eecd58bf), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
 Cell: hmi-sos x DOS/32A, 2 games, 1 share this outcome, scope SINGLETON; miles x DOS/32A, 5 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-12 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/QUARANT (Quarantine (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: QUARANT (plan db8eed0f): C0 db8eed0f-007 RUNNING, sound from 4.03 s; pin db8eed0f-008 HANG, silent; its last screen "(graphics)"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-009 HANG, silent; its last screen "(graphics)"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -3304,6 +3414,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_HOST by state, 3 of 3.
 Cell: UNKNOWN x Phar Lap, 3 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-3 (by rule; the bench's reports/families.md).
 Affected: DOS_THNK/ULTIMA8 (Ultima VIII - Pagan (1994)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: ULTIMA8 (plan db8eed0f): C0 db8eed0f-070 RUNNING, sound from 25.00 s; pin db8eed0f-071 CRASH, silent; its last screen "DS=8F91 ES=0000 FS=CC9D GS=052C [CS:IP]=FF FF 91 8F 59 20 91 8F / Press ESC to abort program ?"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); pin takes 3 of 3; a2 db8eed0f-072 EXITED, silent; its last screen "Program halted by code. / Rest, Avatar...you will need it!"; 531c872d: reproduced (3 takes: differs, differs, differs; the sweep's first); a2 takes 3 of 3.
@@ -3317,6 +3428,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_AUDIO by wave, 1 of 1.
 Cell: apogee x REALMODE, 2 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-8 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/BLOOD (Blood (1997)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: BLOOD (plan fce952ae): C0 fce952ae-058 RUNNING, sound from 7.49 s; a2 fce952ae-060 RUNNING, sound from 11.26 s; wave gaps 3 over 2; gaps 3 over 2; a2 takes 1 of 1.
@@ -3343,6 +3455,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 4.
 Cell: apogee x REALMODE, 2 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/REALMSOF (Realms of Chaos (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not run.
 Observed: REALMSOF (plan db8eed0f): C0 db8eed0f-151 RUNNING, sound from 10.64 s; pin db8eed0f-152 RUNNING, sound from 11.17 s, level -1.11 dB; 824f772f: reproduced (3 takes: differs, differs, agrees); pin takes 3 of 4.
@@ -3357,6 +3470,7 @@ Hypothesis: none. Evidence: emulator (plans db8eed0f), dynarec off; one emulator
 - searched = "terms: zero-interaction, control take, bare card, sweep candidate; hits: 16 in 8 documents (VSB 4, SNDLIB 3, CT2290 2, HOSTCD 2, docs/sound-engines/methods.md 2, SPECFIRST 1); 10 Nov 2026"
 Pinned: count-position 546b389 (C2 hash UCDD.EXE 03d92066, UCDDHOST.BIN 447ace33); 0.9.5-a2 245759c (UCDD.EXE 8421d411). Bin: CANDIDATE_UCDD_LEVEL by level, 3 of 3.
 Cell: lucasarts x DOS/4GW, 2 games, 1 share this outcome, scope SINGLETON.
+Family (item 5): FAM-2 (by rule; the bench's reports/families.md).
 Affected: DOS_ACT/SWDFORC (Star Wars - Dark Forces (1995)).
 Controls: C0 as below, each game's own A6 take; C1 not read.
 Observed: SWDFORC (plan c87998b0): C0 c87998b0-019 RUNNING, sound from 4.54 s; pin c87998b0-020 RUNNING, sound from 8.96 s, level -2.74 dB; 824f772f: reproduced (3 takes: differs, differs, differs; the sweep's first); the calibration's ruling on its own takes: GAME_FAULT; pin takes 3 of 3.
@@ -3377,6 +3491,332 @@ Observed: SWDFORC (plan c87998b0): C0 c87998b0-019 RUNNING, sound from 4.54 s; a
 Expected: as on C0 (rule 1).
 Trace: none (B is frozen). Minimal reproduction: the sweep's SWP-P133-A2-SWDFORC (plan c87998b0); two more takes each in plan 531c872d (the charter's 11.3): SWDFORC.
 Hypothesis: none. Evidence: emulator (plans c87998b0), dynarec off; one emulator. Hardware: UNCONFIRMED.
+
+<!-- A7's families (the owner's decision of 10 Nov 2026 on the 22:11Z report, item 5): 36 families of two games or more, by rule; each member's row points to its family. One-game families stay their rows. The bench's reports/families.md ranks them. -->
+
+### FAM-1 A7 family: pin only, CANDIDATE_UCDD_LEVEL by level: under the control, class 2 of 3 (-8.31 to -3.92 dB) (81 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: ABUSE, ABZERO, ADARK1, ALBION, ALIENODY, AMULARM, ANVLDAWN, ARCHIMED, ASCENDY, BIGREDRA, BLUBROJA, BUBBBRI, CAESAR2, CANNFOD, CANNFOD2, CELTTALE, CEO, CONQESTN, CYBERIA, CYBERIA2, CYBERMAG, DEATH, DESCNT2V, DOOM, DUKE3D, DW1, DW2, ESDAGGER, ETERNAM, EXTREMER, FINALDOO, FLYINGT2, FRANKOTH, FREDDY, HANNIBAL, HERETICS, INDY4, INNERWOR, JAGGALLD, JAZZCD, KQ5, KQ7, KYRA3, LEXPRESS, LORDORM2, LSL6CD, LSL7DOS, MASTORI2, MCRITIC, MDK, MEGARAC2, MK, NORMAL, NORSEBYN, NOVASTOR, ODDWORLD, PRIV2SE, RAPTORCA, REDRAMRA, ROTH, ROTTDW, SIMISLE, STARCON3, STRIFE, SUPERKAR, SWTIECD, SYSTEMSH, TERMFS, TERMVEL, TERRANOV, THEMHOSP, TNFSSE, TOMBRAIG, TOONSTRK, ULTDOOM, WC4POF, WITCHAV2, XCOMAP, XCOMUF, XMENCHI, ZOOL2.
+Their rows: CAND-32, CAND-34, CAND-45, CAND-48, CAND-50, CAND-64, CAND-87, CAND-88, CAND-90, CAND-91, CAND-92, CAND-103, CAND-107, CAND-125, CAND-141, CAND-154, CAND-155, CAND-156, CAND-159.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-2 A7 family: pin only, CANDIDATE_UCDD_LEVEL by level: under the control, class 3 of 3 (-3.71 to -0.57 dB) (21 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: ALIENLEG, BLAKESTA, BLAKESTP, DESSTR, DUMAST2, DUNE2, GODTHUND, HOCUSPOC, JAGGALL, JUNGLEST, KYRA2, LLTOC, POPULS2, QG4CD, REALMSOF, SIMCITY2, SQ4, SQ6, SWDFORC, WACKYWHE, XANTH.
+Their rows: CAND-34, CAND-46, CAND-47, CAND-49, CAND-52, CAND-54, CAND-55, CAND-57, CAND-89, CAND-93, CAND-94, CAND-108, CAND-113, CAND-115, CAND-134, CAND-149, CAND-150, CAND-151, CAND-167, CAND-168.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-3 A7 family: a2 only, CANDIDATE_UCDD_HOST by state: EXITED; last message: C:\> (10 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: BLASTER!, CRUSREGR, CRUSREMO, DEATHRAL, RAYMAN, RAYMANF, STORM96, TRANSPOR, TRANTDLX, ULTIMA8.
+Their rows: CAND-33, CAND-35, CAND-37, CAND-164.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-4 A7 family: a2 only, CANDIDATE_UCDD_LEVEL by level: under the control, class 3 of 3 (-3.71 to -0.57 dB) (7 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: ADARK1, BUBBBRI, CONTZACK, GTA, MEGAMANX, PRIV2SE, ZOOL2.
+Their rows: CAND-45, CAND-83, CAND-84, CAND-90, CAND-120, CAND-125, CAND-155.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-5 A7 family: both, CANDIDATE_UCDD_AUDIO by wave: gaps (6 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: ADARK2, ADARK394, DARKLIGH, GOB2, MARBMAST, STARCOMM.
+Their rows: CAND-38, CAND-39, CAND-66, CAND-72.
+Split test (the charter's 10.5): cd_audio True: members 6 of 6, the other evaluable games of their cells 39 of 138; image_type CUE: members 6 of 6, the other evaluable games of their cells 37 of 138; multi_disc_n 1: members 6 of 6, the other evaluable games of their cells 76 of 138.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-6 A7 family: pin only, CANDIDATE_UCDD_HOST by state: HANG; last message: none read (6 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: BLASTER!, GK1, PROJECTP, TRANSPOR, TRANTDLX, WIPEOUT.
+Their rows: CAND-31, CAND-33, CAND-35, CAND-124, CAND-131.
+Split test (the charter's 10.5): multi_disc_n 1: members 6 of 6, the other evaluable games of their cells 14 of 26.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-7 A7 family: pin only, CANDIDATE_UCDD_HOSTLOAD by time: late (6 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: ALIENTRI, FIROKLAW, MEGAMANX, REDRAM, SWIV3D, SYNDWARS.
+Their rows: CAND-23, CAND-78.
+Split test (the charter's 10.5): multi_disc_n 1: members 6 of 6, the other evaluable games of their cells 49 of 60.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-8 A7 family: a2 only, CANDIDATE_UCDD_AUDIO by wave: gaps (5 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: BLOOD, HEROMM2D, LBA, REDRAM, XMENCHI.
+Their rows: CAND-68, CAND-70, CAND-152, CAND-165.
+Split test (the charter's 10.5): cd_audio True: members 5 of 5, the other evaluable games of their cells 30 of 63; image_type CUE: members 5 of 5, the other evaluable games of their cells 29 of 63.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-9 A7 family: pin only, CANDIDATE_UCDD_AUDIO by wave: gaps (5 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: COMCON, FANTGEN, RAYMANF, TWINSEN, WITCHAVE.
+Their rows: CAND-140, CAND-147.
+Split test (the charter's 10.5): cd_audio True: members 5 of 5, the other evaluable games of their cells 33 of 75.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-10 A7 family: pin only, CANDIDATE_UCDD_SFX by sound: silent where the control sounds (5 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: DESERT, LONGBOW, TYRIAN, TYRIAN20, ULTIDOMA.
+Their rows: CAND-62, CAND-110, CAND-116, CAND-142, CAND-143.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-11 A7 family: a2 only, CANDIDATE_UCDD_LEVEL by level: over the control, class 2 of 3 (4.70 to 9.16 dB) (4 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: DUMAST2, DUNE2, METLTECE, ULTIDOMA.
+Their rows: CAND-49, CAND-56, CAND-144, CAND-151.
+Split test (the charter's 10.5): image_type ISO: members 4 of 4, the other evaluable games of their cells 26 of 93; data_mode ISO/2048: members 4 of 4, the other evaluable games of their cells 26 of 93; multi_disc_n 1: members 4 of 4, the other evaluable games of their cells 42 of 93.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-12 A7 family: both, CANDIDATE_UCDD_HOST by state: HANG; last message: none read (4 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: BSWORD1, QUARANT, RENBFJS, THEHORDE.
+Their rows: CAND-76, CAND-77, CAND-133, CAND-163.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-13 A7 family: both, CANDIDATE_UCDD_LEVEL by level: under the control, class 2 of 3 (-8.31 to -3.92 dB) (4 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: DEDERBY, FWARS, MKTRIL, THEPATRI.
+Their rows: CAND-51, CAND-80, CAND-85, CAND-158.
+Split test (the charter's 10.5): cd_audio True: members 4 of 4, the other evaluable games of their cells 52 of 164; image_type CUE: members 4 of 4, the other evaluable games of their cells 49 of 164; data_mode MODE1/2352: members 4 of 4, the other evaluable games of their cells 41 of 164; multi_disc_n 1: members 4 of 4, the other evaluable games of their cells 102 of 164.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-14 A7 family: pin only, CANDIDATE_UCDD_SFX by state: HANG; last message: none read (4 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: BALAOPOW, CONTZACK, MI2, QG3E.
+Their rows: CAND-60, CAND-111, CAND-117, CAND-121.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-15 A7 family: a2 only, CANDIDATE_UCDD_AUDIO by wave: cover (3 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: FXFIGHTE, SCRMRAL, XCAREXPE.
+Their rows: CAND-98, CAND-100, CAND-129.
+Split test (the charter's 10.5): extender_version 1.97: members 3 of 3, the other evaluable games of their cells 23 of 47; cd_audio True: members 3 of 3, the other evaluable games of their cells 18 of 47; image_type CUE: members 3 of 3, the other evaluable games of their cells 16 of 47; data_mode MODE1/2352: members 3 of 3, the other evaluable games of their cells 14 of 47; multi_disc_n 1: members 3 of 3, the other evaluable games of their cells 31 of 47.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-16 A7 family: a2 only, CANDIDATE_UCDD_AUDIO by wave: steps back and jumps (3 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: EXTREMEA, HEXENBEY, JURASSIC.
+Their rows: CAND-67, CAND-157.
+Split test (the charter's 10.5): cd_audio True: members 3 of 3, the other evaluable games of their cells 43 of 105; image_type CUE: members 3 of 3, the other evaluable games of their cells 41 of 105; data_mode MODE1/2352: members 3 of 3, the other evaluable games of their cells 33 of 105; multi_disc_n 1: members 3 of 3, the other evaluable games of their cells 79 of 105.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-17 A7 family: a2 only, CANDIDATE_UCDD_HOSTLOAD by time: late (3 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: CAPTLSM, COMCONRA, SHADOWWA.
+Their rows: CAND-24, CAND-79.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-18 A7 family: a2 only, CANDIDATE_UCDD_LEVEL by level: over the control, class 3 of 3 (11.85 to 13.87 dB) (3 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: KYRA1, KYRA2, LLTOC.
+Their rows: CAND-53, CAND-54, CAND-55.
+Split test (the charter's 10.5): sound_engine own: SB + AdLib: members 3 of 3, the other evaluable games of their cells 57 of 78; driver_file none: members 3 of 3, the other evaluable games of their cells 75 of 78; image_type ISO: members 3 of 3, the other evaluable games of their cells 17 of 78; data_mode ISO/2048: members 3 of 3, the other evaluable games of their cells 17 of 78; multi_disc_n 1: members 3 of 3, the other evaluable games of their cells 30 of 78.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-19 A7 family: both, CANDIDATE_UCDD_SFX by state: EXITED; last message: C:\> (3 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: METLTECB, STARCRUS, WINGCOMM.
+Their rows: CAND-25, CAND-109, CAND-127.
+Split test (the charter's 10.5): image_type ISO: members 3 of 3, the other evaluable games of their cells 19 of 51; data_mode ISO/2048: members 3 of 3, the other evaluable games of their cells 19 of 51; multi_disc_n 1: members 3 of 3, the other evaluable games of their cells 26 of 51.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-20 A7 family: a2 only, CANDIDATE_UCDD_AUDIO by state: EXITED; last message: C:\> (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: GTRACING, STARGUNN.
+Their rows: CAND-40, CAND-41.
+Split test (the charter's 10.5): sound_engine own: SB: members 2 of 2, the other evaluable games of their cells 19 of 79; driver_file none: members 2 of 2, the other evaluable games of their cells 76 of 79; cd_audio True: members 2 of 2, the other evaluable games of their cells 12 of 79; image_type CUE: members 2 of 2, the other evaluable games of their cells 11 of 79; data_mode MODE1/2352: members 2 of 2, the other evaluable games of their cells 10 of 79; multi_disc_n 1: members 2 of 2, the other evaluable games of their cells 31 of 79.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-21 A7 family: a2 only, CANDIDATE_UCDD_LEVEL by level: over the control, class 1 of 3 (0.08 to 2.99 dB) (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: BLAKESTA, STELLAR7.
+Their rows: CAND-105, CAND-113.
+Split test (the charter's 10.5): multi_disc_n 1: members 2 of 2, the other evaluable games of their cells 5 of 23.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-22 A7 family: a2 only, CANDIDATE_UCDD_SFX by sound: silent where the control sounds (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: ALIENBRT, ISHAR1.
+Their rows: CAND-59, CAND-126.
+Split test (the charter's 10.5): driver_file none: members 2 of 2, the other evaluable games of their cells 84 of 87.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-23 A7 family: a2 only, FLAKY_CANDIDATE_UCDD_AUDIO by wave: gaps (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: ETERNAM, FANTGEN.
+Their rows: CAND-42.
+Split test (the charter's 10.5): cd_audio True: members 2 of 2, the other evaluable games of their cells 43 of 138; image_type CUE: members 2 of 2, the other evaluable games of their cells 41 of 138; data_mode MODE1/2352: members 2 of 2, the other evaluable games of their cells 32 of 138; multi_disc_n 1: members 2 of 2, the other evaluable games of their cells 80 of 138.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-24 A7 family: a2 only, FLAKY_CANDIDATE_UCDD_HOSTLOAD by time: late (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: ALIENTRI, WC4POF.
+Their rows: CAND-24, CAND-122.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-25 A7 family: both, CANDIDATE_UCDD_AUDIO by state: HANG; last message: none read (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: STONKEEP, TIMECOMM.
+Their rows: CAND-148, CAND-153.
+Split test (the charter's 10.5): cd_audio True: members 2 of 2, the other evaluable games of their cells 4 of 10; image_type CUE: members 2 of 2, the other evaluable games of their cells 3 of 10; multi_disc_n 1: members 2 of 2, the other evaluable games of their cells 7 of 10.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-26 A7 family: both, CANDIDATE_UCDD_AUDIO by wave: cover (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: BCRACERS, RARKANI3.
+Their rows: CAND-96, CAND-101.
+Split test (the charter's 10.5): sound_engine HMI SOS: members 2 of 2, the other evaluable games of their cells 24 of 32; driver_file HMIDET.386 HMIDRV.386: members 2 of 2, the other evaluable games of their cells 6 of 32; cd_audio True: members 2 of 2, the other evaluable games of their cells 14 of 32; image_type CUE: members 2 of 2, the other evaluable games of their cells 13 of 32; data_mode MODE1/2352: members 2 of 2, the other evaluable games of their cells 12 of 32; multi_disc_n 1: members 2 of 2, the other evaluable games of their cells 26 of 32.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-27 A7 family: both, CANDIDATE_UCDD_AUDIO by wave: steps back and jumps (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: SPIREXC, TINCM2.
+Their rows: CAND-43, CAND-106.
+Split test (the charter's 10.5): cd_audio True: members 2 of 2, the other evaluable games of their cells 14 of 103; image_type CUE: members 2 of 2, the other evaluable games of their cells 13 of 103; data_mode MODE1/2352: members 2 of 2, the other evaluable games of their cells 12 of 103; multi_disc_n 1: members 2 of 2, the other evaluable games of their cells 40 of 103.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-28 A7 family: both, CANDIDATE_UCDD_HOSTLOAD by time: late (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: CHASMTHE, SCREAMER.
+Their rows: CAND-23, CAND-24.
+Split test (the charter's 10.5): cd_audio True: members 2 of 2, the other evaluable games of their cells 27 of 112; image_type CUE: members 2 of 2, the other evaluable games of their cells 25 of 112; multi_disc_n 1: members 2 of 2, the other evaluable games of their cells 58 of 112.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-29 A7 family: both, CANDIDATE_UCDD_LEVEL by level: under the control, class 3 of 3 (-3.71 to -0.57 dB) (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: DARKLAND, PRIMALRA.
+Their rows: CAND-86, CAND-136.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-30 A7 family: pin only, CANDIDATE_UCDD_AUDIO by sound: silent where the control sounds (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: CREATURE, TRACKATT.
+Their rows: CAND-99, CAND-128.
+Split test (the charter's 10.5): cd_audio True: members 2 of 2, the other evaluable games of their cells 18 of 47.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-31 A7 family: pin only, CANDIDATE_UCDD_AUDIO by wave: cover (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: SCREAMR2, STREETRA.
+Their rows: CAND-97, CAND-146.
+Split test (the charter's 10.5): driver_file HMIDET.386 HMIDRV.386 HMIMDRV.386: members 2 of 2, the other evaluable games of their cells 20 of 43; extender DOS/4GW: members 2 of 2, the other evaluable games of their cells 36 of 43; extender_version 1.97: members 2 of 2, the other evaluable games of their cells 20 of 43; cd_audio True: members 2 of 2, the other evaluable games of their cells 19 of 43; image_type CUE: members 2 of 2, the other evaluable games of their cells 17 of 43; data_mode MODE1/2352: members 2 of 2, the other evaluable games of their cells 15 of 43; multi_disc_n 1: members 2 of 2, the other evaluable games of their cells 35 of 43.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-32 A7 family: pin only, CANDIDATE_UCDD_AUDIO by wave: gaps, steps back and jumps (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: HEXENBEY, LBA.
+Their rows: CAND-68, CAND-157.
+Split test (the charter's 10.5): driver_file none: members 2 of 2, the other evaluable games of their cells 11 of 64; cd_audio True: members 2 of 2, the other evaluable games of their cells 29 of 64; image_type CUE: members 2 of 2, the other evaluable games of their cells 28 of 64; data_mode MODE1/2352: members 2 of 2, the other evaluable games of their cells 21 of 64; multi_disc_n 1: members 2 of 2, the other evaluable games of their cells 51 of 64.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-33 A7 family: pin only, CANDIDATE_UCDD_AUDIO by wave: speed fast (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: QUAKEM1, WARCRAFD.
+Their rows: CAND-73, CAND-139.
+Split test (the charter's 10.5): cd_audio True: members 2 of 2, the other evaluable games of their cells 31 of 60.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-34 A7 family: pin only, CANDIDATE_UCDD_AUDIO by wave: steps back and jumps (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: HIST1914, MM6.
+Their rows: none filed (each member reads as its row says).
+Split test (the charter's 10.5): driver_file none: members 2 of 2, the other evaluable games of their cells 123 of 126; cd_audio True: members 2 of 2, the other evaluable games of their cells 14 of 126.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-35 A7 family: pin only, CANDIDATE_UCDD_LEVEL by level: over the control, class 1 of 3 (0.08 to 2.99 dB) (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: EXTREMEA, KYRA1.
+Their rows: CAND-53, CAND-81.
+Split test (the charter's 10.5): multi_disc_n 1: members 2 of 2, the other evaluable games of their cells 105 of 168.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
+
+### FAM-36 A7 family: pin only, CANDIDATE_UCDD_SFX by wave: steps back and jumps (2 games; by rule, 11 Nov 2026; open)
+
+- decides = "silent: the owner's decision of 10 Nov 2026 on the 22:11Z report item 5 (a family by rule: the builds, the bin and its first differing measure, the symptom); each member's own row keeps its decides"
+- searched = "terms: fork fix, upstream regression, merge base, base build; hits: 1 in 1 documents (FIRE 1); 10 Nov 2026"
+Members: DESCENT, PIZZATYC.
+Their rows: CAND-104, CAND-160.
+Split test (the charter's 10.5): none found.
+Evidence: the members' rows; the bench's reports/families.md and results/sweep/families_ac.csv. Hardware: UNCONFIRMED.
 
 ### CTRL-ONLY A6 sweep: games that run under uCDD and not under the control (a list, no verdict; from 5 Nov 2026)
 
