@@ -1,4 +1,4 @@
-# Findings: the candidate faults, as of 10 November 2026
+# Findings: the candidate faults, as of 11 November 2026
 
 Written by Claude from the rows in [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md),
 which are the record; this page is a readable view of them. Each row there
@@ -21,12 +21,15 @@ the date it was withdrawn.
 
 ## The count
 
-Thirty-two candidates have a number.
+169 rows of candidates have a number. The first 32 are described on this
+page; the 137 filed by the sorting on 10 November are in the register and
+are being grouped into families.
 
 | Where found | Numbers | How they sort |
 |---|---|---|
-| Unit tests, driver conformance, virtual card conformance | CAND-1 to CAND-21 | Ten in both the fork and the author's release, nine fixed upstream and still in the fork's line, two introduced by the fork, one undetermined. (CAND-10 was split in two and sits in two lists.) |
-| The sweep of 838 games | CAND-22 to CAND-32 | Four on the pin only, six on both builds, one a class with no member yet. Sorting each affected game into one bin is the work in hand. |
+| Unit tests, driver conformance, virtual card conformance | CAND-1 to CAND-21 | Ten in both the fork and the author's release, nine fixed upstream and still in the fork's line, two read on 28 October as introduced by the fork, one undetermined. (CAND-10 was split in two and sits in two lists.) Measured on 0.9.3b on 10 November: CAND-6 is the fork's (FORK-REGRESSION); CAND-19 fails there another way (UNKNOWN). |
+| The sweep of 838 games | CAND-22 to CAND-32 | Four on the pin only, six on both builds, one a class with no member yet. CAND-22 measured on 0.9.3b: the author's fix the fork lacks (LACKS-FIX). |
+| The sorting of the sweep, game by game | CAND-33 to CAND-169 | One row for the five PMODE/W games, four for small groups, 132 for single games. Not yet grouped by what they share; see [KNOWN-ISSUES.md](KNOWN-ISSUES.md). |
 
 The table of all of them, with the version each is open in, is
 [KNOWN-ISSUES.md](KNOWN-ISSUES.md). How a finding is produced and what it

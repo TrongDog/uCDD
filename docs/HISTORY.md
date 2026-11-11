@@ -1,6 +1,6 @@
 # History: how the fork got here
 
-Written by Claude. The detailed record is the "Changes", "Performance" and
+Written by Claude. As of 10 November 2026. The detailed record is the "Changes", "Performance" and
 "Fixed after the reviews" sections of [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md)
 and the commit messages on `count-position`; this is the shape of it.
 
@@ -109,6 +109,16 @@ The fork's own commits were rewritten once, on 10 November 2026: commit
 messages, file wording and commit dates only. No code changed: the pinned
 build and the feature branches are the same code under new commit ids.
 The upstream author's commits on `main` were not touched. Commit ids from before that date differ.
+
+## What was tried and dropped
+
+The decisions that shaped the harness, each with the approach it
+replaced (FreeDOS for the bench, four recordings at once, a 233 MHz
+emulated CPU, limits chosen by judgment, "it runs with sound" as a pass),
+are in [DECISIONS.md](DECISIONS.md). The experiments that overturned a
+belief are in [EXPERIMENTS.md](EXPERIMENTS.md). The fork's state as it
+was written before the harness, with its own dead ends, is
+[../ISSUES.md](../ISSUES.md).
 
 ## What comes next
 

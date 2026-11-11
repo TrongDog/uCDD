@@ -1,137 +1,103 @@
-# μCDD: a fork with fixes, an ESS AudioDrive path, and a test harness that measures it
+# μCDD fork: a CD drive in software for DOS, and a harness that checks it game by game
 
-**Everything in this fork was written by an AI (Claude), directed and tested
-by one person.**
+**Nearly all of this fork's changes were written by an AI (Claude); one
+person directed and tested them.** As of 11 November 2026.
 
-This is a fork of [vorvek's μCDD](https://github.com/vorvek/uCDD), a DOS
-driver that mounts CD images from a hard disk and plays their CD audio by
-becoming a virtual Sound Blaster. All credit for the driver is his. For
-what μCDD is and how to use it, read his README and releases; this page is
-about what the fork did to it and what it found.
+## What this is, in half a minute
 
-It is a personal project. It began as an attempt to give μCDD a native ESS
-AudioDrive path, and grew into a review of the driver and a test harness as
-the ESS work kept turning up things that needed measuring. Nothing here has
-been submitted upstream. The pages linked below are written for a reader
-with no background in the driver; the detail behind every claim is one link
-further in.
+In the 1990s many PC games came on a CD and played their music straight off
+the disc, the way a CD player would. To run such a game on a real PC of that
+era today, the disc has to be in the drive.
 
-## Where it stands (10 November 2026)
+[μCDD](https://github.com/vorvek/uCDD), written by vorvek, is a small DOS
+program that stands in for the drive. It reads a copy of the disc from the
+hard disk, and it plays the disc's music through the sound card, mixed with
+the game's own sound. Think of it as a stand-in for the CD drive with a
+sound engineer attached: the game believes it is talking to a drive and a
+sound card, and the stand-in passes on what a real drive and card would
+have produced.
 
-Development of the driver has been paused since 24 October so that the
-thing under test stays still. The harness has since run its unit,
-driver and virtual-card tests, calibrated itself on 84 known games, and
-swept an 838-game library on three builds: the bare card, the fork's
-pinned build, and the author's 0.9.5-a2. It has 32 candidate faults on
-record. The sorting of every game into one bin, the candidate reports and
-the kit for the real PC are the work in hand. The one-page view is
-[docs/STATUS.md](docs/STATUS.md).
+This repository is a **fork** of that driver. It did two things:
 
-## Read next
+1. It changed the driver (an ESS AudioDrive sound path, fixes, measuring
+   tools). That work has been paused since 24 October 2026.
+2. It built a **test harness**: an emulated 1990s PC that launches each of
+   838 games three ways (no driver, this fork's driver, the author's
+   driver), records the screen and the sound, and reports where a game
+   behaves differently with the driver than without it.
 
-| Page | What it answers |
+```mermaid
+flowchart LR
+    game["A DOS game"]
+    subgraph ucdd["μCDD, resident in memory"]
+        drive["Stand-in CD drive"]
+        card["Stand-in Sound Blaster"]
+        mix["Mixer"]
+    end
+    image[("Disc image<br>on the hard disk")]
+    real["The real sound card"]
+    game -- "reads files, asks for track 2" --> drive
+    game -- "plays its own sound" --> card
+    image -- "data and CD music" --> drive
+    drive -- "CD music" --> mix
+    card -- "game sound" --> mix
+    mix -- "one stream" --> real
+```
+
+All credit for the driver is the upstream author's. Nothing from this fork
+has been sent to him.
+
+## Where it stands
+
+- The harness has run its unit, driver and sound-card tests, calibrated
+  itself on 84 games known to work, and swept the 838-game library.
+- It has 169 rows of candidate faults on record, in this fork's driver, in
+  the author's releases, or in both, and groups them into families by what
+  they share ([docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md)).
+- **No candidate fault has been confirmed on real hardware yet.** The
+  harness's results were measured in an emulator; the fork's own testing
+  before the harness, on the real PC, is in
+  [docs/FEATURES.md](docs/FEATURES.md).
+
+The page that changes as the work moves is [docs/STATUS.md](docs/STATUS.md).
+
+> [!IMPORTANT]
+> The source tree on this branch (`fixes`) is the fork's line as it stood on
+> 20 October 2026. The driver these pages test and describe is on the
+> [`count-position`](https://github.com/TrongDog/uCDD/tree/count-position)
+> branch. [docs/REFERENCE.md](docs/REFERENCE.md#builds) says which build is
+> which.
+
+> [!NOTE]
+> If you only want to play games, use the
+> [author's release](https://github.com/vorvek/uCDD). This fork is a test
+> bed with known faults, listed in [docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md).
+
+## Where to go next
+
+| I want to... | Read |
 |---|---|
-| [docs/STATUS.md](docs/STATUS.md) | Where the work is, stage by stage, and what comes next. |
-| [docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md) | The table of every candidate fault, and which version of the driver has it. |
-| [docs/FINDINGS.md](docs/FINDINGS.md) | Each fault in a paragraph: what the driver does, what it should do, which document says so, and the working hypothesis. |
-| [docs/SWEEP.md](docs/SWEEP.md) | The 838-game sweep: how a game is judged and what the three builds showed. |
-| [docs/CALIBRATION.md](docs/CALIBRATION.md) | How the harness proved it can tell a working game from a broken one. |
-| [docs/METHOD.md](docs/METHOD.md) | How a result is produced and what it is allowed to mean. |
-| [docs/BENCH.md](docs/BENCH.md) | The machine the numbers come from, and what it cannot say. |
-| [docs/FEATURES.md](docs/FEATURES.md) | What the fork added and fixed in the driver, with how each was tested. |
-| [docs/PLANS.md](docs/PLANS.md) | What happens when development resumes, and the ideas after that. |
-| [docs/HISTORY.md](docs/HISTORY.md) | How the fork got here. |
+| see how far the work has got | [docs/STATUS.md](docs/STATUS.md) |
+| build the driver and hear a CD game | [docs/QUICKSTART.md](docs/QUICKSTART.md) |
+| do one thing (several discs, a game that will not start, an ESS card) | [docs/HOWTO.md](docs/HOWTO.md) |
+| fix a problem I am having | [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) |
+| look up a command, an option, a build or a term | [docs/REFERENCE.md](docs/REFERENCE.md) |
+| see every fault found, and in which version | [docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md) |
+| understand how the driver and the harness are put together | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| judge whether a result can be trusted | [docs/METHOD.md](docs/METHOD.md) |
+| read the experiments, with their numbers | [docs/EXPERIMENTS.md](docs/EXPERIMENTS.md) |
+| know why things were done this way, and what was tried and dropped | [docs/DECISIONS.md](docs/DECISIONS.md) |
+| see the sources and who is owed credit | [docs/REFERENCES.md](docs/REFERENCES.md) |
+
+Every page, by kind, is listed in [docs/README.md](docs/README.md).
 
 The working record behind all of them is
 [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md):
 long, in the order it was written, every row a claim with its evidence.
 
-## Features
-
-- **Native ESS AudioDrive output**: 44.1 kHz 16-bit stereo through the
-  chip's extended mode, the ES1868 and ES1878 clock trimmed to an exact
-  44.1 kHz, and the chip correctly identified so the trim runs.
-- **A virtual ESS AudioDrive** for games set to an ESS, built from the
-  ESS data sheets: the ESS command set, 16-bit data on the 8-bit channel,
-  demand-mode DMA, ESS ADPCM and ESPCM.
-- **PCI disk controller IRQs passed straight to DOS**, so DOS/4GW games no
-  longer freeze on a controller on IRQ 10 or 11; the installer finds the
-  controllers through the PCI BIOS and UCDDSET shows them.
-- **The driver steps aside** while no mounted disc has CD audio and the
-  physical card can be the virtual one, so a game runs exactly as without
-  it.
-- **Fast DMA**: the chipset's Type F timing on the output channel (PIIX,
-  82378, ALi, OPTi, VIA, AMD-756, SiS), which gives back most of the memory
-  bus the CD stream takes.
-- **Interrupt counters** and `UCDD -status`, so a sound fault can be
-  described in numbers.
-- **UCDDSET redone**: a Disk row, Options and Detected columns, switches
-  that explain themselves when greyed.
-
-## Fixes
-
-- The virtual Sound Blaster (SB16, SB Pro, SB 2.0) read against Creative's
-  programming documents and the real card, with dozens of command, timing
-  and status corrections; the virtual SB16 now answers as a DSP 4.13.
-- Single-cycle playback no longer loses its first milliseconds; very short
-  blocks and over-long blocks are accepted.
-- The DMA count and the block interrupt come from one position, the card's
-  fetch point, and the polled count follows the output clock as a real
-  counter does.
-- A 512-frame output ring, so a late period interrupt no longer throws the
-  clock back.
-- The DPMI host: no memory corruption after exit with a protected-mode
-  pointer to MSCDEX; INT 1Ch/23h/24h handlers of protected-mode programs
-  delivered; clean termination at any nesting depth.
-- Discs with non-standard root directory headers mount; the CUE parser in
-  a far buffer; mixed-mode images.
-- Two memory holes closed; CD audio at 2 to 3 % of a Pentium 233 after the
-  performance pass.
-
-The full list of both, with what each was tested on, is
-[docs/FEATURES.md](docs/FEATURES.md).
-
-## What the harness found, in one paragraph
-
-Thirty-two candidate faults, each with the document that decides it and the
-recorded runs that show it, none yet confirmed on real hardware. Twenty-one
-came from the conformance tests: ten are in the fork and in the author's
-release alike, nine the author has since fixed and the fork's older line
-still has, two the fork introduced, and one is undetermined (one candidate
-is split across two of those lists). Eleven came from the game sweep: a
-helper program that faults under the fork's DPMI host, a later first
-sound, memory that a game sees differently under the driver, a game that
-stops for want of memory, CD music and game sound each 6 dB low, a disc
-read that fails, and games silent on the fork's build alone. Two whole
-groups of games, those built on the Phar Lap and PMODE/W extenders, do not
-run under the author's 0.9.5-a2 in the sweep. Installed with `-vcpi`, ten
-of the twelve run; two of those are identified as supporting only VCPI,
-the driver's documented limit, and the rest are host candidates, the five
-PMODE/W games among them, since that extender takes the driver's DPMI host
-when VCPI is hidden.
-
-## Branches
-
-| Branch | Holds |
-|---|---|
-| `main` | The upstream releases, unchanged. |
-| `fixes` | This page and the fork's combined line to 20 October 2026, kept for its history. `ISSUES.md`, `BUILDING.md` and `RELEASE-NOTES.md` here describe that line as it was then. |
-| `count-position` | The fork's line, the build the harness pins. |
-| `merge-a6` | The fork's line with upstream 0.9.4-a6 merged in; built, not run. |
-| `feature/disk-irq`, `feature/step-aside`, `feature/fast-dma`, `feature/ess` | The feature branches, each one change on upstream 0.9.4-a6. Disk-irq, step-aside and fast-dma now exist upstream in 0.9.5-a2, in the author's own form; upstream has also dropped Microsoft EMM386, as the fork had. |
-| `play-harness` | UCDDPLAY, the CD player: a reference pass against its own specification, a faster FFT and scroller, and `scripts/playcheck`, which runs the player against an earlier build of itself and compares the output. |
-| `notes` | The harness's rows: ISSUES.md, the index of fixes, the specifications the fork wrote for itself. |
-| `claude/brave-franklin-6h9xzo` | The method package: the commit checks, the ledger, the test matrix, the GitHub workflow. |
-| `sound-engine-library`, `reference-library`, `spec-first` | The game-engine census, text copies of the data sheets and specifications, and the design notes. |
-
-Earlier working branches live on as `archive/<name>` tags.
-
-The fork's own history was rewritten on 10 November 2026: commit messages,
-file wording and commit dates only, no code. Commit ids from before that
-date differ; the upstream releases on `main` keep theirs.
-
 ## Licence
 
-GPL-3.0-only, as upstream. The harness's own scripts are under the same
-licence. No game files, disc images, boot disks, firmware or recordings
-are in this repository, and the commit checks refuse them.
+GPL-3.0-only, as upstream ([LICENSE](LICENSE)). The harness's own scripts
+are under the same licence. No game files, disc images, boot disks,
+firmware or recordings are in this repository, and the commit checks refuse
+them.

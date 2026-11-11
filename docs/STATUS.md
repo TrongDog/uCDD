@@ -1,6 +1,6 @@
 # Status: where the work stands
 
-Written by Claude. As of 10 November 2026. One page, updated at every
+Written by Claude. As of 11 November 2026. One page, updated at every
 stage: what is done, what each stage proved, what is in hand and what
 comes after. The evidence for every line is in the pages it links to and,
 behind them, in [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md).
@@ -14,7 +14,10 @@ run it stage by stage, each stage closed only when its acceptance lines
 were met with recorded runs. The harness does not change the driver: a
 fault it finds becomes a row with evidence, never a patch. Seven stages
 are closed. The eighth, sorting every game into one bin and writing a
-report per fault, is in hand.
+report per fault, is in hand. To use the driver, start with
+[QUICKSTART.md](QUICKSTART.md), [HOWTO.md](HOWTO.md) and
+[REFERENCE.md](REFERENCE.md); every page is listed by kind in
+[the index](README.md).
 
 ## The stages
 
@@ -97,11 +100,26 @@ commit dates only, no code.
    unmatched, for want of a matched pair of control takes to measure
    against; the owner decides on them. Two 0.9.5-a2 sound faults read
    different on one take of three and are marked flaky.
+
+   Then, on 11 November, the control first: a difference in matched sound
+   counts only where the game's own control repeats itself. Every game
+   with such a difference and no control pair got a second control take
+   (31 games); 30 repeated, and one did not, so its sound is not read on
+   either build. Each difference resting on one comparison was taken
+   twice more (42 rows): 38 held on three of three, 2 on two of three, 2
+   did not repeat and are marked flaky. The other unmatched pairs (283 on
+   the pinned build, 296 on 0.9.5-a2) are not matched and stay not read;
+   a game without CD audio passes without them.
 3. **The reports.** One per fault, or one per group of games where the
    whole group fails the same way, largest first. The candidate rows are
    written in the notes (ISSUES.md, CAND-33 to CAND-169): 137 new rows
    for 201 faults (a game on a build), the PMODE/W games on 0.9.5-a2 one
-   row; 83 more joined rows that existed.
+   row; 83 more joined rows that existed. On 11 November every candidate
+   was given a family by rule (the builds, the verdict and the measure
+   that differs first, the symptom): 36 families of two games or more,
+   each a row of the register (FAM-1 to FAM-36) that its members' rows
+   point to; [KNOWN-ISSUES.md](KNOWN-ISSUES.md) lists them. The reports
+   are written per family and per cell row next.
 4. **The label on the fork-only faults.** A fault the pinned build has and
    the author's release does not is one of two things: a fix the author
    made after the fork's base (0.9.3b; his line is 47 commits past it at
@@ -109,8 +127,13 @@ commit dates only, no code.
    or something the fork's 238 commits introduced. The label is placed by
    measurement where a run on the base is cheap. The base is built (twice,
    the same), its settings file proven byte for byte against its own
-   setup program's save, and one take of it per fork-only game is
-   recording.
+   setup program's save. One take of it on each game where the two
+   builds differ: of the 107 that differ on the pinned build only, 28 read
+   as the pinned build on 0.9.3b (a fix the author made since), none as
+   0.9.5-a2, 79 neither; of the 11 that differ on 0.9.5-a2 only, 7 read as
+   the pinned build (the author's line changed since 0.9.3b), 1 as
+   0.9.5-a2, 3 neither. Of three conformance cases, ten runs each: CAND-6
+   is the fork's own, CAND-22 a fix the fork lacks, CAND-19 unknown.
 5. **The kit for the real PC**: the conformance cases a real card must
    judge, and a short list of games, one passing and one failing from each
    group, ranked by how many games the group holds.

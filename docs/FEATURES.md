@@ -1,6 +1,7 @@
 # Features and fixes
 
-Written by Claude. What the fork added to the driver and what it fixed,
+Written by Claude. As of 11 November 2026; the work it describes ended on
+23 October. What the fork added to the driver and what it fixed,
 grouped by the part of the driver it touches, with how each was tested.
 The record behind each line is the "Changes", "Performance" and "Fixed
 after the reviews" sections of
@@ -12,10 +13,67 @@ CT2291, MS-DOS 7.1); "emulator" means 86Box, DOSBox-X or QEMU only.
 Everything on this page was done before 24 October 2026, when development
 paused for the harness. The harness has since found faults in some of it:
 the fork's line lacks nine fixes the author has made, lacks his doubling
-of game samples while no disc plays, and carries at least two faults of
-its own ([KNOWN-ISSUES.md](KNOWN-ISSUES.md)). "Emulator" on this page is
+of game samples while no disc plays, and carries at least one fault of
+its own, measured against the author's 0.9.3b (CAND-6;
+[KNOWN-ISSUES.md](KNOWN-ISSUES.md)). "Emulator" on this page is
 the testing of the time, before the harness's rules; where the harness
 has since measured the same thing, its row is the better evidence.
+
+## In short
+
+Moved here from the front page on 10 November 2026, unchanged.
+
+### Features
+
+- **Native ESS AudioDrive output**: 44.1 kHz 16-bit stereo through the
+  chip's extended mode, the ES1868 and ES1878 clock trimmed to an exact
+  44.1 kHz, and the chip correctly identified so the trim runs.
+- **A virtual ESS AudioDrive** for games set to an ESS, built from the
+  ESS data sheets: the ESS command set, 16-bit data on the 8-bit channel,
+  demand-mode DMA, ESS ADPCM and ESPCM.
+- **PCI disk controller IRQs passed straight to DOS**, so DOS/4GW games no
+  longer freeze on a controller on IRQ 10 or 11; the installer finds the
+  controllers through the PCI BIOS and UCDDSET shows them.
+- **The driver steps aside** while no mounted disc has CD audio and the
+  physical card can be the virtual one, so a game runs exactly as without
+  it.
+- **Fast DMA**: the chipset's Type F timing on the output channel (PIIX,
+  82378, ALi, OPTi, VIA, AMD-756, SiS), which gives back most of the memory
+  bus the CD stream takes.
+- **Interrupt counters** and `UCDD -status`, so a sound fault can be
+  described in numbers.
+- **UCDDSET redone**: a Disk row, Options and Detected columns, switches
+  that explain themselves when greyed.
+
+### Fixes
+
+- The virtual Sound Blaster (SB16, SB Pro, SB 2.0) read against Creative's
+  programming documents and the real card, with dozens of command, timing
+  and status corrections; the virtual SB16 now answers as a DSP 4.13.
+- Single-cycle playback no longer loses its first milliseconds; very short
+  blocks and over-long blocks are accepted.
+- The DMA count and the block interrupt come from one position, the card's
+  fetch point, and the polled count follows the output clock as a real
+  counter does.
+- A 512-frame output ring, so a late period interrupt no longer throws the
+  clock back.
+- The DPMI host: no memory corruption after exit with a protected-mode
+  pointer to MSCDEX; INT 1Ch/23h/24h handlers of protected-mode programs
+  delivered; clean termination at any nesting depth.
+- Discs with non-standard root directory headers mount; the CUE parser in
+  a far buffer; mixed-mode images.
+- Two memory holes closed; CD audio at 2 to 3 % of a Pentium 233 after the
+  performance pass.
+
+> [!IMPORTANT]
+> These are in the source of the `count-position` branch. The source on
+> the default branch, `fixes`, is an older line and lacks some of them:
+> `UCDD -status` and the counters, the DSP 4.13 answer, the 512-frame
+> ring, and the virtual ESS AudioDrive in its rebuilt form (it has an
+> earlier one). On `count-position` the virtual ESS is a build option,
+> `--virtual-ess`, left out of the default build and of the build the
+> harness pins, so the harness has not run it. The table is in
+> [ARCHITECTURE.md](ARCHITECTURE.md#3-the-repository).
 
 ## ESS AudioDrive
 
@@ -34,7 +92,10 @@ has since measured the same thing, its row is the better evidence.
   interrupt so a game no longer waits forever, the polled DMA count one
   output period behind the mix (Descent 2's crackle), the Miles ESS
   digital driver's interrupt pattern, B1h/B2h reporting the virtual IRQ
-  and DMA. Emulator.
+  and DMA. Emulator, before the harness, in builds made with
+  `--virtual-ess`; the build the harness pins leaves it out
+  (`--resident-audio --audio-period-frames 32 --no-refill-hint`), so the
+  harness has not run it.
 
 ## The virtual Sound Blaster
 

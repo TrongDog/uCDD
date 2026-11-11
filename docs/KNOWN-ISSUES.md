@@ -3,21 +3,23 @@
 A plain list of every fault the test harness has found in the driver, and
 whether each is in this fork, in the upstream project, or both. Written by
 Claude from the rows in [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md), which hold the
-evidence. Status as of 10 November 2026.
+evidence. Status as of 11 November 2026.
 
 **How to read it.** Each row is one fault, reproduced in an emulator: ten
-runs out of ten for the conformance tests, two takes of three or better
-for the game sweep. None has yet been confirmed on real hardware; that is
+runs out of ten for the conformance tests; for the game sweep, two takes
+of three or better up to CAND-32, and from CAND-33 each row says how many
+takes it rests on. None has yet been confirmed on real hardware; that is
 what the hardware kit is for.
 
 - **Fault**: what the driver does wrong, in one line.
 - **In this fork**: whether the fault is present in this fork's driver at
   the commit the harness tests.
 - **In upstream**: whether the same case shows the fault in the upstream
-  project's most recent release the harness has run. That is 0.9.5-a2.
-  The author released 0.9.5-a3 on 7 November 2026 (two commits past a2: a
-  margin in the DPMI host's free-memory answer, and the version number);
-  nothing has been run on it here yet, and this page changes when it has.
+  project's most recent release the harness has run in full. That is
+  0.9.5-a2. The author released 0.9.5-a3 on 7 November 2026 (two commits
+  past a2: a margin in the DPMI host's free-memory answer, and the version
+  number); it has been run on 40 selected games, and where a row below
+  differs on a3 the row says so.
   "Fixed" means the case passes there; "Never present" means upstream
   never had it.
 - **More**: a link to the fault's entry in [FINDINGS.md](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md), which says
@@ -90,7 +92,7 @@ listed so that nobody is surprised by them.
 | A launcher helper (SETMUL) stops with a protection fault under the DPMI host; 81 launchers call it | Present | Not present | [CAND-22](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-22) |
 | A CD-audio game's first sound comes later than without the driver | Present, a median 1.3 s | Present, a median 0.9 s | [CAND-23, CAND-24](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-23) |
 | A program sees about twice the memory under the driver; a few games fail on one side only | Present | Present | [CAND-25](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-25) |
-| I Have No Mouth and I Must Scream stops with a memory message | Present | Present in a2; the author's a3 note says fixed, not yet run here | [CAND-26](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-26) |
+| I Have No Mouth and I Must Scream stops with a memory message | Present | Present in a2; fixed in a3 (the game runs there, one take) | [CAND-26](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-26) |
 | The disc's music is 6.0 dB quieter than through the card's own CD input (headroom, by design) | Present | Present | [CAND-27](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-27) |
 | "Packed file is corrupt" under the driver only | A class with no member yet | A class with no member yet | [CAND-28](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-28) |
 | Gabriel Knight 2 (a five-disc set) stops at a disc read error | Present | Present | [CAND-29](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-29) |
@@ -98,10 +100,48 @@ listed so that nobody is surprised by them.
 | Gabriel Knight 1 falls silent at its menu | Present | Not present | [CAND-31](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-31) |
 | Game samples are 6.0 dB quieter than on the bare card; 67 games | Present | Fixed (the author doubles them while no disc plays) | [CAND-32](https://github.com/TrongDog/uCDD/blob/fixes/docs/FINDINGS.md#cand-32) |
 
-Not in the table because they are not yet sorted: the games that differ
-on this fork only for some other reason (forty, each with a row of
-its own until read), the eleven that differ on upstream's a2 only, and
-the nineteen late starts. [SWEEP.md](SWEEP.md) has the counts.
+## Filed by the sorting, 10 November 2026, and grouped into families
+
+The sorting gave every game one verdict per build and filed a row for each candidate that had none: **CAND-33 to CAND-169**, 137 rows, in the register ([ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md)), each with its builds, its takes and its control. On 11 November every candidate was given a family by rule: the builds it shows on, its verdict and the measure that differs first, and its symptom (a level's sign and size class; which limits of the matched sound failed; a stop's state and last message). One line per family of two games or more; a candidate in no such family stands as its own row. The rule, the size classes and the split test are on the bench's families page; each family is a row of the register (FAM-n), and each member's row points to it.
+
+| Family | Games | Fault | Builds | Rows |
+|---|---|---|---|---|
+| FAM-1 | 81 | LEVEL level, under the control, class 2 of 3 (-8.31 to -3.92 dB) | pin only | CAND-32, CAND-34, CAND-45, CAND-48, CAND-50, CAND-64, CAND-87, CAND-88, CAND-90, CAND-91, CAND-92, CAND-103, CAND-107, CAND-125, CAND-141, CAND-154, CAND-155, CAND-156, CAND-159 |
+| FAM-2 | 21 | LEVEL level, under the control, class 3 of 3 (-3.71 to -0.57 dB) | pin only | CAND-34, CAND-46, CAND-47, CAND-49, CAND-52, CAND-54, CAND-55, CAND-57, CAND-89, CAND-93, CAND-94, CAND-108, CAND-113, CAND-115, CAND-134, CAND-149, CAND-150, CAND-151, CAND-167, CAND-168 |
+| FAM-3 | 10 | HOST state, EXITED; last message: C:\> | a2 only | CAND-33, CAND-35, CAND-37, CAND-164 |
+| FAM-4 | 7 | LEVEL level, under the control, class 3 of 3 (-3.71 to -0.57 dB) | a2 only | CAND-45, CAND-83, CAND-84, CAND-90, CAND-120, CAND-125, CAND-155 |
+| FAM-5 | 6 | AUDIO wave, gaps | both | CAND-38, CAND-39, CAND-66, CAND-72 |
+| FAM-6 | 6 | HOST state, HANG; last message: none read | pin only | CAND-31, CAND-33, CAND-35, CAND-124, CAND-131 |
+| FAM-7 | 6 | HOSTLOAD time, late | pin only | CAND-23, CAND-78 |
+| FAM-8 | 5 | AUDIO wave, gaps | a2 only | CAND-68, CAND-70, CAND-152, CAND-165 |
+| FAM-9 | 5 | AUDIO wave, gaps | pin only | CAND-140, CAND-147 |
+| FAM-10 | 5 | SFX sound, silent where the control sounds | pin only | CAND-62, CAND-110, CAND-116, CAND-142, CAND-143 |
+| FAM-11 | 4 | LEVEL level, over the control, class 2 of 3 (4.70 to 9.16 dB) | a2 only | CAND-49, CAND-56, CAND-144, CAND-151 |
+| FAM-12 | 4 | HOST state, HANG; last message: none read | both | CAND-76, CAND-77, CAND-133, CAND-163 |
+| FAM-13 | 4 | LEVEL level, under the control, class 2 of 3 (-8.31 to -3.92 dB) | both | CAND-51, CAND-80, CAND-85, CAND-158 |
+| FAM-14 | 4 | SFX state, HANG; last message: none read | pin only | CAND-60, CAND-111, CAND-117, CAND-121 |
+| FAM-15 | 3 | AUDIO wave, cover | a2 only | CAND-98, CAND-100, CAND-129 |
+| FAM-16 | 3 | AUDIO wave, steps back and jumps | a2 only | CAND-67, CAND-157 |
+| FAM-17 | 3 | HOSTLOAD time, late | a2 only | CAND-24, CAND-79 |
+| FAM-18 | 3 | LEVEL level, over the control, class 3 of 3 (11.85 to 13.87 dB) | a2 only | CAND-53, CAND-54, CAND-55 |
+| FAM-19 | 3 | SFX state, EXITED; last message: C:\> | both | CAND-25, CAND-109, CAND-127 |
+| FAM-20 | 2 | AUDIO state, EXITED; last message: C:\> | a2 only | CAND-40, CAND-41 |
+| FAM-21 | 2 | LEVEL level, over the control, class 1 of 3 (0.08 to 2.99 dB) | a2 only | CAND-105, CAND-113 |
+| FAM-22 | 2 | SFX sound, silent where the control sounds | a2 only | CAND-59, CAND-126 |
+| FAM-23 | 2 | FLAKY_AUDIO wave, gaps | a2 only | CAND-42 |
+| FAM-24 | 2 | FLAKY_HOSTLOAD time, late | a2 only | CAND-24, CAND-122 |
+| FAM-25 | 2 | AUDIO state, HANG; last message: none read | both | CAND-148, CAND-153 |
+| FAM-26 | 2 | AUDIO wave, cover | both | CAND-96, CAND-101 |
+| FAM-27 | 2 | AUDIO wave, steps back and jumps | both | CAND-43, CAND-106 |
+| FAM-28 | 2 | HOSTLOAD time, late | both | CAND-23, CAND-24 |
+| FAM-29 | 2 | LEVEL level, under the control, class 3 of 3 (-3.71 to -0.57 dB) | both | CAND-86, CAND-136 |
+| FAM-30 | 2 | AUDIO sound, silent where the control sounds | pin only | CAND-99, CAND-128 |
+| FAM-31 | 2 | AUDIO wave, cover | pin only | CAND-97, CAND-146 |
+| FAM-32 | 2 | AUDIO wave, gaps, steps back and jumps | pin only | CAND-68, CAND-157 |
+| FAM-33 | 2 | AUDIO wave, speed fast | pin only | CAND-73, CAND-139 |
+| FAM-34 | 2 | AUDIO wave, steps back and jumps | pin only | - |
+| FAM-35 | 2 | LEVEL level, over the control, class 1 of 3 (0.08 to 2.99 dB) | pin only | CAND-53, CAND-81 |
+| FAM-36 | 2 | SFX wave, steps back and jumps | pin only | CAND-104, CAND-160 |
 
 ## Stated limits of the driver, seen in the sweep
 

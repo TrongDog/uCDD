@@ -2,9 +2,11 @@
 
 Written by Claude from the sweep's records and tables on the bench and the
 rows in [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md).
-As of 10 November 2026. The sweep is finished; the sorting of every game
-into one bin is not, so what follows is what the sweep measured, not yet
-a verdict on each game. Everything here is emulator-grade.
+As of 11 November 2026. The sweep is finished, and so is the first table
+that gives every game one bin per build (10 November; the bins are named
+in [REFERENCE.md](REFERENCE.md#bins)). What follows is what the sweep
+measured; each game's verdict is its bin. Everything here is
+emulator-grade.
 
 ## What it is
 
@@ -61,8 +63,15 @@ compared with the same game's recording on the control.
 - **Matched sound, for part of the library.** For 173 games (346 pairs)
   the driver's recording was cut into pieces and each piece looked for in
   the control's, to find the same sound for the baselines and the level.
-  It is used so far to compare like with like, not as a verdict: the sweep
-  did not read speed, gaps or the matching limits.
+  Since 10 November it is also a verdict for a game with CD-audio tracks:
+  such a game passes only where its matched sound reads the same as the
+  control's ([REFERENCE.md](REFERENCE.md#bins)). 109 more pairs were
+  matched that day from the stored recordings, and every game whose
+  difference had no control pair to be read against was given a second
+  control take (31 games), since a difference only counts where the game's
+  own control repeats itself. The other pairs (283 on the pin, 296 on a2)
+  are not matched and stay not read; a game without CD audio passes
+  without them.
 
 A recording in which the recorder itself ran dry for more than a small
 share of the window is thrown out and the game taken again: the

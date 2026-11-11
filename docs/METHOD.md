@@ -1,7 +1,7 @@
 # How the harness tests μCDD
 
 Written by Claude, directed and tested by one person; every claim below is
-checkable in the ledger and the rows it refers to. As of 10 November 2026.
+checkable in the ledger and the rows it refers to. As of 11 November 2026.
 This page says how a result is produced and what it is allowed to mean, so
 that a reader can judge a finding without taking anyone's word for it.
 
@@ -169,7 +169,12 @@ stopping at the first match:
 5. A documented limitation (extenders that need VCPI, auto-init ADPCM,
    sub-Pentium CPUs) is expected, with its evidence.
 6. A build whose state, sound, level and timing are the control's, within
-   the limits in force, passes.
+   the limits in force, passes. For a game with CD-audio tracks, "sound"
+   includes its matched sound, read as the same, different or not read
+   against the control's; a game whose matched sound cannot be read is
+   counted apart as running with sound, neither a pass nor a fault. A
+   difference counts only where the game's own control repeats itself.
+   Each answer is a named bin ([REFERENCE.md](REFERENCE.md#bins)).
 7. Anything else is a candidate, sub-typed by what differs first: the
    DPMI host, the CD-ROM path, CD audio, game sound, level, start-up time.
    A result the second emulator disagrees on is a dispute.
@@ -180,7 +185,10 @@ Every game that does not pass is then read against the other games that
 share its sound engine and DOS extender: a group where every game fails
 the same way is one bug and one report, not twenty; a game that fails
 alone in a group that passes points away from the runtime and at the
-game. This sorting is the work in hand; see [STATUS.md](STATUS.md).
+game. Since 11 November the candidates are also grouped across cells into
+families by rule: the builds a fault shows on, its bin and the measure
+that differs first, and its symptom ([KNOWN-ISSUES.md](KNOWN-ISSUES.md)).
+Where the work stands: [STATUS.md](STATUS.md).
 
 ## What the harness does not do
 
