@@ -4,9 +4,10 @@ This branch holds plain-text copies of the reference documents used to
 develop uCDD: data sheets, specifications and Ralf Brown's Interrupt List.
 It shares no history with the code branches and is never merged into them.
 
-The original PDFs are in the `References.zip` asset of the
-references release,
-except four that are not in that zip and are kept here beside their text:
+The original PDFs were in the `References.zip` asset of the
+references release. That release is no longer on GitHub (its tag
+`references` is), and no branch holds the zip. Four PDFs that were not in
+that zip are kept here beside their text:
 the CS4231A and CS4232 data sheets, the later PIIX and PIIX3 data sheet, and
 the second ES1869 revision. Jemm's QPI description is plain text already.
 The folders here mirror the folders in that zip, and each `.txt` file has the
@@ -67,8 +68,8 @@ Three PDFs have no text layer and were discarded: the UMC UM82C380 series,
 the Headland HT12, and the OPTi 82C895 power management controller.
 
 These are host bridges, memory and cache controllers with no ISA, DMA,
-interrupt controller or RTC content. Their PDFs remain in the release zip
-but have no text copy here:
+interrupt controller or RTC content. Their PDFs were in the release zip,
+which is no longer on GitHub, and have no text copy here:
 
 - Chipsets/386/290143-004_82385_386_cache_198911.pdf
 - Chipsets/386/82C391_82C392_OPTi-386WB_PC_AT_Chipset_199012.pdf
