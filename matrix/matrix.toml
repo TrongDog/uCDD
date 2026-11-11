@@ -207,7 +207,9 @@ optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", 
                    # A7's base takes of which line moved, and SSF2T's again (the decision on the 22:11Z report, items 2 and 4)
                    "rerun-a7d",
                    # W1's second controls (the decision on the 22:11Z report, item 3 (b))
-                   "rerun-a7e"]
+                   "rerun-a7e",
+                   # W2's two more takes of each wave row on one pair (the decision on the 22:11Z report, item 3 (b))
+                   "rerun-a7f"]
 
 # How each runner is started, from the bench directory. $UCDD_FIXTEST is the
 # bench's fixtest.py and $UCDD_KIT its kit folder (the caller sets both, as it
@@ -50793,3 +50795,552 @@ fixed = { mode = "base", vmodel = "sb16" }
 env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
 note = "A7E (W1), DOS_THNK/WARCRAFT: C0 a second time in its row's plan environment, v1 (b04); its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (a2 CANDIDATE_UCDD_AUDIO)"
 # END A7 runs a7e
+
+# BEGIN A7 runs a7f (written by the agent in the A7 block's form; the owner's decision of 10 Nov 2026 on the 22:11Z report, item 3 (b) W2: two more takes of each wave row on one pair)
+
+[[test]]
+name = "RRN-A7F-P133-A2-ADARK2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ADARK2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7F (W2), DOS_ACT/ADARK2: a2 two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 5 over 4); against C0 c7cfcb37-070"
+
+[[test]]
+name = "RRN-A7F-P133-A2-ADARK394"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ADARK394"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7F (W2), DOS_ACT/ADARK394: a2 two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 4 over 2); against C0 c7cfcb37-073"
+
+[[test]]
+name = "RRN-A7F-P133-A2-BCRACERS"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BCRACERS"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7F (W2), DOS_ACT/BCRACERS: a2 two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.70); against C0 db8eed0f-010"
+
+[[test]]
+name = "RRN-A7F-P133-A2-BLOOD"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BLOOD"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7F (W2), DOS_ACT/BLOOD: a2 two more takes, v1 (b01); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 3 over 2); against C0 fce952ae-058"
+
+[[test]]
+name = "RRN-A7F-P133-A2-DARKLIGH"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "DARKLIGH"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_ACT/DARKLIGH: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 3 over 2); against C0 012e9f79-067"
+
+[[test]]
+name = "RRN-A7F-P133-A2-EXTREMEA"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "EXTREMEA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7F (W2), DOS_ACT/EXTREMEA: a2 two more takes, v1 (b01); CANDIDATE_UCDD_AUDIO by wave on one pair (back 184 over 31; jumps 242 over 44); against C0 fce952ae-124"
+
+[[test]]
+name = "RRN-A7F-P133-A2-FXFIGHTE"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "FXFIGHTE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7F (W2), DOS_ACT/FXFIGHTE: a2 two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.24); against C0 c7cfcb37-046"
+
+[[test]]
+name = "RRN-A7F-P133-A2-HEXENBEY"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "HEXENBEY"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7F (W2), DOS_ACT/HEXENBEY: a2 two more takes, v1 (b01); CANDIDATE_UCDD_AUDIO by wave on one pair (back 95 over 57; jumps 105 over 98); against C0 fce952ae-094"
+
+[[test]]
+name = "RRN-A7F-P133-A2-JURASSIC"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "JURASSIC"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7F (W2), DOS_ACT/JURASSIC: a2 two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by wave on one pair (back 106 over 92; jumps 143 over 122); against C0 db8eed0f-040"
+
+[[test]]
+name = "RRN-A7F-P133-A2-LBA"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "LBA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_ACT/LBA: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 18 over 2); against C0 012e9f79-082"
+
+[[test]]
+name = "RRN-A7F-P133-A2-LOLLYPOP"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "LOLLYPOP"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7F (W2), DOS_ACT/LOLLYPOP: a2 two more takes, v1 (b01); CANDIDATE_UCDD_AUDIO by wave on one pair (match 0.88); against C0 fce952ae-001"
+
+[[test]]
+name = "RRN-A7F-P133-A2-MASSDEST"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "MASSDEST"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_ACT/MASSDEST: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.80; gaps 7 over 2); against C0 012e9f79-085"
+
+[[test]]
+name = "RRN-A7F-P133-A2-QUAKE"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "QUAKE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7F (W2), DOS_ACT/QUAKE: a2 two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by wave on one pair (match 0.87; speed 1.02); against C0 c7cfcb37-025"
+
+[[test]]
+name = "RRN-A7F-P133-C2-QUAKEM1"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "QUAKEM1"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7F (W2), DOS_ACT/QUAKEM1: the pin two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by wave on one pair (speed 1.03); against C0 c7cfcb37-028"
+
+[[test]]
+name = "RRN-A7F-P133-C2-RAYMANF"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "RAYMANF"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_ACT/RAYMANF: the pin two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 6 over 5); against C0 012e9f79-022"
+
+[[test]]
+name = "RRN-A7F-P133-A2-REDRAM"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "REDRAM"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7F (W2), DOS_ACT/REDRAM: a2 two more takes, v1 (b01); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 12 over 4); against C0 fce952ae-049"
+
+[[test]]
+name = "RRN-A7F-P133-C2-SCREAMR2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "SCREAMR2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7F (W2), DOS_ACT/SCREAMR2: the pin two more takes, v1 (b01); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.73); against C0 fce952ae-136"
+
+[[test]]
+name = "RRN-A7F-P133-A2-SCREAMR2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "SCREAMR2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7F (W2), DOS_ACT/SCREAMR2: a2 two more takes, v1 (b01); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.78; speed 1.02); against C0 fce952ae-136"
+
+[[test]]
+name = "RRN-A7F-P133-C2-SCRMRAL"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "SCRMRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7F (W2), DOS_ACT/SCRMRAL: the pin two more takes, v1 (b01); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.59; speed 0.98); against C0 fce952ae-139"
+
+[[test]]
+name = "RRN-A7F-P133-A2-SCRMRAL"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "SCRMRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7F (W2), DOS_ACT/SCRMRAL: a2 two more takes, v1 (b01); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.62); against C0 fce952ae-139"
+
+[[test]]
+name = "RRN-A7F-P133-A2-SSF2T"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "SSF2T"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7F (W2), DOS_ACT/SSF2T: a2 two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by wave on one pair (match 0.93; gaps 22 over 16); against C0 db8eed0f-004"
+
+[[test]]
+name = "RRN-A7F-P133-A2-XCAREXPE"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "XCAREXPE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_ACT/XCAREXPE: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.64); against C0 012e9f79-010"
+
+[[test]]
+name = "RRN-A7F-P133-A2-XMENCHI"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "XMENCHI"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_ACT/XMENCHI: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 4 over 2); against C0 012e9f79-103"
+
+[[test]]
+name = "RRN-A7F-P133-C2-BUSTMOV2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BUSTMOV2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_THNK/BUSTMOV2: the pin two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.72; gaps 10 over 2); against C0 012e9f79-106"
+
+[[test]]
+name = "RRN-A7F-P133-A2-BUSTMOV2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "BUSTMOV2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_THNK/BUSTMOV2: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.64; gaps 16 over 2); against C0 012e9f79-106"
+
+[[test]]
+name = "RRN-A7F-P133-C2-COMCON"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "COMCON"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7F (W2), DOS_THNK/COMCON: the pin two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 4 over 2); against C0 db8eed0f-019"
+
+[[test]]
+name = "RRN-A7F-P133-A2-ETERNAM"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ETERNAM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7F (W2), DOS_THNK/ETERNAM: a2 two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 8 over 7); against C0 c7cfcb37-097"
+
+[[test]]
+name = "RRN-A7F-P133-C2-FANTGEN"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "FANTGEN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_THNK/FANTGEN: the pin two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 4 over 3); against C0 012e9f79-112"
+
+[[test]]
+name = "RRN-A7F-P133-A2-FANTGEN"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "FANTGEN"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_THNK/FANTGEN: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 4 over 3); against C0 012e9f79-112"
+
+[[test]]
+name = "RRN-A7F-P133-C2-GOB2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "GOB2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7F (W2), DOS_THNK/GOB2: the pin two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 3 over 2); against C0 db8eed0f-001"
+
+[[test]]
+name = "RRN-A7F-P133-A2-GOB2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "GOB2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7F (W2), DOS_THNK/GOB2: a2 two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 3 over 2); against C0 db8eed0f-001"
+
+[[test]]
+name = "RRN-A7F-P133-A2-HEROMM2D"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "HEROMM2D"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_THNK/HEROMM2D: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 10 over 2); against C0 012e9f79-115"
+
+[[test]]
+name = "RRN-A7F-P133-C2-HIST1914"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "HIST1914"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7F (W2), DOS_THNK/HIST1914: the pin two more takes, v1 (b01); CANDIDATE_UCDD_AUDIO by wave on one pair (back 78 over 16; jumps 104 over 26); against C0 fce952ae-010"
+
+[[test]]
+name = "RRN-A7F-P133-C2-MARBMAST"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "MARBMAST"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_THNK/MARBMAST: the pin two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 10 over 2); against C0 012e9f79-118"
+
+[[test]]
+name = "RRN-A7F-P133-A2-MARBMAST"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "MARBMAST"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_THNK/MARBMAST: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 8 over 2); against C0 012e9f79-118"
+
+[[test]]
+name = "RRN-A7F-P133-C2-MM6"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "MM6"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7F (W2), DOS_THNK/MM6: the pin two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by wave on one pair (back 39 over 25; jumps 43 over 38); against C0 c7cfcb37-115"
+
+[[test]]
+name = "RRN-A7F-P133-A2-RARKANI3"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "RARKANI3"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_THNK/RARKANI3: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (cover 0.38); against C0 012e9f79-016"
+
+[[test]]
+name = "RRN-A7F-P133-C2-ST25"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "ST25"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7F (W2), DOS_THNK/ST25: the pin two more takes, v1 (b03); CANDIDATE_UCDD_AUDIO by wave on one pair (match 0.94); against C0 c7cfcb37-124"
+
+[[test]]
+name = "RRN-A7F-P133-A2-STARCOMM"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "STARCOMM"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_THNK/STARCOMM: a2 two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (gaps 8 over 2); against C0 012e9f79-127"
+
+[[test]]
+name = "RRN-A7F-P133-A2-TINCM2"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "TINCM2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7F (W2), DOS_THNK/TINCM2: a2 two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by wave on one pair (back 57 over 43; jumps 70 over 54); against C0 db8eed0f-046"
+
+[[test]]
+name = "RRN-A7F-P133-C2-WARCRAFD"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "WARCRAFD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "pinC2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7F (W2), DOS_THNK/WARCRAFD: the pin two more takes, v1 (b02); CANDIDATE_UCDD_AUDIO by wave on one pair (speed 1.10); against C0 012e9f79-136"
+
+[[test]]
+name = "RRN-A7F-P133-A2-WARCRAFT"
+decides = "silent: the charter's 11.3 (two more takes of that build; the bin stands at 2 of 3 and is FLAKY_ otherwise) and the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W2 (each build whose wave row rests on one pair; the pairs matched against the row's control)"
+searched = "terms: re-run, retake, two of three; hits: 2 in 2 documents (RBIL_M 1, SHSUCDX 1); 10 Nov 2026"
+runner = "sweep"
+game = "WARCRAFT"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7f"]
+repeat = 2
+fixed = { build = "a2", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7F (W2), DOS_THNK/WARCRAFT: a2 two more takes, v1 (b04); CANDIDATE_UCDD_AUDIO by wave on one pair (match 0.13; back 16 over 15); against C0 db8eed0f-031"
+# END A7 runs a7f
