@@ -15,8 +15,29 @@ Refuses, with exit 2 and the reason shown to Claude:
 - a write into the game library (method.toml [games] paths): we never patch
   or alter game code, so nothing there is edited, moved, removed or
   overwritten; reading and copying out are fine;
-- a commit made through the GitHub tools, which skips the commit-msg hook.
+- a commit made through the GitHub tools, which skips the commit-msg hook;
+- while 86Box records, any command but the runner's own wait (RECORDING).
 A person who needs the escape types the command in their own shell.
+
+While 86Box records (the owner's decision of 11 Nov 2026 on the 09:45Z report,
+item 5: "While 86Box records, the session's command guard refuses any command
+but the runner's own wait; Edit and Write of text stay open. The runner sets
+the mark and clears it. A mark with no 86Box alive is reported as stale and
+does not hold the session. Its plant: a command issued during a recording is
+refused"; two L6 hits in two days, each found by reading the log afterwards).
+The mark is the bench's runs/recording.flag, which the runners set and clear
+(calbatch.py, plan_run.py: their PID first), found from this file's place as
+the bench's pre-commit finds it. While it is set and an emulator that records
+is alive (a process whose executable is 86Box, or DOSBox-X, the referee, whose
+takes calbatch.py records as well: the agent's choice), a Bash or Monitor
+command is refused unless the line is the runner's own wait and nothing else
+(is_wait: `python3 runs/calbatch.py PLAN.tsv --wait [first] [--log LOG]`, or
+plan_run.py the same, a cd before it allowed; no redirect, variable or
+substitution). Edit, Write and Read are not commands and stay open. A mark
+with no emulator alive does not hold the session: the command passes and the
+guard says the mark is stale (its holder alive or gone) on its output, for
+the session and the person both. tests/test_guard_recording.py is the test.
+lessons_read (11 Nov 2026, item 5) = "terms: guard, recording, flag, runner, plan, wait, lessons, hook; lessons: L6, L11, L2, L9, L38, L1, L3, L21, L33, L36, L5, L37, L10, L39, L45, L46, L48, L25, L31, L24, L44; 11 Nov 2026"
 
 A shell line is read command by command (bash_refusal), with the shell's own
 line structure first made plain (shell_text: an unquoted newline is a command
@@ -138,6 +159,21 @@ GITHUB_FILES = ('Commits go through git on the bench, where the commit-msg hook 
                 'GitHub tools would skip it.')
 # Commands that change the files they are given, and those that change only
 # their last argument.
+# While 86Box records (the docstring). UCDD_RECORDING_FLAG names another mark (the tests), as for the
+# bench's pre-commit, which finds the bench's from its own place (<bench>/runs/src/method/bench/hooks).
+RECORDING_FLAG = Path(os.environ.get('UCDD_RECORDING_FLAG') or
+                      Path(__file__).resolve().parents[3] / 'recording.flag')
+RECORDERS = re.compile(r'(86box|dosbox-x)', re.I)      # an executable's file name, from its start
+WAITERS = {'calbatch.py', 'plan_run.py'}               # the runners whose --wait is their own wait
+COMMAND_TOOLS = {'Bash', 'Monitor'}
+RECORDING = ("Nothing else runs on the host while 86Box records (L6; the owner's decision of 11 Nov 2026 on "
+             "the 09:45Z report, item 5): the one command that passes is the runner's own wait, alone on its "
+             "line, a cd before it allowed: python3 runs/calbatch.py PLAN.tsv --wait [first] (plan_run.py the "
+             "same). Edit and Write of text stay open. The runner clears the mark at the plan's end.")
+STALE = ('runs/recording.flag is set ({mark}; its holder {holder}) and no 86Box is alive: the mark is stale and '
+         "does not hold the session (the owner's decision of 11 Nov 2026 on the 09:45Z report, item 5). A runner "
+         'that stopped without clearing it leaves it; the guard does not remove it.')
+
 CHANGES_ARGS = {'rm', 'mv', 'truncate', 'touch', 'chmod', 'chown', 'tee', 'patch', 'shred', 'ln'}
 CHANGES_LAST = {'cp', 'install', 'rsync', 'xxd'}
 EDITS_IN_PLACE = {'sed', 'perl', 'ruby'}
@@ -849,8 +885,89 @@ def bash_refusal(line, cwd, names=None):
     return None
 
 
+def recorders():
+    """The PIDs of the processes whose executable is an emulator that records (RECORDERS), as
+    /proc/PID/exe names it (the bench's own reading of 86Box's PID; never pgrep -f: L9). A
+    process this one may not read (another user's) is not seen."""
+    found = []
+    for entry in os.listdir('/proc'):
+        if entry.isdigit():
+            try:
+                name = os.path.basename(os.readlink(f'/proc/{entry}/exe'))
+            except OSError:
+                continue
+            if RECORDERS.match(name):
+                found.append(int(entry))
+    return found
+
+
+def recording_mark():
+    """(the mark's first line, its holder alive, the recorders alive) while the mark is set, else
+    None. The recorders are read only when it is set."""
+    try:
+        line = RECORDING_FLAG.read_text().splitlines()[0]
+    except (OSError, IndexError):
+        return None
+    try:
+        os.kill(int(line.split()[0]), 0)
+        holder = True
+    except PermissionError:
+        holder = True
+    except (OSError, IndexError, ValueError):
+        holder = False
+    return line, holder, recorders()
+
+
+def is_wait(line):
+    """Whether a shell line is the runner's own wait and nothing else: each simple command a cd or
+    `python3 <path>/calbatch.py|plan_run.py PLAN.tsv --wait [first|end] [--log LOG]`, one of the
+    second at least, and no redirect, variable, backquote or substitution in any word."""
+    try:
+        found = list(commands(line))
+    except ValueError:
+        return False
+    waits = 0
+    for words in found:
+        if any(char in word for word in words for char in '<>$`'):
+            return False
+        if words[0] == 'cd' and len(words) <= 2:
+            continue
+        if (len(words) >= 4 and re.fullmatch(r'python(3(\.\d+)?)?', os.path.basename(words[0]))
+                and os.path.basename(words[1]) in WAITERS and words[2].endswith('.tsv')
+                and words[3] == '--wait'
+                and all(word in ('first', 'end', '--log') or word.endswith('.log') for word in words[4:])):
+            waits += 1
+            continue
+        return False
+    return waits > 0
+
+
+def recording_refusal(line):
+    """While the mark is set and an emulator records: the refusal of any command but the wait."""
+    mark = recording_mark()
+    if not mark or not mark[2] or is_wait(line):
+        return None
+    text, _, pids = mark
+    return (f'a command while 86Box records ({RECORDING_FLAG.name}: {text}; emulator PID '
+            f'{", ".join(map(str, pids))})', RECORDING)
+
+
+def stale_notice(call):
+    """For a command while the mark is set and no emulator is alive: the stale notice, else None."""
+    if call.get('tool_name', '') not in COMMAND_TOOLS:
+        return None
+    mark = recording_mark()
+    if not mark or mark[2]:
+        return None
+    return STALE.format(mark=mark[0], holder='alive' if mark[1] else 'gone')
+
+
 def refusal(call):
     tool, given = call.get('tool_name', ''), call.get('tool_input', {})
+    if tool in COMMAND_TOOLS:
+        found = recording_refusal(given.get('command') or '')
+        if found:
+            return found
     if tool == 'Bash':
         try:
             return bash_refusal(given.get('command', ''), call.get('cwd'))
@@ -872,8 +989,13 @@ def refusal(call):
 
 
 def main():
-    found = refusal(json.load(sys.stdin))
+    call = json.load(sys.stdin)
+    found = refusal(call)
     if not found:
+        notice = stale_notice(call)
+        if notice:          # said to the person (systemMessage) and to the session (additionalContext)
+            print(json.dumps({'systemMessage': notice, 'hookSpecificOutput': {
+                'hookEventName': 'PreToolUse', 'additionalContext': notice}}))
         return 0
     what, advice = found
     print(WHY.format(what=what, advice=advice.format(fork=FORK)), file=sys.stderr)

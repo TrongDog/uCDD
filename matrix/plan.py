@@ -3,7 +3,7 @@
 
     plan.py [plan] [--base REF | --files F ...] [--area A] [--group G]
                    [--test T] [--family F [--driver FILE]] [--baseline]
-                   [--save [--why TEXT]] [--format md|tsv|json]
+                   [--save --lessons-read LINE [--why TEXT]] [--format md|tsv|json]
     plan.py check
 
 A plan takes the changed files to their areas in matrix.toml, the areas to
@@ -21,6 +21,14 @@ recording: the top folder's check refuses any commit then; another file
 staged; not on main) leaves the plan saved and usable, says so on stderr
 and names `ledger.py commit-plan <tag>` for later; the exit stays 0, the
 plan on stdout as asked. Built, not run.
+
+--save needs --lessons-read LINE, the line lessons_recall.py <terms> --line
+printed for the plan's subject, saved in the plan as 'lessons_read' (the
+part inside its quotes); without it, or not in its form, nothing is saved
+(the owner's decision of 11 Nov 2026 on the 09:45Z report, item 5: "plan_run.py
+refuses to start a plan that has no lessons_read line"; the runners read it
+from the saved plan, and a saved plan never changes, its tag the hash of its
+runs, so a plan saved without the line could never start).
 
 lessons_read = "terms: plan, ledger, commit, guard; lessons: L38, L20, L40, L33, L37, L22, L39, L32, L24, L36; 6 Nov 2026"
 
@@ -643,7 +651,16 @@ def main():
     parser.add_argument('--why', default='saved by plan.py --save',
                         help="with --save: what the plan is for, its commit's subject after "
                              '"Plan <tag>: "')
+    parser.add_argument('--lessons-read',
+                        help='with --save, required: the line lessons_recall.py --line printed for the plan\'s '
+                             'terms, saved with the plan (the runners refuse a plan without it)')
     args = parser.parse_args()
+    if args.save and not methodlib.lessons_line(args.lessons_read):
+        # a saved plan never changes and its tag is its runs' hash: a plan saved without the line could
+        # never start (the owner's decision of 11 Nov 2026 on the 09:45Z report, item 5), so it is not saved
+        raise SystemExit('plan.py: --save needs --lessons-read "<the line lessons_recall.py <terms> --line '
+                         'printed>"' + (f' (given {args.lessons_read!r}, not in its form)' if args.lessons_read
+                                        else '') + '; nothing saved')
     matrix = load(args.matrix)
     if args.command == 'check':
         problems, warnings = check(matrix)
@@ -671,7 +688,8 @@ def main():
     plan['families'], plan['untraced'] = args.family, untraced
     if args.save:
         saved = methodlib.save_plan({'tag': plan['tag'], 'files': files, 'families': args.family,
-                                     'runs': plan['runs']})
+                                     'runs': plan['runs'],
+                                     'lessons_read': methodlib.lessons_line(args.lessons_read)})
         print(f'plan {plan["tag"]} saved: {saved}', file=sys.stderr)
         commit_saved(plan['tag'], args.why)
     if args.format == 'json':

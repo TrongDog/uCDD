@@ -41,7 +41,7 @@ Add this to $1/.claude/settings.json (merge it with what is there):
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash|Write|Edit|MultiEdit|NotebookEdit|mcp__github__.*",
+        "matcher": "Bash|Monitor|Write|Edit|MultiEdit|NotebookEdit|mcp__github__.*",
         "hooks": [{ "type": "command", "command": "python3 $here/guard/guard.py" }]
       }
     ]

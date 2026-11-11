@@ -36,6 +36,7 @@ Family: none: the interrupt path, every engine
 # The pre-T2 form: an emulator claim with no plan. The hook refuses it with require on.
 BY_HAND = 'Evidence: emulator: 86Box, D10, by hand'
 RECORD_OFF = ('--dynarec', '0')
+LESSONS = 'lessons_read = "terms: plan, test; lessons: L6; 11 Nov 2026"'     # plan.py --save needs it (11 Nov 2026)
 LEDGER = tempfile.TemporaryDirectory(prefix='method-ledger-')
 os.environ['UCDD_LEDGER'] = LEDGER.name
 
@@ -73,7 +74,7 @@ class HookTests(unittest.TestCase):
         shutil.copytree(cls.tree / 'build', cls.build0)
         shutil.rmtree(cls.tree / 'build')
         result = subprocess.run([sys.executable, str(PACKAGE / 'matrix/plan.py'), '--test', 'SBT16',
-                                 '--save', '--format', 'json'], cwd=cls.tree, capture_output=True, text=True)
+                                 '--save', '--format', 'json', '--lessons-read', LESSONS], cwd=cls.tree, capture_output=True, text=True)
         saved = json.loads(result.stdout)
         cls.tag, cls.run0 = saved['tag'], saved['runs'][0]['id']
 
@@ -106,7 +107,7 @@ class HookTests(unittest.TestCase):
         return self.tree / 'build'
 
     def saved_plan(self):
-        result = self.tool(PACKAGE / 'matrix/plan.py', '--test', 'SBT16', '--save', '--format', 'json')
+        result = self.tool(PACKAGE / 'matrix/plan.py', '--test', 'SBT16', '--save', '--format', 'json', '--lessons-read', LESSONS)
         plan = json.loads(result.stdout)
         return plan['tag'], plan['runs'][0]['id']
 
@@ -310,7 +311,7 @@ class HookTests(unittest.TestCase):
 
     def other_plan(self, *options):
         """A saved plan other than the class's, with no entry yet: its tag and run ids."""
-        result = self.tool(PACKAGE / 'matrix/plan.py', *options, '--save', '--format', 'json')
+        result = self.tool(PACKAGE / 'matrix/plan.py', *options, '--save', '--format', 'json', '--lessons-read', LESSONS)
         saved = json.loads(result.stdout)
         self.assertTrue(saved['runs'], f'plan.py {" ".join(options)} planned no runs here')
         return saved['tag'], [run['id'] for run in saved['runs']]
@@ -543,7 +544,7 @@ class HookTests(unittest.TestCase):
         result = self.commit(message)
         self.assertEqual(result.returncode, 1)
         self.assertIn('no cited plan surveys creative', result.stderr)
-        survey = self.tool(PACKAGE / 'matrix/plan.py', '--family', 'creative', '--save', '--format', 'json')
+        survey = self.tool(PACKAGE / 'matrix/plan.py', '--family', 'creative', '--save', '--format', 'json', '--lessons-read', LESSONS)
         if survey.returncode:
             self.skipTest('no census on the library refs here')
         plan = json.loads(survey.stdout)

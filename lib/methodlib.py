@@ -5,6 +5,7 @@ import fnmatch
 import hashlib
 import json
 import os
+import re
 import tomllib
 
 PACKAGE = Path(__file__).resolve().parent.parent
@@ -43,6 +44,21 @@ def plan_tag(runs):
     """A plan's tag: the hash of its runs, so an edited plan no longer matches."""
     text = json.dumps([(run['test'], run['config'], run['repeat']) for run in runs], sort_keys=True)
     return hashlib.sha256(text.encode()).hexdigest()[:8]
+
+
+# lessons_recall.py --line's form, the part inside its quotes: the terms, the lessons it listed, the date. A
+# saved plan carries it (plan.py --save --lessons-read), and the runners refuse to start a plan without it
+# (the owner's decision of 11 Nov 2026 on the 09:45Z report, item 5; the bench's runs/ledgerend.py).
+LESSONS_READ = re.compile(r'terms: [^;]+; lessons: [^;]+; \d{1,2} [A-Z][a-z]{2} \d{4}\Z')
+
+
+def lessons_line(line):
+    """LINE's quoted part when LINE is lessons_recall.py --line's form (whole, or the part inside its
+    quotes), else None."""
+    text = (line or '').strip()
+    quoted = re.fullmatch(r'lessons_read = "(.*)"', text)
+    text = quoted.group(1) if quoted else text
+    return text if LESSONS_READ.match(text) else None
 
 
 def saved_plan(tag):

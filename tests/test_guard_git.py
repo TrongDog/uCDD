@@ -79,6 +79,7 @@ GUARD = PACKAGE / 'guard' / 'guard.py'
 TOOL = PACKAGE / 'tools' / 'ledger.py'
 PLAN = PACKAGE / 'matrix' / 'plan.py'
 TAG = 'abcd1234'
+LESSONS = 'lessons_read = "terms: plan, test; lessons: L6; 11 Nov 2026"'     # plan.py --save needs it (11 Nov 2026)
 RUNS = 'ledger/runs.jsonl'
 SAVED = f'ledger/plans/{TAG}.json'
 # The variable names the commands below set or read: none comes from the test's own environment.
@@ -140,7 +141,8 @@ class GitWrites(unittest.TestCase):
         return found
 
     def plan_save(self):
-        return subprocess.run([sys.executable, str(PLAN), '--test', 'SBT16', '--save', '--format', 'json'],
+        return subprocess.run([sys.executable, str(PLAN), '--test', 'SBT16', '--save', '--format', 'json',
+                               '--lessons-read', LESSONS],
                               cwd=self.root, capture_output=True, text=True, env=self.env)
 
     def ledger_tool(self, *args):

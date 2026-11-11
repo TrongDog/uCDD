@@ -9,7 +9,7 @@ order of work into these pieces:
 | `hooks/commit-msg`, `method.toml` | A git hook that refuses a code commit without its row and its evidence |
 | `matrix/matrix.toml`, `matrix/plan.py` | One definition of the test matrix, and a planner that turns a diff into the runs it needs |
 | `tools/ledger.py` | The results ledger: the runners record each verdict and the binaries it was for, and the bench's commit on every entry they record; the hook reads it; the runners commit its runs file at each plan's end (`commit-runs`, a runner's only: the token; calbatch.py, plan_run.py, and sndreg run by hand), and `plan.py --save` a saved plan (`commit-plan`) |
-| `guard/guard.py` | A Claude Code hook: no `--no-verify`, no hand-written ledger, no git command that stages, restores or checks out a protected path, no runners' token by hand, no write into the game library, no commits through the GitHub tools, nothing to the upstream |
+| `guard/guard.py` | A Claude Code hook: no `--no-verify`, no hand-written ledger, no git command that stages, restores or checks out a protected path, no runners' token by hand, no write into the game library, no commits through the GitHub tools, nothing to the upstream, no command but the runner's own wait while 86Box records |
 | `tools/trailers.py` | Counts Issue:, Lesson: and Evidence: trailers in the history |
 | `tools/game.py` | Before a game runs: its engine, driver versions and family, looked up in the library; what the notes lack |
 | `tools/ci.py`, `ci/method.yml` | The checks on GitHub: every branch built with its headroom, and the hook's checks on commits made after the hook went in |
@@ -42,7 +42,7 @@ From the uCDD clone:
   hook. `sh install.sh --remove <worktree>` takes it out again.
 - **Claude Code:** `--claude` links the skill into `<dir>/.claude/skills` and
   prints the PreToolUse lines to merge into `<dir>/.claude/settings.json`
-  (the guard, for Bash, file edits and the GitHub tools). It does not edit
+  (the guard, for Bash, Monitor, file edits and the GitHub tools). It does not edit
   the settings itself.
 - **The self-tests:** they make commits in a temporary worktree of
   `UCDD_REF` and remove it afterwards, with a temporary ledger.
@@ -435,6 +435,15 @@ expects of the hardware; the notes say it in words.
   copying out are allowed, and so are the runners, which set a game's own
   configuration as its setup program would. Set `[games] paths` in
   method.local.toml to the library and its disc images (or `UCDD_GAMES`).
+- **While 86Box records** (the owner's decision of 11 Nov 2026 on the 09:45Z
+  report, item 5) the guard refuses any command but the runner's own wait,
+  `python3 runs/calbatch.py PLAN.tsv --wait [first]` (or plan_run.py's),
+  alone on its line; Edit and Write of text stay open. The mark is the
+  bench's runs/recording.flag, which the runners set and clear; a mark with
+  no 86Box (or DOSBox-X) alive is reported as stale and holds nothing
+  (tests/test_guard_recording.py). The runners refuse to start a plan saved
+  without its lessons_read line, and `plan.py --save` needs
+  `--lessons-read` (the bench's runs/test_plan_lessons.py).
 - **The GitHub tools** cannot commit files (the guard refuses
   `create_or_update_file`, `push_files` and `delete_file`): commits are made
   with git, where the hook sees them.
