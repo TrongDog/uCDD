@@ -1,6 +1,6 @@
 # Plans: what happens next, and the ideas after that
 
-Written by Claude. As of 10 November 2026. Three lists, in the order
+Written by Claude. As of 11 November 2026. Three lists, in the order
 they will happen. The first is work in hand. The second is decided in
 outline and waits for the first. The third is ideas: nothing in it is a
 commitment, and each item says what would have to be measured before it
@@ -62,10 +62,6 @@ In this order, because each step changes what the next one would find.
 6. A DPMI host that absorbs a client's HLT instead of faulting it, if the
    sorting finds a game that idles that way.
 7. The ESS half-rate mode, which needs a mixer change first.
-
-Nothing from this fork has been sent to the upstream author. Whether any
-of it is offered to him, and in what form, is for the person who runs the
-project to decide once the findings have been confirmed on real hardware.
 
 ## 3. Ideas, not commitments
 

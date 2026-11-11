@@ -1,6 +1,6 @@
 # Architecture: the driver, the harness and the repository
 
-Written by Claude. As of 10 November 2026. This page is the map. It says
+Written by Claude. As of 11 November 2026. This page is the map. It says
 what the parts are and where each lives, with a link into the source. It
 does not argue for anything; the reasons are in
 [DECISIONS.md](DECISIONS.md), and how a result is produced is in
@@ -209,7 +209,7 @@ flowchart TD
 | Part | Where | Public |
 |---|---|---|
 | The runners, the recorder, the judges, the catalogue, the triage reader, the results | The bench repository | No. It runs beside the game library and its results name game files. |
-| The ledger, the decisions, the lessons | The bench machine | No. Never pushed anywhere. |
+| The ledger, the decisions, the lessons | The bench machine | No. |
 | The commit checks, the ledger's rules, the test matrix, the privacy and page checks | The method package: [`lib/`](https://github.com/TrongDog/uCDD/blob/claude/brave-franklin-6h9xzo/lib), [`tools/`](https://github.com/TrongDog/uCDD/blob/claude/brave-franklin-6h9xzo/tools), [`tests/`](https://github.com/TrongDog/uCDD/blob/claude/brave-franklin-6h9xzo/tests), [`method.toml`](https://github.com/TrongDog/uCDD/blob/claude/brave-franklin-6h9xzo/method.toml) | Yes |
 | The GitHub workflow that runs the checks | [`.github/workflows/method.yml`](../.github/workflows/method.yml) | Yes |
 | The rows | [ISSUES.md on `notes`](https://github.com/TrongDog/uCDD/blob/notes/ISSUES.md) | Yes |

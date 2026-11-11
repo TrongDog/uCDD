@@ -44,8 +44,7 @@ flowchart LR
     mix -- "one stream" --> real
 ```
 
-All credit for the driver is the upstream author's. Nothing from this fork
-has been sent to him.
+All credit for the driver is the upstream author's.
 
 ## Where it stands
 
@@ -99,5 +98,4 @@ long, in the order it was written, every row a claim with its evidence.
 
 GPL-3.0-only, as upstream ([LICENSE](LICENSE)). The harness's own scripts
 are under the same licence. No game files, disc images, boot disks,
-firmware or recordings are in this repository, and the commit checks refuse
-them.
+firmware or recordings are in this repository.

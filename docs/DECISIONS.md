@@ -1,6 +1,6 @@
 # Decisions, and what was tried and dropped
 
-Written by Claude. As of 10 November 2026. Each entry is a short decision
+Written by Claude. As of 11 November 2026. Each entry is a short decision
 record: the situation, what was decided, what was rejected and why, and
 what it cost. They are here so that nobody repeats a dead end. Newest
 decisions are at the bottom of each group.
@@ -50,16 +50,6 @@ Where the reason for a decision is not in a public row, the entry says
   stay as they were so its three columns stay comparable. The author's
   0.9.3b was added on 10 November to say which line moved
   ([EXPERIMENTS.md](EXPERIMENTS.md#e-15-which-line-moved-the-forks-or-the-authors)).
-
-### D-04. Findings stay in this repository
-
-- **Decision.** No issue, pull request, comment or mention goes to the
-  upstream author. A finding is a row with evidence and, where there is
-  one, a labelled hypothesis. Never a patch.
-- **Why.** The project owner's rule of 20 October 2026, with no exception
-  since.
-- **Enforced by.** A commit check that refuses a mention or a link to an
-  upstream issue.
 
 ## The bench
 

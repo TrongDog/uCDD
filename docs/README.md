@@ -75,7 +75,3 @@ understanding. A fifth group, the lab notebook, holds the experiments.
 6. Nothing is confirmed on real hardware until a person has run it there,
    and no page says otherwise.
 
-A program checks what a program can: every link, every page listed here,
-every "As of" line, every candidate row present in the table. It runs at
-each commit and on GitHub
-([the method package](https://github.com/TrongDog/uCDD/tree/claude/brave-franklin-6h9xzo)).

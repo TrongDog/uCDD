@@ -100,9 +100,7 @@ effect, never copied.
 **The ledger.** Every run that can produce evidence is recorded by the
 runner, not by hand: the plan it belongs to, the build's hashes, the
 emulator and its version, whether the dynamic recompiler was off (a run
-with it on is a comparison, never evidence), the capture and its hash. A
-commit that cites a run as evidence is refused by the commit hook if the
-ledger does not hold it as a pass.
+with it on is a comparison, never evidence), the capture and its hash.
 
 **Evidence grades.** Each claim carries one: data sheet, emulator,
 hardware, reading, or none. The order of trust is the specification, then
@@ -197,13 +195,10 @@ hypothesis in a field of its own, never a patch; the fork's own development
 is frozen while the harness runs, so that the thing under test stays
 still. It does not press keys in games, so a game that waits for one is
 judged on whether it waited rather than crashed. It does not listen: it
-measures. It does not send anything to the upstream author: every finding
-stays in this repository.
+measures.
 
 ## What is kept out of the repository
 
 Game files, disc images, boot disks, firmware and recordings never enter
 it; the repository holds hashes, scripts, synthetic test discs the harness
-generates itself, and measurements. The commit checks refuse the rest at
-the commit and again at the push, and the checks are tested against
-planted faults like everything else.
+generates itself, and measurements.

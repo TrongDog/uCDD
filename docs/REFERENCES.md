@@ -1,6 +1,6 @@
 # References, credit and lineage
 
-Written by Claude. As of 10 November 2026. What the work rests on, who is
+Written by Claude. As of 11 November 2026. What the work rests on, who is
 owed credit, and how this fork relates to the project it came from.
 
 ## Upstream and lineage
@@ -33,8 +33,6 @@ How the fork diverges:
 - **What upstream has that the fork lacks.** Everything after 0.9.3b,
   among it nine fixes the harness has measured and the doubling of game
   samples while no disc plays ([KNOWN-ISSUES.md](KNOWN-ISSUES.md)).
-- **Nothing from this fork has been sent upstream**
-  ([DECISIONS.md](DECISIONS.md#d-04-findings-stay-in-this-repository)).
 
 The upstream author's compatibility list (his wiki) is the source of the
 "known to work" games the calibration used.

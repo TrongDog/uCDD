@@ -98,7 +98,7 @@ commit dates only, no code.
    build 16 of those games pass and 7 differ from their control; on
    0.9.5-a2, 27 pass and 25 differ. 9 on each build still run with sound
    unmatched, for want of a matched pair of control takes to measure
-   against; the owner decides on them. Two 0.9.5-a2 sound faults read
+   against. Two 0.9.5-a2 sound faults read
    different on one take of three and are marked flaky.
 
    Then, on 11 November, the control first: a difference in matched sound
