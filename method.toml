@@ -54,6 +54,13 @@ third_party = [
 # made it. The fork's rule (the bench's hourly backup is cron's, on the host's clock); read at the
 # commit and at the push for commits whose committer is this shell's own. TZ=UTC is the cure.
 utc_dates = true
+# Who may be the author or the committer of one of the fork's own commits (r3.11). A banned word
+# is found only if someone thought to list it; an identity passes only if it is named here, or in
+# method.local.toml as [privacy] identities_also (one the owner accepts and keeps off this file).
+# tools/privscan.py counts every own commit by any other identity and exits 1: the web editor
+# commits as the account that used it, where no hook runs, so the reading of what was pushed is
+# where such a commit is seen. Empty or absent: not read. The upstream author's commits are his.
+identities = ["Claude <noreply@anthropic.com>", "GitHub <noreply@github.com>"]
 
 # Words that never go into a message or an added line (mantra rule 7: no
 # test-bench nicknames). Python regular expressions.
@@ -518,3 +525,36 @@ upstream_refs = ["main", "origin/main"]
 # Code commits after check_after with no Issue trailer that the owner accepts as pushed history,
 # by sha, each with its reason. Empty until he adds one.
 untagged_allow = []
+
+# The pages keep up with the work (lib/docs.py, tools/doccheck.py; tightening r3.11, gate T13;
+# the owner, 10 Nov 2026). README.md, "The pages", has the rules a program cannot check.
+[docs]
+# The branch that holds the pages; the commit hook reads only commits made on it.
+branches = ["fixes"]
+repo = "TrongDog/uCDD"
+# Owners a link into a repository of this name may carry beside [docs] repo's own: the upstream.
+owners = ["vorvek"]
+front = "README.md"
+index = "docs/README.md"
+# The pages: every check reads them.
+pages = ["README.md", "docs/*.md"]
+# Another author's text, or a page kept as it was on a stated day: links and names only.
+foreign = ["BUILDING.md", "RELEASE-NOTES.md", "ISSUES.md"]
+# Pages that carry no "As of" line: the index is a list of links and has no facts of its own.
+unstamped = ["docs/README.md"]
+# The rows the pages are a view of, and the page that tables the candidates.
+register = "notes:ISSUES.md"
+register_page = "docs/KNOWN-ISSUES.md"
+register_prefix = "CAND-"
+# Words that claim without showing. Python regular expressions, read outside code.
+fluff = [
+    '(?i)\bseamless(ly)?\b', '(?i)\brobust(ly|ness)?\b', '(?i)\bblazing(ly)?\b',
+    '(?i)\bcutting[- ]edge\b', '(?i)\bstate[- ]of[- ]the[- ]art\b', '(?i)\bworld[- ]class\b',
+    '(?i)\brevolutionary\b', '(?i)\beffortless(ly)?\b', '(?i)\bgame[- ]chang(er|ing)\b',
+]
+# Markers a draft leaves for the second reviewer: none may reach a commit.
+markers = ['\[agent:[^\]]*\]']
+# A gap that is named: counted and listed by doccheck.py --todo, never refused.
+todo = '\[TODO:[^\]]*\]'
+# A file of commit ids from before a history rewrite, one a line, kept off the repository: set
+# its path in method.local.toml ([docs] old_ids) and no page may cite one of them.

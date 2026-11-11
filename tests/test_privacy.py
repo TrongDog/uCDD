@@ -90,6 +90,7 @@ why = "a made-up fork-only word"
 [privacy]
 allow_phrases = ["{PHRASE}"]
 allow_paths = ["Third Party/*"]
+identities_also = ["Test <test@example.com>"]
 '''.replace('\\\\', '\\')
 
 

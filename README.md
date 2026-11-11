@@ -486,6 +486,54 @@ first lines.
   `tools/privrewrite.py` rewrites the fork's own history once, checks its own work and pushes
   nothing; its `reword` does a work tree whose history stays.
 
+## The pages keep up
+
+The owner's rule of 10 Nov 2026 (tightening r3.11, gate T13). The fork's public pages (the front
+page and `docs/` on the pages' branch) are a view of the rows, and a view drifts unless something
+holds it to them. Found on the day the rule was made: the front page listed features the source
+on its own branch does not have; the table of candidates stopped at CAND-32 while the register
+held 169 rows; one page said a build had not been run that another page reported on; three
+pages carried figures and no day.
+
+What a program checks (`lib/docs.py`, `tools/doccheck.py`, `[docs]` in method.toml), at every
+commit on the pages' branch that stages a page, and on GitHub at every push and every hour:
+
+| Check | The rule |
+| --- | --- |
+| links | Every relative link and image resolves in the same tree, and its `#anchor` to a heading or an `<a id>`; a link into this repository on GitHub resolves in the branch it names. |
+| names | A link into this repository names it as it is named now. |
+| orphans | Every page is reached from the front page and is listed in the index (`docs/README.md`). |
+| stamp | Every page says the day its facts were read ("As of 10 November 2026"), and not a day to come. |
+| words | No word of `[docs] fluff`: a claim is a number, a constraint or a link. |
+| markers | No marker left for another hand (`[agent: ...]`). `[TODO: ...]` is counted and listed, never refused: a gap that is named is not drift. |
+| register | Every candidate id in the register (`notes:ISSUES.md`) is on the page that tables the candidates, by name or inside a stated range; no page names an id the register lacks. |
+| oldids | With `[docs] old_ids` set in method.local.toml: no page cites a commit id from before a rewrite. |
+
+A check that cannot read what it needs (the register's branch not fetched) says so as a problem;
+it never passes unread. `tests/test_doccheck.py` plants each fault alone and its own check, and
+no other, must refuse it.
+
+What a program cannot check, and the second reviewer holds:
+
+1. **A page is a view of the rows.** Where they disagree the row is right and the page is
+   corrected, in the same piece of work that moved the row.
+2. **A number has one home.** The stage of the work is STATUS's, the candidates KNOWN-ISSUES's, a
+   build's identity REFERENCE's, a limit CALIBRATION's. Another page links there, or quotes the
+   number with the home page's day beside it. A commit id is written on REFERENCE and nowhere else.
+3. **Each kind of page keeps to its kind** (after Diataxis): a tutorial is followed top to bottom
+   and explains nothing it does not need; a how-to is one task; a reference page is tables and
+   does not argue; an explanation does not give steps. The index says which is which.
+4. **A hypothesis is labelled** and is never a finding; one that turned out wrong stays, dated.
+5. **A decision that replaced another** is added to DECISIONS with what it replaced, and the old
+   entry is marked superseded, not removed. An experiment that overturned a belief is added to
+   EXPERIMENTS as hypothesis, test, result, conclusion.
+6. **Nothing moves without a map.** A page that is split, merged or renamed is moved with a line
+   for each of its sections saying where it went; nothing is deleted to make a page look cleaner.
+7. **When a gate closes, a candidate opens or closes, or a build is pinned**, the page that is
+   that fact's home moves in the same piece of work, and its "As of" line with it.
+8. The pages say what was measured in an emulator and never that anything is confirmed on
+   hardware before a person has run it there. No page says why the history was rewritten.
+
 ## On GitHub
 
 The workflow lives on `fixes` as `.github/workflows/method.yml` (a copy of

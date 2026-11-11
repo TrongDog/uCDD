@@ -136,6 +136,35 @@ def clocks(repo, refs, scope):
     return ours, read, others
 
 
+def named_identities():
+    """Who may author or commit one of the fork's own commits: [privacy] identities, with
+    identities_also from method.local.toml (one the owner accepts and keeps off this file)."""
+    settings = privacy.SETTINGS
+    return set(settings.get('identities') or []) | set(settings.get('identities_also') or [])
+
+
+def unnamed(repo, refs):
+    """(commits, distinct identities, their short ids) among the fork's own commits whose author
+    or committer is not a named identity (r3.11). A banned word is found only if someone listed it;
+    an identity passes only if someone did. The web editor commits as the account that used it,
+    and no hook runs there: this reading of what was pushed is where such a commit is seen."""
+    allowed = named_identities()
+    if not allowed:
+        return None
+    his = privacy.upstream_refs(repo)
+    log = git(repo, 'log', '--format=%h%x1f%an <%ae>%x1f%cn <%ce>', *refs, *[f'^{ref}' for ref in his])
+    commits, distinct = [], set()
+    for line in log.splitlines():
+        parts = line.split('\x1f')
+        if len(parts) != 3:
+            continue
+        strangers = {ident for ident in parts[1:] if ident not in allowed}
+        if strangers:
+            commits.append(parts[0])
+            distinct |= strangers
+    return len(commits), len(distinct), commits
+
+
 def scan(repo, refs, scope='fork', tree=None, skip=()):
     found = privacy.rules(scope)
     counts = {rule.why: collections.Counter() for rule in found}
@@ -257,6 +286,14 @@ def main():
               f'{others} by other committers')
         if ours and privacy.utc_dates(args.scope):
             bad += ours
+        strangers = unnamed(args.repo, args.refs)
+        if strangers is not None:
+            count, distinct, commits = strangers
+            print(f'an author or committer the method does not name ([privacy] identities): '
+                  f'{count} commits, {distinct} distinct')
+            if args.list and commits:
+                print('    ' + ' '.join(commits[:40]) + (' ...' if len(commits) > 40 else ''))
+            bad += count
     if not any(rule.personal for rule in found):
         print('no personal rule in the list: nothing of the owner\'s was looked for')
         return 1

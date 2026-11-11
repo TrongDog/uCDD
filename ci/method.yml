@@ -56,3 +56,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .method/tools/ci.py --repo "$GITHUB_REPOSITORY"
+      # The pages keep up (lib/docs.py, r3.11): links, orphans, the "As of" line, the candidate
+      # rows of the register against the table of candidates. It reads the pages' branch and the
+      # register's as GitHub holds them, whatever was pushed; a problem fails the run and names it.
+      - name: The pages
+        if: always()
+        run: python3 .method/tools/doccheck.py --todo

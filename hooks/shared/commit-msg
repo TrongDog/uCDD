@@ -7,6 +7,14 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / 'lib'))
+import docs  # noqa: E402
 import privacy  # noqa: E402
 
-sys.exit(privacy.main(['commit-msg', '--scope', 'fork', *sys.argv[1:]]))
+code = privacy.main(['commit-msg', '--scope', 'fork', *sys.argv[1:]])
+# The pages keep up (lib/docs.py, r3.11): on the pages' branch, when the commit stages a page.
+problems = docs.staged_problems()
+if problems:
+    print('commit-msg: refused', file=sys.stderr)
+    for problem in problems:
+        print(f'  - {problem}', file=sys.stderr)
+sys.exit(code or (1 if problems else 0))

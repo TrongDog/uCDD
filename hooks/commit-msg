@@ -7,6 +7,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'lib'))
 import checks  # noqa: E402
+import docs  # noqa: E402
 import privacy  # noqa: E402
 
 EXAMPLE = """\
@@ -56,6 +57,7 @@ def main(path):
                   for pattern in checks.CONFIG['commit']['skip_branches'])
     problems, code = ([], []) if skipped else checks.check(message_text(path), checks.Target())
     problems += personal_problems(path, skipped)
+    problems += docs.staged_problems()          # the pages keep up (lib/docs.py, r3.11)
     if not problems:
         return 0
     shown = ', '.join(code[:4]) + (', ...' if len(code) > 4 else '')
