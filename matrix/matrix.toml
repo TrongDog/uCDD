@@ -205,7 +205,9 @@ optional_groups = ["pc", "t0", "t1", "t2x", "t2xc0", "sweep", "pinned", "t0l4", 
                    # A7's second controls of the CD-audio titles (the same decision, item 7)
                    "rerun-a7c",
                    # A7's base takes of which line moved, and SSF2T's again (the decision on the 22:11Z report, items 2 and 4)
-                   "rerun-a7d"]
+                   "rerun-a7d",
+                   # W1's second controls (the decision on the 22:11Z report, item 3 (b))
+                   "rerun-a7e"]
 
 # How each runner is started, from the bench directory. $UCDD_FIXTEST is the
 # bench's fixtest.py and $UCDD_KIT its kit folder (the caller sets both, as it
@@ -50541,3 +50543,253 @@ fixed = { build = "base093", vmodel = "sb16" }
 env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=5f654686"
 note = "A7D, DOS_THNK/LSL5: the base (0.9.3b) once, v2; A2_PAST_CONTROL, pin NO_AUDIO_IN_WINDOW, a2 NO_CONTROL; item 4"
 # END A7 runs a7d
+
+# BEGIN A7 runs a7e (written by the agent in the A7 block's form; the owner's decision of 10 Nov 2026 on the 11:15Z report, item 3 (b) W1: the second control of every game whose wave rows have no control pair)
+
+[[test]]
+name = "RRN-A7E-P133-C0-CARMAGED"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "CARMAGED"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7E (W1), DOS_ACT/CARMAGED: C0 a second time in its row's plan environment, v1 (b01); its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (a2 CANDIDATE_UCDD_AUDIO)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-FADETOBL"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "FADETOBL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7E (W1), DOS_ACT/FADETOBL: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_LEVEL)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-MEGAMANX"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "MEGAMANX"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7E (W1), DOS_ACT/MEGAMANX: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_HOSTLOAD)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-PRIMALRA"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "PRIMALRA"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7E (W1), DOS_ACT/PRIMALRA: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_LEVEL)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-PRIV2SE"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "PRIV2SE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7E (W1), DOS_ACT/PRIV2SE: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_LEVEL)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-SCREAMR2"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "SCREAMR2"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7E (W1), DOS_ACT/SCREAMR2: C0 a second time in its row's plan environment, v1 (b01); its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_AUDIO, a2 CANDIDATE_UCDD_AUDIO)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-SCRMRAL"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "SCRMRAL"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=fce952ae"
+note = "A7E (W1), DOS_ACT/SCRMRAL: C0 a second time in its row's plan environment, v1 (b01); its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_AUDIO, a2 CANDIDATE_UCDD_AUDIO)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-SWDFORC"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "SWDFORC"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7E (W1), DOS_ACT/SWDFORC: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_LEVEL, a2 CANDIDATE_UCDD_SFX)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-SYSTEMSH"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "SYSTEMSH"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7E (W1), DOS_ACT/SYSTEMSH: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (a2 FLAKY_CANDIDATE_UCDD_SFX)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-TNFSSE"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "TNFSSE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7E (W1), DOS_ACT/TNFSSE: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_LEVEL)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-XCAREXPE"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "XCAREXPE"
+library = "DOS_ACT"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7E (W1), DOS_ACT/XCAREXPE: C0 a second time in its row's plan environment, v1 (b02); its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_AUDIO, a2 CANDIDATE_UCDD_AUDIO)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-BUSTMOV2"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "BUSTMOV2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7E (W1), DOS_THNK/BUSTMOV2: C0 a second time in its row's plan environment, v1 (b02); its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_AUDIO, a2 CANDIDATE_UCDD_AUDIO)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-DUMAST2"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "DUMAST2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7E (W1), DOS_THNK/DUMAST2: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_LEVEL)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-KYRA1"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "KYRA1"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=acca1005"
+note = "A7E (W1), DOS_THNK/KYRA1: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_LEVEL)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-PQ4"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "PQ4"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=eecd58bf"
+note = "A7E (W1), DOS_THNK/PQ4: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (a2 FLAKY_CANDIDATE_UCDD_SFX)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-SIMCITY2"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "SIMCITY2"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c87998b0"
+note = "A7E (W1), DOS_THNK/SIMCITY2: C0 a second time in its row's plan environment; its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_LEVEL)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-ST25"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "ST25"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=c7cfcb37"
+note = "A7E (W1), DOS_THNK/ST25: C0 a second time in its row's plan environment, v1 (b03); its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_AUDIO)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-WARCRAFD"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "WARCRAFD"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=012e9f79"
+note = "A7E (W1), DOS_THNK/WARCRAFD: C0 a second time in its row's plan environment, v1 (b02); its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (pin CANDIDATE_UCDD_AUDIO)"
+
+[[test]]
+name = "RRN-A7E-P133-C0-WARCRAFT"
+decides = "silent: a reference take with no expected result of its own: the control taken a second time in its row's plan environment so that the row's pairs have a control pair to be read against (the owner's decision of 10 Nov 2026 on the 22:11Z report item 3 (b) W1)"
+searched = "terms: reference take, control take, second control, control pair; hits: 4 in 4 documents (HOSTCD 1, RBIL_N 1, VCPI 1, docs/sound-engines/dmx.md 1); 10 Nov 2026"
+runner = "sweep"
+game = "WARCRAFT"
+library = "DOS_THNK"
+groups = ["rerun", "rerun-a7e"]
+repeat = 1
+fixed = { mode = "base", vmodel = "sb16" }
+env = "RIG_ENV=v1 GL_PCBOOT=1 GL_VOODOO=1 RERUN_OF=db8eed0f"
+note = "A7E (W1), DOS_THNK/WARCRAFT: C0 a second time in its row's plan environment, v1 (b04); its wave READ_DIFFERS or RUNS_WITH_SOUND with no control pair stored (a2 CANDIDATE_UCDD_AUDIO)"
+# END A7 runs a7e
