@@ -1355,7 +1355,7 @@ Evidence: emulator (dynarec off), one take per configuration. Hardware: UNCONFIR
   report): the row was public from 4 Nov 12:52Z; independence unknown.
   Withdrawn in rule 7 form, for ISSUES.md: the ground "the notes repository
   has no remote" (his a3 decision of 9 Nov 2026, from rules-bot); this file
-  lives on the fork's public notes branch. Nothing is sent to the author.
+  lives on the fork's public notes branch.
   The check as written before, kept:
 - Independence (the owner's grounds, 9 Nov 2026: IHNMAIMS was not in the 2 Nov
   docs, and the notes repository has no remote), checked 9 Nov 2026. The

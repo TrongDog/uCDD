@@ -20,4 +20,4 @@ harness. It is not the place to start reading.
   DMA work).
 
 Everything in the register was measured in an emulator unless its row
-says otherwise, and nothing in it has been sent to the upstream author.
+says otherwise.
