@@ -119,7 +119,17 @@ commit dates only, no code.
    that differs first, the symptom): 36 families of two games or more,
    each a row of the register (FAM-1 to FAM-36) that its members' rows
    point to; [KNOWN-ISSUES.md](KNOWN-ISSUES.md) lists them. The reports
-   are written per family and per cell row next.
+   are written, met in part: one per family and one per cell row, 39 in
+   all, largest first. They are the tables set out in the reports'
+   template, and they say so. In each, the trace and the hypothesis are
+   empty (the driver is frozen); the evidence is one emulator (the second
+   emulator runs only the game's control here, not a build under test);
+   the expected behaviour is the control's, with no document cited; each
+   quotes the author's release notes that a search finds on its symptom.
+   Of the 196 candidates on the pinned build and 98 on 0.9.5-a2, 108 and
+   22 rest on one take, none has a take on the second emulator, and the
+   pinned build's CD-only form (C1) was taken for 47 and 15 of them, read
+   for 28 and 12.
 4. **The label on the fork-only faults.** A fault the pinned build has and
    the author's release does not is one of two things: a fix the author
    made after the fork's base (0.9.3b; his line is 47 commits past it at
